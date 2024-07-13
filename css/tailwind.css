@@ -1,0 +1,66 @@
+/* tailwind.css */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles */
+
+/* Dark mode */
+.dark {
+  --bg-color: #1a202c; /* Dark background color */
+  --text-color: #e2e8f0; /* Light text color */
+  --border-color: #2d3748; /* Dark border color */
+  --glow-color: rgba(255, 255, 255, 0.1); /* White glow color */
+}
+
+/* Light mode */
+.light {
+  --bg-color: #f7fafc; /* Light background color */
+  --text-color: #2d3748; /* Dark text color */
+  --border-color: #cbd5e0; /* Light border color */
+  --glow-color: rgba(0, 0, 0, 0.1); /* Black glow color */
+}
+
+/* Sections with thin glowing borders */
+.section {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px; /* Rounded edges */
+  box-shadow: 0 0 10px var(--glow-color); /* Glow effect */
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+/* Buttons with glow effect */
+.btn {
+  background-color: #4a5568; /* Dark button background */
+  color: #ffffff; /* Button text color */
+  padding: 10px 20px;
+  border-radius: 9999px; /* Circular shape */
+  box-shadow: 0 0 10px var(--glow-color); /* Glow effect */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #2d3748; /* Darken button on hover */
+}
+
+/* Hide scrollbar */
+body {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* Responsive utilities */
+@media (max-width: 768px) {
+  .section {
+    padding: 15px;
+    margin-bottom: 15px;
+  }
+}

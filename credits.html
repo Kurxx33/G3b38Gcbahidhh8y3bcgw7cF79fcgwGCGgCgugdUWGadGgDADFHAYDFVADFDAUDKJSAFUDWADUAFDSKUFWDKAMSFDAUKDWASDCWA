@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credits</title>
+    <style>
+        body {
+            background-color: black;
+            color: #49557a;
+            font-family: 'Pixelify Sans', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Prevent scrolling */
+        }
+        .rose-container {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.8rem; /* 20% smaller size */
+            line-height: 1.2;
+        }
+        .rose {
+            white-space: pre;
+        }
+        .credits-list {
+            list-style: none;
+            padding: 0;
+            margin: 100px 0 0 0; /* Adjusted margin to move credits down */
+            text-align: center;
+        }
+        .credits-list li {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        .credits-list li a {
+            color: #49557a;
+            text-decoration: none;
+            border-bottom: 1px dashed #49557a;
+        }
+        .credits-list li a:hover {
+            border-bottom-style: solid;
+        }
+        .return-link {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-size: 1.2rem;
+        }
+        .return-link a {
+            color: #49557a;
+            text-decoration: none;
+        }
+        .return-link a:hover {
+            text-decoration: underline;
+        }
+        .glow {
+            text-shadow: 0 0 5px #49557a, 0 0 10px #49557a, 0 0 15px #49557a;
+        }
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        /* Media query for mobile screens */
+        @media screen and (max-width: 600px) {
+            .rose {
+                font-size: 0.0133rem; /* 60 times smaller */
+            }
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="snow"></canvas>
+
+<div class="rose-container">
+    <pre class="rose">
+                                               o$$
+                                                               $$$$$              ooo
+                                                             $$$$$$$$          o$$$" ""oo
+                                                           o$$$"$$"$$ o"$$$"oo$"$$$  $$o $
+                                                         o$$$$ $$$ o $o"     o""""""$o"$$oo"$
+                                                        o$$$o$o$$$"  $o$$$$$""" oo$$$$$o$$$ "
+                                                        $$$"$$$$$$ ooo$$""$"  o$$$$$o "$o"$$
+                                                       $$$ o"$$$$$"  $$$"ooo$ $$$""$$o$$" $o $
+                                                      "$$$ooo$$$$   $oo$$""$$$$$$  $o$"$ $"$ $
+                                                       "$$"$$$$$"   $$$    o$$$$oo""o$"  $$ $ $
+                                                        $$"o$""$    $$$$    "$$$$$o$$"  o$"$$"$
+                                                         """ $$$    $$$$o    $$$o$o ""$$$  "$
+                                                           oo$"$$    $$$$$" "$$$$ $$ooooo"""""
+                                                            o$$"$" $$o  $$$$$$   "o$$o$
+                                                       o$"" $$oo$$$$o$$$$$$$$$o$$$$
+                                                     o"$" o$$"  "$$$$$$$"$$"$$$$$$$
+                                                    o$$o$"""$o    "$$$o"o"o$$"    ""
+                                                   $$$""     ""o oooo""""""
+                                                $o$$"          $$$$$$$$o
+                                               o$$$            $"$$$$o$""$o
+                                              o$$$"           $$$$$$$$oo"" $
+                                            o$oo$            $$"$$$$$$$$"$"$
+                                            o$o"$               "$$$$$$$$$$ oo$
+                                            oo$$"               ""$ $$$$$$$$$ $
+                                            $$"$$                  "ooo$""$$$$$o
+                                            $$$"                      ""$$o$"$o"
+                                            $$$                           """"$
+             $$$
+            $$
+            $$
+           $$$
+$$$         $$$  oooo$$ooo$o$oo
+o$$$$o       $$o$$$$$$$$$$$$$$"
+$$$$$$o      $$$$$$$$$$$$$$$$"
+$$$$$$$$o     o$$$$$$$$$o$$$$"
+$$$$$$$$$$o   $$$$$$$$$$$$$$"
+$$$$$$$$$$$$ o$$$$$$$$$$$$"
+$$$$$$$$$$$$ oo$"$$$$$$""
+$$$$$$$$$$$$$$"$
+"$$$$$$$$$$$  $
+ ""$$$$"$$$$ "
+        $$ $$"
+        $$ $$
+        $$ $$
+        "$$$$
+         "$$$
+            <span class="glow">Miso</span> $$ <span class="glow">Kurxx33</span>
+    </pre>
+</div>
+
+<div class="return-link">
+    <a href="index.html">Return to Homepage</a>
+</div>
+
+<script>
+    // Snow effect JavaScript
+    (function() {
+        var canvas = document.getElementById('snow');
+        var ctx = canvas.getContext('2d');
+
+        var width = window.innerWidth;
+        var height = window.innerHeight;
+        canvas.width = width;
+        canvas.height = height;
+
+        var snowflakes = [];
+
+        function snowflake() {
+            this.x = Math.random() * width;
+            this.y = Math.random() * height;
+            this.size = Math.random() * 3 + 1; // Smaller size
+            this.speed = Math.random() * 1 + 0.5;
+            this.opacity = Math.random() * 0.5 + 0.3;
+            this.angle = Math.random() * 2 * Math.PI;
+            this.followMouse = Math.random() * 0.1 + 0.1; // Slightly follow the mouse
+        }
+
+        function createSnowflakes() {
+            for (var i = 0; i < 100; i++) {
+                snowflakes.push(new snowflake());
+            }
+        }
+
+        function drawSnowflakes() {
+            ctx.clearRect(0, 0, width, height);
+            ctx.fillStyle = 'rgba(73, 85, 122, 0.8)'; // Same color as the text
+            ctx.shadowColor = '#49557a';
+            ctx.shadowBlur = 5;
+            ctx.beginPath();
+            for (var i = 0; i < snowflakes.length; i++) {
+                var flake = snowflakes[i];
+                ctx.moveTo(flake.x, flake.y);
+                ctx.arc(flake.x, flake.y, flake.size, 0, Math.PI * 2, true);
+            }
+            ctx.fill();
+            moveSnowflakes();
+        }
+
+        function moveSnowflakes() {
+            for (var i = 0; i < snowflakes.length; i++) {
+                var flake = snowflakes[i];
+                flake.y += flake.speed;
+                flake.x += Math.sin(flake.angle) * flake.followMouse; // Make snowflakes follow mouse
+                flake.angle += Math.random() * 0.02 - 0.01; // Randomly change angle for some movement variation
+                if (flake.y > height) {
+                    flake.y = 0;
+                    flake.x = Math.random() * width;
+                }
+                if (flake.x > width || flake.x < 0) {
+                    flake.x = Math.random() * width;
+                    flake.y = 0;
+                }
+            }
+        }
+
+        var mouseX = width / 2;
+        var mouseY = height / 2;
+
+        window.addEventListener('mousemove', function(event) {
+            mouseX = event.clientX;
+            mouseY = event.clientY;
+        });
+
+        function update() {
+            drawSnowflakes();
+            requestAnimationFrame(update);
+        }
+
+        createSnowflakes();
+        update();
+
+        window.addEventListener('resize', function() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
+            snowflakes = [];
+            createSnowflakes();
+        });
+    })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            filter: drop-shadow(0 0 10px white); /* Adds a slight glow effect */
+        }
+
+        .traffic-cone {
+            width: 100px; /* Adjust size as needed */
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        /* Sidebar styles */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh; /* Full height */
+            width: 100px; /* Adjust width as needed */
+            background-color: #222; /* Dark background */
+            color: #fff;
+            padding-top: 20px; /* Space for content */
+            text-align: center;
+            z-index: 1000; /* Ensure sidebar is above other content */
+        }
+
+        /* Main content area */
+        .main-content {
+            margin-left: 100px; /* Ensure content does not overlap sidebar */
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Sidebar</h2>
+        <a href="artemas.lol/dashboard">Your Page</a>
+        <a href="artemas.lol/chat">Chat</a>
+        <a href="artemas.lol/forum">Forum</a>
+    </div>
+
+    <!-- Main content -->
+    <div class="main-content">
+        <div class="container">
+            <img src="traffic_cone_icon.png" alt="Traffic Cone Icon" class="traffic-cone">
+            <h1>Coming Soon!</h1>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="login.js"></script>
+    <script src="create-bio.js"></script>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            filter: drop-shadow(0 0 10px white);
+        }
+
+        .traffic-cone {
+            width: 100px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 100px;
+            background-color: #222;
+            color: #fff;
+            padding-top: 20px;
+            text-align: center;
+            z-index: 1000;
+        }
+
+        .main-content {
+            margin-left: 100px;
+            padding: 20px;
+        }
+
+        .card {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            width: 300px;
+            margin: 20px auto;
+        }
+
+        .card input, .card button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        .card button {
+            background-color: #444;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .card button:hover {
+            background-color: #666;
+        }
+
+        .profile-button {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #444;
+            border: none;
+            border-radius: 10px;
+            padding: 10px;
+            color: #fff;
+            cursor: pointer;
+            margin-top: auto;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .profile-button img {
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        .profile-button:hover {
+            background-color: #666;
+        }
+
+        .sidebar-content {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+        }
+
+        .notification img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-content">
+            <h2>Sidebar</h2>
+            <a href="artemas.lol/dashboard">Your Page</a>
+            <a href="artemas.lol/chat">Chat</a>
+            <a href="artemas.lol/forum">Forum</a>
+            <button class="profile-button" id="profile-button">
+                <img src="default_profile_picture_url" alt="Profile Picture" id="profile-picture">
+                <span id="profile-username">Username</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="container">
+            <img src="/assets/traffic_cone_icon.png" alt="Traffic Cone Icon" class="traffic-cone">
+            <h1>Coming Soon!</h1>
+        </div>
+        
+        <div class="card">
+            <h1>Create Your Bio</h1>
+            <form id="bio-form">
+                <input type="text" id="username" placeholder="Username" required>
+                <input type="file" id="profilePictureFile" accept="image/*" required>
+                <input type="file" id="backgroundSongFile" accept="audio/*" required>
+                <button type="submit">Create Bio</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        async function uploadFile(file) {
+            const formData = new FormData();
+            formData.append('file', file);
+
+            const response = await fetch('/upload', {
+                method: 'POST',
+                body: formData
+            });
+
+            if (!response.ok) {
+                throw new Error('File upload failed');
+            }
+
+            const data = await response.json();
+            return data.url;
+        }
+
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.innerHTML = `<img src="checkmark_icon_url" alt="Checkmark">${message}`;
+
+            notification.addEventListener('click', () => {
+                notification.remove();
+            });
+
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.remove();
+            }, 6000);
+        }
+
+        function goToBio() {
+            const username = document.getElementById('profile-username').innerText;
+            window.location.href = `artemas.lol/${username}`;
+        }
+
+        async function createUserBio(username, profilePictureUrl, backgroundSongUrl) {
+            const response = await fetch('/create-bio', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    username,
+                    profilePictureUrl,
+                    backgroundSongUrl
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to create bio');
+            }
+
+            return await response.json();
+        }
+
+        document.getElementById('bio-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if (!isLoggedIn()) {
+                alert('You must be logged in to create a bio.');
+                return;
+            }
+
+            const username = document.getElementById('username').value;
+            const profilePictureFile = document.getElementById('profilePictureFile').files[0];
+            const backgroundSongFile = document.getElementById('backgroundSongFile').files[0];
+
+            try {
+                const profilePictureUrl = await uploadFile(profilePictureFile);
+                const backgroundSongUrl = await uploadFile(backgroundSongFile);
+
+                await createUserBio(username, profilePictureUrl, backgroundSongUrl);
+
+                document.getElementById('profile-username').innerText = username;
+                document.getElementById('profile-picture').src = profilePictureUrl;
+
+                showNotification('Bio saved correctly!');
+            } catch (error) {
+                console.error('Error saving bio:', error);
+                alert('There was an error saving your bio. Please try again.');
+            }
+        });
+
+        document.getElementById('profile-button').addEventListener('click', goToBio);
+    </script>
+</body>
+</html>

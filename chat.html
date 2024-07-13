@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Sidebar</h2>
+        <a href="#">Your Page</a>
+        <a href="forum.html">Forum</a>
+    </div>
+
+    <!-- Main content -->
+    <div class="main-content">
+        <header>
+            <h1>Chat</h1>
+        </header>
+        <div class="container">
+            <div class="chat-box" id="chatBox">
+                <!-- Chat messages will be displayed here -->
+            </div>
+            <div class="input-box">
+                <textarea id="messageInput" placeholder="Type your message..."></textarea>
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="chat.js"></script>
+</body>
+</html>

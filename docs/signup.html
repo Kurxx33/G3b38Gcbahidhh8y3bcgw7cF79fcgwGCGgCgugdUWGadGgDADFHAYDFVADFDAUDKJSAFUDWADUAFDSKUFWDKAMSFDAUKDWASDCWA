@@ -1,20 +1,227 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
-    <link rel="stylesheet" href="/css/styles.css">
+    <title>Create Account</title>
     <style>
-</head>
-<body>
-    <h2>Sign Up</h2>
-    <form id="signup-form">
-        <input type="text" id="username" placeholder="Username" required>
-        <input type="text" id="inviteCode" placeholder="Invite Code" required>
-        <button type="submit">Sign Up</button>
-    </form>
+        body {
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
 
-    <script src="login.js"></script>
+        .signup-form {
+            background-color: black;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border: 4px solid #000;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 400px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        hr {
+            width: 100%;
+            height: 4px;
+            background-color: white;
+            border: none;
+            margin-bottom: 20px;
+        }
+
+        .input-container {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .input-container input {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.2rem;
+            border: 2px solid #000;
+            border-radius: 10px;
+            background-color: black;
+            color: white;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .input-container input:hover,
+        .input-container input:focus {
+            border-color: #fff;
+        }
+
+        .input-container label {
+            position: absolute;
+            left: 15px;
+            color: white;
+            font-size: 1rem;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+
+        .input-container input:focus ~ label,
+        .input-container input:not(:placeholder-shown) ~ label {
+            transform: translateY(-20px);
+            font-size: 0.9rem;
+            color: #fff;
+        }
+
+        .terms {
+            margin-top: 10px;
+            font-size: 0.8rem;
+            color: white;
+            text-align: center;
+        }
+
+        .terms a {
+            color: #2a60fc;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .submit-btn {
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+            background-color: #000;
+            border: 2px solid #000;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #2a60fc;
+            color: white;
+            border-color: #2a60fc;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="signup-form">
+        <h1>Create Account</h1>
+        <hr>
+        <div class="input-container">
+            <input type="text" id="username" required>
+            <label for="username">Username</label>
+        </div>
+        <div class="input-container">
+            <input type="email" id="email" required>
+            <label for="email">Enter your email</label>
+        </div>
+        <div class="input-container">
+            <input type="password" id="password" required>
+            <label for="password">Create a password</label>
+        </div>
+        <div class="input-container">
+            <input type="password" id="confirmPassword" required>
+            <label for="confirmPassword">Confirm your password</label>
+        </div>
+        <p class="terms">By clicking you agree to our <a href="/tos">Terms of service</a> and <a href="/privacy">Privacy Policy</a></p>
+        <button type="submit" class="submit-btn">Register</button>
+        <p style="color:white;margin-top:10px;">Already have an account? <a href="/login" style="color:blue;">Sign In</a></p>
+    </div>
+
+    <!-- Snow effect script -->
+    <script>
+const canvas = document.getElementById('snowCanvas');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const snowflakes = [];
+const numFlakes = 200;
+
+class Snowflake {
+    constructor(x, y, speed, size, opacity) {
+        this.x = x;
+        this.y = y;
+        this.speed = speed;
+        this.size = size;
+        this.opacity = opacity;
+        this.angle = Math.random() * 2 * Math.PI;
+        this.spin = Math.random() * 0.02 - 0.01; // Random spin between -0.01 and 0.01
+    }
+
+    update() {
+        this.y += this.speed;
+        this.x += Math.sin(this.angle) * 0.5; // Slight horizontal movement
+        this.angle += this.spin; // Rotate the snowflake
+
+        if (this.y > canvas.height) {
+            this.y = -this.size;
+            this.x = Math.random() * canvas.width;
+            this.opacity = 1;
+        }
+    }
+
+    draw() {
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.angle);
+        ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+        ctx.shadowBlur = 5;
+        ctx.shadowColor = 'white';
+        ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size);
+        ctx.restore();
+    }
+}
+
+for (let i = 0; i < numFlakes; i++) {
+    snowflakes.push(new Snowflake(
+        Math.random() * canvas.width,
+        Math.random() * canvas.height,
+        Math.random() * 3 + 1,
+        Math.random() * 2 + 1,
+        1
+    ));
+}
+
+let mouseX = canvas.width / 2;
+let mouseY = canvas.height / 2;
+
+function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    snowflakes.forEach(flake => {
+        flake.update();
+        flake.draw();
+    });
+    requestAnimationFrame(draw);
+}
+
+draw();
+
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
+
+window.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+});
+
+    </script>
 </body>
+
 </html>

@@ -175,6 +175,11 @@
         function hideSplashScreen() {
             const splashScreen = document.querySelector('.splash-screen');
             splashScreen.classList.add('hidden');
+            setTimeout(() => {
+                splashScreen.style.display = 'none'; // Hide splash screen after fade-out
+                document.body.style.overflow = 'auto'; // Enable scrolling after click
+                document.querySelector('.bio-container').style.opacity = '1'; // Fade in bio container
+            }, 1000); // Adjust timing to match transition duration
         }
 
         // Fetch server information from Discord Widget API

@@ -229,10 +229,66 @@
             letter-spacing: 0.15em;
             animation: typing 5.5s steps(40, end), blink-caret 0.75s step-end infinite;
         }
+
+        .ascii-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .ascii-line {
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            background-color: #555;
+            opacity: 0.5;
+            animation: flicker 1s infinite alternate;
+        }
+
+        .ascii-line:nth-child(1) {
+            top: 20%;
+        }
+
+        .ascii-line:nth-child(2) {
+            top: 40%;
+        }
+
+        .ascii-line:nth-child(3) {
+            top: 60%;
+        }
+
+        .ascii-line:nth-child(4) {
+            top: 80%;
+        }
+
+        @keyframes flicker {
+            from {
+                opacity: 0.5;
+            }
+            to {
+                opacity: 0.2;
+            }
+        }
+
+        .status {
+            color: red;
+        }
     </style>
 </head>
 
 <body>
+    <div class="ascii-lines">
+        <div class="ascii-line"></div>
+        <div class="ascii-line"></div>
+        <div class="ascii-line"></div>
+        <div class="ascii-line"></div>
+    </div>
+
     <div class="loading-screen">
         <div class="kurxx">kurxx<span class="copyright">©</span></div>
         <div class="logo">
@@ -247,23 +303,23 @@
         <div class="terminal-text">
             <p>Kurxx© 2011 - 2077 all rights reserved</p>
             <p>Generating...</p>
-            <p>Loading virus files.<br>Trojan: Injected <span style="color: red;">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</span><br>RansomWare: Injected <span style="color: red;">&emsp;&emsp;&emsp;&emsp;&emsp;</span><br>Spyware: Injected <span style="color: red;">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</span></p>
-            <p>Importing: Kurxx33.html <span style="color: green;">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</span> Status: Successful</p>
+            <p>Loading virus files.<br>Trojan: Injected <span class="status red">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</span><br>RansomWare: Injected <span class="status red">&emsp;&emsp;&emsp;&emsp;&emsp;</span><br>Spyware: Injected <span class="status red">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</span></p>
+            <p>Software licensed to ARTEMAS LOL <br> CRACKING...</p>
+            <p>Available at the App Store!</p>
+            <p>Running</p>
         </div>
     </div>
 
     <div class="main-content">
-        Welcome to artemas.lol!
+        <h1>Welcome to ARTEMAS</h1>
     </div>
 
     <script>
         setTimeout(() => {
             document.querySelector('.loading-screen').style.display = 'none';
+            document.querySelector('.main-content').style.display = 'flex';
             document.querySelector('.terminal-screen').style.display = 'flex';
-            setTimeout(() => {
-                window.location.href = 'https://artemas.lol/landing';
-            }, 10000); // 10 seconds
-        }, 10000); // 10 seconds
+        }, 10000); // Adjust the time delay as needed
     </script>
 </body>
 

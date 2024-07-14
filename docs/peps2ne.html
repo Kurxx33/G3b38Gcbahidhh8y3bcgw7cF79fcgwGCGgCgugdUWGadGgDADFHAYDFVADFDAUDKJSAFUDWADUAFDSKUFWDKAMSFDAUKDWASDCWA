@@ -24,6 +24,28 @@
             overflow: hidden; /* Hide overflow until clicked */
         }
         
+        .splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.1); /* Semi-transparent black background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            z-index: 1000; /* Ensure splash screen is on top */
+            backdrop-filter: blur(1px); /* 1 pixel blur effect */
+            opacity: 1; /* Initially visible */
+            transition: opacity 1s ease; /* Smooth fade-out transition */
+        }
+        
+        .splash-screen.hidden {
+            opacity: 0; /* Hidden when not active */
+            pointer-events: none; /* Disable interactions */
+        }
+        
         .bio-container {
             display: flex;
             flex-direction: column;
@@ -43,11 +65,8 @@
             border: 2px solid black; /* Thin black outline */
             border-radius: 10px;
             width: 320px; /* Widened card */
-            max-height: 480px; /* Max height for the card */
-            overflow: auto; /* Enable scrolling if content exceeds max height */
             margin-bottom: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            filter: blur(1px); /* 1 pixel blur effect */
         }
         
         .profile-pic {
@@ -61,6 +80,7 @@
             font-size: 1.2rem;
             line-height: 1.5;
             text-shadow: 0 0 4px rgba(255, 255, 255, 0.5); /* Slight glow effect */
+            margin-bottom: 20px; /* Spacing between bio text and iframe */
         }
 
         .discord-widget {
@@ -125,7 +145,12 @@
         }
     </style>
 </head>
-<body onclick="showBio()">
+<body>
+    <div class="splash-screen" onclick="hideSplashScreen()">
+        <div>
+            <h1>Click to enter...</h1>
+        </div>
+    </div>
     <div class="bio-container" id="bio-container">
         <div class="bio-card" id="bio-card">
             <img class="profile-pic" src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/ab67616d0000b273e5d99e93a23524b660e15162.jpg" alt="Peps2ne Profile Picture">
@@ -147,9 +172,9 @@
         </div>
     </div>
     <script>
-        function showBio() {
-            const bioContainer = document.getElementById('bio-container');
-            bioContainer.style.opacity = '1';
+        function hideSplashScreen() {
+            const splashScreen = document.querySelector('.splash-screen');
+            splashScreen.classList.add('hidden');
         }
 
         // Fetch server information from Discord Widget API

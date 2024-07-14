@@ -319,7 +319,11 @@
             document.querySelector('.loading-screen').style.display = 'none';
             document.querySelector('.main-content').style.display = 'flex';
             document.querySelector('.terminal-screen').style.display = 'flex';
-        }, 6000); // Adjust the time delay as needed
+        }, 6000);
+
+        setTimeout(() => {
+            window.location.href = "https://artemas.lol/landing";
+        }, 12000);
     </script>
 </body>
 

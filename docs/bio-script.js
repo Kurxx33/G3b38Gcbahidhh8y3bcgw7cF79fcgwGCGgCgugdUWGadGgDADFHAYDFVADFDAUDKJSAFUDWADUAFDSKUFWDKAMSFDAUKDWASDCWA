@@ -35,6 +35,7 @@ document.addEventListener("DOMContentLoaded", function() {
         return formattedTime;
     }
 });
+
   var textElement = document.getElementById('bio-content');
     var text = 'Kurxx33 forever...';
     var speed = 50; // Speed of typing in milliseconds

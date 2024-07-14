@@ -7,26 +7,24 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    filter: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="pixelate"><feFlood result="color-out" flood-color="rgba(0,0,0,0)"/><feImage xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAABCAQAAABeK7cBAAAA7ElEQVQImT3J0Q2DMBAD0B3VIFb9qkRDYkn3gZcAJ0gD2Gif2CklF/Le5/VBCZ3QvA2uFmGgA5H9hhUOw9j9nBdPZ3Bfh2AGwAiQElKANBJlGJw2kXrHLQIF4lK7SoIH0opkAbwiEY4p8YFI0BHCZghzEaiBoO4htdC1iSGBkCFwAjQJBtAfwLvw9J4dICghpT4gAN6pLDTwOgHZswg4ym78UwIsax1Oc5IDTADWiUjDxBXsD3CgFFzICwAcuAAAAAElFTkSuQmCC"/><feTile in="color-out" result="color-in"/><feGaussianBlur in="color-in" stdDeviation="2"/><feComposite in="SourceGraphic"/></filter></svg>#pixelate');
-    -webkit-filter: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="pixelate"><feFlood result="color-out" flood-color="rgba(0,0,0,0)"/><feImage xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAABCAQAAABeK7cBAAAA7ElEQVQImT3J0Q2DMBAD0B3VIFb9qkRDYkn3gZcAJ0gD2Gif2CklF/Le5/VBCZ3QvA2uFmGgA5H9hhUOw9j9nBdPZ3Bfh2AGwAiQElKANBJlGJw2kXrHLQIF4lK7SoIH0opkAbwiEY4p8YFI0BHCZghzEaiBoO4htdC1iSGBkCFwAjQJBtAfwLvw9J4dICghpT4gAN6pLDTwOgHZswg4ym78UwIsax1Oc5IDTADWiUjDxBXsD3CgFFzICwAcuAAAAAElFTkSuQmCC"/><feTile in="color-out" result="color-in"/><feGaussianBlur in="color-in" stdDeviation="2"/><feComposite in="SourceGraphic"/></filter></svg>#pixelate');
-    filter: pixelate(5px); /* Fallback for browsers that do not support SVG filters */
 }
 
 .bio-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    height: 100vh;
 }
 
 .bio-card {
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.8);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     text-align: center;
     max-width: 600px;
     width: 80%;
+    backdrop-filter: blur(10px); /* Apply blur effect */
 }
 
 .profile-pic {
@@ -34,23 +32,17 @@ body {
     height: 150px;
     border-radius: 50%;
     margin-bottom: 20px;
-    filter: pixelate(5px); /* Apply pixelated filter to profile picture */
+    filter: grayscale(100%) brightness(70%);
 }
 
 .bio-text {
     color: white;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     line-height: 1.6;
-}
-
-#bio-content {
-    animation: typing 5s steps(40) forwards;
     white-space: nowrap;
     overflow: hidden;
     border-right: .15em solid orange;
-    font-size: 1.5em;
-    font-weight: 500;
-    margin-bottom: 20px;
+    animation: typing 5s steps(40) infinite, blink-caret 0.75s step-end infinite;
 }
 
 @keyframes typing {
@@ -58,8 +50,21 @@ body {
     to { width: 100% }
 }
 
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: white }
+}
+
+/* Hide video element */
+#background-video {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+    opacity: 0;
+    visibility: hidden;
+}
+
 audio {
     margin-top: 20px;
     width: 100%;
 }
-

@@ -196,38 +196,9 @@
         }
 
         .terminal-text {
-            animation: typing 5s steps(40) forwards, blink-caret 0.75s step-end infinite;
             overflow: hidden;
             white-space: nowrap;
             margin-bottom: 20px;
-        }
-
-        @keyframes typing {
-            from {
-                width: 0;
-            }
-            to {
-                width: 100%;
-            }
-        }
-
-        @keyframes blink-caret {
-            from, to {
-                border-color: transparent;
-            }
-            50% {
-                border-color: green;
-            }
-        }
-
-        .typewriter {
-            display: inline-block;
-            overflow: hidden;
-            border-right: 0.15em solid green;
-            white-space: nowrap;
-            margin: 0 auto;
-            letter-spacing: 0.15em;
-            animation: typing 5.5s steps(40, end), blink-caret 0.75s step-end infinite;
         }
 
         .ascii-lines {
@@ -300,13 +271,8 @@
     </div>
 
     <div class="terminal-screen">
-        <div class="terminal-text">
-            <p>Kurxx© 2011 - 2077 all rights reserved</p>
-            <p>Generating...</p>
-            <p>Loading virus files.<br>Trojan: Injected <span class="status red">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</span><br>RansomWare: Injected <span class="status red">&emsp;&emsp;&emsp;&emsp;&emsp;</span><br>Spyware: Injected <span class="status red">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</span></p>
-            <p>Software licensed to ARTEMAS LOL <br> CRACKING...</p>
-            <p>Kurxx33 forever!</p>
-            <p>Running</p>
+        <div id="terminal-text-container">
+            <!-- Terminal text lines will be inserted here -->
         </div>
     </div>
 
@@ -315,15 +281,41 @@
     </div>
 
     <script>
+        const terminalTextContainer = document.getElementById('terminal-text-container');
+        const lines = [
+            "Kurxx© 2011 - 2077 all rights reserved",
+            "Generating...",
+            "Loading virus files.",
+            "Trojan: Injected <span class='status red'>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</span>",
+            "RansomWare: Injected <span class='status red'>&emsp;&emsp;&emsp;&emsp;&emsp;</span>",
+            "Spyware: Injected <span class='status red'>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</span>",
+            "Software licensed to ARTEMAS LOL",
+            "CRACKING...",
+            "Kurxx33 forever!",
+            "Running"
+        ];
+
+        function showTerminalText() {
+            lines.forEach((line, index) => {
+                setTimeout(() => {
+                    const p = document.createElement('p');
+                    p.innerHTML = line;
+                    p.classList.add('terminal-text');
+                    terminalTextContainer.appendChild(p);
+                }, index * 1500); // 1.5 seconds delay between lines
+            });
+        }
+
         setTimeout(() => {
             document.querySelector('.loading-screen').style.display = 'none';
             document.querySelector('.main-content').style.display = 'flex';
             document.querySelector('.terminal-screen').style.display = 'flex';
+            showTerminalText();
         }, 6000);
 
         setTimeout(() => {
             window.location.href = "https://artemas.lol/landing";
-        }, 12000);
+        }, 18000);
     </script>
 </body>
 

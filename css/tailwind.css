@@ -74,3 +74,50 @@ body::-webkit-scrollbar {
     margin-bottom: 15px;
   }
 }
+
+/* Custom styles */
+body {
+    background-color: #1e2124; /* Dark background */
+    color: #fff; /* White text */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Sidebar styles */
+.sidebar {
+    @apply fixed top-0 left-0 h-screen w-20 bg-black text-white py-6 text-center z-50 shadow-lg;
+}
+
+/* Main content area */
+.main-content {
+    @apply ml-20 p-8;
+}
+
+/* Buttons */
+.btn {
+    @apply inline-block bg-gray-800 text-white py-2 px-4 rounded-lg shadow-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-600;
+}
+
+/* Card styles */
+.card {
+    @apply bg-gray-900 p-6 rounded-lg shadow-lg;
+}
+
+/* Form input styles */
+.form-input {
+    @apply block w-full py-2 px-3 bg-gray-800 text-white rounded-lg shadow-inner focus:outline-none focus:ring-2 focus:ring-gray-600;
+}
+
+/* Alert styles */
+.alert {
+    @apply p-4 bg-red-500 text-white rounded-lg shadow-md;
+}
+
+/* Badge styles */
+.badge {
+    @apply inline-block bg-blue-500 text-white px-2 py-1 rounded-full text-xs font-semibold tracking-wide uppercase;
+}
+
+/* Link styles */
+a {
+    @apply text-blue-500 hover:underline;
+}

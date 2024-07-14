@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>404 - Page Not Found</title>
     <style>
-        /* Add your custom CSS styles here */
         body {
+            background-color: #000;
+            color: #fff;
             font-family: Arial, sans-serif;
             text-align: center;
             padding: 50px;
@@ -30,9 +31,16 @@
         button:hover {
             background-color: #555;
         }
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
     </style>
 </head>
 <body>
+    <canvas id="snowCanvas"></canvas>
     <div class="content">
         <h1>404 - Page Not Found</h1>
         <p>The page "<span id="wrongPath"></span>" does not exist.</p>
@@ -40,30 +48,86 @@
     </div>
 
     <script>
-        // Function to get the current URL pathname
-        function getCurrentPathname() {
-            var path = window.location.pathname;
-            return path.substring(1); // Remove the leading '/'
-        }
+        // Snow effect JavaScript
+        const canvas = document.getElementById('snowCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
 
-        // Function to initialize the 404 page
-        function init404Page() {
-            var currentPath = getCurrentPathname();
-            var pathElement = document.getElementById('wrongPath');
-            if (pathElement) {
-                pathElement.textContent = currentPath;
+        const snowflakes = [];
+        const numFlakes = 200;
+
+        class Snowflake {
+            constructor(x, y, speed, size, opacity) {
+                this.x = x;
+                this.y = y;
+                this.speed = speed;
+                this.size = size;
+                this.opacity = opacity;
+                this.angle = Math.random() * 2 * Math.PI;
+                this.spin = Math.random() * 0.02 - 0.01; // Random spin between -0.01 and 0.01
+            }
+
+            update() {
+                this.y += this.speed;
+                this.x += Math.sin(this.angle) * 0.5; // Slight horizontal movement
+                this.angle += this.spin; // Rotate the snowflake
+
+                if (this.y > canvas.height) {
+                    this.y = -this.size;
+                    this.x = Math.random() * canvas.width;
+                    this.opacity = 1;
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.angle);
+                ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+                ctx.shadowBlur = 5;
+                ctx.shadowColor = 'white';
+                ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size);
+                ctx.restore();
             }
         }
 
-        // Function to navigate back to the main page
+        for (let i = 0; i < numFlakes; i++) {
+            snowflakes.push(new Snowflake(
+                Math.random() * canvas.width,
+                Math.random() * canvas.height,
+                Math.random() * 3 + 1,
+                Math.random() * 2 + 1,
+                1
+            ));
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            snowflakes.forEach(flake => {
+                flake.update();
+                flake.draw();
+            });
+            requestAnimationFrame(draw);
+        }
+
+        draw();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        function init404Page() {
+            var currentPath = window.location.pathname;
+            document.getElementById('wrongPath').textContent = currentPath;
+        }
+
         function goBack() {
             window.location.href = '/'; // Adjust the URL as needed
         }
 
-        // Initialize the 404 page when the script loads
-        window.onload = function() {
-            init404Page();
-        };
+        init404Page();
     </script>
 </body>
 </html>

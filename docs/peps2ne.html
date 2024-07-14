@@ -21,29 +21,6 @@
             background-color: black;
             color: white;
             font-family: Arial, sans-serif;
-            overflow: hidden; /* Hide overflow until clicked */
-        }
-        
-        .splash-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.1); /* Semi-transparent black background */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            z-index: 1000; /* Ensure splash screen is on top */
-            backdrop-filter: blur(1px); /* 1 pixel blur effect */
-            opacity: 1; /* Initially visible */
-            transition: opacity 1s ease; /* Smooth fade-out transition */
-        }
-        
-        .splash-screen.hidden {
-            opacity: 0; /* Hidden when not active */
-            pointer-events: none; /* Disable interactions */
         }
         
         .bio-container {
@@ -53,18 +30,15 @@
             justify-content: center;
             height: 100vh;
             padding: 20px;
-            background-color: white; /* Change background to white */
-            opacity: 0; /* Initially hidden */
-            transition: opacity 1s ease; /* Smooth fade-in transition */
         }
         
         .bio-card {
             text-align: center;
             padding: 20px;
-            background-color: white; /* Change background to white */
-            border: 2px solid black; /* Thin black outline */
+            background-color: black;
+            border: 2px solid white;
             border-radius: 10px;
-            width: 320px; /* Widened card */
+            max-width: 400px;
             margin-bottom: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
@@ -81,6 +55,7 @@
             line-height: 1.5;
             text-shadow: 0 0 4px rgba(255, 255, 255, 0.5); /* Slight glow effect */
             margin-bottom: 20px; /* Spacing between bio text and iframe */
+            color: black; /* Set text color to black */
         }
 
         .discord-widget {
@@ -122,7 +97,7 @@
         }
         
         .join-button {
-            padding: 6px 12px; /* Adjusted padding to make button smaller */
+            padding: 8px 16px;
             background-color: #7289da;
             border: none;
             color: #ffffff;
@@ -146,41 +121,33 @@
     </style>
 </head>
 <body>
-    <div class="splash-screen" onclick="hideSplashScreen()">
-        <div>
-            <h1>Click to enter...</h1>
-        </div>
-    </div>
-    <div class="bio-container" id="bio-container">
-        <div class="bio-card" id="bio-card">
+    <div class="bio-container">
+        <div class="bio-card">
             <img class="profile-pic" src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/ab67616d0000b273e5d99e93a23524b660e15162.jpg" alt="Peps2ne Profile Picture">
-            <div class="bio-text">
-                Peps2ne<br>
-                EarthDev
+            <div class="bio-text" style="color: black;"> <!-- Set text color to black -->
+                Click to enter...
             </div>
             <!-- Spotify Widget -->
             <iframe src="https://open.spotify.com/embed/track/3NBOmde7ZUWhmqwqLVFcGE?theme=0" width="100%" height="300" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
         </div>
         <!-- Discord Widget -->
-        <div class="discord-widget">
-            <img class="server-icon" id="server-icon" src="" alt="Server Icon">
+        <div id="discord-widget" class="discord-widget">
+            <img id="server-icon" class="server-icon" src="" alt="Server Icon">
             <div class="server-info">
-                <div class="server-name" id="server-name">Loading...</div>
-                <div class="member-count" id="member-count">Members: Loading...</div>
+                <div id="server-name" class="server-name">Loading...</div>
+                <div id="member-count" class="member-count">Members: Loading...</div>
             </div>
-            <button class="join-button" id="join-button">Join Server</button>
+            <button id="join-button" class="join-button">Join Server</button>
         </div>
     </div>
     <script>
-        function hideSplashScreen() {
-            const splashScreen = document.querySelector('.splash-screen');
-            splashScreen.classList.add('hidden');
-            setTimeout(() => {
-                splashScreen.style.display = 'none'; // Hide splash screen after fade-out
-                document.body.style.overflow = 'auto'; // Enable scrolling after click
-                document.querySelector('.bio-container').style.opacity = '1'; // Fade in bio container
-            }, 1000); // Adjust timing to match transition duration
-        }
+        document.addEventListener('DOMContentLoaded', function() {
+            const splashScreen = document.querySelector('.bio-text');
+            splashScreen.addEventListener('click', function() {
+                splashScreen.style.opacity = '0';
+                splashScreen.style.pointerEvents = 'none'; // Disable click events
+            });
+        });
 
         // Fetch server information from Discord Widget API
         async function fetchDiscordServerInfo() {

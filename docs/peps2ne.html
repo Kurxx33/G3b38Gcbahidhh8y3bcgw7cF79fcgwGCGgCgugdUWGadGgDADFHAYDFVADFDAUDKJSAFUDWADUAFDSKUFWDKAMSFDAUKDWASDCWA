@@ -18,25 +18,29 @@
             padding: 0;
             width: 100%;
             height: 100%;
-            background-color: black;
+            background-color: white; /* Changed background color to white */
+            color: black; /* Changed text color to black */
+            font-family: Arial, sans-serif;
         }
         
         .bio-container {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
+            justify-content: center;
             height: 100vh;
+            padding: 20px;
         }
         
         .bio-card {
             text-align: center;
             padding: 20px;
-            background-color: black;
-            color: white;
+            background-color: white; /* Changed card background color to white */
             border: 2px solid white;
             border-radius: 10px;
-            max-width: 400px;
-            margin: 0 auto;
+            max-width: 420px; /* Widened the card slightly */
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Added 1px blur to the card */
         }
         
         .profile-pic {
@@ -49,6 +53,61 @@
         .bio-text {
             font-size: 1.2rem;
             line-height: 1.5;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.5); /* Added slight glow to the text */
+        }
+
+        .discord-widget {
+            background-color: rgba(44, 47, 51, 0.8); /* Slightly darker color with transparency */
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 300px;
+            padding: 15px;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            color: #ffffff;
+            backdrop-filter: blur(8px); /* Chrome blur effect */
+            text-align: center;
+        }
+        
+        .server-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            margin-right: 15px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Edge glow */
+        }
+        
+        .server-info {
+            flex: 1;
+        }
+        
+        .server-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .member-count {
+            font-size: 1rem;
+            opacity: 0.7;
+            margin-bottom: 10px;
+        }
+        
+        .join-button {
+            padding: 8px 16px;
+            background-color: #7289da;
+            border: none;
+            color: #ffffff;
+            font-size: 0.9rem;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .join-button:hover {
+            background-color: #5f73bc;
         }
         
         iframe {
@@ -62,14 +121,62 @@
 <body>
     <div class="bio-container">
         <div class="bio-card">
-            <img class="profile-pic" src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/ab67616d0000b273e5d99e93a23524b660e15162.jpg" alt="Kurxx33 Profile Picture">
+            <img class="profile-pic" src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/ab67616d0000b273e5d99e93a23524b660e15162.jpg" alt="Peps2ne Profile Picture">
             <div class="bio-text">
+              Peps2ne
                 EarthDev
             </div>
             <!-- Spotify Widget -->
             <iframe src="https://open.spotify.com/embed/track/3NBOmde7ZUWhmqwqLVFcGE?theme=0" width="100%" height="300" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
         </div>
+        <!-- Discord Widget -->
+        <div id="discord-widget" class="discord-widget">
+            <img id="server-icon" class="server-icon" src="" alt="Server Icon">
+            <div class="server-info">
+                <div id="server-name" class="server-name">Loading...</div>
+                <div id="member-count" class="member-count">Members: Loading...</div>
+            </div>
+            <button id="join-button" class="join-button">Join Server</button>
+        </div>
     </div>
+    <script>
+        // Fetch server information from Discord Widget API
+        async function fetchDiscordServerInfo() {
+            const inviteLink = 'https://discord.com/invite/earthdev'; // Replace with your Discord invite link
+            const inviteCode = inviteLink.split('/').pop(); // Extract invite code from link
+
+            try {
+                const response = await fetch(`https://discord.com/api/v9/invites/${inviteCode}?with_counts=true`);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch server information');
+                }
+                const data = await response.json();
+                updateServerInfo(data);
+            } catch (error) {
+                console.error('Error fetching server info:', error);
+            }
+        }
+
+        function updateServerInfo(data) {
+            const serverName = data.guild?.name || 'Unknown Server';
+            const memberCount = data.approximate_member_count || 'Unknown';
+
+            const serverIconUrl = data.guild?.icon
+                ? `https://cdn.discordapp.com/icons/${data.guild.id}/${data.guild.icon}.png`
+                : 'https://discord.com/assets/2c21aeda16de354ba5334551a883b481.png'; // Default Discord icon
+
+            document.getElementById('server-name').textContent = serverName;
+            document.getElementById('member-count').textContent = `Members: ${memberCount}`;
+            document.getElementById('server-icon').src = serverIconUrl;
+
+            const joinButton = document.getElementById('join-button');
+            joinButton.addEventListener('click', () => {
+                window.open(`https://discord.gg/${data.code}`, '_blank');
+            });
+        }
+
+        fetchDiscordServerInfo();
+    </script>
 </body>
 </html>
 

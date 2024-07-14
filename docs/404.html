@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found</title>
+    <style>
+        /* Add your custom CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            font-size: 2.5em;
+        }
+        p {
+            font-size: 1.2em;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>404 - Page Not Found</h1>
+        <p>The page "<span id="wrongPath"></span>" does not exist.</p>
+        <button onclick="goBack()">Back to Main Page</button>
+    </div>
+
+    <script>
+        // Function to get the current URL pathname
+        function getCurrentPathname() {
+            var path = window.location.pathname;
+            return path.substring(1); // Remove the leading '/'
+        }
+
+        // Function to initialize the 404 page
+        function init404Page() {
+            var currentPath = getCurrentPathname();
+            var pathElement = document.getElementById('wrongPath');
+            if (pathElement) {
+                pathElement.textContent = currentPath;
+            }
+        }
+
+        // Function to navigate back to the main page
+        function goBack() {
+            window.location.href = '/'; // Adjust the URL as needed
+        }
+
+        // Initialize the 404 page when the script loads
+        window.onload = function() {
+            init404Page();
+        };
+    </script>
+</body>
+</html>

@@ -1,5 +1,5 @@
 body {
-    background-image: url('/docs/kurxxbackground.png');
+    background-image: url('docs/kurxxbackground.png');
     background-size: cover;
     font-family: Arial, sans-serif;
     display: flex;

@@ -19,8 +19,8 @@
         }
 
         .signup-form {
-            background-color: transparent; /* Transparent background */
-            border: 4px solid white; /* White border */
+            background-color: transparent;
+            border: 4px solid white;
             border-radius: 20px;
             padding: 40px;
             max-width: 400px;
@@ -28,6 +28,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            box-sizing: border-box; /* Ensure padding is included in width/height */
         }
 
         h1 {
@@ -49,13 +50,14 @@
         .input-container {
             width: 100%;
             margin-bottom: 20px;
+            position: relative; /* Ensure labels are positioned correctly */
         }
 
         .input-container input {
             width: 100%;
             padding: 15px;
             font-size: 1.2rem;
-            border: 2px solid white; /* White border */
+            border: 2px solid white;
             border-radius: 10px;
             background-color: black;
             color: white;
@@ -66,7 +68,7 @@
         .input-container input:hover,
         .input-container input:focus {
             border-color: white;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* White glow effect */
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
         }
 
         .input-container label {
@@ -84,19 +86,7 @@
         .input-container input:not(:placeholder-shown) ~ label {
             transform: translateY(-20px);
             font-size: 0.9rem;
-            color: white; /* White color */
-        }
-
-        .terms {
-            margin-top: 10px;
-            font-size: 0.8rem;
             color: white;
-            text-align: center;
-        }
-
-        .terms a {
-            color: white;
-            text-decoration: underline;
         }
 
         .submit-btn {
@@ -114,7 +104,7 @@
         .submit-btn:hover {
             background-color: white;
             color: black;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* White glow effect on hover */
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
         }
 
         .rotating-icon {
@@ -148,18 +138,14 @@
             <label for="username">Username</label>
         </div>
         <div class="input-container">
-            <input type="email" id="email" required>
-            <label for="email">Enter your email</label>
+            <input type="email" id="email" required placeholder="Email">
         </div>
         <div class="input-container">
-            <input type="password" id="password" required>
-            <label for="password">Create a password</label>
+            <input type="password" id="password" required placeholder="Password">
         </div>
         <div class="input-container">
-            <input type="password" id="confirmPassword" required>
-            <label for="confirmPassword">Confirm your password</label>
+            <input type="password" id="confirmPassword" required placeholder="Confirm Password">
         </div>
-        <p class="terms">By clicking you agree to our <a href="/tos">Terms of service</a> and <a href="/privacy">Privacy Policy</a></p>
         <button type="submit" class="submit-btn">Register</button>
         <p style="color:white;margin-top:10px;">Already have an account? <a href="/login" style="color:white;text-decoration:underline;">Sign In</a></p>
     </div>

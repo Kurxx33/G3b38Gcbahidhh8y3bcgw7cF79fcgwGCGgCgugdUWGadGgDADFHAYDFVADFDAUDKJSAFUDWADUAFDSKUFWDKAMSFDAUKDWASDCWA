@@ -3,219 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kurxx.search</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        /* Additional styles for pop-up windows */
-        .window {
-            background-color: #fff;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 1000; /* Ensure pop-ups are above other content */
-        }
-        .window.active {
-            display: block;
-        }
-        .window .title-bar {
-            background-color: #0078d4;
-            color: #fff;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 8px;
-            border-top-left-radius: 5px;
-            border-top-right-radius: 5px;
-        }
-        .window .title-bar-controls {
-            display: flex;
-        }
-        .window .title-bar-controls button {
-            background: none;
-            border: none;
-            color: #fff;
-            cursor: pointer;
-            padding: 0 5px;
-        }
-        .window .title-bar-controls button:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-        .window .window-body {
-            padding: 20px;
-        }
-        .window .window-body p {
-            margin-bottom: 10px;
-        }
-        .window .window-body center {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        /* Additional styles for toolbar and apps */
-        .toolbar {
-            background-color: #eee;
-            width: 100%;
-            height: 60px;
-            position: fixed;
-            bottom: 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-            box-sizing: border-box;
-            z-index: 1000;
-        }
-        .apps {
-            display: flex;
-            align-items: center;
-        }
-        .app {
-            margin: 0 10px;
-            cursor: pointer;
-        }
-        .app img {
-            width: 40px;
-            height: 40px;
-            border-radius: 5px;
-        }
-    </style>
+    <title>1990s Computer Screen</title>
+    <link rel="stylesheet" href="css/computer.css">
 </head>
 <body>
-    <div class="windows-screen">
-        <div class="header">
-            <div class="title">Kurxx.search</div>
-            <div class="subtitle">Find and Dox your adversaries today!</div>
+    <div id="splash-screen" class="splash-screen">
+        <div class="splash-content">
+            <select id="user-dropdown">
+                <option value="kurxx33">Kurxx33</option>
+            </select>
         </div>
-        <div class="content">
-            <form action="">
-                <label for="user-select">Select User:</label>
-                <select name="user-select" id="user-select" onchange="selectUser(this)">
-                    <option value="">Choose user...</option>
-                    <option value="kurxx33">kurxx33</option>
-                    <option value="Aria">Aria</option>
-                    <option value="Miso">Miso</option>
-                </select>
+    </div>
+
+    <div id="computer-screen" class="windows-screen">
+        <div class="header">
+            <div class="title">Welcome to 1990s Computer</div>
+            <div class="subtitle">Enter 'kurxx33' to begin...</div>
+        </div>
+
+        <div class="content hidden">
+            <form id="login-form">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+                <button type="submit">Login</button>
             </form>
         </div>
+
         <div class="footer">
-            <div class="apps" id="apps">
-                <div class="app" id="doxbin"><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><img src="assets/doxbin.png" alt="Doxbin"></a></div>
-                <div class="app" id="proton-mail"><a href="mailto:kurxx33@proton.me"><img src="assets/proton-mail-logo-150x150.png" alt="Proton Mail"></a></div>
-                <div class="app" id="shock-lol"><a href="https://shock.lol/kurxx33"><img src="assets/shock.lol.gif" alt="Shock.lol"></a></div>
-                <div class="app" id="telegram"><a href="https://t.me/kurxx33"><img src="assets/logo-telegram-4096.png" alt="Telegram"></a></div>
-            </div>
-            <div class="time">
-                <span class="hour"></span>:<span class="minutes"></span> AM
+            <div class="taskbar">
+                <div class="taskbar-icon" id="doxbin">
+                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+                        <img src="assets/doxbin.png" alt="Doxbin">
+                    </a>
+                </div>
+                <div class="taskbar-icon" id="proton-mail">
+                    <a href="mailto:kurxx33@proton.me">
+                        <img src="assets/proton-mail-logo-150x150.png" alt="Proton Mail">
+                    </a>
+                </div>
+                <div class="taskbar-icon" id="shock-lol">
+                    <a href="https://shock.lol/kurxx33">
+                        <img src="assets/shock.lol.gif" alt="Shock.lol">
+                    </a>
+                </div>
+                <div class="taskbar-icon" id="telegram">
+                    <a href="https://t.me/kurxx33">
+                        <img src="assets/logo-telegram-4096.png" alt="Telegram">
+                    </a>
+                </div>
+                <div class="taskbar-clock" id="clock">00:00</div>
             </div>
         </div>
     </div>
 
-    <!-- PopUp Windows -->
-    <div class="window draggable" id="PopUpKurxx33">
-        <div class="title-bar">
-            <div class="title-bar-text">kurxx33</div>
-            <div class="title-bar-controls">
-                <button class="minimize-button" aria-label="Minimize" onclick="minimizeWindow('PopUpKurxx33')">-</button>
-                <button class="close-button" aria-label="Close" onclick="closeWindow('PopUpKurxx33')">X</button>
-            </div>
-        </div>
-        <div class="window-body">
-            <center>
-                <img src="Members/anonymous.png" height="48px" width="48px">
-                <p>What is a Heart?….if I tore a hole through your chest, would I see it..? If I split open your skull, would it be there..?</p>
-                <section class="field-row" style="justify-content: center">
-                    <button class="full-screen-button" aria-label="Full Screen">Full Screen</button>
-                </section>
-            </center>
-        </div>
-    </div>
-
-    <div class="window draggable" id="PopUpAria">
-        <div class="title-bar">
-            <div class="title-bar-text">Aria</div>
-            <div class="title-bar-controls">
-                <button class="minimize-button" aria-label="Minimize" onclick="minimizeWindow('PopUpAria')">-</button>
-                <button class="close-button" aria-label="Close" onclick="closeWindow('PopUpAria')">X</button>
-            </div>
-        </div>
-        <div class="window-body">
-            <center>
-                <img src="Members/anonymous.png" height="48px" width="48px">
-                <p>I&lt;3Shadow</p>
-                <section class="field-row" style="justify-content: center">
-                    <button class="full-screen-button" aria-label="Full Screen">Full Screen</button>
-                </section>
-            </center>
-        </div>
-    </div>
-
-    <div class="window draggable" id="PopUpMiso">
-        <div class="title-bar">
-            <div class="title-bar-text">Miso</div>
-            <div class="title-bar-controls">
-                <button class="minimize-button" aria-label="Minimize" onclick="minimizeWindow('PopUpMiso')">-</button>
-                <button class="close-button" aria-label="Close" onclick="closeWindow('PopUpMiso')">X</button>
-            </div>
-        </div>
-        <div class="window-body">
-            <center>
-                <img src="Members/anonymous.png" height="48px" width="48px">
-                <p>Guns.lol sucks ass!</p>
-                <section class="field-row" style="justify-content: center">
-                    <button class="full-screen-button" aria-label="Full Screen">Full Screen</button>
-                </section>
-            </center>
-        </div>
-    </div>
-
-    <script>
-        function selectUser(select) {
-            var selectedUser = select.value;
-            var apps = document.getElementById('apps');
-
-            // Show apps only if kurxx33 is selected
-            if (selectedUser === 'kurxx33') {
-                apps.style.display = 'flex';
-            } else {
-                apps.style.display = 'none';
-            }
-        }
-
-        function showPopup(id) {
-            var popup = document.getElementById(id);
-            popup.classList.add('active');
-        }
-
-        function closeWindow(id) {
-            var popup = document.getElementById(id);
-            popup.classList.remove('active');
-        }
-
-        function minimizeWindow(id) {
-            var popup = document.getElementById(id);
-            popup.classList.remove('active');
-        }
-
-        // Update time every second
-        setInterval(function() {
-            var now = new Date();
-            var hour = now.getHours();
-            var minutes = now.getMinutes();
-
-            // Format hour and minutes (add leading zeros if necessary)
-            hour = hour < 10 ? '0' + hour : hour;
-            minutes = minutes < 10 ? '0' + minutes : minutes;
-
-            // Display time in toolbar
-            document.querySelector('.hour').textContent = hour;
-            document.querySelector('.minutes').textContent = minutes;
-        }, 1000);
-    </script>
+    <script src="js/computer.js"></script>
 </body>
 </html>

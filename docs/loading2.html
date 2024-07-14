@@ -198,7 +198,19 @@
         .terminal-text {
             overflow: hidden;
             white-space: nowrap;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
+            border-right: 2px solid green; /* Simulate typing cursor */
+            padding-right: 5px;
+            animation: typing 2s steps(40, end);
+        }
+
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
         }
 
         .ascii-lines {
@@ -286,9 +298,9 @@
             "Kurxx© 2011 - 2077 all rights reserved",
             "Generating...",
             "Loading virus files.",
-            "Trojan: Injected <span class='status red'>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</span>",
-            "RansomWare: Injected <span class='status red'>&emsp;&emsp;&emsp;&emsp;&emsp;</span>",
-            "Spyware: Injected <span class='status red'>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</span>",
+            "Trojan: Injected <span class='status'>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</span>",
+            "RansomWare: Injected <span class='status'>&emsp;&emsp;&emsp;&emsp;&emsp;</span>",
+            "Spyware: Injected <span class='status'>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</span>",
             "Software licensed to ARTEMAS LOL",
             "CRACKING...",
             "Kurxx33 forever!",
@@ -314,8 +326,8 @@
         }, 6000);
 
         setTimeout(() => {
-            window.location.href = "https://artemas.lol/landing";
-        }, 18000);
+            window.location.href = "https://artemas.lol"; // Redirect after loading
+        }, 30000); // Redirect after 10 seconds
     </script>
 </body>
 

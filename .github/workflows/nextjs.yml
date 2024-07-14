@@ -78,7 +78,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./out
+          path: .next
 
   # Deployment job
   deploy:
@@ -91,3 +91,10 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          # Configure the deployment path for each page
+          path: docs
+          # Configure the pages to deploy
+          pages: |
+            /: docs/index.html
+            /credits: docs/credits.html

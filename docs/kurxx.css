@@ -7,6 +7,9 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
+    filter: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="pixelate"><feFlood result="color-out" flood-color="rgba(0,0,0,0)"/><feImage xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAABCAQAAABeK7cBAAAA7ElEQVQImT3J0Q2DMBAD0B3VIFb9qkRDYkn3gZcAJ0gD2Gif2CklF/Le5/VBCZ3QvA2uFmGgA5H9hhUOw9j9nBdPZ3Bfh2AGwAiQElKANBJlGJw2kXrHLQIF4lK7SoIH0opkAbwiEY4p8YFI0BHCZghzEaiBoO4htdC1iSGBkCFwAjQJBtAfwLvw9J4dICghpT4gAN6pLDTwOgHZswg4ym78UwIsax1Oc5IDTADWiUjDxBXsD3CgFFzICwAcuAAAAAElFTkSuQmCC"/><feTile in="color-out" result="color-in"/><feGaussianBlur in="color-in" stdDeviation="2"/><feComposite in="SourceGraphic"/></filter></svg>#pixelate');
+    -webkit-filter: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="pixelate"><feFlood result="color-out" flood-color="rgba(0,0,0,0)"/><feImage xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAABCAQAAABeK7cBAAAA7ElEQVQImT3J0Q2DMBAD0B3VIFb9qkRDYkn3gZcAJ0gD2Gif2CklF/Le5/VBCZ3QvA2uFmGgA5H9hhUOw9j9nBdPZ3Bfh2AGwAiQElKANBJlGJw2kXrHLQIF4lK7SoIH0opkAbwiEY4p8YFI0BHCZghzEaiBoO4htdC1iSGBkCFwAjQJBtAfwLvw9J4dICghpT4gAN6pLDTwOgHZswg4ym78UwIsax1Oc5IDTADWiUjDxBXsD3CgFFzICwAcuAAAAAElFTkSuQmCC"/><feTile in="color-out" result="color-in"/><feGaussianBlur in="color-in" stdDeviation="2"/><feComposite in="SourceGraphic"/></filter></svg>#pixelate');
+    filter: pixelate(5px); /* Fallback for browsers that do not support SVG filters */
 }
 
 .bio-container {
@@ -31,6 +34,7 @@ body {
     height: 150px;
     border-radius: 50%;
     margin-bottom: 20px;
+    filter: pixelate(5px); /* Apply pixelated filter to profile picture */
 }
 
 .bio-text {
@@ -58,3 +62,4 @@ audio {
     margin-top: 20px;
     width: 100%;
 }
+

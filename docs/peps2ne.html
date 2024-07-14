@@ -18,9 +18,10 @@
             padding: 0;
             width: 100%;
             height: 100%;
-            background-color: white; /* Changed background color to white */
-            color: black; /* Changed text color to black */
+            background-color: black;
+            color: white;
             font-family: Arial, sans-serif;
+            overflow: hidden; /* Hide overflow until clicked */
         }
         
         .bio-container {
@@ -30,17 +31,23 @@
             justify-content: center;
             height: 100vh;
             padding: 20px;
+            background-color: white; /* Change background to white */
+            opacity: 0; /* Initially hidden */
+            transition: opacity 1s ease; /* Smooth fade-in transition */
         }
         
         .bio-card {
             text-align: center;
             padding: 20px;
-            background-color: white; /* Changed card background color to white */
-            border: 2px solid white;
+            background-color: white; /* Change background to white */
+            border: 2px solid black; /* Thin black outline */
             border-radius: 10px;
-            max-width: 420px; /* Widened the card slightly */
+            width: 320px; /* Widened card */
+            max-height: 480px; /* Max height for the card */
+            overflow: auto; /* Enable scrolling if content exceeds max height */
             margin-bottom: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Added 1px blur to the card */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            filter: blur(1px); /* 1 pixel blur effect */
         }
         
         .profile-pic {
@@ -53,7 +60,7 @@
         .bio-text {
             font-size: 1.2rem;
             line-height: 1.5;
-            text-shadow: 0 0 8px rgba(255, 255, 255, 0.5); /* Added slight glow to the text */
+            text-shadow: 0 0 4px rgba(255, 255, 255, 0.5); /* Slight glow effect */
         }
 
         .discord-widget {
@@ -95,7 +102,7 @@
         }
         
         .join-button {
-            padding: 8px 16px;
+            padding: 6px 12px; /* Adjusted padding to make button smaller */
             background-color: #7289da;
             border: none;
             color: #ffffff;
@@ -118,28 +125,33 @@
         }
     </style>
 </head>
-<body>
-    <div class="bio-container">
-        <div class="bio-card">
+<body onclick="showBio()">
+    <div class="bio-container" id="bio-container">
+        <div class="bio-card" id="bio-card">
             <img class="profile-pic" src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/ab67616d0000b273e5d99e93a23524b660e15162.jpg" alt="Peps2ne Profile Picture">
             <div class="bio-text">
-              Peps2ne
+                Peps2ne<br>
                 EarthDev
             </div>
             <!-- Spotify Widget -->
             <iframe src="https://open.spotify.com/embed/track/3NBOmde7ZUWhmqwqLVFcGE?theme=0" width="100%" height="300" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
         </div>
         <!-- Discord Widget -->
-        <div id="discord-widget" class="discord-widget">
-            <img id="server-icon" class="server-icon" src="" alt="Server Icon">
+        <div class="discord-widget">
+            <img class="server-icon" id="server-icon" src="" alt="Server Icon">
             <div class="server-info">
-                <div id="server-name" class="server-name">Loading...</div>
-                <div id="member-count" class="member-count">Members: Loading...</div>
+                <div class="server-name" id="server-name">Loading...</div>
+                <div class="member-count" id="member-count">Members: Loading...</div>
             </div>
-            <button id="join-button" class="join-button">Join Server</button>
+            <button class="join-button" id="join-button">Join Server</button>
         </div>
     </div>
     <script>
+        function showBio() {
+            const bioContainer = document.getElementById('bio-container');
+            bioContainer.style.opacity = '1';
+        }
+
         // Fetch server information from Discord Widget API
         async function fetchDiscordServerInfo() {
             const inviteLink = 'https://discord.com/invite/earthdev'; // Replace with your Discord invite link
@@ -179,4 +191,3 @@
     </script>
 </body>
 </html>
-

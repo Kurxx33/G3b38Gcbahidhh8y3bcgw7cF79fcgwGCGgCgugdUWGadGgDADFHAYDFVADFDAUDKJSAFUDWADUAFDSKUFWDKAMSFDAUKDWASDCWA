@@ -9,47 +9,7 @@ body {
     font-family: 'Courier New', Courier, monospace;
 }
 
-.bio-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-}
-
-.bio-card {
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    width: 300px;
-    height: 400px;
-    position: relative;
-}
-
-.profile-pic {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    margin-bottom: 20px;
-}
-
-.bio-text {
-    font-size: 24px;
-    color: white;
-    position: relative;
-}
-
-#background-video {
-    position: absolute;
-    width: 0;
-    height: 0;
-    overflow: hidden;
-}
-/* bio-style.css */
+/* bio-style (2).css */
 
 /* Style for the bio card container */
 .bio-container {
@@ -72,11 +32,26 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.5); /* Thin border */
 }
 
+/* Style for the profile information */
+.profile-info {
+    position: relative;
+    text-align: center;
+    padding-top: 20px; /* Adjust spacing as needed */
+}
+
 /* Style for the profile picture */
 .profile-pic {
-    width: 100%;
-    height: auto;
-    border-radius: 10px 10px 0 0; /* Rounded corners only at the top */
+    width: 100px; /* Adjust size as needed */
+    height: 100px; /* Adjust size as needed */
+    border-radius: 50%; /* Make it round */
+    border: 2px solid #fff; /* White border */
+}
+
+/* Style for the username */
+.username {
+    color: #fff; /* White text color */
+    font-size: 18px; /* Adjust size as needed */
+    margin-top: 10px; /* Adjust spacing as needed */
 }
 
 /* Style for the bio text */
@@ -90,6 +65,21 @@ body {
     font-size: 18px;
     white-space: nowrap;
     overflow: hidden;
+}
+
+/* Typewriter animation */
+.typewriter {
+    animation: typing 3s steps(40) infinite, blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: white }
 }
 
 /* Style for the glowing border */
@@ -117,4 +107,3 @@ body {
         box-shadow: 0 0 5px 5px rgba(255, 255, 255, 0.8);
     }
 }
-

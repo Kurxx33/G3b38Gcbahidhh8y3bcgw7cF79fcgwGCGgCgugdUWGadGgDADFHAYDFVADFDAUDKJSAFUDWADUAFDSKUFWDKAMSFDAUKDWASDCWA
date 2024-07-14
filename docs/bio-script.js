@@ -3,6 +3,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const text = "Kurxx33 forever...";
     let index = 0;
 
+    var video = document.getElementById('background-video');
+    video.volume = 0.5; // Adjust volume as needed
+    video.play();
+
     function typeWriter() {
         if (index < text.length) {
             bioContent.innerHTML = text.substring(0, index + 1) + '<span class="cursor">|</span>';

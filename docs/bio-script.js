@@ -35,3 +35,30 @@ document.addEventListener("DOMContentLoaded", function() {
         return formattedTime;
     }
 });
+  var textElement = document.getElementById('bio-content');
+    var text = 'Kurxx33 forever...';
+    var speed = 50; // Speed of typing in milliseconds
+
+    function typeWriter() {
+        if (i < text.length) {
+            textElement.innerHTML += text.charAt(i);
+            i++;
+            setTimeout(typeWriter, speed);
+        } else {
+            setTimeout(deleteText, 1000); // Wait for 1 second before deleting text
+        }
+    }
+
+    function deleteText() {
+        var currentText = textElement.innerHTML;
+        if (currentText.length > 0) {
+            textElement.innerHTML = currentText.substring(0, currentText.length - 1);
+            setTimeout(deleteText, speed);
+        } else {
+            i = 0;
+            setTimeout(typeWriter, 1000); // Wait for 1 second before typing again
+        }
+    }
+
+    var i = 0;
+    typeWriter(); // Start the typing animation initially

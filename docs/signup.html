@@ -18,7 +18,7 @@
         }
 
         .signup-form {
-            background-color: black;
+            background-color: #1a1a1a; /* Dark grey background */
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border: 4px solid #000;
             border-radius: 20px;
@@ -47,6 +47,7 @@
         }
 
         .input-container {
+            position: relative;
             width: 100%;
             margin-bottom: 20px;
         }
@@ -55,9 +56,9 @@
             width: 100%;
             padding: 15px;
             font-size: 1.2rem;
-            border: 2px solid #000;
+            border: 2px solid #fff;
             border-radius: 10px;
-            background-color: black;
+            background-color: #1a1a1a;
             color: white;
             outline: none;
             transition: all 0.3s ease;
@@ -65,12 +66,15 @@
 
         .input-container input:hover,
         .input-container input:focus {
-            border-color: #fff;
+            border-color: transparent;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* White glow effect */
         }
 
         .input-container label {
             position: absolute;
             left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
             color: white;
             font-size: 1rem;
             pointer-events: none;
@@ -79,9 +83,10 @@
 
         .input-container input:focus ~ label,
         .input-container input:not(:placeholder-shown) ~ label {
-            transform: translateY(-20px);
+            transform: translateY(-35px);
             font-size: 0.9rem;
-            color: #fff;
+            font-weight: bold; /* Bold text */
+            color: #2a60fc; /* Blue color */
         }
 
         .terms {
@@ -110,9 +115,10 @@
         }
 
         .submit-btn:hover {
-            background-color: #2a60fc;
-            color: white;
-            border-color: #2a60fc;
+            background-color: #fff; /* White background on hover */
+            color: #000; /* Black text on hover */
+            border-color: #fff; /* White border on hover */
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* White glow effect on hover */
         }
     </style>
 </head>
@@ -123,7 +129,7 @@
         <hr>
         <div class="input-container">
             <input type="text" id="username" required>
-            <label for="username">Username</label>
+            <label for="username">artemas.lol/</label> <!-- Added prefix for username -->
         </div>
         <div class="input-container">
             <input type="email" id="email" required>
@@ -144,83 +150,83 @@
 
     <!-- Snow effect script -->
     <script>
-const canvas = document.getElementById('snowCanvas');
-const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+        const canvas = document.createElement('canvas');
+        document.body.appendChild(canvas);
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
 
-const snowflakes = [];
-const numFlakes = 200;
+        const snowflakes = [];
+        const numFlakes = 200;
 
-class Snowflake {
-    constructor(x, y, speed, size, opacity) {
-        this.x = x;
-        this.y = y;
-        this.speed = speed;
-        this.size = size;
-        this.opacity = opacity;
-        this.angle = Math.random() * 2 * Math.PI;
-        this.spin = Math.random() * 0.02 - 0.01; // Random spin between -0.01 and 0.01
-    }
+        class Snowflake {
+            constructor(x, y, speed, size, opacity) {
+                this.x = x;
+                this.y = y;
+                this.speed = speed;
+                this.size = size;
+                this.opacity = opacity;
+                this.angle = Math.random() * 2 * Math.PI;
+                this.spin = Math.random() * 0.02 - 0.01; // Random spin between -0.01 and 0.01
+            }
 
-    update() {
-        this.y += this.speed;
-        this.x += Math.sin(this.angle) * 0.5; // Slight horizontal movement
-        this.angle += this.spin; // Rotate the snowflake
+            update() {
+                this.y += this.speed;
+                this.x += Math.sin(this.angle) * 0.5; // Slight horizontal movement
+                this.angle += this.spin; // Rotate the snowflake
 
-        if (this.y > canvas.height) {
-            this.y = -this.size;
-            this.x = Math.random() * canvas.width;
-            this.opacity = 1;
+                if (this.y > canvas.height) {
+                    this.y = -this.size;
+                    this.x = Math.random() * canvas.width;
+                    this.opacity = 1;
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.angle);
+                ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+                ctx.shadowBlur = 5;
+                ctx.shadowColor = 'white';
+                ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size);
+                ctx.restore();
+            }
         }
-    }
 
-    draw() {
-        ctx.save();
-        ctx.translate(this.x, this.y);
-        ctx.rotate(this.angle);
-        ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
-        ctx.shadowBlur = 5;
-        ctx.shadowColor = 'white';
-        ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size);
-        ctx.restore();
-    }
-}
+        for (let i = 0; i < numFlakes; i++) {
+            snowflakes.push(new Snowflake(
+                Math.random() * canvas.width,
+                Math.random() * canvas.height,
+                Math.random() * 3 + 1,
+                Math.random() * 2 + 1,
+                1
+            ));
+        }
 
-for (let i = 0; i < numFlakes; i++) {
-    snowflakes.push(new Snowflake(
-        Math.random() * canvas.width,
-        Math.random() * canvas.height,
-        Math.random() * 3 + 1,
-        Math.random() * 2 + 1,
-        1
-    ));
-}
+        let mouseX = canvas.width / 2;
+        let mouseY = canvas.height / 2;
 
-let mouseX = canvas.width / 2;
-let mouseY = canvas.height / 2;
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            snowflakes.forEach(flake => {
+                flake.update();
+                flake.draw();
+            });
+            requestAnimationFrame(draw);
+        }
 
-function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    snowflakes.forEach(flake => {
-        flake.update();
-        flake.draw();
-    });
-    requestAnimationFrame(draw);
-}
+        draw();
 
-draw();
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
 
-window.addEventListener('resize', () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-});
-
-window.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-});
-
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
     </script>
 </body>
 

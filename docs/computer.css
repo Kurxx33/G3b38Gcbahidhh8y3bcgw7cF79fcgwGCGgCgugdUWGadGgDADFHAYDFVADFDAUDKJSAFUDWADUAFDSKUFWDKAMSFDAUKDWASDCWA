@@ -10,7 +10,7 @@ body {
 }
 
 .windows-screen {
-    background-image: url('pixelated_background.jpg'); /* Replace with your pixelated background image */
+    background-image: url('719054-widescreen-byakuya-wallpaper-2560x1600-for-phones.jpg'); /* Replace with your pixelated background image */
     background-size: cover;
     background-repeat: no-repeat;
     width: 600px;
@@ -83,6 +83,13 @@ select {
 .app a {
     color: white;
     text-decoration: none;
+}
+
+.app img {
+    width: 30px; /* Adjust icon size */
+    height: 30px;
+    margin-right: 5px;
+    vertical-align: middle;
 }
 
 .app:hover {

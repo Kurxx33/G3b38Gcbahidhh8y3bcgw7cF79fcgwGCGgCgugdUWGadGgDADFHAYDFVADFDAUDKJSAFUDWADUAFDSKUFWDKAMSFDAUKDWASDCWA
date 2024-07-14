@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kurxx33's Bio</title>
-    <link rel="stylesheet" href="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/bio-style%20(2).css">
+    <link rel="stylesheet" href="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/bio-style%20(3).css">
     <style>
         body {
             margin: 0;
@@ -19,16 +19,24 @@
 <body>
     <div class="bio-container">
         <div class="bio-card">
-            <img class="profile-pic" src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/Screenshot%202024-07-12%20012005.png" alt="Kurxx33 Profile Picture">
+            <div class="profile-info">
+                <img class="profile-pic" src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/Screenshot%202024-07-12%20012005.png" alt="Kurxx33 Profile Picture">
+                <div class="username">@kurxx33</div>
+            </div>
             <div id="bio-content" class="bio-text typewriter">
                 <!-- This will be filled by JavaScript -->
             </div>
+            <div class="audio-controls">
+                <button id="play-btn" class="audio-btn">▶️</button>
+                <button id="pause-btn" class="audio-btn">⏸️</button>
+                <input type="range" id="volume-slider" class="audio-slider" min="0" max="1" step="0.01" value="1">
+                <span id="time-display" class="time-display">0:00 / 0:00</span>
+            </div>
         </div>
     </div>
-    <audio id="background-audio" autoplay loop>
-        <source src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/0714.MP3" type="audio/mpeg">
+    <audio id="background-audio" src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/0714.MP3" autoplay loop>
         Your browser does not support the audio tag.
     </audio>
-    <script src="https://artemas.lol/bio-script.js"></script>
+    <script src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/bio-script.js"></script>
 </body>
 </html>

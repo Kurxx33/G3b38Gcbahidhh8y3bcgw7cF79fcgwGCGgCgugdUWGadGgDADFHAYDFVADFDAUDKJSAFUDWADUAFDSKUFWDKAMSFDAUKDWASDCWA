@@ -14,6 +14,8 @@
             overflow: hidden; /* Prevent scrolling */
             margin: 0; /* Remove default margin */
             padding: 0; /* Remove default padding */
+            opacity: 0; /* Hide content initially */
+            transition: opacity 2s ease-in-out; /* Fade-in transition */
         }
         a {
             color: white;
@@ -255,6 +257,10 @@
         const joinButton = document.getElementById('join-button');
         joinButton.addEventListener('click', () => {
             window.open(`https://discord.gg/${data.code}`, '_blank');
+
+    // JavaScript to remove the opacity class for fade-in effect
+    window.addEventListener('DOMContentLoaded', (event) => {
+        document.body.style.opacity = 1; // Show content with opacity transition
         });
     }
 

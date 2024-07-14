@@ -49,3 +49,72 @@ body {
     height: 0;
     overflow: hidden;
 }
+/* bio-style.css */
+
+/* Style for the bio card container */
+.bio-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+}
+
+/* Style for the bio card itself */
+.bio-card {
+    position: relative;
+    width: 300px; /* Adjust as needed */
+    height: 450px; /* Adjust as needed */
+    background-color: rgba(255, 255, 255, 0.1); /* Transparent background for the card */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); /* Inner glow effect */
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Thin border */
+}
+
+/* Style for the profile picture */
+.profile-pic {
+    width: 100%;
+    height: auto;
+    border-radius: 10px 10px 0 0; /* Rounded corners only at the top */
+}
+
+/* Style for the bio text */
+.bio-text {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    color: white;
+    text-align: center;
+    font-size: 18px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+/* Style for the glowing border */
+.bio-card:before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    border-radius: 12px; /* Adjust to match the card's border-radius */
+    background-color: rgba(255, 255, 255, 0.4); /* Glow color */
+    z-index: -1;
+    animation: glowing 2s ease infinite;
+}
+
+@keyframes glowing {
+    0% {
+        box-shadow: 0 0 5px 5px rgba(255, 255, 255, 0.8);
+    }
+    50% {
+        box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0.8);
+    }
+    100% {
+        box-shadow: 0 0 5px 5px rgba(255, 255, 255, 0.8);
+    }
+}
+

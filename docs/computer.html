@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kurxx.search</title>
-    <link rel="stylesheet" href="docs/computer.css">
+    <link rel="stylesheet" href="styles.css">
     <style>
         /* Additional styles for pop-up windows */
         .window {
@@ -56,6 +56,34 @@
             flex-direction: column;
             align-items: center;
         }
+
+        /* Additional styles for toolbar and apps */
+        .toolbar {
+            background-color: #eee;
+            width: 100%;
+            height: 60px;
+            position: fixed;
+            bottom: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            box-sizing: border-box;
+            z-index: 1000;
+        }
+        .apps {
+            display: flex;
+            align-items: center;
+        }
+        .app {
+            margin: 0 10px;
+            cursor: pointer;
+        }
+        .app img {
+            width: 40px;
+            height: 40px;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
@@ -76,16 +104,14 @@
             </form>
         </div>
         <div class="footer">
-            <div class="apps" id="apps" style="display: none;">
-                <button class="app-button" onclick="showPopup('PopUpKurxx33')">kurxx33</button>
-                <button class="app-button" onclick="showPopup('PopUpAria')">Aria</button>
-                <button class="app-button" onclick="showPopup('PopUpMiso')">Miso</button>
-                <div class="time">
-                    <span class="hour"></span>:<span class="minutes"></span> AM
-                </div>
-                <div class="date">
-                    <span class="day"></span> / <span class="month"></span> / <span class="year"></span>
-                </div>
+            <div class="apps" id="apps">
+                <div class="app" id="doxbin"><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><img src="assets/doxbin.png" alt="Doxbin"></a></div>
+                <div class="app" id="proton-mail"><a href="mailto:kurxx33@proton.me"><img src="assets/proton-mail-logo-150x150.png" alt="Proton Mail"></a></div>
+                <div class="app" id="shock-lol"><a href="https://shock.lol/kurxx33"><img src="assets/shock.lol.gif" alt="Shock.lol"></a></div>
+                <div class="app" id="telegram"><a href="https://t.me/kurxx33"><img src="assets/logo-telegram-4096.png" alt="Telegram"></a></div>
+            </div>
+            <div class="time">
+                <span class="hour"></span>:<span class="minutes"></span> AM
             </div>
         </div>
     </div>
@@ -175,6 +201,21 @@
             var popup = document.getElementById(id);
             popup.classList.remove('active');
         }
+
+        // Update time every second
+        setInterval(function() {
+            var now = new Date();
+            var hour = now.getHours();
+            var minutes = now.getMinutes();
+
+            // Format hour and minutes (add leading zeros if necessary)
+            hour = hour < 10 ? '0' + hour : hour;
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+
+            // Display time in toolbar
+            document.querySelector('.hour').textContent = hour;
+            document.querySelector('.minutes').textContent = minutes;
+        }, 1000);
     </script>
 </body>
 </html>

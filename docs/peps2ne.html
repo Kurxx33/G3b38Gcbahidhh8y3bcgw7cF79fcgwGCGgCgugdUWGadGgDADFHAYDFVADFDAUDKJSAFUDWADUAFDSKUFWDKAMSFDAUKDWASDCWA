@@ -24,6 +24,16 @@
             overflow: hidden; /* Hide overflow until clicked */
         }
         
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Ensure video is behind other content */
+            object-fit: cover; /* Cover entire screen */
+        }
+        
         .splash-screen {
             position: fixed;
             top: 0;
@@ -53,7 +63,7 @@
             justify-content: center;
             height: 100vh;
             padding: 20px;
-            background-color: white; /* Change background to white */
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
             opacity: 0; /* Initially hidden */
             transition: opacity 1s ease; /* Smooth fade-in transition */
         }
@@ -147,6 +157,12 @@
     </style>
 </head>
 <body>
+    <!-- Background Video -->
+    <video autoplay muted loop class="video-background">
+        <source src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/68991afa-d8bb-4f61-a18c-e7157d098a93.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
     <div class="splash-screen" onclick="hideSplashScreen()">
         <div>
             <h1>Click to enter...</h1>
@@ -211,13 +227,14 @@
             document.getElementById('server-name').textContent = serverName;
             document.getElementById('member-count').textContent = `Members: ${memberCount}`;
             document.getElementById('server-icon').src = serverIconUrl;
-
-            const joinButton = document.getElementById('join-button');
-            joinButton.addEventListener('click', () => {
-                window.open(`https://discord.gg/${data.code}`, '_blank');
-            });
         }
 
+        // Button click event to join Discord server
+        document.getElementById('join-button').addEventListener('click', () => {
+            window.open('https://discord.com/invite/earthdev', '_blank');
+        });
+
+        // Initial fetch server info on page load
         fetchDiscordServerInfo();
     </script>
 </body>

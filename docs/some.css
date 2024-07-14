@@ -1,0 +1,98 @@
+/* bio-style (2).css */
+
+/* Style for the bio card container */
+.bio-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+}
+
+/* Style for the bio card itself */
+.bio-card {
+    position: relative;
+    width: 300px; /* Adjust as needed */
+    height: 450px; /* Adjust as needed */
+    background-color: rgba(255, 255, 255, 0.1); /* Transparent background for the card */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); /* Inner glow effect */
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Thin border */
+}
+
+/* Style for the profile information */
+.profile-info {
+    position: relative;
+    text-align: center;
+    padding-top: 20px; /* Adjust spacing as needed */
+}
+
+/* Style for the profile picture */
+.profile-pic {
+    width: 100px; /* Adjust size as needed */
+    height: 100px; /* Adjust size as needed */
+    border-radius: 50%; /* Make it round */
+    border: 2px solid #fff; /* White border */
+}
+
+/* Style for the username */
+.username {
+    color: #fff; /* White text color */
+    font-size: 18px; /* Adjust size as needed */
+    margin-top: 10px; /* Adjust spacing as needed */
+}
+
+/* Style for the bio text */
+.bio-text {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    color: white;
+    text-align: center;
+    font-size: 18px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+/* Typewriter animation */
+.typewriter {
+    animation: typing 3s steps(40) infinite, blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: white }
+}
+
+/* Style for the glowing border */
+.bio-card:before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    border-radius: 12px; /* Adjust to match the card's border-radius */
+    background-color: rgba(255, 255, 255, 0.4); /* Glow color */
+    z-index: -1;
+    animation: glowing 2s ease infinite;
+}
+
+@keyframes glowing {
+    0% {
+        box-shadow: 0 0 5px 5px rgba(255, 255, 255, 0.8);
+    }
+    50% {
+        box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0.8);
+    }
+    100% {
+        box-shadow: 0 0 5px 5px rgba(255, 255, 255, 0.8);
+    }
+}

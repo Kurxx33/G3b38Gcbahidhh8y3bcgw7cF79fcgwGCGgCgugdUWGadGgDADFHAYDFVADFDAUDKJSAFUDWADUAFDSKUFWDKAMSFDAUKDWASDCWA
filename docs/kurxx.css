@@ -19,10 +19,10 @@ body {
 .bio-card {
     background-color: rgba(0, 0, 0, 0.8);
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 15px; /* Adjust border radius for rounder edges */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     text-align: center;
-    max-width: 600px;
+    max-width: 350px; /* Adjust width to resemble a poker card */
     width: 80%;
     backdrop-filter: blur(10px); /* Apply blur effect */
 }

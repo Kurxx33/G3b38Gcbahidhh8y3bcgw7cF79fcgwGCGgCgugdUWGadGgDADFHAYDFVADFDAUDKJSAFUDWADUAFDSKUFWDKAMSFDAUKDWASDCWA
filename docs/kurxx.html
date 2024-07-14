@@ -3,23 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kurxx33 Bio</title>
-    <link rel="stylesheet" href="kurxx.css">
+    <title>Kurxx33's Bio</title>
+    <link rel="stylesheet" href="css/kurxx.css">
 </head>
 <body>
     <div class="bio-container">
         <div class="bio-card">
             <img class="profile-pic" src="/docs/kurxxpfp.png" alt="Kurxx33 Profile Picture">
-            <div class="bio-text">
-                <p id="bio-content"></p>
+            <div id="bio-content" class="bio-text">
+                Kurxx33 forever...
             </div>
-            <audio id="bio-audio" controls autoplay>
-                <source src="/docs/kurxx33video.mp4" type="audio/mp4">
-                Your browser does not support the audio element.
-            </audio>
+            <!-- Video element for background sound -->
+            <video id="background-video" autoplay loop muted playsinline>
+                <source src="/docs/kurxx33video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
         </div>
     </div>
-
-    <script src="kurxx.js"></script>
+    <script src="js/kurxx.js"></script>
 </body>
 </html>

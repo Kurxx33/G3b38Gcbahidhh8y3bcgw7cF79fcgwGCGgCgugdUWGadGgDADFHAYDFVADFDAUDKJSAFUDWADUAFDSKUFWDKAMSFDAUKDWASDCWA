@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Open Graph Meta Tags for Discord Embed -->
+    <meta property="og:title" content="Kurxx33">
+    <meta property="og:description" content="Kurxx33 forever...">
+    <meta property="og:image" content="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/Screenshot%202024-07-12%20012005.png">
+    <meta property="og:type" content="profile">
+    <!-- End Open Graph Meta Tags -->
+    
+    <title>Kurxx33's Bio</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="test.css">
+    <style>
+        /* Old screen lines effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                to bottom,
+                rgba(255, 255, 255, 0.05),
+                rgba(255, 255, 255, 0.05) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+            pointer-events: none;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body class="bg-black text-white h-full flex items-center justify-center overflow-hidden">
+    <div class="bio-container relative z-10 p-6 rounded-xl backdrop-blur-sm bg-white bg-opacity-10 shadow-lg">
+        <div class="bio-card text-center">
+            <img class="profile-pic mx-auto rounded-full border-4 border-white shadow-md" src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/Screenshot%202024-07-12%20012005.png" alt="Kurxx33 Profile Picture">
+            <div id="bio-content" class="bio-text mt-4 text-lg font-semibold">
+                Kurxx33 forever...
+            </div>
+            <!-- Audio Player -->
+            <audio controls class="mt-4 mx-auto block w-full max-w-xs">
+                <source src="path/to/your/music/file.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            <!-- Badge Container -->
+            <div class="badge-container mt-4 bg-gray-800 bg-opacity-50 p-2 rounded-full flex space-x-2 justify-center">
+                <div class="badge bg-blue-500 text-white px-2 py-1 rounded-full">Badge 1</div>
+                <div class="badge bg-green-500 text-white px-2 py-1 rounded-full">Badge 2</div>
+                <div class="badge bg-red-500 text-white px-2 py-1 rounded-full">Badge 3</div>
+            </div>
+        </div>
+    </div>
+    <canvas id="snowCanvas"></canvas>
+    <script src="test.js"></script>
+</body>
+</html>

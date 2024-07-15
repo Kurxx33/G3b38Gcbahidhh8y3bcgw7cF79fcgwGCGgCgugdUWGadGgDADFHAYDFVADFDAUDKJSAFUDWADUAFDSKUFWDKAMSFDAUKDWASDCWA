@@ -26,10 +26,37 @@
             align-items: center;
         }
 
+        .splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 3000; /* Ensure splash screen is above everything */
+            cursor: pointer;
+            animation: fade-in 2s forwards;
+        }
+
+        .splash-screen-text {
+            color: white;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        @keyframes fade-in {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
         .bio-container {
             position: relative;
             z-index: 2000; /* Ensure bio content is above snow */
             text-align: center;
+            display: none; /* Initially hidden */
         }
 
         .bio-card {
@@ -96,13 +123,16 @@
 </head>
 <body>
     <canvas id="snowCanvas"></canvas>
-    <div class="bio-container">
+    <div class="splash-screen" id="splash-screen">
+        <div class="splash-screen-text">Click to Enter</div>
+    </div>
+    <div class="bio-container" id="bio-container">
         <div class="bio-card">
             <img class="profile-pic" src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/Screenshot%202024-07-12%20012005.png" alt="Kurxx33 Profile Picture">
             <div id="bio-content" class="bio-text">
                 Kurxx33 forever...
             </div>
-            <video class="video-frame" controls>
+            <video class="video-frame" id="bio-video" controls>
                 <source src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/Download%20-%202024-07-07T220220.048.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
@@ -111,6 +141,13 @@
     <script src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/bio-script.js"></script>
     <script src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/tilt.js"></script>
     <script>
+        // Splash screen click event
+        document.getElementById('splash-screen').addEventListener('click', function() {
+            this.style.display = 'none';
+            document.getElementById('bio-container').style.display = 'block';
+            document.getElementById('bio-video').play(); // Automatically play video
+        });
+
         // Snow Animation
         const canvas = document.getElementById('snowCanvas');
         const ctx = canvas.getContext('2d');

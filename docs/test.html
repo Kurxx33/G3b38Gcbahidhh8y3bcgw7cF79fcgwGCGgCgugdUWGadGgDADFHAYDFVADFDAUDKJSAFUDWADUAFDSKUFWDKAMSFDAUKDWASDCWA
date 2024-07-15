@@ -57,6 +57,7 @@
             z-index: 2000; /* Ensure bio content is above snow */
             text-align: center;
             display: none; /* Initially hidden */
+            margin-top: 50px; /* Adjust margin to move the bio card down */
         }
 
         .bio-card {
@@ -67,6 +68,8 @@
             padding: 20px;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
             animation: chromation 5s infinite;
+            max-width: 80%; /* Limit width to ensure centered */
+            margin: 0 auto; /* Center the bio card */
         }
 
         .profile-pic {
@@ -83,9 +86,48 @@
         }
 
         .video-frame {
-            border-radius: 10px;
-            width: 100%;
-            max-width: 600px;
+            display: none; /* Hide video frame */
+        }
+
+        .music-controls {
+            color: white;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .music-controls button {
+            background-color: transparent;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+
+        .music-controls button:hover {
+            transform: scale(1.1); /* Slightly increase size on hover */
+        }
+
+        .additional-buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .additional-buttons button {
+            background-color: transparent;
+            border: 1px solid white;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            padding: 8px 15px;
+            margin: 0 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .additional-buttons button:hover {
+            transform: scale(1.05); /* Slightly increase size on hover */
         }
 
         @keyframes chromation {
@@ -136,6 +178,16 @@
                 <source src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/Download%20-%202024-07-07T220220.048.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
+            <div class="music-controls">
+                <button>Play</button>
+                <button>Pause</button>
+                <button>Stop</button>
+            </div>
+            <div class="additional-buttons">
+                <button>Emit White Light</button>
+                <button>Button 2</button>
+                <button>Button 3</button>
+            </div>
         </div>
     </div>
     <script src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/bio-script.js"></script>
@@ -196,45 +248,22 @@
             snowflakes.push(new Snowflake(
                 Math.random() * canvas.width,
                 Math.random() * canvas.height,
-                Math.random() * 3 + 1,
-                Math.random() * 2 + 1,
-                1
+                Math.random() * 2 + 1, // Random speed between 1 and 3
+                Math.random() * 5 + 2, // Random size between 2 and 7
+                Math.random() // Random opacity between 0 and 1
             ));
         }
 
-        function draw() {
+        function animateSnow() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             snowflakes.forEach(flake => {
                 flake.update();
                 flake.draw();
             });
-            requestAnimationFrame(draw);
+            requestAnimationFrame(animateSnow);
         }
 
-        draw();
-
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
-
-        // Sparkle Mouse Trail
-        document.addEventListener('mousemove', function (e) {
-            createSparkle(e.pageX, e.pageY);
-        });
-
-        function createSparkle(x, y) {
-            const sparkle = document.createElement('div');
-            sparkle.className = 'sparkle';
-            sparkle.style.left = `${x}px`;
-            sparkle.style.top = `${y}px`;
-
-            document.body.appendChild(sparkle);
-
-            setTimeout(() => {
-                sparkle.remove();
-            }, 500);
-        }
+        animateSnow();
     </script>
 </body>
 </html>

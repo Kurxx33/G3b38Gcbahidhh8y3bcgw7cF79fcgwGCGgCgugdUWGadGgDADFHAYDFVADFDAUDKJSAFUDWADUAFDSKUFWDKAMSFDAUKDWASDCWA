@@ -15,6 +15,7 @@ body, html {
 .profile-pic {
     width: 120px;
     height: 120px;
+    border-radius: 50%;
 }
 
 .badge-container {
@@ -28,6 +29,7 @@ body, html {
     to {
         opacity: 0;
         transform: scale(2);
+    }
 }
 
 #snowCanvas {
@@ -47,6 +49,7 @@ body, html {
     opacity: 1;
     animation: fade-out 0.5s forwards;
 }
+
 .bio-card {
     display: inline-block;
     background: rgba(0, 0, 0, 0.8);
@@ -74,13 +77,25 @@ body, html {
 .additional-buttons a {
     display: inline-block;
     text-decoration: none;
-    margin: 0 10px;
+    background-color: white; /* Set background to white */
+    border: none; /* Remove border */
+    color: black; /* Text color */
+    font-size: 12px; /* Adjust font size */
+    padding: 6px 12px; /* Adjust padding */
+    border-radius: 10px; /* Rounded corners */
+    margin: 0 5px; /* Adjust margin */
+    transition: transform 0.3s ease, background-color 0.3s ease; /* Smooth transition */
+}
+
+.additional-buttons a:hover {
+    transform: scale(0.9); /* Scale down on hover */
+    background-color: #f0f0f0; /* Light grey background on hover */
 }
 
 .additional-buttons img {
-    width: 40px; /* Adjust image size */
-    height: 40px;
-    transition: transform 0.3s ease;
+    width: 30px; /* Adjust image size */
+    height: 30px;
+    margin-right: 5px; /* Add some space between icon and text */
     filter: brightness(1.2); /* Slight brightness */
 }
 
@@ -90,5 +105,8 @@ body, html {
 
 .additional-buttons a:hover {
     text-shadow: 0 0 5px white; /* White glow on hover */
+    color: white; /* Text color */
+}
+e glow on hover */
     color: white; /* Text color */
 }

@@ -1,0 +1,232 @@
+/* Global styles */
+body {
+    background-image: url('https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/719054-widescreen-byakuya-wallpaper-2560x1600-for-phones.jpg');
+    background-size: cover;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Courier New', Courier, monospace;
+    overflow: hidden;
+}
+
+/* Bio container */
+.bio-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    max-width: 500px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 1rem;
+    position: relative;
+    z-index: 1; /* Ensure bio container is above snow */
+}
+
+/* Bio card */
+.bio-card {
+    display: inline-block;
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    animation: chromation 5s infinite;
+    max-width: 100%;
+    max-height: 90%; /* Ensure it does not overflow the viewport */
+    margin: 0 auto; /* Center horizontally */
+    position: absolute;
+    top: 50%; /* Center vertically */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center; /* Center align content */
+    z-index: 2000; /* Ensure bio content is above snow */
+}
+
+/* Profile picture */
+.profile-pic {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+
+/* Username */
+.username {
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* Bio text */
+.bio-text {
+    color: white;
+    text-align: center;
+    font-size: 18px;
+    margin-top: 15px; /* Adjust spacing */
+}
+
+/* Additional buttons */
+.additional-buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.additional-buttons a {
+    display: inline-block;
+    text-decoration: none;
+    border: none; /* Remove border */
+    margin: 0 5px; /* Adjust margin */
+    transition: transform 0.3s ease; /* Smooth transition */
+}
+
+.additional-buttons a:hover {
+    transform: scale(1.2); /* Scale up on hover */
+}
+
+.additional-buttons img {
+    width: 30px; /* Adjust image size */
+    height: 30px;
+    margin-right: 5px; /* Add some space between icon and text */
+    filter: brightness(1.2); /* Slight brightness */
+}
+
+.additional-buttons a:hover img {
+    filter: brightness(1.5); /* Increase brightness on hover */
+}
+
+/* Splash screen */
+.clickanywhere {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    cursor: url('yourcursor'), default;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #000;
+    color: #fff;
+    font-family: 'Consolas', monospace;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 15px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #fff;
+}
+
+.buttons a {
+    font-size: 18px;
+    padding: 6px;
+    border-radius: 100%;
+    cursor: pointer;
+    transition: 0.2s;
+    color: #fff;
+}
+
+.buttons a:hover {
+    opacity: 40%;
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.568);
+}
+
+.card {
+    border: 1px solid white;
+    background: rgba(0, 0, 0, 0.897);
+    width: 325px;
+    padding: 20px;
+    border-radius: 2em;
+    box-shadow: 0 4px 8px 0 rgb(0, 0, 0);
+    color: white;
+    text-align: center;
+}
+
+.card h1 {
+    font-size: 35px;
+    font-family: 'Inter', monospace;
+    font-weight: 400;
+}
+
+.card img {
+    width: 100px;
+    border-radius: 100%;
+    height: 100px;
+}
+
+.card h1 span.small {
+    font-size: 20px;
+    color: rgb(182, 182, 182);
+}
+
+.avatar {
+    height: 100px;
+    width: 100px;
+    border-radius: 100%;
+    box-shadow: 0 0 0px 1px #fff;
+    margin-bottom: 20px;
+}
+
+a {
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+    color: white;
+}
+
+.background {
+    position: fixed;
+    min-height: 100%;
+    min-width: 100%;
+    z-index: 1;
+    left: 0;
+    top: 0;
+}
+
+@keyframes chromation {
+    0% {
+        filter: hue-rotate(0deg);
+    }
+
+    100% {
+        filter: hue-rotate(360deg);
+    }
+}
+
+#pattern {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 0;
+}

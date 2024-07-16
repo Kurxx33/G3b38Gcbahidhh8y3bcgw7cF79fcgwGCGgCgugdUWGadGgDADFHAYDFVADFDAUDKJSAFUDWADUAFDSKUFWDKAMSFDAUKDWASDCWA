@@ -1,140 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>/kurxx33</title>
-    <meta property="og:title" content="/kurxx33">
-    <meta name="description" content="I<3Ala">
+    <meta property="og:title" content="yourname">
+    <meta name="description" content="yourdescription">
     <meta name="twitter:image:src" content="yourimage">
     <meta name="theme-color" content="#000000">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ionicons/7.1.0/esm/ionicons.min.js"></script>
     <script src="https://kit.fontawesome.com/b0c7a14384.js" crossorigin="anonymous"></script>
-    <link href="layout2.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
     <style>
         body {
             margin: 0;
-            padding: 0;
-            overflow: hidden; /* Prevent scrolling */
-            font-family: 'UnifrakturCook', cursive; /* Apply custom font */
-            background-image: url('https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/719054-widescreen-byakuya-wallpaper-2560x1600-for-phones.jpg');
+            overflow: hidden;
+            background: url('https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/719054-widescreen-byakuya-wallpaper-2560x1600-for-phones.jpg') no-repeat center center fixed;
             background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            font-family: 'UnifrakturCook', cursive;
+            color: white;
+            text-align: center;
+            height: 100vh;
         }
-
+        .id {
+            position: relative;
+            height: 100%;
+            width: 100%;
+        }
         .clickanywhere {
+            margin: 0;
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            text-align: center;
             color: white;
+            font-size: 16px;
+            text-shadow: 0 0 10px white;
         }
-
         .biolink {
             display: none;
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            overflow: hidden;
         }
-
         .card {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
             padding: 20px;
+            display: inline-block;
             text-align: center;
-            color: white;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-            max-width: 90%;
-            width: 500px;
         }
-
-        .card .avatar {
-            width: 120px;
-            height: 120px;
+        .avatar {
             border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 10px;
+            width: 100px;
+            height: 100px;
         }
-
-        .card h1 {
-            font-size: 28px;
-            margin-bottom: 5px;
+        h1 {
+            font-size: 24px;
+            text-shadow: 0 0 10px white;
         }
-
-        .card .small {
+        .small {
             font-size: 16px;
             color: gray;
         }
-
-        .buttons {
-            margin-top: 20px;
-        }
-
         .buttons a {
-            font-size: 24px;
-            color: white;
             margin: 0 10px;
-            transition: transform 0.2s ease, opacity 0.2s ease;
-            padding: 10px 20px;
+            color: white;
+            font-size: 24px;
+            text-shadow: 0 0 10px white;
         }
-
-        .buttons a:hover {
-            transform: scale(1.1);
-            opacity: 0.8;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        @keyframes colorBreathing {
+            0% { color: white; }
+            50% { color: lightcoral; }
+            100% { color: white; }
         }
-
-        #audiovisualizer {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100px; /* Adjust height as needed */
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 999;
+        .color-breathing {
+            animation: colorBreathing 3s infinite;
         }
     </style>
 </head>
-<body class="id" oncontextmenu="return false">
-    <audio loop id="bgAudio" src="tiktok_squash_spam_7359248221731851563_audio.mp3"></audio>
-    <video class="background" id="background" loop>
-        <source src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/719054-widescreen-byakuya-wallpaper-2560x1600-for-phones.jpg" type="video/mp4">
+<body class="id">
+    <audio loop src="tiktok_squash_spam_7359248221731851563_audio.mp3"></audio>
+    <div id="pattern"></div>
+    <video class="background" id="background" loop hidden>
+        <source src="" type="video/mp4">
     </video>
-
-    <div class="clickanywhere" onclick="playMedia(); playVideo(); $('.clickanywhere').fadeOut(300); $('.biolink').fadeIn(2000);">
-        <h4>[Click Anywhere]</h4>
+    <canvas id="snowCanvas"></canvas>
+    <div class="clickanywhere">
+        <h4 class="color-breathing">[Click Anywhere]</h4>
     </div>
-
-    <div class="biolink">
-        <div class="card">
-            <img class="avatar" src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/Screenshot%202024-07-12%20012005.png" title="pfp">
-            <h1>@Kurxx33<span class="small">I<3Ala</span></h1>
+    <div scroll="no" id="biolink" class="biolink">
+        <div scroll="no" class="card">
             <div class="buttons">
-                <a href="https://t.me/" target="_blank"><i class="fab fa-telegram"></i></a>
-                <a href="https://discord.com/" target="_blank"><i class="fab fa-discord"></i></a>
-                <a href="https://github.com/" target="_blank"><i class="fab fa-github"></i></a>
+                <img class="avatar" src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/Screenshot%202024-07-12%20012005.png" title="pfp">
+                <h1 class="color-breathing">/kurxx33 <span class="small">I<3Ala</span></h1>
+                <div>
+                    <a href="https://t.me/kurxx33" target=""><i class="fa-brands fa-telegram"></i></a>
+                </div>
             </div>
         </div>
     </div>
-
-    <div id="audiovisualizer"></div>
-
     <script>
+        // Prevent context menu
         document.addEventListener('contextmenu', (e) => e.preventDefault());
 
+        function ctrlShiftKey(e, keyCode) {
+            return e.ctrlKey && e.shiftKey && e.keyCode === keyCode.charCodeAt(0);
+        }
+
+        document.onkeydown = (e) => {
+            if (
+                e.keyCode === 123 ||
+                ctrlShiftKey(e, 'I') ||
+                ctrlShiftKey(e, 'J') ||
+                ctrlShiftKey(e, 'C') ||
+                (e.ctrlKey && e.keyCode === 'U'.charCodeAt(0))
+            )
+                return false;
+        };
+
+        // Play audio and video
         function playMedia() {
-            const audio = document.getElementById('bgAudio');
+            const audio = document.querySelector("audio");
             if (audio) {
                 audio.play();
                 audio.volume = 0.1;
@@ -142,7 +128,7 @@
         }
 
         function playVideo() {
-            const video = document.getElementById('background');
+            const video = document.querySelector("video");
             if (video) {
                 video.removeAttribute('hidden');
                 video.play();
@@ -150,49 +136,99 @@
             }
         }
 
-        // Audio visualizer setup (example, requires additional scripting)
-        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        const analyser = audioCtx.createAnalyser();
-        const source = audioCtx.createMediaElementSource(document.getElementById('bgAudio'));
-        source.connect(analyser);
-        analyser.connect(audioCtx.destination);
-        analyser.fftSize = 256;
-        const bufferLength = analyser.frequencyBinCount;
-        const dataArray = new Uint8Array(bufferLength);
+        // Mouse trail effect
+        const mouseTrail = [];
+        document.addEventListener('mousemove', (e) => {
+            const trail = document.createElement('div');
+            trail.className = 'mouse-trail';
+            trail.style.left = `${e.clientX}px`;
+            trail.style.top = `${e.clientY}px`;
+            document.body.appendChild(trail);
+            mouseTrail.push(trail);
+            setTimeout(() => {
+                document.body.removeChild(trail);
+                mouseTrail.shift();
+            }, 1000);
+        });
 
-        const audioVisualizer = document.getElementById('audiovisualizer');
-        const canvas = document.createElement('canvas');
-        audioVisualizer.appendChild(canvas);
+        // Snow effect
+        const canvas = document.getElementById('snowCanvas');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
-        canvas.height = audioVisualizer.offsetHeight;
+        canvas.height = window.innerHeight;
+
+        const snowflakes = [];
+        const numFlakes = 200;
+
+        class Snowflake {
+            constructor(x, y, speed, size, opacity) {
+                this.x = x;
+                this.y = y;
+                this.speed = speed;
+                this.size = size;
+                this.opacity = opacity;
+                this.angle = Math.random() * 2 * Math.PI;
+                this.spin = Math.random() * 0.02 - 0.01;
+            }
+
+            update() {
+                this.y += this.speed;
+                this.x += Math.sin(this.angle) * 0.5;
+                this.angle += this.spin;
+
+                if (this.y > canvas.height) {
+                    this.y = -this.size;
+                    this.x = Math.random() * canvas.width;
+                    this.opacity = 1;
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.angle);
+                ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+                ctx.shadowBlur = 5;
+                ctx.shadowColor = 'white';
+                ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size);
+                ctx.restore();
+            }
+        }
+
+        for (let i = 0; i < numFlakes; i++) {
+            snowflakes.push(new Snowflake(
+                Math.random() * canvas.width,
+                Math.random() * canvas.height,
+                Math.random() * 3 + 1,
+                Math.random() * 2 + 1,
+                1
+            ));
+        }
 
         function draw() {
-            requestAnimationFrame(draw);
-
-            analyser.getByteFrequencyData(dataArray);
-
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            const barWidth = (canvas.width / bufferLength) * 2.5;
-            let x = 0;
-
-            dataArray.forEach((item, index) => {
-                const barHeight = item * 3;
-
-                const r = barHeight + (25 * (index / bufferLength));
-                const g = 250 * (index / bufferLength);
-                const b = 50;
-
-                ctx.fillStyle = `rgb(${r},${g},${b})`;
-                ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
-
-                x += barWidth + 1;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            snowflakes.forEach(flake => {
+                flake.update();
+                flake.draw();
             });
+            requestAnimationFrame(draw);
         }
 
         draw();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('.id').addEventListener('click', () => {
+                playVideo();
+                playMedia();
+                $(".clickanywhere").fadeOut(300);
+                $(".biolink").fadeIn(2000);
+            });
+        });
     </script>
 </body>
 </html>

@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8">
     <title>yourname</title>
-    <meta property="og:title" content="Kurxx33">
-    <meta name="description" content="Fuck the nigga named kurxx33">
+    <meta property="og:title" content="yourname">
+    <meta name="description" content="yourdescription">
     <meta name="twitter:image:src" content="yourimage">
     <meta name="theme-color" content="#000000">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
@@ -36,6 +36,13 @@
             align-items: center;
             font-size: 24px;
             z-index: 9999;
+            transition: opacity 0.5s ease; /* Added transition for smooth fade */
+            opacity: 1; /* Start with opacity 1 */
+        }
+
+        .splashscreen.hide {
+            opacity: 0; /* Fade out when hidden */
+            pointer-events: none; /* Disable click events when hidden */
         }
 
         .clickanywhere {
@@ -63,10 +70,15 @@
             right: 0;
             bottom: 0;
             text-align: center;
+            display: none; /* Initially hidden */
+            opacity: 0; /* Initially transparent */
+            transition: opacity 1s ease; /* Fade in transition */
+        }
+
+        .card.show {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            opacity: 1; /* Fade in when shown */
+            z-index: 1000; /* Ensure it's above splashscreen */
         }
 
         .card img.avatar {
@@ -104,7 +116,7 @@
     </div>
 
     <main>
-        <div id="biolink" class="biolink" style="display:none;">
+        <div id="biolink" class="biolink">
             <div class="card">
                 <img class="avatar" src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/Screenshot%202024-07-12%20012005.png" title="pfp">
                 <h1>yourname<span class="small">otherstuff</span></h1>
@@ -121,8 +133,8 @@
         document.addEventListener('DOMContentLoaded', () => {
             document.querySelector('.clickanywhere').addEventListener('click', () => {
                 playMedia();
-                $(".splashscreen").fadeOut(300);
-                $(".biolink").fadeIn(2000);
+                $(".splashscreen").addClass('hide'); // Hide splashscreen
+                $(".card").addClass('show'); // Show bio card
             });
         });
 

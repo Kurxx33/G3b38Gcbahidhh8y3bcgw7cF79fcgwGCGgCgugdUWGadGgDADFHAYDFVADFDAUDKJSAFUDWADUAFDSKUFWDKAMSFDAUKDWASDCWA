@@ -1,162 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <title>yourname</title>
-    <meta property="og:title" content="yourname">
-    <meta name="description" content="yourdescription">
-    <meta name="twitter:image:src" content="yourimage">
-    <meta name="theme-color" content="#000000">
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ionicons/7.1.0/esm/ionicons.min.js"></script>
-    <script src="https://kit.fontawesome.com/b0c7a14384.js" crossorigin="anonymous"></script>
-    <link href="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/krx.css" rel="stylesheet">
-</head>
-
-<body class="id" oncontextmenu="return false">
-    <audio loop id="bgAudio" src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/Download%20-%202024-07-07T220220.048.mp4" hidden></audio>
-    <!-- your audio (mp3) -->
-    <div id="pattern"></div>
-    <video class="background" id="background" loop muted autoplay hidden>
-        <!-- your video (mp4) -->
-        <source src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/Download%20-%202024-07-07T220220.048.mp4"
-            type="video/mp4">
-        <!-- mp4 -->
-    </video>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kurxx33's Bio</title>
     <style>
-        .splashscreen {
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .splash-screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: black;
-            color: white;
+            background: rgba(0, 0, 0, 0.9);
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 24px;
-            z-index: 9999;
-            transition: opacity 0.5s ease; /* Added transition for smooth fade */
-            opacity: 1; /* Start with opacity 1 */
-        }
-
-        .splashscreen.hide {
-            opacity: 0; /* Fade out when hidden */
-            pointer-events: none; /* Disable click events when hidden */
-        }
-
-        .clickanywhere {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: transparent;
+            z-index: 3000; /* Ensure splash screen is above everything */
             cursor: pointer;
-            z-index: 10000;
+            animation: fade-in 2s forwards;
         }
 
-        .card {
-            width: 520px; /* Adjust width as needed */
-            height: 100px; /* Adjust height as needed */
-            border-radius: 0 10px 10px 0; /* Round sides on the left */
-            background-color: rgba(0, 0, 0, 0.5);
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            margin: auto;
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
+        .splash-screen-text {
+            color: white;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        @keyframes fade-in {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .bio-container {
+            position: relative;
+            z-index: 2000; /* Ensure bio content is above snow */
             text-align: center;
             display: none; /* Initially hidden */
-            opacity: 0; /* Initially transparent */
-            transition: opacity 1s ease; /* Fade in transition */
-            z-index: 1000; /* Ensure it's above splashscreen */
-            border: 1px solid rgba(255, 255, 255, 0.2); /* Thin border */
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* White edge glow */
+            margin-top: 50px; /* Adjust margin to move the bio card down */
         }
 
-        .card.show {
-            display: flex;
-            opacity: 1; /* Fade in when shown */
+        .bio-card {
+            display: inline-block;
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+            animation: chromation 5s infinite;
+            max-width: 80%; /* Limit width to ensure centered */
+            margin: 0 auto; /* Center the bio card */
         }
 
-        .card img.avatar {
-            width: 80px; /* Adjust size of the profile picture */
-            height: 80px; /* Adjust size of the profile picture */
+        .profile-pic {
             border-radius: 50%;
-            object-fit: cover;
-            border: 1px solid white; /* Thin white outline */
+            width: 150px;
+            height: 150px;
+            margin-bottom: 20px;
+        }
+
+        .bio-text {
+            font-size: 18px;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .music-controls {
+            color: white;
+            display: flex;
+            justify-content: center;
             margin-bottom: 10px;
         }
 
-        .card h1 {
-            margin-bottom: 5px;
-        }
-
-        .card .small {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .buttons {
-            display: flex;
-            justify-content: center; /* Center buttons horizontally */
-            margin-top: 10px; /* Adjust top margin as needed */
-        }
-
-        .buttons a {
-            font-size: 20px; /* Adjust font size */
+        .music-controls button {
+            background-color: transparent;
+            border: none;
             color: white;
-            margin: 0 10px; /* Adjust spacing between buttons */
-            transition: transform 0.2s ease, opacity 0.2s ease; /* Added transform on hover */
-            padding: 8px 16px; /* Padding for buttons */
+            font-size: 16px;
+            cursor: pointer;
+            margin: 0 10px;
         }
 
-        .buttons a:hover {
-            transform: scale(1.1); /* Scale up on hover */
-            opacity: 0.8; /* Reduce opacity on hover */
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* White glow effect */
+        .music-controls button:hover {
+            transform: scale(1.1); /* Slightly increase size on hover */
+        }
+
+        @keyframes chromation {
+            0% { box-shadow: 0 0 5px rgba(255, 255, 255, 0.5); }
+            50% { box-shadow: 0 0 20px rgba(255, 255, 255, 1); }
+            100% { box-shadow: 0 0 5px rgba(255, 255, 255, 0.5); }
+        }
+
+        /* Snow and Sparkle styles remain the same */
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            pointer-events: none;
+            opacity: 1;
+            animation: fade-out 0.5s forwards;
+        }
+        
+        @keyframes fade-out {
+            to {
+                opacity: 0;
+                transform: scale(2);
+            }
+        }
+        
+        #snowCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        /* Hide video element initially */
+        .video-frame {
+            display: none;
         }
     </style>
-
-    <div class="splashscreen" onclick="removeSplashscreen()">
-        <div>
-            <h4>[Click Anywhere]</h4>
-        </div>
+</head>
+<body>
+    <canvas id="snowCanvas"></canvas>
+    <div class="splash-screen" id="splash-screen">
+        <div class="splash-screen-text">Click to Enter</div>
     </div>
-
-    <main>
-        <div id="biolink" class="biolink">
-            <div class="card">
-                <img class="avatar"
-                    src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/Screenshot%202024-07-12%20012005.png"
-                    title="pfp">
-                <h1>yourname<span class="small">otherstuff</span></h1>
-                <div class="buttons">
-                    <a href="https://t.me/" target="_blank"><i class="fa-brands fa-telegram"></i></a>
-                    <a href="https://discord.com/" target="_blank"><i class="fa-brands fa-discord"></i></a>
-                    <a href="https://github.com/" target="_blank"><i class="fa-brands fa-github"></i></a>
-                </div>
+    <div class="bio-container" id="bio-container">
+        <div class="bio-card">
+            <img class="profile-pic" src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/Screenshot%202024-07-12%20012005.png" alt="Kurxx33 Profile Picture">
+            <div id="bio-content" class="bio-text">
+                Kurxx33 forever...
+            </div>
+            <!-- Video element for audio playback -->
+            <video class="video-frame" id="bio-audio" controls>
+                <source src="https://example.com/audio.mp3" type="audio/mp3">
+                Your browser does not support the audio tag.
+            </video>
+            <div class="music-controls">
+                <button onclick="playAudio()">Play</button>
+                <button onclick="pauseAudio()">Pause</button>
+                <button onclick="stopAudio()">Stop</button>
             </div>
         </div>
-    </main>
-
+    </div>
     <script>
-        function removeSplashscreen() {
-            const splashscreen = document.querySelector('.splashscreen');
-            splashscreen.classList.add('hide'); // Hide splashscreen
-            document.querySelector('.card').classList.add('show'); // Show card
-            playMedia(); // Start playing audio
-            document.getElementById('background').play(); // Start playing video
+        // Function to play audio
+        function playAudio() {
+            var audio = document.getElementById('bio-audio');
+            audio.play();
         }
 
-        function playMedia() {
-            const audio = document.getElementById('bgAudio');
-            if (audio) {
-                audio.volume = 0.1;
+        // Function to pause audio
+        function pauseAudio() {
+            var audio = document.getElementById('bio-audio');
+            audio.pause();
+        }
+
+        // Function to stop audio
+        function stopAudio() {
+            var audio = document.getElementById('bio-audio');
+            audio.pause();
+            audio.currentTime = 0;
+        }
+
+        // Splash screen click event
+        document.getElementById('splash-screen').addEventListener('click', function() {
+            this.style.display = 'none';
+            document.getElementById('bio-container').style.display = 'block';
+        });
+
+        // Snow Animation (use your existing snow animation script here)
+        const canvas = document.getElementById('snowCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // Your existing Snowflake class and animation code goes here...
+
+    </script>
+</body>
+</html>

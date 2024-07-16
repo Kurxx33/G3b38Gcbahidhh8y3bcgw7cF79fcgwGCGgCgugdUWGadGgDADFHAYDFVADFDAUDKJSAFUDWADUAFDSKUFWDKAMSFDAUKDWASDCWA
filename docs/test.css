@@ -28,7 +28,6 @@ body, html {
     to {
         opacity: 0;
         transform: scale(2);
-    }
 }
 
 #snowCanvas {
@@ -47,4 +46,49 @@ body, html {
     pointer-events: none;
     opacity: 1;
     animation: fade-out 0.5s forwards;
+}
+.bio-card {
+    display: inline-block;
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    animation: chromation 5s infinite;
+    max-width: 80%;
+    margin: 0 auto; /* Center horizontally */
+    position: absolute;
+    top: 50%; /* Center vertically */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center; /* Center align content */
+    z-index: 2000; /* Ensure bio content is above snow */
+}
+
+.additional-buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.additional-buttons a {
+    display: inline-block;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.additional-buttons img {
+    width: 40px; /* Adjust image size */
+    height: 40px;
+    transition: transform 0.3s ease;
+    filter: brightness(1.2); /* Slight brightness */
+}
+
+.additional-buttons a:hover img {
+    transform: scale(1.2); /* Scale up on hover */
+}
+
+.additional-buttons a:hover {
+    text-shadow: 0 0 5px white; /* White glow on hover */
+    color: white; /* Text color */
 }

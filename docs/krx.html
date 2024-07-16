@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>/kurxx33</title>
+    <title>yourname</title>
     <meta property="og:title" content="yourname">
     <meta name="description" content="yourdescription">
     <meta name="twitter:image:src" content="yourimage">
@@ -60,9 +60,9 @@
         }
 
         .card {
-            width: 460px; /* Adjust width as needed */
-            height: 140px; /* Adjust height as needed */
-            border-radius: 10px;
+            width: 520px; /* Adjust width as needed */
+            height: 100px; /* Adjust height as needed */
+            border-radius: 0 10px 10px 0; /* Round sides on the left */
             background-color: rgba(0, 0, 0, 0.5);
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
             padding: 20px;
@@ -77,7 +77,7 @@
             opacity: 0; /* Initially transparent */
             transition: opacity 1s ease; /* Fade in transition */
             z-index: 1000; /* Ensure it's above splashscreen */
-            border: 2px solid white; /* White edge glow */
+            border: 1px solid rgba(255, 255, 255, 0.2); /* Thin border */
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* White edge glow */
         }
 
@@ -87,12 +87,21 @@
         }
 
         .card img.avatar {
-            width: 100px; /* Adjust size of the profile picture */
-            height: 100px; /* Adjust size of the profile picture */
+            width: 80px; /* Adjust size of the profile picture */
+            height: 80px; /* Adjust size of the profile picture */
             border-radius: 50%;
             object-fit: cover;
             border: 1px solid white; /* Thin white outline */
             margin-bottom: 10px;
+        }
+
+        .card h1 {
+            margin-bottom: 5px;
+        }
+
+        .card .small {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
         }
 
         .buttons {
@@ -128,7 +137,7 @@
                 <img class="avatar"
                     src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/Screenshot%202024-07-12%20012005.png"
                     title="pfp">
-                <h1>@Kurxx33<span class="small">Fuck Kiwi</span></h1>
+                <h1>yourname<span class="small">otherstuff</span></h1>
                 <div class="buttons">
                     <a href="https://t.me/" target="_blank"><i class="fa-brands fa-telegram"></i></a>
                     <a href="https://discord.com/" target="_blank"><i class="fa-brands fa-discord"></i></a>
@@ -150,11 +159,4 @@
         function playMedia() {
             const audio = document.getElementById('bgAudio');
             if (audio) {
-                audio.volume = 0.1; // Adjust audio volume if needed
-            }
-        }
-    </script>
-
-</body>
-
-</html>
+                audio.volume = 0.1;

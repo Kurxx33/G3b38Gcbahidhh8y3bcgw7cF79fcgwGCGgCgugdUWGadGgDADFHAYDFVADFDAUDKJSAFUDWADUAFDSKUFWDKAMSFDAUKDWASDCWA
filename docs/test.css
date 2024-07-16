@@ -18,7 +18,7 @@ body {
     align-items: center;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-    max-width: 400px;
+    max-width: 500px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     border-radius: 1rem;
     position: relative;
@@ -31,10 +31,11 @@ body {
     background: rgba(0, 0, 0, 0.8);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 20px;
-    padding: 20px;
+    padding: 30px;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
     animation: chromation 5s infinite;
-    max-width: 80%;
+    max-width: 100%;
+    max-height: 90%; /* Ensure it does not overflow the viewport */
     margin: 0 auto; /* Center horizontally */
     position: absolute;
     top: 50%; /* Center vertically */
@@ -54,9 +55,9 @@ body {
 /* Username */
 .username {
     color: #fff;
-    font-size: 16px;
+    font-size: 20px;
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 /* Spotify iframe */
@@ -64,7 +65,7 @@ body {
     width: 100%;
     height: 300px;
     border: none;
-    margin-top: 10px; /* Spacing from other content */
+    margin-top: 15px; /* Spacing from other content */
 }
 
 /* Bio text */
@@ -72,7 +73,7 @@ body {
     color: white;
     text-align: center;
     font-size: 18px;
-    margin-top: 10px; /* Adjust spacing */
+    margin-top: 15px; /* Adjust spacing */
 }
 
 /* Additional buttons */
@@ -85,19 +86,13 @@ body {
 .additional-buttons a {
     display: inline-block;
     text-decoration: none;
-    background-color: white; /* Set background to white */
     border: none; /* Remove border */
-    color: black; /* Text color */
-    font-size: 12px; /* Adjust font size */
-    padding: 6px 12px; /* Adjust padding */
-    border-radius: 10px; /* Rounded corners */
     margin: 0 5px; /* Adjust margin */
-    transition: transform 0.3s ease, background-color 0.3s ease; /* Smooth transition */
+    transition: transform 0.3s ease; /* Smooth transition */
 }
 
 .additional-buttons a:hover {
-    transform: scale(0.9); /* Scale down on hover */
-    background-color: #f0f0f0; /* Light grey background on hover */
+    transform: scale(1.2); /* Scale up on hover */
 }
 
 .additional-buttons img {
@@ -108,10 +103,5 @@ body {
 }
 
 .additional-buttons a:hover img {
-    transform: scale(1.2); /* Scale up on hover */
-}
-
-.additional-buttons a:hover {
-    text-shadow: 0 0 5px white; /* White glow on hover */
-    color: white; /* Text color */
+    filter: brightness(1.5); /* Increase brightness on hover */
 }

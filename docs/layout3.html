@@ -130,76 +130,84 @@
 
     <div id="audiovisualizer"></div>
 
-    <script>
-        document.addEventListener('contextmenu', (e) => e.preventDefault());
+<script>
+    document.addEventListener('contextmenu', (e) => e.preventDefault());
 
-        function playMedia() {
-            const audio = document.getElementById('bgAudio');
-            if (audio) {
-                audio.play();
-                audio.volume = 0.1;
-            }
+    function playMedia() {
+        const audio = document.getElementById('bgAudio');
+        if (audio) {
+            audio.play();
+            audio.volume = 0.1;
         }
+    }
 
-        function playVideo() {
-            const video = document.getElementById('background');
-            if (video) {
-                video.removeAttribute('hidden');
-                video.play();
-                video.volume = 0.3;
-            }
+    function playVideo() {
+        const video = document.getElementById('background');
+        if (video) {
+            video.removeAttribute('hidden');
+            video.play();
+            video.volume = 0.3;
         }
+    }
 
-        // Audio visualizer setup (example, requires additional scripting)
-        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        const analyser = audioCtx.createAnalyser();
-        const source = audioCtx.createMediaElementSource(document.getElementById('bgAudio'));
-        source.connect(analyser);
-        analyser.connect(audioCtx.destination);
-        analyser.fftSize = 256;
-        const bufferLength = analyser.frequencyBinCount;
-        const dataArray = new Uint8Array(bufferLength);
+    // Audio visualizer setup
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    const analyser = audioCtx.createAnalyser();
+    const source = audioCtx.createMediaElementSource(document.getElementById('bgAudio'));
+    source.connect(analyser);
+    analyser.connect(audioCtx.destination);
+    analyser.fftSize = 256;
+    const bufferLength = analyser.frequencyBinCount;
+    const dataArray = new Uint8Array(bufferLength);
 
-        const audioVisualizer = document.getElementById('audiovisualizer');
-        const canvas = document.createElement('canvas');
-        audioVisualizer.appendChild(canvas);
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
+    const audioVisualizer = document.getElementById('audiovisualizer');
+    const canvas = document.createElement('canvas');
+    audioVisualizer.appendChild(canvas);
+    const ctx = canvas.getContext('2d');
+
+    function resizeCanvas() {
+        canvas.width = audioVisualizer.offsetWidth;
         canvas.height = audioVisualizer.offsetHeight;
+    }
 
-        function draw() {
-            requestAnimationFrame(draw);
+    resizeCanvas();
 
-            analyser.getByteFrequencyData(dataArray);
+    function draw() {
+        requestAnimationFrame(draw);
 
-            ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
+        analyser.getByteFrequencyData(dataArray);
 
-            const barWidth = (canvas.width / bufferLength) * 2.5;
-            const barMargin = 2; // Space between bars
-            let x = 0;
+        ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
 
-            dataArray.forEach((item, index) => {
-                const barHeight = item * 3;
+        const barWidth = (canvas.width / bufferLength) * 2.5;
+        const barMargin = 2; // Space between bars
+        let x = 0;
 
-                // Limit bar height not to exceed half of canvas height
-                const maxHeight = canvas.height / 2;
-                const height = Math.min(barHeight, maxHeight);
+        dataArray.forEach((item, index) => {
+            const barHeight = item * 3;
 
-                const r = 255;
-                const g = 255;
-                const b = 255;
+            // Limit bar height not to exceed half of canvas height
+            const maxHeight = canvas.height / 2;
+            const height = Math.min(barHeight, maxHeight);
 
-                ctx.shadowColor = 'rgba(255, 255, 255, 0.2)';
-                ctx.shadowBlur = 10;
-                ctx.fillStyle = `rgb(${r},${g},${b})`;
-                ctx.fillRect(x, canvas.height - height, barWidth, height);
+            const r = 255;
+            const g = 255;
+            const b = 255;
 
-                x += barWidth + barMargin;
-            });
-        }
+            ctx.shadowColor = 'rgba(255, 255, 255, 0.2)';
+            ctx.shadowBlur = 10;
+            ctx.fillStyle = `rgb(${r},${g},${b})`;
+            ctx.fillRect(x, canvas.height - height, barWidth, height);
 
-        draw();
-    </script>
-</body>
-</html>
+            x += barWidth + barMargin;
+        });
+    }
+
+    // Handle window resize
+    window.addEventListener('resize', () => {
+        resizeCanvas();
+    });
+
+    draw();
+</script>
 

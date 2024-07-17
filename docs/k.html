@@ -19,12 +19,17 @@
             font-family: 'UnifrakturCook', cursive;
             background: #000;
             color: white;
+            position: relative;
         }
         .clickanywhere {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
             cursor: pointer;
             z-index: 9999; /* Ensure it's on top */
@@ -36,11 +41,9 @@
         .biolink {
             display: none;
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             z-index: 999; /* Place above snow canvas */
         }
         .card {
@@ -51,13 +54,8 @@
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); /* Larger shadow */
             transition: box-shadow 0.3s ease;
             position: relative;
-            transform: scale(1.2); /* Larger scale */
             width: 350px; /* Wider card */
             height: 400px; /* Taller card */
-            margin: auto;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
             text-align: center;
         }
         .card::before {
@@ -158,12 +156,8 @@
         }
     </style>
 </head>
-<body oncontextmenu="return false">
+<body>
     <audio loop src="tiktok_squash_spam_7359248221731851563_audio.mp3"></audio>
-    <div id="pattern"></div>
-    <video class="background" id="background" loop>
-        <source src="your_video.mp4" type="video/mp4">
-    </video>
     <div class="clickanywhere" onclick="startExperience()">
         <h4>[  Hi👋, Click Anywhere  ]</h4>
     </div>
@@ -210,97 +204,79 @@
                 ctrlShiftKey(e, 'U') ||
                 (e.ctrlKey && e.keyCode === 'F'.charCodeAt(0)) ||
                 ctrlShiftKey(e, 'F') ||
-                e.keyCode === 113 ||
+                (e.ctrlKey && e.keyCode === 'P'.charCodeAt(0)) ||
+                ctrlShiftKey(e, 'P') ||
+                (e.ctrlKey && e.keyCode === 'S'.charCodeAt(0)) ||
                 ctrlShiftKey(e, 'S')
             ) {
                 return false;
             }
+            return true;
         };
 
+        let snowCanvas = document.getElementById('snowCanvas');
+        let ctx = snowCanvas.getContext('2d');
         let flakes = [];
-        let canvas = document.getElementById('snowCanvas');
-        let ctx = canvas.getContext('2d');
+        let flakeCount = 200;
+        let mX = -100;
+        let mY = -100;
 
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+        snowCanvas.width = window.innerWidth;
+        snowCanvas.height = window.innerHeight;
+
+        function startExperience() {
+            let clickAnywhere = document.querySelector('.clickanywhere');
+            clickAnywhere.style.display = 'none';
+            animateSnow();
+            animateBiolink();
+            document.addEventListener('mousemove', function (e) {
+                mX = e.clientX,
+                mY = e.clientY
+            });
         }
 
-        window.addEventListener('resize', resizeCanvas);
-
-        function getRandomBetween(min, max) {
+        function random(min, max) {
             return Math.random() * (max - min + 1) + min;
         }
 
-        function createSnowFlake() {
-            return {
-                x: getRandomBetween(0, window.innerWidth),
-                y: -10,
-                opacity: getRandomBetween(0.5, 1),
-                radius: getRandomBetween(1, 4),
-                speedX: getRandomBetween(-2, 2),
-                speedY: getRandomBetween(1, 3)
-            };
-        }
+        function animateSnow() {
+            ctx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
 
-        function drawSnowFlakes() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            flakes.forEach(flake => {
+            for (let i = 0; i < flakeCount; i++) {
+                let flake = flakes[i];
                 ctx.beginPath();
-                ctx.arc(flake.x, flake.y, flake.radius, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(255, 255, 255, ${flake.opacity})`;
+                ctx.arc(flake.x, flake.y, flake.size, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(255, 255, 255, ' + flake.opacity + ')';
                 ctx.fill();
-            });
-        }
 
-        function updateSnowFlakes() {
-            flakes.forEach(flake => {
-                flake.x += flake.speedX;
-                flake.y += flake.speedY;
+                flake.y += flake.speed;
 
-                if (flake.y > window.innerHeight) {
-                    flake.x = getRandomBetween(0, window.innerWidth);
-                    flake.y = -10;
+                if (flake.y > snowCanvas.height) {
+                    flakes[i] = {
+                        x: Math.random() * snowCanvas.width,
+                        y: 0,
+                        size: random(2, 4),
+                        speed: random(1, 3),
+                        opacity: random(0.5, 1)
+                    };
                 }
-            });
-        }
-
-        function loop() {
-            drawSnowFlakes();
-            updateSnowFlakes();
-            requestAnimationFrame(loop);
-        }
-
-        function startSnowing() {
-            resizeCanvas();
-            for (let i = 0; i < 100; i++) {
-                flakes.push(createSnowFlake());
             }
-            loop();
+            requestAnimationFrame(animateSnow);
         }
 
-        function playMedia() {
-            const audio = document.querySelector('audio');
-            if (audio) {
-                audio.play();
-                audio.volume = 0.5;
-            }
+        function animateBiolink() {
+            let biolink = document.getElementById('biolink');
+            biolink.style.display = 'block';
+            biolink.style.opacity = '1';
         }
 
-        function startExperience() {
-            const background = document.getElementById('background');
-            if (background) {
-                background.style.opacity = 0;
-                playMedia();
-                setTimeout(() => {
-                    background.style.display = 'none';
-                    const biolink = document.getElementById('biolink');
-                    if (biolink) {
-                        biolink.style.display = 'block';
-                        startSnowing(); // Start snowing after splash screen disappears
-                    }
-                }, 5000); // Adjust time as needed
+        function shuffle() {
+            var array = [123, 456, 789];
+            for (var i = array.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
             }
+            return array;
         }
     </script>
 </body>

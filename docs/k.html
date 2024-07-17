@@ -42,16 +42,16 @@
             margin-top: 20px;
         }
         .card {
-            background: rgba(0, 0, 0, 0.5); /* Darker background */
+            background: rgba(0, 0, 0, 0.8); /* Darker background */
             border-radius: 25px; /* Rounder corners */
-            padding: 40px; /* Increased padding */
+            padding: 30px; /* Larger padding */
             backdrop-filter: blur(10px);
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); /* Larger shadow */
             transition: box-shadow 0.3s ease;
             position: relative;
             transform: scale(1.2); /* Larger scale */
-            width: 300px; /* Increased width */
-            height: 400px; /* Increased height */
+            width: 350px; /* Wider card */
+            height: 400px; /* Taller card */
         }
         .card::before {
             content: '';
@@ -74,14 +74,14 @@
         }
         .buttons img {
             border-radius: 50%;
-            width: 120px; /* Smaller image size */
-            height: 120px; /* Smaller image size */
+            width: 150px; /* Larger image size */
+            height: 150px; /* Larger image size */
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Larger shadow */
+            margin-bottom: 20px; /* Space between image and text */
         }
         .buttons img:hover {
-            transform: scale(1); /* No scale on hover */
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Smaller shadow on hover */
+            transform: scale(1); /* Prevent image from getting bigger on hover */
         }
         .buttons h1 {
             margin: 20px 0; /* Larger margin */
@@ -96,17 +96,15 @@
         }
         .buttons a {
             color: white;
-            margin: 10px 0; /* Increased margin */
+            margin: 0 20px; /* Larger margin */
             text-decoration: none;
-            font-size: 18px; /* Larger font size */
+            font-size: 20px; /* Larger font size */
             transition: text-shadow 0.3s ease;
-            display: block;
         }
         .buttons a i {
-            font-size: 24px; /* Larger font size */
+            font-size: 30px; /* Larger font size */
             transition: transform 0.3s ease;
             text-shadow: 0 0 8px rgba(255, 255, 255, 0.5); /* Larger shadow */
-            margin-right: 10px;
         }
         .buttons a:hover i {
             transform: scale(1.2);
@@ -122,53 +120,34 @@
                 text-shadow: 0 0 20px rgba(255, 0, 0, 0.7); /* Larger shadow */
             }
         }
-        canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-        }
-        video.background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
-            display: none;
-        }
-        .discord-user {
+        .discord {
             display: flex;
             align-items: center;
             justify-content: space-between;
             margin-top: 20px;
         }
-        .discord-user img {
-            width: 50px; /* Reduced size */
-            height: 50px; /* Reduced size */
+        .discord .avatar {
+            width: 50px; /* Smaller image size */
+            height: 50px; /* Smaller image size */
             border-radius: 50%;
             margin-right: 10px;
         }
-        .discord-user .details {
-            flex: 1;
+        .discord .status {
+            color: #ddd;
+            font-size: 14px; /* Font size for status */
         }
-        .discord-user .details p {
-            margin: 5px 0;
-            font-size: 16px; /* Adjusted font size */
-        }
-        .discord-user .details .status {
-            display: flex;
-            align-items: center;
-        }
-        .discord-user .details .status .dot {
-            width: 10px;
-            height: 10px;
+        .discord .status-dot {
+            width: 8px; /* Dot size */
+            height: 8px; /* Dot size */
             border-radius: 50%;
-            background-color: #ff0000; /* Red dot color (idle) */
-            margin-right: 5px;
+            background-color: yellow; /* Example color */
+            margin-left: 5px;
+            display: inline-block;
+        }
+        .discord .username {
+            flex-grow: 1;
+            text-align: center;
+            margin: 0 10px;
         }
     </style>
 </head>
@@ -185,23 +164,22 @@
         <div id="biolink" class="biolink">
             <div class="card">
                 <div class="buttons">
-                    <div class="discord-user">
-                        <img src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/e64afe2a731002d551ebb861d3ea9b45.jpg" alt="pfp">
-                        <div class="details">
-                            <p>Name: @Kurxx33</p>
-                            <p>The currently doing: Sleeping</p>
+                    <img class="avatar" src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/e64afe2a731002d551ebb861d3ea9b45.jpg" title="pfp">
+                    <div class="discord">
+                        <div class="username">
+                            <div>Name: @Kurxx33</div>
+                            <div>The currently doing: Sleeping</div>
                             <div class="status">
-                                <div class="dot"></div>
-                                <p>The status: idle</p>
+                                Status: <span class="status-dot"></span> idle <!-- Replace with appropriate status dot -->
                             </div>
                         </div>
                     </div>
                     <h1>Kurxx33<span class="small">VFX Artist and Developer</span></h1>
                     <div>
-                        <a href="https://t.me/kurxx33" target="_blank"><i class="fab fa-telegram"></i> Telegram</a>
-                        <a href="https://x.com/kurxx33" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
-                        <a href="https://www.tiktok.com/kurxx33" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
-                    </div>
+                        <a href="https://t.me/kurxx33" target="_blank"><i class="fa-brands fa-telegram"></i></a>
+                        <a href="https://x.com/kurxx33" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="https://www.tiktok.com/kurxx33" target="_blank"><i class="fa-brands fa-tiktok"></i></a>                        
+                    </div>                             
                 </div>
             </div>
         </div>
@@ -214,107 +192,49 @@
         function ctrlShiftKey(e, keyCode) {
             return e.ctrlKey && e.shiftKey && e.keyCode === keyCode.charCodeAt(0);
         }
-        document.addEventListener('keydown', function (e) {
-            if (ctrlShiftKey(e, 'K')) {
-                document.querySelector('body').classList.toggle('hidden');
-                document.querySelector('#pattern').classList.toggle('on');
-                var vid = document.getElementById('background');
-                if (vid.style.display == 'none') {
-                    vid.style.display = 'block';
-                    var aud = document.getElementsByTagName('audio')[0];
-                    aud.pause();
-                } else {
-                    vid.style.display = 'none';
-                    var aud = document.getElementsByTagName('audio')[0];
-                    aud.play();
-                }
+
+        document.onkeydown = (e) => {
+            if (
+                e.keyCode === 123 ||
+                ctrlShiftKey(e, 'I') ||
+                ctrlShiftKey(e, 'J') ||
+                ctrlShiftKey(e, 'C') ||
+                (e.ctrlKey && e.keyCode === 'U'.charCodeAt(0))
+            )
+                return false;
+        };
+
+        function playMedia() {
+            const audio = document.querySelector("audio");
+            if (audio) {
+                audio.play();
+                audio.volume = 0.1;
             }
-        });
+        }
+
+        function playVideo() {
+            const video = document.querySelector("video");
+            if (video) {
+                video.play();
+                video.volume = 0.5;
+            }
+        }
 
         function startExperience() {
-            var clickanywhere = document.querySelector('.clickanywhere');
-            clickanywhere.style.opacity = '0';
-            setTimeout(() => {
-                clickanywhere.style.display = 'none';
-                var biolink = document.querySelector('#biolink');
-                biolink.style.display = 'block';
+            const background = document.getElementById("background");
+            if (background) {
+                background.style.opacity = 0;
+                playMedia();
+                playVideo();
                 setTimeout(() => {
-                    biolink.style.opacity = '1';
-                }, 50);
-            }, 500);
-        }
-
-        var canvas = document.getElementById('snowCanvas');
-        var ctx = canvas.getContext('2d');
-        var snowflakes = [];
-        var snowflakeCount = 50;
-        var minSize = 1;
-        var maxSize = 4;
-        var minSpeed = 1;
-        var maxSpeed = 3;
-        var flakesSpeed = 0;
-        var ticks = 0;
-
-        function randomiseSnowflake(snowflake) {
-            snowflake.x = Math.random() * canvas.width;
-            snowflake.y = Math.random() * canvas.height;
-            snowflake.size = Math.random() * (maxSize - minSize) + minSize;
-            snowflake.speed = Math.random() * (maxSpeed - minSpeed) + minSpeed;
-        }
-
-        function setup() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-
-            for (var i = 0; i < snowflakeCount; i++) {
-                var snowflake = {};
-                randomiseSnowflake(snowflake);
-                snowflakes.push(snowflake);
+                    background.style.display = "none";
+                    const biolink = document.getElementById("biolink");
+                    if (biolink) {
+                        biolink.style.display = "block";
+                    }
+                }, 5000);
             }
-
-            update();
         }
-
-        function update() {
-            ticks++;
-
-            if (ticks % 15 === 0) {
-                flakesSpeed = Math.random() * (maxSpeed - minSpeed) + minSpeed;
-            }
-
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            snowflakes.forEach(function (snowflake) {
-                snowflake.y += snowflake.speed;
-                snowflake.x += Math.random() - 0.5;
-
-                ctx.beginPath();
-                ctx.arc(snowflake.x, snowflake.y, snowflake.size, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
-                ctx.fill();
-
-                if (snowflake.y > canvas.height) {
-                    snowflake.y = 0;
-                }
-
-                if (snowflake.x > canvas.width) {
-                    snowflake.x = 0;
-                }
-
-                if (snowflake.x < 0) {
-                    snowflake.x = canvas.width;
-                }
-            });
-
-            requestAnimationFrame(update);
-        }
-
-        window.addEventListener('resize', function () {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
-
-        setup();
     </script>
 </body>
 </html>

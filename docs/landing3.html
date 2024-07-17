@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artemas.lol</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'UnifrakturCook', cursive;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        .landing-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.7); /* White glow */
+        }
+        .landing-content h1 {
+            font-size: 3em;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .landing-content a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.5em;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .landing-content a:hover {
+            transform: scale(1.1); /* Slightly bigger on hover */
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.9); /* Stronger glow on hover */
+        }
+        .landing-content a::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background-color: #fff;
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+        .landing-content a:hover::after {
+            width: 100%;
+        }
+        .copyright {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            font-size: 0.8em;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="landing-content">
+        <h1>Artemas.lol</h1>
+        <div>
+            <a href="https://artemas.lol/buy">Buy</a>
+            <a href="https://artemas.lol/k">Owner</a>
+        </div>
+    </div>
+    <audio loop autoplay>
+        <source src="docs/youtube_rMIkv-dEv2g_audio.mp3" type="audio/mp3">
+    </audio>
+    <div class="copyright">
+        <span style="font-size: 0.6em; vertical-align: middle;">©</span> artemas.lol, private bio link, releasing soon
+    </div>
+</body>
+</html>

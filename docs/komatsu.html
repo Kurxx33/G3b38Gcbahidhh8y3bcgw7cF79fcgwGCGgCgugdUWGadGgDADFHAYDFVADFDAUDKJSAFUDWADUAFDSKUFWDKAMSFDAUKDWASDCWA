@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-    <!-- meta -->
-    <head>
-    <meta charset="utf-8">
-    <body oncontextmenu="return false">
+<head>
+    <meta charset="UTF-8">
     <title>komatsu</title>
     <meta property="og:title" content="">
     <meta name="description" content="Fuck a nigga named Kurxx33">
@@ -14,43 +12,91 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ionicons/7.1.0/esm/ionicons.min.js"></script>
     <script src="https://kit.fontawesome.com/b0c7a14384.js" crossorigin="anonymous"></script>
     <link href="layout2.css" rel="stylesheet"/>
-    </head>
-    <!-- main -->
-    <body class="id">
-            <audio loop src=""></audio> <!-- your audio (mp3) -->
-                <div id="pattern"></div>
-                <video class="background" id="background" loop> <!-- your video (mp4) -->
-                    <source src="" type="video/mp4"> <!-- mp4 -->
-                </video>
-        <style>
-            .clickanywhere {
-                    margin: 0;
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-            } 
-        </style>
-            <div class="clickanywhere">
-                <h4 style="color:white; font-size: 16px;">[Click Anywhere]</h4> <!-- click anywhere -->
-             </div>   
-            <main>
-                <div scroll="no" id="biolink" class="biolink" style="display:none; overflow: hidden;">
-                   <div scroll="no" id="biolink" class="card">
-                        <div class="buttons">
-                            <img class="avatar" src="" title="pfp"> <!-- profile picture -->
- <!-- name -->     <h1>yourname<span class="small">Fuck a nigga named kurxx33</span>  <!-- the gray thingy next to the name (can be left blank) -->
-                            <!-- socials, ex. i put telegram, discord & github -->
-                             <div>   
-                            <a href="https://t.me/" target=""><i class="fa-brands fa-telegram"></i></a>
-                            <a href="https://discord.com/" target=""><i class="fa-brands fa-discord"></i></a>
-                            <a href="https://github.com/" target=""><i class="fa-brands fa-github"></i></a>
-                            </div>
-                                </div> <!-- weird code -->
-                   </body>
-<!-- dev inspect blocking script -->
-<script>
-document.addEventListener('contextmenu', (e) => e.preventDefault());
+    <style>
+        .clickanywhere {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .card {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+            max-width: 90%;
+            width: 500px;
+        }
+
+        .card .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+
+        .card h1 {
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+
+        .card .small {
+            font-size: 16px;
+            color: gray;
+        }
+
+        .buttons {
+            margin-top: 20px;
+        }
+
+        .buttons a {
+            font-size: 24px;
+            color: white;
+            margin: 0 10px;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+            padding: 10px 20px;
+        }
+
+        .buttons a:hover {
+            transform: scale(1.1);
+            opacity: 0.8;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+    </style>
+</head>
+<body class="id" oncontextmenu="return false">
+    <audio loop src=""></audio>
+    <video class="background" id="background" loop>
+        <source src="" type="video/mp4">
+    </video>
+
+    <div class="clickanywhere">
+        <h4 style="color:white; font-size: 16px;">[Click Anywhere]</h4>
+    </div>
+
+    <div class="biolink" style="display:none; overflow: hidden;">
+        <div class="card">
+            <img class="avatar" src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/artworks-nGjxQiztH1KKj1yE-PTfqQg-t500x500.png" title="pfp">
+            <h1>@Komatsu<span class="small">Fuck a nigga named kurxx33</span></h1>
+            <div class="buttons">
+                <a href="https://t.me/" target=""><i class="fab fa-telegram"></i></a>
+                <a href="https://discord.com/" target=""><i class="fab fa-discord"></i></a>
+                <a href="https://github.com/" target=""><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('contextmenu', (e) => e.preventDefault());
 
         function ctrlShiftKey(e, keyCode) {
             return e.ctrlKey && e.shiftKey && e.keyCode === keyCode.charCodeAt(0);
@@ -66,8 +112,7 @@ document.addEventListener('contextmenu', (e) => e.preventDefault());
             )
                 return false;
         };
-    
-    // func playaudio
+
         function playMedia() {
             const audio = document.querySelector("audio");
             if (audio) {
@@ -75,7 +120,7 @@ document.addEventListener('contextmenu', (e) => e.preventDefault());
                 audio.volume = 0.1;
             }
         }
-    // func playvideo
+
         function playVideo() {
             const video = document.querySelector("video");
             if (video) {
@@ -93,4 +138,6 @@ document.addEventListener('contextmenu', (e) => e.preventDefault());
                 $(".biolink").fadeIn(2000);
             });
         });
-</script>
+    </script>
+</body>
+</html>

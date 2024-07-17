@@ -30,7 +30,7 @@
         }
         .clickanywhere h4 {
             color: white;
-            font-size: 16px;
+            font-size: 10px; /* 60% of 16px */
         }
         .biolink {
             display: none;
@@ -44,11 +44,12 @@
         .card {
             background: rgba(255, 255, 255, 0.1);
             border-radius: 18px;
-            padding: 10px;
+            padding: 8px; /* 20% smaller padding */
             backdrop-filter: blur(10px);
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.3); /* 20% smaller shadow */
             transition: box-shadow 0.3s ease;
             position: relative;
+            transform: scale(0.8); /* 20% smaller */
         }
         .card::before {
             content: '';
@@ -67,7 +68,7 @@
             pointer-events: none;
         }
         .card:hover {
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 16px rgba(255, 255, 255, 0.5); /* 20% smaller shadow */
         }
         .buttons img {
             border-radius: 50%;
@@ -82,39 +83,39 @@
         }
         .buttons h1 {
             margin: 10px 0;
-            font-size: 24px;
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+            font-size: 19.2px; /* 20% smaller font size */
+            text-shadow: 0 0 4px rgba(255, 255, 255, 0.5); /* 20% smaller shadow */
             animation: breathing 3s infinite alternate;
         }
         .buttons h1 .small {
             display: block;
-            font-size: 14px;
+            font-size: 11.2px; /* 20% smaller font size */
             color: #ddd;
         }
         .buttons a {
             color: white;
             margin: 0 15px;
             text-decoration: none;
-            font-size: 20px;
+            font-size: 16px; /* 20% smaller font size */
             transition: text-shadow 0.3s ease;
         }
         .buttons a i {
-            font-size: 30px;
+            font-size: 24px; /* 20% smaller font size */
             transition: transform 0.3s ease;
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+            text-shadow: 0 0 4px rgba(255, 255, 255, 0.5); /* 20% smaller shadow */
         }
         .buttons a:hover i {
             transform: scale(1.1);
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+            text-shadow: 0 0 12px rgba(255, 255, 255, 0.8); /* 20% smaller shadow */
         }
         @keyframes breathing {
             0% {
                 color: white;
-                text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+                text-shadow: 0 0 4px rgba(255, 255, 255, 0.5); /* 20% smaller shadow */
             }
             100% {
                 color: lightcoral;
-                text-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
+                text-shadow: 0 0 16px rgba(255, 0, 0, 0.7); /* 20% smaller shadow */
             }
         }
         canvas {
@@ -224,11 +225,9 @@
 
             update() {
                 this.y += this.speed;
-
                 if (this.y > canvas.height) {
-                    this.y = -this.size;
+                    this.y = 0;
                     this.x = Math.random() * canvas.width;
-                    this.opacity = 1;
                 }
             }
 
@@ -244,33 +243,24 @@
             for (let i = 0; i < numFlakes; i++) {
                 const x = Math.random() * canvas.width;
                 const y = Math.random() * canvas.height;
-                const speed = Math.random() * 2 + 1;
+                const speed = Math.random() * 2 + 0.5;
                 const size = Math.random() * 3 + 1;
                 const opacity = Math.random();
                 snowflakes.push(new Snowflake(x, y, speed, size, opacity));
             }
         }
 
-        function animateSnowflakes() {
+        function updateSnowflakes() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-
             snowflakes.forEach(flake => {
                 flake.update();
                 flake.draw();
             });
-
-            requestAnimationFrame(animateSnowflakes);
+            requestAnimationFrame(updateSnowflakes);
         }
 
         createSnowflakes();
-        animateSnowflakes();
-
-        window.addEventListener('resize', function() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            createSnowflakes();
-        });
-
+        updateSnowflakes();
     </script>
 </body>
 </html>

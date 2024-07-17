@@ -35,6 +35,7 @@
             max-width: 90%;
             width: 500px;
             height: auto; /* Increased height to accommodate badges */
+            transition: height 0.3s ease; /* Smooth transition */
         }
 
         .card .avatar {
@@ -77,12 +78,13 @@
         /* Badge styles */
         .badge {
             position: absolute;
-            top: 50%; /* Adjust top position */
-            left: calc(50% - 60px); /* Adjust left position */
+            top: 0;
+            right: 0;
             transform: translate(-50%, -50%);
             background-color: transparent;
             text-align: center;
             z-index: 1; /* Ensure it's above other elements */
+            transition: transform 0.2s ease, opacity 0.2s ease;
         }
 
         .badge i {
@@ -90,7 +92,6 @@
             font-size: 24px;
             position: relative;
             display: block;
-            transition: transform 0.2s ease, opacity 0.2s ease;
         }
 
         .badge:hover i {
@@ -148,8 +149,6 @@
         <source src="" type="video/mp4">
     </video>
 
-    <div class="top-right-badge">#&nbsp;&nbsp;4</div>
-
     <div class="clickanywhere">
         <h4 style="color:white; font-size: 16px;">[Click Anywhere]</h4>
     </div>
@@ -166,6 +165,7 @@
                 <a href="https://discord.gg/high" target=""><i class="fab fa-discord"></i></a>
                 <a href="https://soundcloud.com/notkomatsu" target=""><i class="fab fa-soundcloud"></i></a>
             </div>
+            <div class="top-right-badge">#&nbsp;&nbsp;4</div>
         </div>
     </div>
 

@@ -23,7 +23,7 @@
 
         .card {
             position: absolute;
-            top: 40%; /* Adjusted top position for better layout */
+            top: 50%; /* Centered vertically */
             left: 50%;
             transform: translate(-50%, -50%);
             background-color: rgba(0, 0, 0, 0.5);
@@ -34,7 +34,7 @@
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
             max-width: 90%;
             width: 500px;
-            height: auto; /* Increased height to accommodate badges */
+            height: auto; /* Adjusted height */
             transition: height 0.3s ease; /* Smooth transition */
         }
 
@@ -78,7 +78,7 @@
         /* Badge styles */
         .badge {
             position: absolute;
-            top: calc(50% + 70px); /* Adjusted position under the profile picture */
+            top: calc(50% - 50px); /* Adjusted position above the text */
             left: 50%;
             transform: translateX(-50%);
             background-color: transparent;
@@ -92,10 +92,9 @@
             font-size: 24px;
             position: relative;
             display: block;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Subtle white glow */
             border-radius: 50%;
             padding: 8px;
-            margin-bottom: 10px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8); /* Adjusted glow */
         }
 
         .badge:hover i {
@@ -110,7 +109,7 @@
         .tooltip {
             display: none;
             position: absolute;
-            top: -40px; /* Adjust tooltip position */
+            top: -40px; /* Adjusted tooltip position */
             left: 50%;
             transform: translateX(-50%);
             background-color: black;

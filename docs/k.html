@@ -42,10 +42,15 @@
             margin-top: 20px;
         }
         .card {
-            display: inline-block;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
             padding: 20px;
-            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            transition: box-shadow 0.3s ease;
+        }
+        .card:hover {
+            box-shadow: 0 0 40px rgba(255, 255, 255, 1);
         }
         .buttons img {
             border-radius: 50%;
@@ -248,10 +253,18 @@
         });
 
         window.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
+            snowflakes.forEach(flake => {
+                const dx = flake.x - mouseX;
+                const dy = flake.y - mouseY;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < 100) {
+                    flake.x += dx / 10;
+                    flake.y += dy / 10;
+                }
+            });
         });
     </script>
 </body>
 </html>
-

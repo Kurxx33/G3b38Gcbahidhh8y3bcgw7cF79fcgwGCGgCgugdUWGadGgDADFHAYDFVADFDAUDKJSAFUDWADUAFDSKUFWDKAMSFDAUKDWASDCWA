@@ -27,6 +27,7 @@
             transform: translate(-50%, -50%);
             text-align: center;
             cursor: pointer;
+            z-index: 9999; /* Ensure it's on top */
         }
         .clickanywhere h4 {
             color: white;
@@ -35,11 +36,12 @@
         .biolink {
             display: none;
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            margin-top: 20px;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 999; /* Place above snow canvas */
         }
         .card {
             background: rgba(0, 0, 0, 0.8); /* Darker background */
@@ -52,6 +54,11 @@
             transform: scale(1.2); /* Larger scale */
             width: 350px; /* Wider card */
             height: 400px; /* Taller card */
+            margin: auto;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
         }
         .card::before {
             content: '';
@@ -158,7 +165,7 @@
         <source src="your_video.mp4" type="video/mp4">
     </video>
     <div class="clickanywhere" onclick="startExperience()">
-        <h4>[Hi👋, Click Anywhere]</h4>
+        <h4>[  Hi👋, Click Anywhere  ]</h4>
     </div>
     <main>
         <div id="biolink" class="biolink">
@@ -167,7 +174,7 @@
                     <img class="avatar" src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/e64afe2a731002d551ebb861d3ea9b45.jpg" title="pfp">
                     <div class="discord">
                         <div class="username">
-                            <div>Name: @Kurxx33</div>
+                            <div>@Kurxx33</div>
                             <div>The currently doing: Sleeping</div>
                             <div class="status">
                                 Status: <span class="status-dot"></span> idle <!-- Replace with appropriate status dot -->
@@ -199,40 +206,100 @@
                 ctrlShiftKey(e, 'I') ||
                 ctrlShiftKey(e, 'J') ||
                 ctrlShiftKey(e, 'C') ||
-                (e.ctrlKey && e.keyCode === 'U'.charCodeAt(0))
-            )
+                (e.ctrlKey && e.keyCode === 'U'.charCodeAt(0)) ||
+                ctrlShiftKey(e, 'U') ||
+                (e.ctrlKey && e.keyCode === 'F'.charCodeAt(0)) ||
+                ctrlShiftKey(e, 'F') ||
+                e.keyCode === 113 ||
+                ctrlShiftKey(e, 'S')
+            ) {
                 return false;
+            }
         };
 
-        function playMedia() {
-            const audio = document.querySelector("audio");
-            if (audio) {
-                audio.play();
-                audio.volume = 0.1;
-            }
+        let flakes = [];
+        let canvas = document.getElementById('snowCanvas');
+        let ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
         }
 
-        function playVideo() {
-            const video = document.querySelector("video");
-            if (video) {
-                video.play();
-                video.volume = 0.5;
+        window.addEventListener('resize', resizeCanvas);
+
+        function getRandomBetween(min, max) {
+            return Math.random() * (max - min + 1) + min;
+        }
+
+        function createSnowFlake() {
+            return {
+                x: getRandomBetween(0, window.innerWidth),
+                y: -10,
+                opacity: getRandomBetween(0.5, 1),
+                radius: getRandomBetween(1, 4),
+                speedX: getRandomBetween(-2, 2),
+                speedY: getRandomBetween(1, 3)
+            };
+        }
+
+        function drawSnowFlakes() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            flakes.forEach(flake => {
+                ctx.beginPath();
+                ctx.arc(flake.x, flake.y, flake.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${flake.opacity})`;
+                ctx.fill();
+            });
+        }
+
+        function updateSnowFlakes() {
+            flakes.forEach(flake => {
+                flake.x += flake.speedX;
+                flake.y += flake.speedY;
+
+                if (flake.y > window.innerHeight) {
+                    flake.x = getRandomBetween(0, window.innerWidth);
+                    flake.y = -10;
+                }
+            });
+        }
+
+        function loop() {
+            drawSnowFlakes();
+            updateSnowFlakes();
+            requestAnimationFrame(loop);
+        }
+
+        function startSnowing() {
+            resizeCanvas();
+            for (let i = 0; i < 100; i++) {
+                flakes.push(createSnowFlake());
+            }
+            loop();
+        }
+
+        function playMedia() {
+            const audio = document.querySelector('audio');
+            if (audio) {
+                audio.play();
+                audio.volume = 0.5;
             }
         }
 
         function startExperience() {
-            const background = document.getElementById("background");
+            const background = document.getElementById('background');
             if (background) {
                 background.style.opacity = 0;
                 playMedia();
-                playVideo();
                 setTimeout(() => {
-                    background.style.display = "none";
-                    const biolink = document.getElementById("biolink");
+                    background.style.display = 'none';
+                    const biolink = document.getElementById('biolink');
                     if (biolink) {
-                        biolink.style.display = "block";
+                        biolink.style.display = 'block';
+                        startSnowing(); // Start snowing after splash screen disappears
                     }
-                }, 5000);
+                }, 5000); // Adjust time as needed
             }
         }
     </script>

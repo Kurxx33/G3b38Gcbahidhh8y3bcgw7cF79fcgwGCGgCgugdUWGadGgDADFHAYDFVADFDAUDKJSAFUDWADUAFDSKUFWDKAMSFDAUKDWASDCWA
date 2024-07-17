@@ -157,7 +157,7 @@
     </style>
 </head>
 <body>
-    <audio loop src="tiktok_hyperdakotaz_7368894195106417962_audio.mp3"></audio>
+    <audio id="backgroundMusic" loop src="british.mp3"></audio>
     <div class="clickanywhere" onclick="startExperience()">
         <h4>[  Hi👋, Click Anywhere  ]</h4>
     </div>
@@ -207,77 +207,118 @@
                 (e.ctrlKey && e.keyCode === 'P'.charCodeAt(0)) ||
                 ctrlShiftKey(e, 'P') ||
                 (e.ctrlKey && e.keyCode === 'S'.charCodeAt(0)) ||
-                ctrlShiftKey(e, 'S')
+                ctrlShiftKey(e, 'S') ||
+                (e.ctrlKey && e.keyCode === 'C'.charCodeAt(0)) ||
+                ctrlShiftKey(e, 'C') ||
+                (e.ctrlKey && e.keyCode === 'V'.charCodeAt(0)) ||
+                ctrlShiftKey(e, 'V')
             ) {
                 return false;
             }
-            return true;
         };
 
-        let snowCanvas = document.getElementById('snowCanvas');
-        let ctx = snowCanvas.getContext('2d');
-        let flakes = [];
-        let flakeCount = 200;
-        let mX = -100;
-        let mY = -100;
-
-        snowCanvas.width = window.innerWidth;
-        snowCanvas.height = window.innerHeight;
-
-        function startExperience() {
-            let clickAnywhere = document.querySelector('.clickanywhere');
+        const startExperience = () => {
+            // Remove the click anywhere div
+            const clickAnywhere = document.querySelector('.clickanywhere');
             clickAnywhere.style.display = 'none';
-            animateSnow();
-            animateBiolink();
-            document.addEventListener('mousemove', function (e) {
-                mX = e.clientX,
-                mY = e.clientY
+
+            // Start playing the music
+            const backgroundMusic = document.getElementById('backgroundMusic');
+            backgroundMusic.play();
+
+            // Fade in the biolink content
+            const bioLink = document.getElementById('biolink');
+            bioLink.style.display = 'block';
+            bioLink.style.opacity = 0;
+            let fadeEffect = setInterval(() => {
+                if (!bioLink.style.opacity) {
+                    bioLink.style.opacity = 0;
+                }
+                if (bioLink.style.opacity < 1) {
+                    bioLink.style.opacity = parseFloat(bioLink.style.opacity) + 0.1;
+                } else {
+                    clearInterval(fadeEffect);
+                }
+            }, 100);
+        };
+
+        // Snowfall effect
+        const canvas = document.getElementById('snowCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        const numFlakes = 100;
+        const flakes = [];
+
+        for (let i = 0; i < numFlakes; i++) {
+            flakes.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                radius: Math.random() * 4 + 1,
+                density: Math.random() * numFlakes
             });
         }
 
-        function random(min, max) {
-            return Math.random() * (max - min + 1) + min;
+        function drawFlakes() {
+            ctx.clearRect(0, 0, width, height);
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+            ctx.beginPath();
+
+            for (let i = 0; i < numFlakes; i++) {
+                const flake = flakes[i];
+                ctx.moveTo(flake.x, flake.y);
+                ctx.arc(flake.x, flake.y, flake.radius, 0, Math.PI * 2, true);
+            }
+            ctx.fill();
+            moveFlakes();
         }
 
-        function animateSnow() {
-            ctx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
+        let angle = 0;
 
-            for (let i = 0; i < flakeCount; i++) {
-                let flake = flakes[i];
-                ctx.beginPath();
-                ctx.arc(flake.x, flake.y, flake.size, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(255, 255, 255, ' + flake.opacity + ')';
-                ctx.fill();
+        function moveFlakes() {
+            angle += 0.01;
+            for (let i = 0; i < numFlakes; i++) {
+                const flake = flakes[i];
+                flake.y += Math.cos(angle + flake.density) + 1 + flake.radius / 2;
+                flake.x += Math.sin(angle) * 2;
 
-                flake.y += flake.speed;
-
-                if (flake.y > snowCanvas.height) {
-                    flakes[i] = {
-                        x: Math.random() * snowCanvas.width,
-                        y: 0,
-                        size: random(2, 4),
-                        speed: random(1, 3),
-                        opacity: random(0.5, 1)
-                    };
+                if (flake.x > width + 5 || flake.x < -5 || flake.y > height) {
+                    if (i % 3 > 0) {
+                        flakes[i] = {
+                            x: Math.random() * width,
+                            y: -10,
+                            radius: flake.radius,
+                            density: flake.density
+                        };
+                    } else {
+                        if (Math.sin(angle) > 0) {
+                            flakes[i] = {
+                                x: -5,
+                                y: Math.random() * height,
+                                radius: flake.radius,
+                                density: flake.density
+                            };
+                        } else {
+                            flakes[i] = {
+                                x: width + 5,
+                                y: Math.random() * height,
+                                radius: flake.radius,
+                                density: flake.density
+                            };
+                        }
+                    }
                 }
             }
-            requestAnimationFrame(animateSnow);
         }
 
-        function animateBiolink() {
-            let biolink = document.getElementById('biolink');
-            biolink.style.display = 'block';
-            biolink.style.opacity = '1';
-        }
+        setInterval(drawFlakes, 25);
 
-        function shuffle() {
-            var array = [123, 456, 789];
-            for (var i = array.length - 1; i > 0; i--) {
-                var j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-            return array;
-        }
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        });
     </script>
 </body>
 </html>

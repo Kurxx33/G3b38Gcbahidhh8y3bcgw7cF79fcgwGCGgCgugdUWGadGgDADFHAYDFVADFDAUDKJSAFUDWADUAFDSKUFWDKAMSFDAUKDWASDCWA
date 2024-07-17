@@ -43,10 +43,10 @@
         }
         .card {
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 20px;
+            border-radius: 18px;
+            padding: 10px;
             backdrop-filter: blur(10px);
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
             transition: box-shadow 0.3s ease;
             position: relative;
         }
@@ -67,18 +67,18 @@
             pointer-events: none;
         }
         .card:hover {
-            box-shadow: 0 0 40px rgba(255, 255, 255, 1);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
         }
         .buttons img {
             border-radius: 50%;
-            width: 110px;
-            height: 110px;
+            width: 100px;
+            height: 100px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
         }
         .buttons img:hover {
             transform: scale(1.1);
-            box-shadow: 0 0 20px rgba(255, 255, 255, 1);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
         }
         .buttons h1 {
             margin: 10px 0;
@@ -89,7 +89,7 @@
         .buttons h1 .small {
             display: block;
             font-size: 14px;
-            color: #bbb;
+            color: #ddd;
         }
         .buttons a {
             color: white;
@@ -105,7 +105,7 @@
         }
         .buttons a:hover i {
             transform: scale(1.1);
-            text-shadow: 0 0 15px rgba(255, 255, 255, 1);
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
         }
         @keyframes breathing {
             0% {
@@ -220,14 +220,10 @@
                 this.speed = speed;
                 this.size = size;
                 this.opacity = opacity;
-                this.angle = Math.random() * 2 * Math.PI;
-                this.spin = Math.random() * 0.02 - 0.01;
             }
 
             update() {
                 this.y += this.speed;
-                this.x += Math.sin(this.angle) * 0.5;
-                this.angle += this.spin;
 
                 if (this.y > canvas.height) {
                     this.y = -this.size;
@@ -237,14 +233,10 @@
             }
 
             draw() {
-                ctx.save();
-                ctx.translate(this.x, this.y);
-                ctx.rotate(this.angle);
                 ctx.beginPath();
-                ctx.arc(0, 0, this.size, 0, Math.PI * 2);
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
                 ctx.fill();
-                ctx.restore();
             }
         }
 
@@ -273,19 +265,12 @@
         createSnowflakes();
         animateSnowflakes();
 
-        window.addEventListener('mousemove', function (e) {
-            const mouseX = e.clientX;
-            const mouseY = e.clientY;
-            snowflakes.forEach(flake => {
-                const dx = flake.x - mouseX;
-                const dy = flake.y - mouseY;
-                const dist = Math.sqrt(dx * dx + dy * dy);
-                if (dist < 100) {
-                    flake.x += dx / 10;
-                    flake.y += dy / 10;
-                }
-            });
+        window.addEventListener('resize', function() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            createSnowflakes();
         });
+
     </script>
 </body>
 </html>

@@ -23,7 +23,7 @@
 
         .card {
             position: absolute;
-            top: 50%;
+            top: 40%; /* Adjusted top position for better layout */
             left: 50%;
             transform: translate(-50%, -50%);
             background-color: rgba(0, 0, 0, 0.5);
@@ -34,6 +34,7 @@
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
             max-width: 90%;
             width: 500px;
+            height: auto; /* Increased height to accommodate badges */
         }
 
         .card .avatar {
@@ -42,6 +43,7 @@
             border-radius: 50%;
             object-fit: cover;
             margin-bottom: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Subtle white glow */
         }
 
         .card h1 {
@@ -71,6 +73,73 @@
             opacity: 0.8;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
         }
+
+        /* Badge styles */
+        .badge {
+            position: absolute;
+            top: 50%; /* Adjust top position */
+            left: calc(50% - 60px); /* Adjust left position */
+            transform: translate(-50%, -50%);
+            background-color: transparent;
+            text-align: center;
+            z-index: 1; /* Ensure it's above other elements */
+        }
+
+        .badge i {
+            color: white;
+            font-size: 24px;
+            position: relative;
+            display: block;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .badge:hover i {
+            transform: scale(1.1);
+            opacity: 0.8;
+        }
+
+        .badge:hover .tooltip {
+            display: block;
+        }
+
+        .tooltip {
+            display: none;
+            position: absolute;
+            top: -40px; /* Adjust tooltip position */
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: black;
+            color: white;
+            padding: 8px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+            z-index: 2;
+        }
+
+        .tooltip::before {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: calc(50% - 10px);
+            border-width: 10px 10px 0;
+            border-style: solid;
+            border-color: black transparent;
+            z-index: 2;
+        }
+
+        /* Top right corner badge */
+        .top-right-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            z-index: 3;
+        }
     </style>
 </head>
 <body class="id" oncontextmenu="return false">
@@ -79,12 +148,18 @@
         <source src="" type="video/mp4">
     </video>
 
+    <div class="top-right-badge">#&nbsp;&nbsp;4</div>
+
     <div class="clickanywhere">
         <h4 style="color:white; font-size: 16px;">[Click Anywhere]</h4>
     </div>
 
     <div class="biolink" style="display:none; overflow: hidden;">
         <div class="card">
+            <div class="badge">
+                <i class="ri-user-line"></i>
+                <div class="tooltip">User</div>
+            </div>
             <img class="avatar" src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/artworks-nGjxQiztH1KKj1yE-PTfqQg-t500x500.png" title="pfp">
             <h1>@Komatsu<span class="small">Fuck a nigga named kurxx33</span></h1>
             <div class="buttons">

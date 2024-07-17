@@ -13,12 +13,19 @@
     <script src="https://kit.fontawesome.com/b0c7a14384.js" crossorigin="anonymous"></script>
     <link href="layout2.css" rel="stylesheet"/>
     <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+        }
+
         .clickanywhere {
             margin: 0;
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
+            color: white;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
         }
 
         .card {
@@ -34,8 +41,6 @@
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
             max-width: 90%;
             width: 500px;
-            height: 650px; /* Adjusted height */
-            transition: height 0.3s ease; /* Smooth transition */
         }
 
         .card .avatar {
@@ -43,13 +48,29 @@
             height: 120px;
             border-radius: 50%;
             object-fit: cover;
-            margin-top: -60px; /* Moved profile picture up */
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Subtle white glow */
+            margin-bottom: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+            position: relative;
+        }
+
+        .card .avatar:hover::after {
+            content: 'User';
+            position: absolute;
+            bottom: -35px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            white-space: nowrap;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
         }
 
         .card h1 {
             font-size: 28px;
             margin-bottom: 5px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
         }
 
         .card .small {
@@ -67,6 +88,7 @@
             margin: 0 10px;
             transition: transform 0.2s ease, opacity 0.2s ease;
             padding: 10px 20px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
         }
 
         .buttons a:hover {
@@ -75,100 +97,44 @@
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
         }
 
-        /* Badge styles */
-        .badge {
+        .hashtag {
             position: absolute;
-            top: 160px; /* Adjusted position below the profile picture */
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: transparent;
-            text-align: center;
-            z-index: 1; /* Ensure it's above other elements */
-            transition: transform 0.2s ease, opacity 0.2s ease;
-        }
-
-        .badge i {
-            color: white;
+            top: 10px;
+            right: 10px;
             font-size: 24px;
-            position: relative;
-            display: block;
-            border-radius: 50%;
-            padding: 8px;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8); /* Adjusted glow */
-        }
-
-        .badge:hover i {
-            transform: scale(1.1);
-            opacity: 0.8;
-        }
-
-        .badge:hover .tooltip {
-            display: block;
-        }
-
-        .tooltip {
-            display: none;
-            position: absolute;
-            top: -40px; /* Adjusted tooltip position */
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: black;
             color: white;
-            padding: 8px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-            z-index: 2;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
         }
 
-        .tooltip::before {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: calc(50% - 10px);
-            border-width: 10px 10px 0;
-            border-style: solid;
-            border-color: black transparent;
-            z-index: 2;
-        }
-
-        /* Top right corner badge */
-        .top-right-badge {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background-color: rgba(255, 255, 255, 0.2);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-weight: bold;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-            z-index: 3;
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
     </style>
 </head>
 <body class="id" oncontextmenu="return false">
     <audio loop src=""></audio>
     <video class="background" id="background" loop>
-        <source src="" type="video/mp4">
+        <source src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/IMG_5871.jpeg" type="video/mp4">
     </video>
 
     <div class="clickanywhere">
-        <h4 style="color:white; font-size: 16px;">[Click Anywhere]</h4>
+        <h4>[Click Anywhere]</h4>
     </div>
 
     <div class="biolink" style="display:none; overflow: hidden;">
         <div class="card">
+            <div class="hashtag">#4</div>
             <img class="avatar" src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/artworks-nGjxQiztH1KKj1yE-PTfqQg-t500x500.png" title="pfp">
-            <div class="badge">
-                <i class="ri-user-line"></i>
-                <div class="tooltip">User</div>
-            </div>
             <h1>@Komatsu<span class="small">Fuck a nigga named kurxx33</span></h1>
             <div class="buttons">
                 <a href="https://discord.gg/high" target=""><i class="fab fa-discord"></i></a>
                 <a href="https://soundcloud.com/notkomatsu" target=""><i class="fab fa-soundcloud"></i></a>
             </div>
-            <div class="top-right-badge">#&nbsp;&nbsp;4</div>
         </div>
     </div>
 

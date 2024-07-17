@@ -13,6 +13,7 @@
             margin: 0;
             padding: 0;
             overflow: hidden;
+            user-select: none; /* Disable text selection */
         }
         .landing-content {
             position: absolute;
@@ -32,6 +33,7 @@
             font-size: 1.5em;
             transition: all 0.3s ease;
             position: relative;
+            margin: 0 20px; /* Space between links */
         }
         .landing-content a:hover {
             transform: scale(1.1); /* Slightly bigger on hover */
@@ -54,8 +56,9 @@
         .copyright {
             position: absolute;
             bottom: 10px;
-            left: 10px;
-            font-size: 0.8em;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1em; /* Slightly bigger */
             color: #888;
         }
     </style>
@@ -74,5 +77,13 @@
     <div class="copyright">
         <span style="font-size: 0.6em; vertical-align: middle;">©</span> artemas.lol, private bio link, releasing soon
     </div>
+    <script>
+        document.addEventListener('contextmenu', event => event.preventDefault());
+        document.addEventListener('keydown', event => {
+            if (event.key === 'F12' || (event.ctrlKey && event.key === 'U')) {
+                event.preventDefault();
+            }
+        });
+    </script>
 </body>
 </html>

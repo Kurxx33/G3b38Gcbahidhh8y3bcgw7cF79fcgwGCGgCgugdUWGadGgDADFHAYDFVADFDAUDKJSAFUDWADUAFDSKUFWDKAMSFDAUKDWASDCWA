@@ -6,7 +6,9 @@
     <title>Artemas.lol</title>
     <style>
         body {
-            background-color: #000;
+            background: url('docs/anime-girl.gif') no-repeat center center fixed;
+            background-size: cover;
+            image-rendering: pixelated; /* Pixelate the background image */
             color: #fff;
             font-family: 'UnifrakturCook', cursive;
             text-align: center;
@@ -21,11 +23,13 @@
             left: 50%;
             transform: translate(-50%, -50%);
             text-shadow: 0 0 20px rgba(255, 255, 255, 0.7); /* White glow */
+            image-rendering: pixelated; /* Pixelate the text and links */
         }
         .landing-content h1 {
             font-size: 3em;
             font-weight: bold;
             margin-bottom: 20px;
+            image-rendering: pixelated; /* Pixelate the text */
         }
         .landing-content a {
             color: #fff;
@@ -34,10 +38,12 @@
             transition: all 0.3s ease;
             position: relative;
             margin: 0 20px; /* Space between links */
+            image-rendering: pixelated; /* Pixelate the links */
         }
         .landing-content a:hover {
             transform: scale(1.1); /* Slightly bigger on hover */
             text-shadow: 0 0 30px rgba(255, 255, 255, 0.9); /* Stronger glow on hover */
+            image-rendering: pixelated; /* Ensure hover state is pixelated */
         }
         .landing-content a::after {
             content: '';
@@ -49,9 +55,11 @@
             bottom: -3px;
             left: 0;
             transition: width 0.3s ease;
+            image-rendering: pixelated; /* Pixelate the underline effect */
         }
         .landing-content a:hover::after {
             width: 100%;
+            image-rendering: pixelated; /* Ensure hover underline is pixelated */
         }
         .visualizer {
             position: fixed;
@@ -61,33 +69,41 @@
             bottom: 0;
             pointer-events: none;
             z-index: -1;
+            image-rendering: pixelated; /* Pixelate the visualizer */
         }
         .visualizer div {
             position: absolute;
             background: rgba(255, 255, 255, 0.5);
             box-shadow: 0 0 10px 10px rgba(255, 255, 255, 0.5);
+            image-rendering: pixelated; /* Pixelate the visualizer glow */
         }
         .visualizer .top, .visualizer .bottom {
             left: 0;
             right: 0;
             height: 5px;
+            image-rendering: pixelated; /* Pixelate the top and bottom bars */
         }
         .visualizer .top {
             top: 0;
+            image-rendering: pixelated; /* Pixelate the top bar */
         }
         .visualizer .bottom {
             bottom: 0;
+            image-rendering: pixelated; /* Pixelate the bottom bar */
         }
         .visualizer .left, .visualizer .right {
             top: 0;
             bottom: 0;
             width: 5px;
+            image-rendering: pixelated; /* Pixelate the left and right bars */
         }
         .visualizer .left {
             left: 0;
+            image-rendering: pixelated; /* Pixelate the left bar */
         }
         .visualizer .right {
             right: 0;
+            image-rendering: pixelated; /* Pixelate the right bar */
         }
         .copyright {
             position: absolute;
@@ -96,6 +112,7 @@
             transform: translateX(-50%);
             font-size: 1em; /* Slightly bigger */
             color: #888;
+            image-rendering: pixelated; /* Pixelate the copyright text */
         }
     </style>
 </head>

@@ -53,6 +53,42 @@
         .landing-content a:hover::after {
             width: 100%;
         }
+        .visualizer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
+        .visualizer div {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 10px 10px rgba(255, 255, 255, 0.5);
+        }
+        .visualizer .top, .visualizer .bottom {
+            left: 0;
+            right: 0;
+            height: 5px;
+        }
+        .visualizer .top {
+            top: 0;
+        }
+        .visualizer .bottom {
+            bottom: 0;
+        }
+        .visualizer .left, .visualizer .right {
+            top: 0;
+            bottom: 0;
+            width: 5px;
+        }
+        .visualizer .left {
+            left: 0;
+        }
+        .visualizer .right {
+            right: 0;
+        }
         .copyright {
             position: absolute;
             bottom: 10px;
@@ -71,8 +107,17 @@
             <a href="https://artemas.lol/k">Owner</a>
         </div>
     </div>
-    <audio loop autoplay>
+    <div class="visualizer">
+        <div class="top"></div>
+        <div class="bottom"></div>
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+    <audio id="audio1" loop autoplay>
         <source src="docs/youtube_rMIkv-dEv2g_audio.mp3" type="audio/mp3">
+    </audio>
+    <audio id="audio2" loop autoplay>
+        <source src="docs/british.mp3" type="audio/mp3">
     </audio>
     <div class="copyright">
         <span style="font-size: 0.6em; vertical-align: middle;">©</span> artemas.lol, private bio link, releasing soon
@@ -84,6 +129,36 @@
                 event.preventDefault();
             }
         });
+
+        // Audio visualizer
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const audioElement1 = document.getElementById('audio1');
+        const audioElement2 = document.getElementById('audio2');
+        const source1 = audioContext.createMediaElementSource(audioElement1);
+        const source2 = audioContext.createMediaElementSource(audioElement2);
+        const analyser = audioContext.createAnalyser();
+        analyser.fftSize = 256;
+        const bufferLength = analyser.frequencyBinCount;
+        const dataArray = new Uint8Array(bufferLength);
+
+        source1.connect(analyser);
+        source2.connect(analyser);
+        analyser.connect(audioContext.destination);
+
+        function renderFrame() {
+            requestAnimationFrame(renderFrame);
+            analyser.getByteFrequencyData(dataArray);
+            
+            const average = dataArray.reduce((sum, value) => sum + value, 0) / bufferLength;
+            const intensity = average / 255;
+            const glowStrength = intensity * 20;
+
+            document.querySelectorAll('.visualizer div').forEach(div => {
+                div.style.boxShadow = `0 0 ${glowStrength}px ${glowStrength}px rgba(255, 255, 255, 0.5)`;
+            });
+        }
+
+        renderFrame();
     </script>
 </body>
 </html>

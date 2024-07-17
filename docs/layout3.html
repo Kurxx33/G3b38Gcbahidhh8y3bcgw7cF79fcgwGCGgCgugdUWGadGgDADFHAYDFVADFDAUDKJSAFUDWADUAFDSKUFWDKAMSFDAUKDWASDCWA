@@ -172,23 +172,29 @@
 
             analyser.getByteFrequencyData(dataArray);
 
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
 
             const barWidth = (canvas.width / bufferLength) * 2.5;
+            const barMargin = 2; // Space between bars
             let x = 0;
 
             dataArray.forEach((item, index) => {
                 const barHeight = item * 3;
 
-                const r = barHeight + (25 * (index / bufferLength));
-                const g = 250 * (index / bufferLength);
-                const b = 50;
+                // Limit bar height not to exceed half of canvas height
+                const maxHeight = canvas.height / 2;
+                const height = Math.min(barHeight, maxHeight);
 
+                const r = 255;
+                const g = 255;
+                const b = 255;
+
+                ctx.shadowColor = 'rgba(255, 255, 255, 0.2)';
+                ctx.shadowBlur = 10;
                 ctx.fillStyle = `rgb(${r},${g},${b})`;
-                ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
+                ctx.fillRect(x, canvas.height - height, barWidth, height);
 
-                x += barWidth + 1;
+                x += barWidth + barMargin;
             });
         }
 

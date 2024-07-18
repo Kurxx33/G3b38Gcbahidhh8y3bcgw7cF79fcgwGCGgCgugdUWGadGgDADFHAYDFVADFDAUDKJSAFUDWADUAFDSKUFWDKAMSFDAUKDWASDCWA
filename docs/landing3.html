@@ -6,16 +6,13 @@
     <title>Artemas.lol</title>
     <style>
         body {
-            background: url('docs/pixelated-background.png') no-repeat center center fixed;
-            background-size: cover;
+            background-color: #000;
             color: #fff;
             font-family: 'UnifrakturCook', cursive;
             text-align: center;
             margin: 0;
             padding: 0;
             overflow: hidden;
-            user-select: none; /* Disable text selection */
-            image-rendering: pixelated; /* Pixelated effect */
         }
         .landing-content {
             position: absolute;
@@ -23,7 +20,6 @@
             left: 50%;
             transform: translate(-50%, -50%);
             text-shadow: 0 0 20px rgba(255, 255, 255, 0.7); /* White glow */
-            image-rendering: pixelated; /* Pixelated effect */
         }
         .landing-content h1 {
             font-size: 3em;
@@ -36,8 +32,6 @@
             font-size: 1.5em;
             transition: all 0.3s ease;
             position: relative;
-            margin: 0 20px; /* Space between links */
-            image-rendering: pixelated; /* Pixelated effect */
         }
         .landing-content a:hover {
             transform: scale(1.1); /* Slightly bigger on hover */
@@ -57,51 +51,12 @@
         .landing-content a:hover::after {
             width: 100%;
         }
-        .visualizer {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            pointer-events: none;
-            z-index: -1;
-        }
-        .visualizer div {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.5);
-            box-shadow: 0 0 10px 10px rgba(255, 255, 255, 0.5);
-            image-rendering: pixelated; /* Pixelated effect */
-        }
-        .visualizer .top, .visualizer .bottom {
-            left: 0;
-            right: 0;
-            height: 5px;
-        }
-        .visualizer .top {
-            top: 0;
-        }
-        .visualizer .bottom {
-            bottom: 0;
-        }
-        .visualizer .left, .visualizer .right {
-            top: 0;
-            bottom: 0;
-            width: 5px;
-        }
-        .visualizer .left {
-            left: 0;
-        }
-        .visualizer .right {
-            right: 0;
-        }
         .copyright {
             position: absolute;
             bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 1em; /* Slightly bigger */
+            left: 10px;
+            font-size: 0.8em;
             color: #888;
-            image-rendering: pixelated; /* Pixelated effect */
         }
     </style>
 </head>
@@ -113,56 +68,11 @@
             <a href="https://artemas.lol/k">Owner</a>
         </div>
     </div>
-    <div class="visualizer">
-        <div class="top"></div>
-        <div class="bottom"></div>
-        <div class="left"></div>
-        <div class="right"></div>
-    </div>
-    <audio id="audio2" loop autoplay>
-        <source src="british.mp3" type="audio/mp3">
+    <audio loop autoplay>
+        <source src="docs/youtube_rMIkv-dEv2g_audio.mp3" type="audio/mp3">
     </audio>
     <div class="copyright">
         <span style="font-size: 0.6em; vertical-align: middle;">©</span> artemas.lol, private bio link, releasing soon
     </div>
-    <script>
-        document.addEventListener('contextmenu', event => event.preventDefault());
-        document.addEventListener('keydown', event => {
-            if (event.key === 'F12' || (event.ctrlKey && event.key === 'U')) {
-                event.preventDefault();
-            }
-        });
-
-        // Audio visualizer
-        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-        const audioElement1 = document.getElementById('audio1');
-        const audioElement2 = document.getElementById('audio2');
-        const source1 = audioContext.createMediaElementSource(audioElement1);
-        const source2 = audioContext.createMediaElementSource(audioElement2);
-        const analyser = audioContext.createAnalyser();
-        analyser.fftSize = 256;
-        const bufferLength = analyser.frequencyBinCount;
-        const dataArray = new Uint8Array(bufferLength);
-
-        source1.connect(analyser);
-        source2.connect(analyser);
-        analyser.connect(audioContext.destination);
-
-        function renderFrame() {
-            requestAnimationFrame(renderFrame);
-            analyser.getByteFrequencyData(dataArray);
-            
-            const average = dataArray.reduce((sum, value) => sum + value, 0) / bufferLength;
-            const intensity = average / 255;
-            const glowStrength = intensity * 20;
-
-            document.querySelectorAll('.visualizer div').forEach(div => {
-                div.style.boxShadow = `0 0 ${glowStrength}px ${glowStrength}px rgba(255, 255, 255, 0.5)`;
-            });
-        }
-
-        renderFrame();
-    </script>
 </body>
 </html>
-

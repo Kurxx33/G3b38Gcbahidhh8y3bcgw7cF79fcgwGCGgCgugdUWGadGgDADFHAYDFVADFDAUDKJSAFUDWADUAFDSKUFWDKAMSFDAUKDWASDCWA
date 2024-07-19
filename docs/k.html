@@ -49,15 +49,17 @@
         .card {
             background: rgba(0, 0, 0, 0.5); /* Transparent dark glass */
             border-radius: 16px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Black shadow */
-            backdrop-filter: blur(11.1px);
-            -webkit-backdrop-filter: blur(11.1px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2); /* Black shadow */
+            backdrop-filter: blur(6px); /* Reduced blur */
+            -webkit-backdrop-filter: blur(6px);
             border: 1px solid rgba(0, 0, 0, 1);
             padding: 30px;
             width: 350px;
             height: 400px;
             text-align: center;
             color: white; /* Ensure text color remains white */
+            opacity: 0; /* Start hidden for fade-in effect */
+            transition: opacity 1.5s ease; /* Smooth fade-in */
         }
         .buttons img {
             border-radius: 50%;
@@ -136,6 +138,15 @@
             text-align: center;
             margin: 0 10px;
         }
+        #snowCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* Ensure it does not interfere with other elements */
+            z-index: 998; /* Place behind the card */
+        }
     </style>
 </head>
 <body>
@@ -190,19 +201,16 @@
                 ctrlShiftKey(e, 'P') ||
                 (e.ctrlKey && e.keyCode === 'S'.charCodeAt(0)) ||
                 ctrlShiftKey(e, 'S') ||
-                (e.ctrlKey && e.keyCode === 'C'.charCodeAt(0)) ||
-                ctrlShiftKey(e, 'C') ||
-                (e.ctrlKey && e.keyCode === 'V'.charCodeAt(0)) ||
-                ctrlShiftKey(e, 'V')
+                (e.ctrlKey && e.keyCode === 'A'.charCodeAt(0))
             ) {
+                e.preventDefault();
                 return false;
             }
         };
 
         const startExperience = () => {
-            // Remove the click anywhere div
-            const clickAnywhere = document.querySelector('.clickanywhere');
-            clickAnywhere.style.display = 'none';
+            document.querySelector('.clickanywhere').style.display = 'none';
+            document.body.style.backdropFilter = 'none'; // Remove the blur effect
 
             // Start playing the music
             const backgroundMusic = document.getElementById('backgroundMusic');
@@ -218,62 +226,70 @@
                     bioLink.style.opacity = 1;
                 }
                 if (bioLink.style.opacity < 1) {
-                    bioLink.style.opacity = parseFloat(bioLink.style.opacity) + 0.1;
+                    bioLink.style.opacity = parseFloat(bioLink.style.opacity) + 0.02; // Smoother fade-in
                 } else {
                     clearInterval(fadeEffect);
                 }
-            }, 100);
+            }, 20);
 
-            // Remove the blur from the body
-            document.body.style.backdropFilter = 'none';
+            // Start snow effect after splash screen
+            startSnowEffect();
         };
 
         // Snow effect
-        let canvas = document.getElementById('snowCanvas');
-        let ctx = canvas.getContext('2d');
-        let width = canvas.width = window.innerWidth;
-        let height = canvas.height = window.innerHeight;
-        let snowflakes = [];
+        function startSnowEffect() {
+            let canvas = document.getElementById('snowCanvas');
+            let ctx = canvas.getContext('2d');
+            let width = canvas.width = window.innerWidth;
+            let height = canvas.height = window.innerHeight;
+            let snowflakes = [];
 
-        function createSnowflakes() {
-            let x = Math.random() * width;
-            let y = Math.random() * height;
-            let radius = Math.random() * 4 + 1;
-            let speed = Math.random() * 1 + 0.5;
-            snowflakes.push({x, y, radius, speed});
-        }
+            function createSnowflakes() {
+                let x = Math.random() * width;
+                let y = Math.random() * height;
+                let radius = Math.random() * 4 + 1;
+                let speed = Math.random() * 1 + 0.5;
+                let direction = Math.random() > 0.5 ? 1 : -1; // Random direction
+                snowflakes.push({x, y, radius, speed, direction});
+            }
 
-        function updateSnowflakes() {
-            for (let i = 0; i < snowflakes.length; i++) {
-                let flake = snowflakes[i];
-                flake.y += flake.speed;
-                if (flake.y > height) {
-                    flake.y = 0;
-                    flake.x = Math.random() * width;
+            function updateSnowflakes() {
+                for (let i = 0; i < snowflakes.length; i++) {
+                    let flake = snowflakes[i];
+                    flake.y += flake.speed;
+                    flake.x += flake.direction * flake.speed * 0.5; // Move sideways
+                    if (flake.y > height) {
+                        flake.y = 0;
+                        flake.x = Math.random() * width;
+                    }
+                    if (flake.y < 0) {
+                        flake.y = height;
+                        flake.x = Math.random() * width;
+                    }
                 }
             }
-        }
 
-        function drawSnowflakes() {
-            ctx.clearRect(0, 0, width, height);
-            ctx.fillStyle = 'black'; // Black snow
-            ctx.beginPath();
-            for (let i = 0; i < snowflakes.length; i++) {
-                let flake = snowflakes[i];
-                ctx.moveTo(flake.x, flake.y);
-                ctx.arc(flake.x, flake.y, flake.radius, 0, Math.PI * 2, true);
+            function drawSnowflakes() {
+                ctx.clearRect(0, 0, width, height);
+                ctx.fillStyle = 'black'; // Black snow
+                ctx.beginPath();
+                for (let i = 0; i < snowflakes.length; i++) {
+                    let flake = snowflakes[i];
+                    ctx.moveTo(flake.x, flake.y);
+                    ctx.arc(flake.x, flake.y, flake.radius, 0, Math.PI * 2, true);
+                }
+                ctx.fill();
+                updateSnowflakes();
             }
-            ctx.fill();
-            updateSnowflakes();
-        }
 
-        function loop() {
-            drawSnowflakes();
-            requestAnimationFrame(loop);
-        }
+            function loop() {
+                drawSnowflakes();
+                requestAnimationFrame(loop);
+            }
 
-        setInterval(createSnowflakes, 200);
-        loop();
+            setInterval(createSnowflakes, 200);
+            loop();
+        }
     </script>
 </body>
 </html>

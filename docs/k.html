@@ -45,13 +45,15 @@
             left: 50%;
             transform: translate(-50%, -50%);
             z-index: 999; /* Place above snow canvas */
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out; /* Smooth fade-in effect */
         }
         .card {
             background: rgba(0, 0, 0, 0.5); /* Transparent dark glass */
             border-radius: 16px;
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Black shadow */
-            backdrop-filter: blur(11.1px);
-            -webkit-backdrop-filter: blur(11.1px);
+            backdrop-filter: blur(8px); /* Reduced blur */
+            -webkit-backdrop-filter: blur(8px);
             border: 1px solid rgba(0, 0, 0, 1);
             padding: 30px;
             width: 350px;
@@ -72,13 +74,13 @@
         }
         .buttons h1 {
             margin: 20px 0; /* Larger margin */
-            font-size: 24px; /* Larger font size */
+            font-size: 44px; /* Increased font size by 20px */
             text-shadow: 0 0 8px rgba(255, 255, 255, 0.5); /* Larger shadow */
             animation: breathing 3s infinite alternate;
         }
         .buttons h1 .small {
             display: block;
-            font-size: 14px; /* Larger font size */
+            font-size: 24px; /* Increased font size by 20px */
             color: #ddd;
         }
         .buttons a {
@@ -190,19 +192,17 @@
                 ctrlShiftKey(e, 'P') ||
                 (e.ctrlKey && e.keyCode === 'S'.charCodeAt(0)) ||
                 ctrlShiftKey(e, 'S') ||
-                (e.ctrlKey && e.keyCode === 'C'.charCodeAt(0)) ||
-                ctrlShiftKey(e, 'C') ||
-                (e.ctrlKey && e.keyCode === 'V'.charCodeAt(0)) ||
-                ctrlShiftKey(e, 'V')
+                (e.ctrlKey && e.keyCode === 'H'.charCodeAt(0)) ||
+                (e.ctrlKey && e.keyCode === 'W'.charCodeAt(0)) ||
+                (e.ctrlKey && e.keyCode === 'Q'.charCodeAt(0)) ||
+                (e.ctrlKey && e.keyCode === 'R'.charCodeAt(0))
             ) {
-                return false;
+                e.preventDefault();
             }
         };
 
-        const startExperience = () => {
-            // Remove the click anywhere div
-            const clickAnywhere = document.querySelector('.clickanywhere');
-            clickAnywhere.style.display = 'none';
+        function startExperience() {
+            document.querySelector('.clickanywhere').style.display = 'none';
 
             // Start playing the music
             const backgroundMusic = document.getElementById('backgroundMusic');
@@ -214,15 +214,12 @@
             bioLink.style.opacity = 0;
 
             let fadeEffect = setInterval(() => {
-                if (!bioLink.style.opacity) {
-                    bioLink.style.opacity = 1;
-                }
                 if (bioLink.style.opacity < 1) {
-                    bioLink.style.opacity = parseFloat(bioLink.style.opacity) + 0.1;
+                    bioLink.style.opacity = parseFloat(bioLink.style.opacity) + 0.05; /* Slower fade-in */
                 } else {
                     clearInterval(fadeEffect);
                 }
-            }, 100);
+            }, 50);
 
             // Remove the blur from the body
             document.body.style.backdropFilter = 'none';

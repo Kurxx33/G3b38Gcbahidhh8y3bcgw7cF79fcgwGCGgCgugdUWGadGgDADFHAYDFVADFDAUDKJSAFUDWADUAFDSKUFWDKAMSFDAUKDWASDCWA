@@ -17,7 +17,7 @@
             margin: 0;
             overflow: hidden;
             font-family: 'UnifrakturCook', cursive;
-            background: #000;
+            background: #fff; /* Changed to white */
             color: white;
             position: relative;
         }
@@ -255,7 +255,7 @@
 
         function drawSnowflakes() {
             ctx.clearRect(0, 0, width, height);
-            ctx.fillStyle = 'white';
+            ctx.fillStyle = 'black'; /* Changed to black */
             ctx.beginPath();
             for (let i = 0; i < snowflakes.length; i++) {
                 let flake = snowflakes[i];
@@ -276,4 +276,5 @@
     </script>
 </body>
 </html>
+
 

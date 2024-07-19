@@ -17,7 +17,7 @@
             margin: 0;
             overflow: hidden;
             font-family: 'UnifrakturCook', cursive;
-            background: #fff; /* Changed to white */
+            background: #fff; /* White background */
             color: white;
             position: relative;
         }
@@ -35,7 +35,7 @@
             z-index: 9999; /* Ensure it's on top */
         }
         .clickanywhere h4 {
-            color: white;
+            color: black; /* Black text */
             font-size: 25px; /* Larger font size */
         }
         .biolink {
@@ -47,16 +47,17 @@
             z-index: 999; /* Place above snow canvas */
         }
         .card {
-            background: rgba(0, 0, 0, 0.56);
+            background: rgba(0, 0, 0, 0.5); /* Transparent dark glass */
             border-radius: 16px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(14.2px);
-            -webkit-backdrop-filter: blur(14.2px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Black shadow */
+            backdrop-filter: blur(11.1px);
+            -webkit-backdrop-filter: blur(11.1px);
             border: 1px solid rgba(0, 0, 0, 1);
             padding: 30px;
             width: 350px;
             height: 400px;
             text-align: center;
+            color: white; /* Ensure text color remains white */
         }
         .buttons img {
             border-radius: 50%;
@@ -207,7 +208,7 @@
             const backgroundMusic = document.getElementById('backgroundMusic');
             backgroundMusic.play();
 
-            // Fade in the biolink content
+            // Display the bio link card with a fade-in effect
             const bioLink = document.getElementById('biolink');
             bioLink.style.display = 'block';
             bioLink.style.opacity = 0;
@@ -255,7 +256,7 @@
 
         function drawSnowflakes() {
             ctx.clearRect(0, 0, width, height);
-            ctx.fillStyle = 'black'; /* Changed to black */
+            ctx.fillStyle = 'black'; // Black snow
             ctx.beginPath();
             for (let i = 0; i < snowflakes.length; i++) {
                 let flake = snowflakes[i];
@@ -276,5 +277,3 @@
     </script>
 </body>
 </html>
-
-

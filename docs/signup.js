@@ -1,29 +1,27 @@
-document.getElementById('signupForm').addEventListener('submit', function(event) {
-    event.preventDefault();
+<?php
+require 'database.php';
 
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-    const confirmPassword = document.getElementById('confirmPassword').value;
-    const invite = document.getElementById('invite').value;
+$data = json_decode(file_get_contents('php://input'), true);
 
-    if (password !== confirmPassword) {
-        alert('Passwords do not match');
-        return;
-    }
+$username = $data['username'];
+$password = password_hash($data['password'], PASSWORD_DEFAULT);
+$inviteCode = $data['invite'];
 
-    fetch('signup.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, password, invite }),
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.status === 'success') {
-            window.location.href = 'login.html';
-        } else {
-            alert(data.message);
-        }
-    });
-});
+if ($inviteCode !== 'artemas_000-000-001') {
+    echo json_encode(['status' => 'error', 'message' => 'Invalid invite code']);
+    exit;
+}
+
+$collection = $client->selectDatabase('artemas')->selectCollection('users');
+
+$insertResult = $collection->insertOne([
+    'username' => $username,
+    'password' => $password,
+]);
+
+if ($insertResult->getInsertedCount() === 1) {
+    echo json_encode(['status' => 'success', 'message' => 'User registered successfully']);
+} else {
+    echo json_encode(['status' => 'error', 'message' => 'Error registering user']);
+}
+?>

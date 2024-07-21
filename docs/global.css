@@ -1,0 +1,9 @@
+/* General styles for smooth transitions and consistent appearance */
+body {
+    font-family: 'Fira Code', monospace;
+    background-color: #1a1a1a; /* Darker background */
+}
+
+input:focus, button:focus {
+    outline: none;
+}

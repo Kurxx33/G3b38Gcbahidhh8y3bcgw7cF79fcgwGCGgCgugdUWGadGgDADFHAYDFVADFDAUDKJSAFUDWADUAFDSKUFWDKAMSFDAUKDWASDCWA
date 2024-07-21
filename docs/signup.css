@@ -1,0 +1,8 @@
+/* Add custom styles for smooth transitions */
+body {
+    font-family: 'Fira Code', monospace;
+}
+
+input:focus, button:focus {
+    outline: none;
+}

@@ -15,9 +15,9 @@
                 <h2 class="text-xl font-bold">Dashboard</h2>
             </div>
             <nav class="space-y-4">
-                <a href="#analytics" class="block p-2 rounded hover:bg-gray-700 transition">Analytics</a>
                 <a href="#bio" class="block p-2 rounded hover:bg-gray-700 transition">Bio Page</a>
                 <a href="#upload" class="block p-2 rounded hover:bg-gray-700 transition">Image Host</a>
+                <a href="analytics.html" class="block p-2 rounded hover:bg-gray-700 transition">Analytics</a>
                 <div class="mt-6">
                     <a href="#signout" class="block p-2 rounded bg-red-600 hover:bg-red-700 transition">Sign Out</a>
                 </div>
@@ -31,23 +31,57 @@
             </nav>
         </aside>
         <main class="flex-grow ml-64 p-6">
-            <section id="analytics" class="mb-12">
-                <h2 class="text-2xl font-bold mb-4">Analytics</h2>
-                <div id="viewsGraph" class="bg-gray-900 p-4 rounded-lg"></div>
-                <div id="leaderboard" class="bg-gray-900 p-4 rounded-lg mt-4"></div>
-            </section>
             <section id="bio" class="mb-12">
                 <h2 class="text-2xl font-bold mb-4">Bio Page</h2>
-                <div id="bioOptions" class="grid grid-cols-2 gap-4">
-                    <div class="bg-gray-900 p-4 rounded-lg">Profile</div>
-                    <div class="bg-gray-900 p-4 rounded-lg">Background video/photo</div>
-                    <div class="bg-gray-900 p-4 rounded-lg">Bio text</div>
-                    <div class="bg-gray-900 p-4 rounded-lg">Splash screen text</div>
-                    <div class="bg-gray-900 p-4 rounded-lg">Bio layouts</div>
-                    <div class="bg-gray-900 p-4 rounded-lg">Glow</div>
-                    <div class="bg-gray-900 p-4 rounded-lg">Font</div>
-                    <div class="bg-gray-900 p-4 rounded-lg">Effects (rain, snow, etc)</div>
-                    <div class="bg-gray-900 p-4 rounded-lg">Colors for bios in splash screens</div>
+                <div class="grid grid-cols-1 gap-4">
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <button class="flex justify-between items-center w-full focus:outline-none">
+                            <span>Profile</span>
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="mt-4 hidden">
+                            <form id="profileForm">
+                                <label for="profilePic" class="block mb-2">Upload Profile Picture</label>
+                                <input type="file" id="profilePic" class="w-full p-2 rounded bg-gray-800 border border-gray-700">
+                                <button type="submit" class="w-full mt-4 bg-blue-600 p-2 rounded hover:bg-blue-700 transition">Upload</button>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Repeat similar structure for each item -->
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <button class="flex justify-between items-center w-full focus:outline-none">
+                            <span>Background video/photo</span>
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="mt-4 hidden">
+                            <form id="bgForm">
+                                <label for="bgPic" class="block mb-2">Upload Background Video/Photo</label>
+                                <input type="file" id="bgPic" class="w-full p-2 rounded bg-gray-800 border border-gray-700">
+                                <button type="submit" class="w-full mt-4 bg-blue-600 p-2 rounded hover:bg-blue-700 transition">Upload</button>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Repeat similar structure for each item -->
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <button class="flex justify-between items-center w-full focus:outline-none">
+                            <span>Bio text</span>
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="mt-4 hidden">
+                            <form id="bioTextForm">
+                                <label for="bioText" class="block mb-2">Bio Text</label>
+                                <textarea id="bioText" class="w-full p-2 rounded bg-gray-800 border border-gray-700"></textarea>
+                                <button type="submit" class="w-full mt-4 bg-blue-600 p-2 rounded hover:bg-blue-700 transition">Save</button>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Add other sections in a similar manner -->
                 </div>
             </section>
             <section id="upload">

@@ -1,9 +1,37 @@
-/* General styles for smooth transitions and consistent appearance */
 body {
     font-family: 'Fira Code', monospace;
-    background-color: #1a1a1a; /* Darker background */
+    background-color: #000; /* Black background */
+    color: #fff; /* White text */
+}
+
+input, button {
+    background-color: #333; /* Dark grey input/button background */
+    color: #fff; /* White text */
+    border: 1px solid #444; /* Darker grey border */
 }
 
 input:focus, button:focus {
     outline: none;
+    border-color: #666; /* Medium grey focus border */
+    background-color: #222; /* Slightly lighter dark grey */
+}
+
+aside {
+    background-color: #111; /* Dark grey sidebar */
+}
+
+aside a {
+    color: #ccc; /* Light grey text for links */
+}
+
+aside a:hover {
+    background-color: #333; /* Darker grey on hover */
+}
+
+button {
+    background-color: #007bff; /* Blue button background */
+}
+
+button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
 }

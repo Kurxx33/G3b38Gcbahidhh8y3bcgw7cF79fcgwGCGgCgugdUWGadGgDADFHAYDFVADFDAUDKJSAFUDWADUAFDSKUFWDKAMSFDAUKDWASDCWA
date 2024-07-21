@@ -1,12 +1,16 @@
+/* Add custom styles for smooth transitions and sidebar behavior */
 body {
-    font-family: 'UnifrakturCook', cursive;
+    font-family: 'Fira Code', monospace;
 }
+
 aside {
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease;
 }
+
 aside:hover {
-    width: 72px;
+    transform: translateX(0);
 }
-aside a:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+
+main {
+    transition: margin-left 0.3s ease;
 }

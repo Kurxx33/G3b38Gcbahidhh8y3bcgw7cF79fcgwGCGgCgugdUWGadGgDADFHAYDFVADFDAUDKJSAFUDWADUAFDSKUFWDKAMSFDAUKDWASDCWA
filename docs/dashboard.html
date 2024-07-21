@@ -8,88 +8,54 @@
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
     <style>
         body {
+            background-color: black;
+            color: white;
             font-family: 'Fira Code', monospace;
         }
-        .dropdown-content {
-            display: none;
+        .sidebar {
+            background-color: #2d2d2d;
+        }
+        .main-content {
             background-color: #1a1a1a;
-            padding: 10px;
-            border-radius: 8px;
-            border: 1px solid #333;
         }
-        .dropdown-button {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            background-color: #2a2a2a;
-            color: white;
-            border-radius: 8px;
-            padding: 10px;
-            cursor: pointer;
-            border: 1px solid #333;
+        .btn-white {
+            background-color: white;
+            color: black;
         }
-        .dropdown-button:hover {
-            background-color: #333;
+        .btn-white:hover {
+            background-color: #e0e0e0;
         }
-        .dropdown-button svg {
-            transition: transform 0.3s;
+        .blurred {
+            backdrop-filter: blur(10px);
+            background-color: rgba(0, 0, 0, 0.6);
         }
-        .dropdown-button.open svg {
-            transform: rotate(180deg);
+        .notification-icon {
+            width: 24px;
+            height: 24px;
+            vertical-align: middle;
         }
-        .notification-sidebar {
+        .notification-container {
+            display: none;
             position: fixed;
             top: 0;
             right: 0;
             width: 60%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.7);
             backdrop-filter: blur(10px);
-            box-shadow: -5px 0 10px rgba(0, 0, 0, 0.3);
-            transform: translateX(100%);
-            transition: transform 0.3s;
-            z-index: 1000;
             color: white;
-            padding: 20px;
+            padding: 1rem;
+            overflow-y: auto;
+            z-index: 1000;
         }
-        .notification-sidebar.active {
-            transform: translateX(0);
-        }
-        .notification-sidebar button {
-            cursor: pointer;
-        }
-        .notification-sidebar h3 {
-            margin-bottom: 20px;
-        }
-        .globe-container {
-            position: relative;
-            display: inline-block;
-            overflow: hidden;
-        }
-        .globe {
-            font-size: 2rem;
-            display: inline-block;
-            white-space: nowrap;
-            animation: spin 10s linear infinite;
-        }
-        .globe span {
-            display: inline-block;
-            animation: spin-symbol 2s linear infinite;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        @keyframes spin-symbol {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(-360deg); }
+        .notification-container.active {
+            display: block;
         }
     </style>
 </head>
-<body class="bg-black text-white font-fira">
+<body>
     <div class="flex">
-        <aside class="w-64 bg-gray-900 p-4 h-screen fixed">
+        <aside class="w-64 p-4 h-screen fixed sidebar">
             <div class="mb-6">
                 <h2 class="text-xl font-bold">Dashboard</h2>
             </div>
@@ -109,25 +75,36 @@
                 </div>
             </nav>
         </aside>
-        <main class="flex-grow ml-64 p-6">
-            <div class="text-center mb-8">
-                <h1 class="text-3xl font-bold mb-4">Dashboard</h1>
-                <div class="globe-container">
-                    <div class="globe">
-                        <span>.</span>
-                        <span>;</span>
-                        <span>:</span>
-                        <span>"</span>
-                        <span>'</span>
-                        <span>,</span>
-                        <span>"</span>
-                        <span>-</span>
-                        <span>_</span>
-                    </div>
+        <main class="flex-grow ml-64 p-6 main-content">
+            <button id="notificationBtn" class="absolute top-4 right-4 btn-white rounded p-2">
+                <img src="notification-icon.svg" alt="Notifications" class="notification-icon">
+            </button>
+            <div id="notificationContainer" class="notification-container">
+                <h3 class="text-lg font-bold">Notifications</h3>
+                <div id="notificationList" class="mt-4">
+                    <!-- Notifications will be added here dynamically -->
                 </div>
             </div>
             <section id="bio" class="mb-12">
                 <h2 class="text-2xl font-bold mb-4">Bio Page</h2>
+                <div class="grid grid-cols-1 gap-4">
+                    <!-- Dropdown items -->
+                    <!-- Example dropdown -->
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <button class="flex justify-between items-center w-full dropdown-toggle">
+                            <span>Profile</span>
+                            <svg class="w-6 h-6 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="mt-4 hidden dropdown-menu">
+                            <form id="profileForm">
+                                <label for="profilePic" class="block mb-2">Upload Profile Picture</label>
+                                <input type="file" id="profilePic" class="w-full p-2 rounded bg-gray-800 border border-gray-700">
+                                <button type="submit" class="w-full mt-4 btn-white rounded p-2 hover:bg-gray-200">Save</button>
+                            </form>
+                        </div>
+                    </div>
                 <div class="grid grid-cols-1 gap-4">
                     <div class="bg-gray-900 p-4 rounded-lg">
                         <div class="dropdown-button">
@@ -174,7 +151,6 @@
                             </form>
                         </div>
                     </div>
-                    <!-- Repeat similar structure for other items like Splash screen text, Bio layouts, Glow, Font, Effects (rain, snow, etc), Colors for bios in splash screens -->
                 </div>
             </section>
             <section id="upload">
@@ -183,46 +159,45 @@
                     <div class="mb-4">
                         <label for="file" class="block mb-2">Upload File</label>
                         <input type="file" id="file" class="w-full p-2 rounded bg-gray-800 border border-gray-700">
+                        <button type="submit" class="w-full mt-4 btn-white rounded p-2 hover:bg-gray-200">Upload</button>
                     </div>
-                    <button type="submit" class="bg-white p-2 rounded hover:bg-gray-200 transition">Upload</button>
                 </form>
             </section>
         </main>
     </div>
-    <aside id="notificationSidebar" class="notification-sidebar">
-        <button id="closeNotifications" class="bg-red-600 p-2 rounded text-white hover:bg-red-700 transition">Close</button>
-        <h3 class="text-lg font-bold">Notifications</h3>
-        <!-- Notifications will be dynamically added here -->
-    </aside>
-    <button id="notificationButton" class="absolute top-4 right-4 p-4 bg-blue-500 rounded-full text-white">
-        Notifications
-    </button>
     <script>
-        // Dropdown functionality
-        document.querySelectorAll('.dropdown-button').forEach(button => {
-            button.addEventListener('click', () => {
-                button.classList.toggle('open');
-                const content = button.nextElementSibling;
-                content.style.display = content.style.display === 'block' ? 'none' : 'block';
+        document.addEventListener('DOMContentLoaded', function() {
+            const notificationBtn = document.getElementById('notificationBtn');
+            const notificationContainer = document.getElementById('notificationContainer');
+
+            notificationBtn.addEventListener('click', function() {
+                notificationContainer.classList.toggle('active');
+            });
+
+            // Example of redirect if not authenticated (client-side check)
+            function checkAuth() {
+                fetch('/auth.php', {
+                    method: 'GET',
+                    credentials: 'same-origin'
+                }).then(response => {
+                    if (!response.ok) {
+                        window.location.href = 'login.html';
+                    }
+                });
+            }
+
+            checkAuth();
+
+            // Dropdown functionality
+            document.querySelectorAll('.dropdown-toggle').forEach(button => {
+                button.addEventListener('click', () => {
+                    const dropdownMenu = button.nextElementSibling;
+                    dropdownMenu.classList.toggle('hidden');
+                    const icon = button.querySelector('svg');
+                    icon.classList.toggle('rotate-180');
+                });
             });
         });
-
-        // Notifications sidebar
-        const notificationSidebar = document.getElementById('notificationSidebar');
-        const notificationButton = document.getElementById('notificationButton');
-        const closeNotifications = document.getElementById('closeNotifications');
-
-        notificationButton.addEventListener('click', () => {
-            notificationSidebar.classList.toggle('active');
-        });
-
-        closeNotifications.addEventListener('click', () => {
-            notificationSidebar.classList.remove('active');
-        });
-
-        // Example to dynamically update user information
-        document.getElementById('username').textContent = 'DynamicUserName'; // Replace with actual data
-        document.getElementById('uid').textContent = 'UID: 5678'; // Replace with actual data
     </script>
 </body>
 </html>

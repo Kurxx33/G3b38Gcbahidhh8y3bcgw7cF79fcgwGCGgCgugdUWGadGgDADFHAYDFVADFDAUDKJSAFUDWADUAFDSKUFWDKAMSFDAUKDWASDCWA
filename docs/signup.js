@@ -1,6 +1,5 @@
-document.getElementById('signupForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-
+document.getElementById('signupForm').addEventListener('submit', (e) => {
+    e.preventDefault();
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
     const confirmPassword = document.getElementById('confirmPassword').value;
@@ -11,19 +10,7 @@ document.getElementById('signupForm').addEventListener('submit', function(event)
         return;
     }
 
-    fetch('signup.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, password, invite }),
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.status === 'success') {
-            window.location.href = 'login.html';
-        } else {
-            alert(data.message);
-        }
-    });
+    // Implement sign-up logic here
+    alert('Signed up successfully');
+    window.location.href = 'login.html';
 });

@@ -64,7 +64,7 @@
                 <a href="#upload" class="block p-2 rounded hover:bg-gray-700 transition">Image Host</a>
                 <a href="analytics.html" class="block p-2 rounded hover:bg-gray-700 transition">Analytics</a>
                 <div class="mt-6">
-                    <a href="#signout" class="block p-2 rounded bg-red-600 hover:bg-red-700 transition">Sign Out</a>
+                    <a href="#signout" id="signOutBtn" class="block p-2 rounded bg-red-600 hover:bg-red-700 transition">Sign Out</a>
                 </div>
                 <div class="flex items-center mt-6 p-2 rounded bg-gray-800">
                     <img src="profile.jpg" alt="Profile Picture" class="w-10 h-10 rounded-full">
@@ -88,16 +88,14 @@
             <section id="bio" class="mb-12">
                 <h2 class="text-2xl font-bold mb-4">Bio Page</h2>
                 <div class="grid grid-cols-1 gap-4">
-                    <!-- Dropdown items -->
-                    <!-- Example dropdown -->
                     <div class="bg-gray-900 p-4 rounded-lg">
-                        <button class="flex justify-between items-center w-full dropdown-toggle">
+                        <div class="dropdown-button flex justify-between items-center">
                             <span>Profile</span>
                             <svg class="w-6 h-6 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                             </svg>
-                        </button>
-                        <div class="mt-4 hidden dropdown-menu">
+                        </div>
+                        <div class="dropdown-content hidden mt-4">
                             <form id="profileForm">
                                 <label for="profilePic" class="block mb-2">Upload Profile Picture</label>
                                 <input type="file" id="profilePic" class="w-full p-2 rounded bg-gray-800 border border-gray-700">
@@ -105,49 +103,33 @@
                             </form>
                         </div>
                     </div>
-                <div class="grid grid-cols-1 gap-4">
                     <div class="bg-gray-900 p-4 rounded-lg">
-                        <div class="dropdown-button">
-                            <span>Profile</span>
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
-                        </div>
-                        <div class="dropdown-content">
-                            <form id="profileForm">
-                                <label for="profilePic" class="block mb-2">Upload Profile Picture</label>
-                                <input type="file" id="profilePic" class="w-full p-2 rounded bg-gray-800 border border-gray-700">
-                                <button type="submit" class="w-full mt-4 bg-white p-2 rounded hover:bg-gray-200 transition">Upload</button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="bg-gray-900 p-4 rounded-lg">
-                        <div class="dropdown-button">
+                        <div class="dropdown-button flex justify-between items-center">
                             <span>Background video/photo</span>
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <svg class="w-6 h-6 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                             </svg>
                         </div>
-                        <div class="dropdown-content">
+                        <div class="dropdown-content hidden mt-4">
                             <form id="bgForm">
                                 <label for="bgPic" class="block mb-2">Upload Background Video/Photo</label>
                                 <input type="file" id="bgPic" class="w-full p-2 rounded bg-gray-800 border border-gray-700">
-                                <button type="submit" class="w-full mt-4 bg-white p-2 rounded hover:bg-gray-200 transition">Upload</button>
+                                <button type="submit" class="w-full mt-4 btn-white rounded p-2 hover:bg-gray-200">Save</button>
                             </form>
                         </div>
                     </div>
                     <div class="bg-gray-900 p-4 rounded-lg">
-                        <div class="dropdown-button">
+                        <div class="dropdown-button flex justify-between items-center">
                             <span>Bio text</span>
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <svg class="w-6 h-6 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                             </svg>
                         </div>
-                        <div class="dropdown-content">
+                        <div class="dropdown-content hidden mt-4">
                             <form id="bioTextForm">
-                                <label for="bioText" class="block mb-2">Bio Text</label>
+                                <label for="bioText" class="block mb-2">Enter Bio Text</label>
                                 <textarea id="bioText" class="w-full p-2 rounded bg-gray-800 border border-gray-700"></textarea>
-                                <button type="submit" class="w-full mt-4 bg-white p-2 rounded hover:bg-gray-200 transition">Save</button>
+                                <button type="submit" class="w-full mt-4 btn-white rounded p-2 hover:bg-gray-200">Save</button>
                             </form>
                         </div>
                     </div>
@@ -155,47 +137,87 @@
             </section>
             <section id="upload">
                 <h2 class="text-2xl font-bold mb-4">Image Host</h2>
-                <form id="uploadForm" class="bg-gray-900 p-4 rounded-lg">
-                    <div class="mb-4">
-                        <label for="file" class="block mb-2">Upload File</label>
-                        <input type="file" id="file" class="w-full p-2 rounded bg-gray-800 border border-gray-700">
-                        <button type="submit" class="w-full mt-4 btn-white rounded p-2 hover:bg-gray-200">Upload</button>
-                    </div>
+                <form id="uploadForm" enctype="multipart/form-data">
+                    <label for="imageUpload" class="block mb-2">Upload Image</label>
+                    <input type="file" id="imageUpload" class="w-full p-2 rounded bg-gray-800 border border-gray-700" accept="image/*">
+                    <button type="submit" class="w-full mt-4 btn-white rounded p-2 hover:bg-gray-200">Upload</button>
                 </form>
+                <div id="uploadedImages" class="mt-6">
+                    <!-- Uploaded images will be displayed here -->
+                </div>
             </section>
         </main>
     </div>
+
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const notificationBtn = document.getElementById('notificationBtn');
-            const notificationContainer = document.getElementById('notificationContainer');
+        // Check if user is logged in
+        const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+        if (!loggedInUser) {
+            window.location.href = 'login.html';
+        } else {
+            document.getElementById('username').textContent = loggedInUser.username;
+            document.getElementById('uid').textContent = `UID: ${loggedInUser.username}`;
+        }
 
-            notificationBtn.addEventListener('click', function() {
-                notificationContainer.classList.toggle('active');
+        document.getElementById('signOutBtn').addEventListener('click', () => {
+            localStorage.removeItem('loggedInUser');
+            window.location.href = 'login.html';
+        });
+
+        const notificationBtn = document.getElementById('notificationBtn');
+        const notificationContainer = document.getElementById('notificationContainer');
+        const notificationList = document.getElementById('notificationList');
+
+        notificationBtn.addEventListener('click', () => {
+            notificationContainer.classList.toggle('active');
+        });
+
+        function addNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.classList.add('p-4', 'rounded', 'mb-4', 'bg-gray-800');
+            notification.innerHTML = `<p>${message}</p>`;
+            notificationList.appendChild(notification);
+        }
+
+        document.querySelectorAll('.dropdown-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const content = button.nextElementSibling;
+                content.classList.toggle('hidden');
+                button.querySelector('svg').classList.toggle('rotate-180');
             });
+        });
 
-            // Example of redirect if not authenticated (client-side check)
-            function checkAuth() {
-                fetch('/auth.php', {
-                    method: 'GET',
-                    credentials: 'same-origin'
-                }).then(response => {
-                    if (!response.ok) {
-                        window.location.href = 'login.html';
-                    }
-                });
+        document.getElementById('uploadForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const fileInput = document.getElementById('imageUpload');
+            const file = fileInput.files[0];
+
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = document.createElement('img');
+                img.src = e.target.result;
+                img.alt = file.name;
+                img.classList.add('max-w-full', 'h-auto', 'mt-4');
+                document.getElementById('uploadedImages').appendChild(img);
+
+                // Store uploaded image in local storage
+                const userImages = JSON.parse(localStorage.getItem(loggedInUser.username + '_images')) || [];
+                userImages.push(e.target.result);
+                localStorage.setItem(loggedInUser.username + '_images', JSON.stringify(userImages));
             }
+            reader.readAsDataURL(file);
+        });
 
-            checkAuth();
-
-            // Dropdown functionality
-            document.querySelectorAll('.dropdown-toggle').forEach(button => {
-                button.addEventListener('click', () => {
-                    const dropdownMenu = button.nextElementSibling;
-                    dropdownMenu.classList.toggle('hidden');
-                    const icon = button.querySelector('svg');
-                    icon.classList.toggle('rotate-180');
-                });
+        window.addEventListener('load', () => {
+            const userImages = JSON.parse(localStorage.getItem(loggedInUser.username + '_images')) || [];
+            userImages.forEach(src => {
+                const img = document.createElement('img');
+                img.src = src;
+                img.alt = 'Uploaded Image';
+                img.classList.add('max-w-full', 'h-auto', 'mt-4');
+                document.getElementById('uploadedImages').appendChild(img);
             });
         });
     </script>

@@ -8,9 +8,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
     <link href="dashboard.css" rel="stylesheet">
 </head>
-<body class="bg-gray-900 text-white font-fira">
+<body class="bg-black text-white font-fira">
     <div class="flex">
-        <aside class="w-64 bg-gray-800 p-4 h-screen fixed">
+        <aside class="w-64 bg-gray-900 p-4 h-screen fixed">
             <div class="mb-6">
                 <h2 class="text-xl font-bold">Dashboard</h2>
             </div>
@@ -21,7 +21,7 @@
                 <div class="mt-6">
                     <a href="#signout" class="block p-2 rounded bg-red-600 hover:bg-red-700 transition">Sign Out</a>
                 </div>
-                <div class="flex items-center mt-6 p-2 rounded bg-gray-700">
+                <div class="flex items-center mt-6 p-2 rounded bg-gray-800">
                     <img src="profile.jpg" alt="Profile Picture" class="w-10 h-10 rounded-full">
                     <div class="ml-4">
                         <p id="username" class="font-bold">UserName</p>
@@ -33,29 +33,29 @@
         <main class="flex-grow ml-64 p-6">
             <section id="analytics" class="mb-12">
                 <h2 class="text-2xl font-bold mb-4">Analytics</h2>
-                <div id="viewsGraph" class="bg-gray-800 p-4 rounded-lg"></div>
-                <div id="leaderboard" class="bg-gray-800 p-4 rounded-lg mt-4"></div>
+                <div id="viewsGraph" class="bg-gray-900 p-4 rounded-lg"></div>
+                <div id="leaderboard" class="bg-gray-900 p-4 rounded-lg mt-4"></div>
             </section>
             <section id="bio" class="mb-12">
                 <h2 class="text-2xl font-bold mb-4">Bio Page</h2>
                 <div id="bioOptions" class="grid grid-cols-2 gap-4">
-                    <div class="bg-gray-800 p-4 rounded-lg">Profile</div>
-                    <div class="bg-gray-800 p-4 rounded-lg">Background video/photo</div>
-                    <div class="bg-gray-800 p-4 rounded-lg">Bio text</div>
-                    <div class="bg-gray-800 p-4 rounded-lg">Splash screen text</div>
-                    <div class="bg-gray-800 p-4 rounded-lg">Bio layouts</div>
-                    <div class="bg-gray-800 p-4 rounded-lg">Glow</div>
-                    <div class="bg-gray-800 p-4 rounded-lg">Font</div>
-                    <div class="bg-gray-800 p-4 rounded-lg">Effects (rain, snow, etc)</div>
-                    <div class="bg-gray-800 p-4 rounded-lg">Colors for bios in splash screens</div>
+                    <div class="bg-gray-900 p-4 rounded-lg">Profile</div>
+                    <div class="bg-gray-900 p-4 rounded-lg">Background video/photo</div>
+                    <div class="bg-gray-900 p-4 rounded-lg">Bio text</div>
+                    <div class="bg-gray-900 p-4 rounded-lg">Splash screen text</div>
+                    <div class="bg-gray-900 p-4 rounded-lg">Bio layouts</div>
+                    <div class="bg-gray-900 p-4 rounded-lg">Glow</div>
+                    <div class="bg-gray-900 p-4 rounded-lg">Font</div>
+                    <div class="bg-gray-900 p-4 rounded-lg">Effects (rain, snow, etc)</div>
+                    <div class="bg-gray-900 p-4 rounded-lg">Colors for bios in splash screens</div>
                 </div>
             </section>
             <section id="upload">
                 <h2 class="text-2xl font-bold mb-4">Image Host</h2>
-                <form id="uploadForm" class="bg-gray-800 p-4 rounded-lg">
+                <form id="uploadForm" class="bg-gray-900 p-4 rounded-lg">
                     <div class="mb-4">
                         <label for="file" class="block mb-2">Upload File</label>
-                        <input type="file" id="file" class="w-full p-2 rounded bg-gray-700 border border-gray-600">
+                        <input type="file" id="file" class="w-full p-2 rounded bg-gray-800 border border-gray-700">
                     </div>
                     <button type="submit" class="w-full bg-blue-600 p-2 rounded hover:bg-blue-700 transition">Upload</button>
                 </form>
@@ -65,3 +65,4 @@
     <script src="dashboard.js"></script>
 </body>
 </html>
+

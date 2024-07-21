@@ -3,49 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Page Title</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
+    <title>Dashboard - Artemas</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Fira Code', monospace;
-            background-color: #111111; /* Darker background color */
-        }
-        .bg-dark {
-            background-color: #222222; /* Slightly lighter dark background */
-        }
-        .text-dark {
-            color: #e0e0e0; /* Light text color for readability */
-        }
-        .sidebar {
-            background-color: #333333; /* Sidebar background color */
-            transition: width 0.3s; /* Smooth transition for width */
-        }
-        .sidebar.fixed {
-            width: 250px;
-        }
-        .sidebar.collapsed {
-            width: 80px;
-        }
-        .hover\:fixed:hover {
-            width: 250px; /* Keep sidebar visible when hovering */
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
+    <link href="dashboard.css" rel="stylesheet">
 </head>
-<body>
+<body class="bg-gray-900 text-white font-fira">
     <div class="flex">
-        <aside class="w-64 bg-gray-800 p-4">
+        <aside class="w-64 bg-gray-800 p-4 h-screen fixed">
             <div class="mb-6">
                 <h2 class="text-xl font-bold">Dashboard</h2>
             </div>
             <nav class="space-y-4">
-                <a href="#analytics" class="block p-2 rounded hover:bg-gray-700">Analytics</a>
-                <a href="#bio" class="block p-2 rounded hover:bg-gray-700">Bio Page</a>
-                <a href="#upload" class="block p-2 rounded hover:bg-gray-700">Image Host</a>
+                <a href="#analytics" class="block p-2 rounded hover:bg-gray-700 transition">Analytics</a>
+                <a href="#bio" class="block p-2 rounded hover:bg-gray-700 transition">Bio Page</a>
+                <a href="#upload" class="block p-2 rounded hover:bg-gray-700 transition">Image Host</a>
                 <div class="mt-6">
-                    <a href="#signout" class="block p-2 rounded bg-red-600 hover:bg-red-700">Sign Out</a>
+                    <a href="#signout" class="block p-2 rounded bg-red-600 hover:bg-red-700 transition">Sign Out</a>
                 </div>
                 <div class="flex items-center mt-6 p-2 rounded bg-gray-700">
                     <img src="profile.jpg" alt="Profile Picture" class="w-10 h-10 rounded-full">
@@ -56,7 +30,7 @@
                 </div>
             </nav>
         </aside>
-        <main class="flex-grow p-6">
+        <main class="flex-grow ml-64 p-6">
             <section id="analytics" class="mb-12">
                 <h2 class="text-2xl font-bold mb-4">Analytics</h2>
                 <div id="viewsGraph" class="bg-gray-800 p-4 rounded-lg"></div>
@@ -83,7 +57,7 @@
                         <label for="file" class="block mb-2">Upload File</label>
                         <input type="file" id="file" class="w-full p-2 rounded bg-gray-700 border border-gray-600">
                     </div>
-                    <button type="submit" class="w-full bg-blue-600 p-2 rounded hover:bg-blue-700">Upload</button>
+                    <button type="submit" class="w-full bg-blue-600 p-2 rounded hover:bg-blue-700 transition">Upload</button>
                 </form>
             </section>
         </main>

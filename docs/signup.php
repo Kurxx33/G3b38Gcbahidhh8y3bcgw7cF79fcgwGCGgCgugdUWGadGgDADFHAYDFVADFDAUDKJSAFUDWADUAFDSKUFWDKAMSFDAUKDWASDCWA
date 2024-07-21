@@ -12,13 +12,16 @@ if ($inviteCode !== 'artemas_000-000-001') {
     exit;
 }
 
-$sql = "INSERT INTO users (username, password) VALUES ('$username', '$password')";
+$collection = $client->selectDatabase('artemas')->selectCollection('users');
 
-if ($conn->query($sql) === TRUE) {
+$insertResult = $collection->insertOne([
+    'username' => $username,
+    'password' => $password,
+]);
+
+if ($insertResult->getInsertedCount() === 1) {
     echo json_encode(['status' => 'success', 'message' => 'User registered successfully']);
 } else {
-    echo json_encode(['status' => 'error', 'message' => 'Error: ' . $conn->error]);
+    echo json_encode(['status' => 'error', 'message' => 'Error registering user']);
 }
-
-$conn->close();
 ?>

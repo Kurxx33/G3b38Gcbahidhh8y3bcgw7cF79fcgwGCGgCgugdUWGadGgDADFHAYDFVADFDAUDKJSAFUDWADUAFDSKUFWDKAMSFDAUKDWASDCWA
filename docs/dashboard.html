@@ -3,11 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Artemas</title>
+    <title>Your Page Title</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link href="dashboard.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Fira Code', monospace;
+            background-color: #111111; /* Darker background color */
+        }
+        .bg-dark {
+            background-color: #222222; /* Slightly lighter dark background */
+        }
+        .text-dark {
+            color: #e0e0e0; /* Light text color for readability */
+        }
+        .sidebar {
+            background-color: #333333; /* Sidebar background color */
+            transition: width 0.3s; /* Smooth transition for width */
+        }
+        .sidebar.fixed {
+            width: 250px;
+        }
+        .sidebar.collapsed {
+            width: 80px;
+        }
+        .hover\:fixed:hover {
+            width: 250px; /* Keep sidebar visible when hovering */
+        }
+    </style>
 </head>
-<body class="bg-gray-900 text-white">
+<body>
     <div class="flex">
         <aside class="w-64 bg-gray-800 p-4">
             <div class="mb-6">

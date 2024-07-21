@@ -3,26 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Artemas</title>
+    <title>Login</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
-    <link href="login.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: 'Fira Code', monospace;
+        }
+    </style>
 </head>
-<body class="bg-black text-white font-fira flex items-center justify-center min-h-screen">
-    <div class="bg-gray-900 p-8 rounded-lg shadow-lg w-full max-w-md">
-        <h2 class="text-2xl font-bold mb-6">Login</h2>
+<body class="flex items-center justify-center min-h-screen">
+    <div class="bg-gray-900 p-8 rounded-lg shadow-md w-80">
+        <h1 class="text-2xl font-bold mb-4">Login</h1>
         <form id="loginForm">
             <div class="mb-4">
                 <label for="username" class="block mb-2">Username</label>
-                <input type="text" id="username" class="w-full p-2 rounded bg-gray-800 border border-gray-700">
+                <input type="text" id="username" class="w-full p-2 rounded bg-gray-800 border border-gray-700" required>
             </div>
             <div class="mb-4">
                 <label for="password" class="block mb-2">Password</label>
-                <input type="password" id="password" class="w-full p-2 rounded bg-gray-800 border border-gray-700">
+                <input type="password" id="password" class="w-full p-2 rounded bg-gray-800 border border-gray-700" required>
             </div>
-            <button type="submit" class="w-full bg-blue-600 p-2 rounded hover:bg-blue-700 transition">Login</button>
+            <button type="submit" class="w-full btn-white rounded p-2 hover:bg-gray-200">Login</button>
         </form>
+        <p id="error" class="text-red-500 mt-4 hidden">Invalid username or password</p>
     </div>
-    <script src="login.js"></script>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            fetch('users.json')
+                .then(response => response.json())
+                .then(data => {
+                    const user = data.users.find(user => user.username === username && user.password === password);
+                    if (user) {
+                        // Store session data
+                        localStorage.setItem('loggedInUser', JSON.stringify(user));
+                        window.location.href = 'dashboard.html';
+                    } else {
+                        document.getElementById('error').classList.remove('hidden');
+                    }
+                });
+        });
+    </script>
 </body>
 </html>

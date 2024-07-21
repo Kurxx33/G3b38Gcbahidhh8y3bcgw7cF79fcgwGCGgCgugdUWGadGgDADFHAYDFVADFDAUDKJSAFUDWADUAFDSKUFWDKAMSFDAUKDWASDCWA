@@ -3,217 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="/css/styles.css">
-    <style>
-        /* General Reset and Setup */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: "Pixelify Sans", sans-serif; /* Apply Pixelify Sans as the primary font */
-            background-color: #000;
-            color: #fff;
-            overflow: hidden; /* Hide scrollbar but allow scrolling */
-        }
-
-        /* Form Container */
-        .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            position: relative; /* Position relative to contain absolute positioned canvas */
-        }
-
-        .card {
-            width: 300px;
-            padding: 20px;
-            background-color: rgba(34, 34, 34, 0.8); /* Transparent background */
-            border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            margin-top: 70px; /* Move card down by 70 pixels */
-            position: relative; /* Ensure canvas overlaps this */
-            z-index: 10; /* Ensure card is above canvas */
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        input[type="text"],
-        input[type="password"] {
-            width: 100%;
-            margin: 10px 0;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #666;
-            border-radius: 5px;
-            background-color: #333;
-            color: #fff;
-            outline: none;
-        }
-
-        input[type="text"]:focus,
-        input[type="password"]:focus {
-            border-color: #aaa;
-        }
-
-        button[type="submit"] {
-            width: 100%;
-            padding: 10px;
-            font-size: 1em;
-            background-color: #555;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s, color 0.3s;
-            margin-top: 10px;
-        }
-
-        button[type="submit"]:hover {
-            background-color: #777;
-        }
-
-        /* Snow Canvas */
-        canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 1; /* Ensure snow is behind the content */
-        }
-    </style>
+    <title>Login - Artemas</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-    <div class="container">
-        <canvas id="snowCanvas"></canvas> <!-- Snow Canvas -->
-        <div class="card">
-            <form id="login-form">
-                <input type="text" id="login-username" placeholder="Username" required>
-                <input type="password" id="login-password" placeholder="Password" required>
-                <button type="submit">Login</button>
-                <div id="login-message"></div>
+<body class="bg-gray-900 text-white">
+    <div class="flex items-center justify-center min-h-screen">
+        <div class="bg-gray-800 p-8 rounded-lg shadow-lg">
+            <h2 class="text-2xl font-bold mb-6">Login</h2>
+            <form id="loginForm">
+                <div class="mb-4">
+                    <label for="username" class="block mb-2">Username</label>
+                    <input type="text" id="username" class="w-full p-2 rounded bg-gray-700 border border-gray-600">
+                </div>
+                <div class="mb-4">
+                    <label for="password" class="block mb-2">Password</label>
+                    <input type="password" id="password" class="w-full p-2 rounded bg-gray-700 border border-gray-600">
+                </div>
+                <button type="submit" class="w-full bg-blue-600 p-2 rounded hover:bg-blue-700">Login</button>
             </form>
+            <div class="mt-4">
+                <a href="signup.html" class="text-blue-400 hover:underline">Don't have an account? Sign up</a>
+            </div>
         </div>
     </div>
-    <script src="/js/app.js"></script>
-    <script src="/js/snow.js"></script> <!-- Snow Script -->
-    <script>
-        const canvas = document.getElementById('snowCanvas');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        const snowflakes = [];
-        const numFlakes = 200;
-
-        class Snowflake {
-            constructor(x, y, speed, size, opacity) {
-                this.x = x;
-                this.y = y;
-                this.speed = speed;
-                this.size = size;
-                this.opacity = opacity;
-                this.angle = Math.random() * 2 * Math.PI;
-                this.spin = Math.random() * 0.02 - 0.01; // Random spin between -0.01 and 0.01
-            }
-
-            update() {
-                this.y += this.speed;
-                this.x += Math.sin(this.angle) * 0.5; // Slight horizontal movement
-                this.angle += this.spin; // Rotate the snowflake
-
-                if (this.y > canvas.height) {
-                    this.y = -this.size;
-                    this.x = Math.random() * canvas.width;
-                    this.opacity = 1;
-                }
-            }
-
-            draw() {
-                ctx.save();
-                ctx.translate(this.x, this.y);
-                ctx.rotate(this.angle);
-                ctx.fillStyle = 'rgba(255, 255, 255, ' + this.opacity + ')';
-                ctx.shadowBlur = 5;
-                ctx.shadowColor = 'white';
-                ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size);
-                ctx.restore();
-            }
-        }
-
-        for (let i = 0; i < numFlakes; i++) {
-            snowflakes.push(new Snowflake(
-                Math.random() * canvas.width,
-                Math.random() * canvas.height,
-                Math.random() * 3 + 1,
-                Math.random() * 2 + 1,
-                1
-            ));
-        }
-
-        let mouseX = canvas.width / 2;
-        let mouseY = canvas.height / 2;
-
-        function draw() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            snowflakes.forEach(flake => {
-                flake.update();
-                flake.draw();
-            });
-            requestAnimationFrame(draw);
-        }
-
-        draw();
-
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
-
-        window.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-        });
-
-        document.getElementById('login-form').addEventListener('submit', async (event) => {
-            event.preventDefault();
-            
-            const formData = {
-                username: document.getElementById('login-username').value,
-                password: document.getElementById('login-password').value
-            };
-
-            try {
-                const response = await fetch('/login', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(formData)
-                });
-
-                const result = await response.json();
-                if (response.ok) {
-                    console.log('Login successful:', result);
-                    document.getElementById('login-message').textContent = 'Login successful!';
-                    // Redirect or handle success as needed
-                    window.location.href = '/dashboard.html'; // Example redirect
-                } else {
-                    console.error('Login failed:', result.error);
-                    document.getElementById('login-message').textContent = 'Login failed: ' + result.error;
-                }
-            } catch (error) {
-                console.error('Error during login:', error);
-                document.getElementById('login-message').textContent = 'Error during login';
-            }
-        });
-    </script>
+    <script src="login.js"></script>
 </body>
 </html>

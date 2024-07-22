@@ -6,11 +6,42 @@
     <title>Dashboard - Artemas</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <style>
         body {
             background-color: black;
             color: white;
             font-family: 'Fira Code', monospace;
+            margin: 0;
+            padding: 0;
+        }
+        .header-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 16px;
+            background: rgba(0, 0, 0, 0.5);
+            border-bottom: 1px solid lightgrey;
+            display: flex;
+            align-items: center;
+            padding: 0 1rem;
+            z-index: 2000;
+        }
+        .header-bar img {
+            width: 16px;
+            height: 16px;
+            margin-right: 0.5rem;
+        }
+        .header-bar h1 {
+            margin: 0;
+            font-size: 1rem;
+            color: white;
+            animation: rotate3d 5s linear infinite;
+        }
+        @keyframes rotate3d {
+            0% { transform: rotateY(0deg); }
+            100% { transform: rotateY(360deg); }
         }
         .sidebar {
             background-color: #121212;
@@ -47,16 +78,30 @@
             padding: 1rem;
             overflow-y: auto;
             z-index: 1000;
-            transition: all 0.3s ease;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            transform: translateX(100%);
+            opacity: 0;
         }
         .notification-container.active {
-            display: block;
+            transform: translateX(0);
+            opacity: 1;
         }
         .dropdown-content {
             transition: all 0.3s ease;
+            max-height: 0;
+            overflow: hidden;
         }
-        .hidden {
-            display: none;
+        .dropdown-content.show {
+            max-height: 500px; /* adjust as needed */
+        }
+        .dropdown-button {
+            position: relative;
+        }
+        .dropdown-button svg {
+            transition: transform 0.3s ease;
+        }
+        .dropdown-button.active svg {
+            transform: rotate(180deg);
         }
         .fade-in {
             animation: fadeIn 0.5s ease-in-out;
@@ -75,7 +120,11 @@
     </style>
 </head>
 <body>
-    <div class="flex">
+    <div class="header-bar">
+        <img src="favicon.ico" alt="Favicon">
+        <h1>artemas.lol</h1>
+    </div>
+    <div class="flex mt-16">
         <aside class="w-64 p-4 h-screen fixed sidebar fade-in">
             <div class="mb-6">
                 <h2 class="text-xl font-bold">Dashboard</h2>
@@ -84,6 +133,7 @@
                 <a href="/dashboard" class="block p-2 rounded hover:bg-gray-700 transition">Bio Page</a>
                 <a href="#upload" class="block p-2 rounded hover:bg-gray-700 transition">Image Host</a>
                 <a href="/analytics" class="block p-2 rounded hover:bg-gray-700 transition">Analytics</a>
+                <a href="/Socials" class="block p-2 rounded hover:bg-gray-700 transition">Socials</a>
                 <div class="mt-6">
                     <a href="/signout" id="signOutBtn" class="block p-2 rounded bg-red-600 hover:bg-red-700 transition">Sign Out</a>
                 </div>
@@ -109,6 +159,8 @@
             <section id="bio" class="mb-12">
                 <h2 class="text-2xl font-bold mb-4">Bio Page</h2>
                 <div class="grid grid-cols-1 gap-4">
+                    <!-- Dropdowns for Bio Page -->
+                    <!-- Dropdown 1 -->
                     <div class="bg-gray-900 p-4 rounded-lg">
                         <div class="dropdown-button flex justify-between items-center cursor-pointer">
                             <span>Profile</span>
@@ -116,7 +168,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                             </svg>
                         </div>
-                        <div class="dropdown-content hidden mt-4 pull-out">
+                        <div class="dropdown-content mt-4 pull-out">
                             <form id="profileForm">
                                 <label for="profilePic" class="block mb-2">Upload Profile Picture</label>
                                 <input type="file" id="profilePic" class="w-full p-2 rounded bg-gray-800 border border-gray-700">
@@ -124,6 +176,7 @@
                             </form>
                         </div>
                     </div>
+                    <!-- Dropdown 2 -->
                     <div class="bg-gray-900 p-4 rounded-lg">
                         <div class="dropdown-button flex justify-between items-center cursor-pointer">
                             <span>Background video/photo</span>
@@ -131,7 +184,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                             </svg>
                         </div>
-                        <div class="dropdown-content hidden mt-4 pull-out">
+                        <div class="dropdown-content mt-4 pull-out">
                             <form id="bgForm">
                                 <label for="bgPic" class="block mb-2">Upload Background Video/Photo</label>
                                 <input type="file" id="bgPic" class="w-full p-2 rounded bg-gray-800 border border-gray-700">
@@ -139,112 +192,217 @@
                             </form>
                         </div>
                     </div>
+                    <!-- Dropdown 3 -->
                     <div class="bg-gray-900 p-4 rounded-lg">
                         <div class="dropdown-button flex justify-between items-center cursor-pointer">
                             <span>Bio text</span>
                             <svg class="w-6 h-6 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 
+                            <!-- Dropdown 3 -->
+                            <div class="bg-gray-900 p-4 rounded-lg">
+                                <div class="dropdown-button flex justify-between items-center cursor-pointer">
+                                    <span>Bio text</span>
+                                    <svg class="w-6 h-6 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </div>
+                                <div class="dropdown-content mt-4 pull-out">
+                                    <form id="bioTextForm">
+                                        <label for="bioText" class="block mb-2">Edit Bio Text</label>
+                                        <textarea id="bioText" class="w-full p-2 rounded bg-gray-800 border border-gray-700" rows="4"></textarea>
+                                        <button type="submit" class="w-full mt-4 btn-white rounded p-2 hover:bg-gray-200">Save</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- Dropdown 4 -->
+                            <div class="bg-gray-900 p-4 rounded-lg">
+                                <div class="dropdown-button flex justify-between items-center cursor-pointer">
+                                    <span>Splash screen text</span>
+                                    <svg class="w-6 h-6 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </div>
+                                <div class="dropdown-content mt-4 pull-out">
+                                    <form id="splashTextForm">
+                                        <label for="splashText" class="block mb-2">Edit Splash Screen Text</label>
+                                        <textarea id="splashText" class="w-full p-2 rounded bg-gray-800 border border-gray-700" rows="4"></textarea>
+                                        <button type="submit" class="w-full mt-4 btn-white rounded p-2 hover:bg-gray-200">Save</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- Dropdown 5 -->
+                            <div class="bg-gray-900 p-4 rounded-lg">
+                                <div class="dropdown-button flex justify-between items-center cursor-pointer">
+                                    <span>Bio layouts</span>
+                                    <svg class="w-6 h-6 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </div>
+                                <div class="dropdown-content mt-4 pull-out">
+                                    <form id="bioLayoutsForm">
+                                        <label for="bioLayouts" class="block mb-2">Select Bio Layout</label>
+                                        <select id="bioLayouts" class="w-full p-2 rounded bg-gray-800 border border-gray-700">
+                                            <option value="layout1">Layout 1</option>
+                                            <option value="layout2">Layout 2</option>
+                                            <option value="layout3">Layout 3</option>
+                                        </select>
+                                        <button type="submit" class="w-full mt-4 btn-white rounded p-2 hover:bg-gray-200">Apply</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- Dropdown 6 -->
+                            <div class="bg-gray-900 p-4 rounded-lg">
+                                <div class="dropdown-button flex justify-between items-center cursor-pointer">
+                                    <span>Glow</span>
+                                    <svg class="w-6 h-6 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </div>
+                                <div class="dropdown-content mt-4 pull-out">
+                                    <form id="glowForm">
+                                        <label for="glowIntensity" class="block mb-2">Glow Intensity</label>
+                                        <input type="range" id="glowIntensity" class="w-full" min="0" max="100" value="50">
+                                        <button type="submit" class="w-full mt-4 btn-white rounded p-2 hover:bg-gray-200">Apply</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- Dropdown 7 -->
+                            <div class="bg-gray-900 p-4 rounded-lg">
+                                <div class="dropdown-button flex justify-between items-center cursor-pointer">
+                                    <span>Font</span>
+                                    <svg class="w-6 h-6 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </div>
+                                <div class="dropdown-content mt-4 pull-out">
+                                    <form id="fontForm">
+                                        <label for="fontFamily" class="block mb-2">Select Font Family</label>
+                                        <select id="fontFamily" class="w-full p-2 rounded bg-gray-800 border border-gray-700">
+                                            <option value="fira-code">Fira Code</option>
+                                            <option value="arial">Arial</option>
+                                            <option value="verdana">Verdana</option>
+                                        </select>
+                                        <button type="submit" class="w-full mt-4 btn-white rounded p-2 hover:bg-gray-200">Apply</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- Dropdown 8 -->
+                            <div class="bg-gray-900 p-4 rounded-lg">
+                                <div class="dropdown-button flex justify-between items-center cursor-pointer">
+                                    <span>Effects</span>
+                                    <svg class="w-6 h-6 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </div>
+                                <div class="dropdown-content mt-4 pull-out">
+                                    <form id="effectsForm">
+                                        <label for="effects" class="block mb-2">Select Effect</label>
+                                        <select id="effects" class="w-full p-2 rounded bg-gray-800 border border-gray-700">
+                                            <option value="rain">Rain</option>
+                                            <option value="snow">Snow</option>
+                                            <option value="stars">Stars</option>
+                                        </select>
+                                        <button type="submit" class="w-full mt-4 btn-white rounded p-2 hover:bg-gray-200">Apply</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- Dropdown 9 -->
+                            <div class="bg-gray-900 p-4 rounded-lg">
+                                <div class="dropdown-button flex justify-between items-center cursor-pointer">
+                                    <span>Colors for bios in splash screens</span>
+                                    <svg class="w-6 h-6 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </div>
+                                <div class="dropdown-content mt-4 pull-out">
+                                    <form id="colorsForm">
+                                        <label for="colorScheme" class="block mb-2">Select Color Scheme</label>
+                                        <select id="colorScheme" class="w-full p-2 rounded bg-gray-800 border border-gray-700">
+                                            <option value="light">Light</option>
+                                            <option value="dark">Dark</option>
+                                        </select>
+                                        <button type="submit" class="w-full mt-4 btn-white rounded p-2 hover:bg-gray-200">Apply</button>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
-                        <div class="dropdown-content hidden mt-4 pull-out">
-                            <form id="bioTextForm">
-                                <label for="bioText" class="block mb-2">Enter Bio Text</label>
-                                <textarea id="bioText" class="w-full p-2 rounded bg-gray-800 border border-gray-700"></textarea>
-                                <button type="submit" class="w-full mt-4 btn-white rounded p-2 hover:bg-gray-200">Save</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section id="upload">
-                <h2 class="text-2xl font-bold mb-4">Image Host</h2>
-                <form id="uploadForm" enctype="multipart/form-data">
-                    <label for="imageUpload" class="block mb-2">Upload Image</label>
-                    <input type="file" id="imageUpload" class="w-full p-2 rounded bg-gray-800 border border-gray-700" accept="image/*">
-                    <button type="submit" class="w-full mt-4 btn-white rounded p-2 hover:bg-gray-200">Upload</button>
-                </form>
-                <div id="uploadedImages" class="mt-6">
-                    <!-- Uploaded images will be displayed here -->
-                </div>
-            </section>
-        </main>
-    </div>
+                    </section>
+                </main>
+            </div>
+            <script>
+                // Dropdown toggle functionality
+                document.querySelectorAll('.dropdown-button').forEach(button => {
+                    button.addEventListener('click', () => {
+                        const dropdownContent = button.nextElementSibling;
+                        dropdownContent.classList.toggle('show');
+                        button.classList.toggle('active');
+                    });
+                });
 
-    <script>
-        const API_TOKEN = 'hCMcz8UAEnsZirHnvaoWAVHN.MTcyMDQwMDAzNDY0OQ';
+                // Sign out button functionality
+                document
+                    </section>
+                </main>
+            </div>
+            <script>
+                // Dropdown toggle functionality
+                document.querySelectorAll('.dropdown-button').forEach(button => {
+                    button.addEventListener('click', () => {
+                        const dropdownContent = button.nextElementSibling;
+                        dropdownContent.classList.toggle('show');
+                        const icon = button.querySelector('svg');
+                        icon.classList.toggle('rotate-180');
+                    });
+                });
 
-        // Handle sign out button click
-        document.getElementById('signOutBtn').addEventListener('click', async () => {
-            await fetch('/api/signout', { method: 'POST' });
-            window.location.href = '/';
-        });
+                // Form submission handlers
+                document.getElementById('bioTextForm').addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const bioText = document.getElementById('bioText').value;
+                    // Handle bio text update logic here
+                });
 
-        // Toggle notifications
-        document.getElementById('notificationBtn').addEventListener('click', () => {
-            document.getElementById('notificationContainer').classList.toggle('active');
-        });
+                document.getElementById('splashTextForm').addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const splashText = document.getElementById('splashText').value;
+                    // Handle splash screen text update logic here
+                });
 
-        // Handle dropdown menu toggle
-        document.querySelectorAll('.dropdown-button').forEach(button => {
-            button.addEventListener('click', () => {
-                const content = button.nextElementSibling;
-                content.classList.toggle('hidden');
-            });
-        });
+                document.getElementById('bioLayoutsForm').addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const layout = document.getElementById('bioLayouts').value;
+                    // Handle bio layout update logic here
+                });
 
-        // Handle file uploads
-        document.getElementById('profileForm').addEventListener('submit', async (event) => {
-            event.preventDefault();
-            const formData = new FormData(event.target);
-            await fetch('https://dash.luckycloud.in/dashboard/upload/file', {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${API_TOKEN}`
-                },
-                body: formData
-            });
-            alert('Profile picture uploaded!');
-        });
+                document.getElementById('glowForm').addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const intensity = document.getElementById('glowIntensity').value;
+                    // Handle glow update logic here
+                });
 
-        document.getElementById('bgForm').addEventListener('submit', async (event) => {
-            event.preventDefault();
-            const formData = new FormData(event.target);
-            await fetch('https://dash.luckycloud.in/dashboard/upload/file', {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${API_TOKEN}`
-                },
-                body: formData
-            });
-            alert('Background image/video uploaded!');
-        });
+                document.getElementById('fontForm').addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const fontFamily = document.getElementById('fontFamily').value;
+                    // Handle font update logic here
+                });
 
-        document.getElementById('bioTextForm').addEventListener('submit', async (event) => {
-            event.preventDefault();
-            const bioText = document.getElementById('bioText').value;
-            // Send bio text to server
-            await fetch('/api/updateBio', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ bioText })
-            });
-            alert('Bio text updated!');
-        });
+                document.getElementById('effectsForm').addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const effect = document.getElementById('effects').value;
+                    // Handle effect update logic here
+                });
 
-        document.getElementById('uploadForm').addEventListener('submit', async (event) => {
-            event.preventDefault();
-            const formData = new FormData(event.target);
-            await fetch('https://dash.luckycloud.in/dashboard/upload/file', {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${API_TOKEN}`
-                },
-                body: formData
-            });
-            alert('Image uploaded!');
-        });
-    </script>
-</body>
+                document.getElementById('colorsForm').addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const colorScheme = document.getElementById('colorScheme').value;
+                    // Handle color scheme update logic here
+                });
+
+                // Sign out button functionality
+                document.getElementById('signOutBtn').addEventListener('click', () => {
+                    // Add sign out functionality here
+                    alert('Sign out');
+                });
+            </script>
+        </body>
 </html>

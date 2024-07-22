@@ -8,26 +8,30 @@
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
     <style>
         body {
-            background-color: black;
+            background-color: #121212; /* Very dark background */
             color: white;
             font-family: 'Fira Code', monospace;
+            transition: background-color 0.3s ease;
         }
         .sidebar {
-            background-color: #2d2d2d;
+            background-color: #1e1e1e;
+            transition: transform 0.3s ease;
         }
         .main-content {
             background-color: #1a1a1a;
+            transition: background-color 0.3s ease;
         }
         .btn-white {
             background-color: white;
             color: black;
+            transition: background-color 0.3s ease;
         }
         .btn-white:hover {
             background-color: #e0e0e0;
         }
         .blurred {
             backdrop-filter: blur(10px);
-            background-color: rgba(0, 0, 0, 0.6);
+            background-color: rgba(0, 0, 0, 0.7);
         }
         .notification-icon {
             width: 24px;
@@ -41,22 +45,38 @@
             right: 0;
             width: 60%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(10px);
             color: white;
             padding: 1rem;
             overflow-y: auto;
             z-index: 1000;
-            transition: all 0.3s ease;
+            transition: transform 0.3s ease, opacity 0.3s ease;
         }
         .notification-container.active {
             display: block;
+            transform: translateX(0);
+            opacity: 1;
+        }
+        .notification-container.inactive {
+            transform: translateX(100%);
+            opacity: 0;
         }
         .dropdown-content {
-            transition: all 0.3s ease;
+            transition: opacity 0.3s ease, max-height 0.3s ease;
+            overflow: hidden;
+            opacity: 0;
+            max-height: 0;
+        }
+        .dropdown-content.show {
+            opacity: 1;
+            max-height: 200px; /* Adjust as needed */
         }
         .hidden {
             display: none;
+        }
+        .rotate-180 {
+            transform: rotate(180deg);
         }
     </style>
 </head>
@@ -102,7 +122,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                             </svg>
                         </div>
-                        <div class="dropdown-content hidden mt-4">
+                        <div class="dropdown-content mt-4">
                             <form id="profileForm">
                                 <label for="profilePic" class="block mb-2">Upload Profile Picture</label>
                                 <input type="file" id="profilePic" class="w-full p-2 rounded bg-gray-800 border border-gray-700">
@@ -117,11 +137,10 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                             </svg>
                         </div>
-                        <div class="dropdown-content hidden mt-4
-                        <div class="dropdown-content hidden mt-4">
-                            <form id="backgroundForm">
-                                <label for="backgroundFile" class="block mb-2">Upload Background</label>
-                                <input type="file" id="backgroundFile" class="w-full p-2 rounded bg-gray-800 border border-gray-700">
+                        <div class="dropdown-content mt-4">
+                            <form id="bgForm">
+                                <label for="bgPic" class="block mb-2">Upload Background Video/Photo</label>
+                                <input type="file" id="bgPic" class="w-full p-2 rounded bg-gray-800 border border-gray-700">
                                 <button type="submit" class="w-full mt-4 btn-white rounded p-2 hover:bg-gray-200">Save</button>
                             </form>
                         </div>
@@ -133,7 +152,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                             </svg>
                         </div>
-                        <div class="dropdown-content hidden mt-4">
+                        <div class="dropdown-content mt-4">
                             <form id="bioTextForm">
                                 <label for="bioText" class="block mb-2">Enter Bio Text</label>
                                 <textarea id="bioText" class="w-full p-2 rounded bg-gray-800 border border-gray-700" rows="4"></textarea>
@@ -144,81 +163,72 @@
                     <!-- Repeat similar blocks for other options like 'Splash screen text', 'Bio layouts', 'Glow', 'Font', 'Effects', and 'Colors for bios in splash screens' -->
                 </div>
             </section>
+            <section id="upload">
+                <h2 class="text-2xl font-bold mb-4">Image Host</h2>
+                <form id="uploadForm" enctype="multipart/form-data">
+                    <label for="imageUpload" class="block mb-2">Upload Image</label>
+                    <input type="file" id="imageUpload" class="w-full p-2 rounded bg-gray-800 border border-gray-700" accept="image/*">
+                    <button type="submit" class="w-full mt-4 btn-white rounded p-2 hover:bg-gray-200">Upload</button>
+                </form>
+            </section>
         </main>
     </div>
-
     <script>
-        // Toggle dropdown visibility
-        document.querySelectorAll('.dropdown-button').forEach(button => {
-            button.addEventListener('click', function() {
-                const content = this.nextElementSibling;
-                content.classList.toggle('hidden');
-                this.querySelector('svg').classList.toggle('rotate-180');
-            });
-        });
-
-        // Handle notifications button
-        document.getElementById('notificationBtn').addEventListener('click', function() {
+        // Toggle notifications container
+        document.getElementById('notificationBtn').addEventListener('click', () => {
             const notificationContainer = document.getElementById('notificationContainer');
             notificationContainer.classList.toggle('active');
+            notificationContainer.classList.toggle('inactive');
         });
 
-        // Handle profile picture upload
-        document.getElementById('profileForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const file = document.getElementById('profilePic').files[0];
-            const formData = new FormData();
-            formData.append('file', file);
-
-            fetch('https://dash.luckycloud.in/dashboard/upload/file', {
-                method: 'POST',
-                headers: {
-                    'Authorization': 'Bearer hCMcz8UAEnsZirHnvaoWAVHN.MTcyMDQwMDAzNDY0OQ.'
-                },
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Profile picture uploaded successfully:', data);
-                // Handle the response, update UI accordingly
-            })
-            .catch(error => {
-                console.error('Error uploading profile picture:', error);
+        // Dropdown functionality
+        document.querySelectorAll('.dropdown-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const dropdownContent = button.nextElementSibling;
+                dropdownContent.classList.toggle('show');
+                button.querySelector('svg').classList.toggle('rotate-180');
             });
         });
 
-        // Handle background file upload
-        document.getElementById('backgroundForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const file = document.getElementById('backgroundFile').files[0];
-            const formData = new FormData();
-            formData.append('file', file);
-
-            fetch('https://dash.luckycloud.in/dashboard/upload/file', {
-                method: 'POST',
-                headers: {
-                    'Authorization': 'Bearer hCMcz8UAEnsZirHnvaoWAVHN.MTcyMDQwMDAzNDY0OQ.'
-                },
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Background file uploaded successfully:', data);
-                // Handle the response, update UI accordingly
-            })
-            .catch(error => {
-                console.error('Error uploading background file:', error);
-            });
+        // Example for form submission
+        document.getElementById('profileForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Handle profile picture upload
+            const profilePic = document.getElementById('profilePic').files[0];
+            if (profilePic) {
+                // Example upload logic
+                console.log('Profile Picture Uploaded:', profilePic.name);
+            }
         });
 
-        // Handle bio text update
-        document.getElementById('bioTextForm').addEventListener('submit', function(event) {
-            event.preventDefault();
+        document.getElementById('bgForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Handle background image/video upload
+            const bgPic = document.getElementById('bgPic').files[0];
+            if (bgPic) {
+                // Example upload logic
+                console.log('Background Image/Video Uploaded:', bgPic.name);
+            }
+        });
+
+        document.getElementById('bioTextForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Handle bio text update
             const bioText = document.getElementById('bioText').value;
-            
-            // Update bio text on the server or in local storage
-            console.log('Bio text saved:', bioText);
-            // Update the UI or send the data to the server
+            if (bioText) {
+                // Example save logic
+                console.log('Bio Text Updated:', bioText);
+            }
+        });
+
+        // Example upload functionality
+        document.getElementById('uploadForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const imageUpload = document.getElementById('imageUpload').files[0];
+            if (imageUpload) {
+                // Example upload logic
+                console.log('Image Uploaded:', imageUpload.name);
+            }
         });
     </script>
 </body>

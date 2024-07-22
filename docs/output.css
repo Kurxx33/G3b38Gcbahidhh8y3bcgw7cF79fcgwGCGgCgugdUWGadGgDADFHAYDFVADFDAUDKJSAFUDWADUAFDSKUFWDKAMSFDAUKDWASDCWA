@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles */
+.pull-out {
+  @apply hidden opacity-0 transition-opacity ease-in-out duration-300 max-h-0;
+}
+
+.pull-out.show {
+  @apply block opacity-100;
+}
+
+.dropdown-button.active svg {
+  @apply rotate-180;
+}
+
+.bg-dark {
+  @apply bg-krush-black;
+}
+
+.text-white-glow {
+  @apply text-krush-white text-shadow-lg;
+}
+
+.btn-white {
+  @apply bg-krush-white text-krush-black;
+}
+
+.btn-white:hover {
+  @apply bg-gray-200;
+}
+
+.text-opium {
+  @apply text-opium-white;
+}
+
+.bg-opium {
+  @apply bg-opium-black;
+}
+
+.border-opium {
+  @apply border-opium-grey;
+}
+
+.shadow-opium {
+  @apply shadow-white-glow;
+}
+
+/* Additional custom styles */
+.vignette {
+  @apply rounded-full shadow-lg;
+  box-shadow: inset 0 0 50px 20px rgba(0, 0, 0, 0.8);
+}
+
+.low-poly {
+  @apply bg-low-poly bg-cover bg-center;
+}
+
+.scanline {
+  @apply bg-scanlines bg-cover bg-center;
+}

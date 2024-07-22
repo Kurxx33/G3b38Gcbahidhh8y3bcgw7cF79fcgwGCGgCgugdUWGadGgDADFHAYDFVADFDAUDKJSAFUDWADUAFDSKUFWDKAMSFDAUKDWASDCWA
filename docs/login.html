@@ -29,7 +29,6 @@
             <button type="submit" class="w-full btn-white rounded p-2 hover:bg-gray-200">Login</button>
         </form>
         <p id="error" class="text-red-500 mt-4 hidden">Invalid username or password</p>
-        <p id="loadError" class="text-red-500 mt-4 hidden">Failed to load user data</p>
     </div>
 
     <script>
@@ -40,15 +39,11 @@
             const password = document.getElementById('password').value;
 
             fetch('https://dash.luckycloud.in/u/EP6BZT.json')
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
+                .then(response => response.json())
                 .then(data => {
                     const user = data.users.find(user => user.username === username && user.password === password);
                     if (user) {
+                        // Store session data
                         localStorage.setItem('loggedInUser', JSON.stringify(user));
                         window.location.href = 'dashboard.html';
                     } else {
@@ -56,10 +51,11 @@
                     }
                 })
                 .catch(error => {
-                    document.getElementById('loadError').classList.remove('hidden');
-                    console.error('There was a problem with the fetch operation:', error);
+                    console.error('Error fetching user data:', error);
+                    document.getElementById('error').classList.remove('hidden');
                 });
         });
     </script>
 </body>
 </html>
+

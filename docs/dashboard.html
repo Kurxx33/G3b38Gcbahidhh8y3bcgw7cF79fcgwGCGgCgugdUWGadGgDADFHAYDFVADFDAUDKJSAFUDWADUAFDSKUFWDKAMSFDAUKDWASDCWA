@@ -47,9 +47,16 @@
             padding: 1rem;
             overflow-y: auto;
             z-index: 1000;
+            transition: all 0.3s ease;
         }
         .notification-container.active {
             display: block;
+        }
+        .dropdown-content {
+            transition: all 0.3s ease;
+        }
+        .hidden {
+            display: none;
         }
     </style>
 </head>
@@ -89,7 +96,7 @@
                 <h2 class="text-2xl font-bold mb-4">Bio Page</h2>
                 <div class="grid grid-cols-1 gap-4">
                     <div class="bg-gray-900 p-4 rounded-lg">
-                        <div class="dropdown-button flex justify-between items-center">
+                        <div class="dropdown-button flex justify-between items-center cursor-pointer">
                             <span>Profile</span>
                             <svg class="w-6 h-6 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -104,7 +111,7 @@
                         </div>
                     </div>
                     <div class="bg-gray-900 p-4 rounded-lg">
-                        <div class="dropdown-button flex justify-between items-center">
+                        <div class="dropdown-button flex justify-between items-center cursor-pointer">
                             <span>Background video/photo</span>
                             <svg class="w-6 h-6 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -119,7 +126,7 @@
                         </div>
                     </div>
                     <div class="bg-gray-900 p-4 rounded-lg">
-                        <div class="dropdown-button flex justify-between items-center">
+                        <div class="dropdown-button flex justify-between items-center cursor-pointer">
                             <span>Bio text</span>
                             <svg class="w-6 h-6 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -150,13 +157,15 @@
     </div>
 
     <script>
-        // Check if user is logged in
+        const API_TOKEN = 'hCMcz8UAEnsZirHnvaoWAVHN.MTcyMDQwMDAzNDY0OQ';
+        const API_URL = 'https://dash.luckycloud.in/api/upload';
         const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+
         if (!loggedInUser) {
             window.location.href = 'login.html';
         } else {
             document.getElementById('username').textContent = loggedInUser.username;
-            document.getElementById('uid').textContent = `UID: ${loggedInUser.username}`;
+            document.getElementById('uid').textContent = `UID: ${loggedInUser.uid}`;
         }
 
         document.getElementById('signOutBtn').addEventListener('click', () => {
@@ -164,61 +173,74 @@
             window.location.href = 'login.html';
         });
 
-        const notificationBtn = document.getElementById('notificationBtn');
-        const notificationContainer = document.getElementById('notificationContainer');
-        const notificationList = document.getElementById('notificationList');
-
-        notificationBtn.addEventListener('click', () => {
-            notificationContainer.classList.toggle('active');
-        });
-
-        function addNotification(message, type) {
-            const notification = document.createElement('div');
-            notification.classList.add('p-4', 'rounded', 'mb-4', 'bg-gray-800');
-            notification.innerHTML = `<p>${message}</p>`;
-            notificationList.appendChild(notification);
-        }
-
         document.querySelectorAll('.dropdown-button').forEach(button => {
             button.addEventListener('click', () => {
                 const content = button.nextElementSibling;
-                content.classList.toggle('hidden');
-                button.querySelector('svg').classList.toggle('rotate-180');
+                const icon = button.querySelector('svg');
+
+                if (content.classList.contains('hidden')) {
+                    content.classList.remove('hidden');
+                    icon.classList.add('rotate-180');
+                } else {
+                    content.classList.add('hidden');
+                    icon.classList.remove('rotate-180');
+                }
             });
         });
 
-        document.getElementById('uploadForm').addEventListener('submit', function(event) {
+        document.getElementById('notificationBtn').addEventListener('click', () => {
+            const notificationContainer = document.getElementById('notificationContainer');
+            notificationContainer.classList.toggle('active');
+        });
+
+        document.getElementById('uploadForm').addEventListener('submit', async (event) => {
             event.preventDefault();
             const fileInput = document.getElementById('imageUpload');
-            const file = fileInput.files[0];
+            const formData = new FormData();
+            formData.append('file', fileInput.files[0]);
 
-            if (!file) return;
-
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const img = document.createElement('img');
-                img.src = e.target.result;
-                img.alt = file.name;
-                img.classList.add('max-w-full', 'h-auto', 'mt-4');
-                document.getElementById('uploadedImages').appendChild(img);
-
-                // Store uploaded image in local storage
-                const userImages = JSON.parse(localStorage.getItem(loggedInUser.username + '_images')) || [];
-                userImages.push(e.target.result);
-                localStorage.setItem(loggedInUser.username + '_images', JSON.stringify(userImages));
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${API_TOKEN}`,
+                    },
+                    body: formData
+                });
+                const result = await response.json();
+                if (result.success) {
+                    const imgElement = document.createElement('img');
+                    imgElement.src = result.url;
+                    imgElement.classList.add('m-2', 'rounded');
+                    document.getElementById('uploadedImages').appendChild(imgElement);
+                } else {
+                    console.error('Upload failed', result.message);
+                }
+            } catch (error) {
+                console.error('Upload error', error);
             }
-            reader.readAsDataURL(file);
         });
 
-        window.addEventListener('load', () => {
-            const userImages = JSON.parse(localStorage.getItem(loggedInUser.username + '_images')) || [];
-            userImages.forEach(src => {
-                const img = document.createElement('img');
-                img.src = src;
-                img.alt = 'Uploaded Image';
-                img.classList.add('max-w-full', 'h-auto', 'mt-4');
-                document.getElementById('uploadedImages').appendChild(img);
-            });
+        document.getElementById('profileForm').addEventListener('submit', (event) => {
+            event.preventDefault();
+            const fileInput = document.getElementById('profilePic');
+            const formData = new FormData();
+            formData.append('file', fileInput.files[0]);
+            // API call to save profile picture
+        });
+
+        document.getElementById('bgForm').addEventListener('submit', (event) => {
+            event.preventDefault();
+            const fileInput = document.getElementById('bgPic');
+            const formData = new FormData();
+            formData.append('file', fileInput.files[0]);
+            // API call to save background
+        });
+
+        document.getElementById('bioTextForm').addEventListener('submit', (event) => {
+            event.preventDefault();
+            const bioText = document.getElementById('bioText').value;
+            // API call to save bio text
         });
     </script>
 </body>

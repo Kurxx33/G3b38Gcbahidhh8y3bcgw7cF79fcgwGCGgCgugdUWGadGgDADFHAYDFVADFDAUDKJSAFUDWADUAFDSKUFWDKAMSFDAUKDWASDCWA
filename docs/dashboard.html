@@ -8,30 +8,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
     <style>
         body {
-            background-color: #121212; /* Very dark background */
+            background-color: black;
             color: white;
             font-family: 'Fira Code', monospace;
-            transition: background-color 0.3s ease;
         }
         .sidebar {
-            background-color: #1e1e1e;
-            transition: transform 0.3s ease;
+            background-color: #121212;
         }
         .main-content {
-            background-color: #1a1a1a;
-            transition: background-color 0.3s ease;
+            background-color: #0d0d0d;
         }
         .btn-white {
             background-color: white;
             color: black;
-            transition: background-color 0.3s ease;
         }
         .btn-white:hover {
             background-color: #e0e0e0;
         }
         .blurred {
             backdrop-filter: blur(10px);
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: rgba(0, 0, 0, 0.6);
         }
         .notification-icon {
             width: 24px;
@@ -51,38 +47,36 @@
             padding: 1rem;
             overflow-y: auto;
             z-index: 1000;
-            transition: transform 0.3s ease, opacity 0.3s ease;
+            transition: all 0.3s ease;
         }
         .notification-container.active {
             display: block;
-            transform: translateX(0);
-            opacity: 1;
-        }
-        .notification-container.inactive {
-            transform: translateX(100%);
-            opacity: 0;
         }
         .dropdown-content {
-            transition: opacity 0.3s ease, max-height 0.3s ease;
-            overflow: hidden;
-            opacity: 0;
-            max-height: 0;
-        }
-        .dropdown-content.show {
-            opacity: 1;
-            max-height: 200px; /* Adjust as needed */
+            transition: all 0.3s ease;
         }
         .hidden {
             display: none;
         }
-        .rotate-180 {
-            transform: rotate(180deg);
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .pull-out {
+            animation: pullOut 0.3s ease-in-out;
+        }
+        @keyframes pullOut {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
         }
     </style>
 </head>
 <body>
     <div class="flex">
-        <aside class="w-64 p-4 h-screen fixed sidebar">
+        <aside class="w-64 p-4 h-screen fixed sidebar fade-in">
             <div class="mb-6">
                 <h2 class="text-xl font-bold">Dashboard</h2>
             </div>
@@ -102,7 +96,7 @@
                 </div>
             </nav>
         </aside>
-        <main class="flex-grow ml-64 p-6 main-content">
+        <main class="flex-grow ml-64 p-6 main-content fade-in">
             <button id="notificationBtn" class="absolute top-4 right-4 btn-white rounded p-2">
                 <img src="notification-icon.svg" alt="Notifications" class="notification-icon">
             </button>
@@ -122,7 +116,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                             </svg>
                         </div>
-                        <div class="dropdown-content mt-4">
+                        <div class="dropdown-content hidden mt-4 pull-out">
                             <form id="profileForm">
                                 <label for="profilePic" class="block mb-2">Upload Profile Picture</label>
                                 <input type="file" id="profilePic" class="w-full p-2 rounded bg-gray-800 border border-gray-700">
@@ -137,7 +131,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                             </svg>
                         </div>
-                        <div class="dropdown-content mt-4">
+                        <div class="dropdown-content hidden mt-4 pull-out">
                             <form id="bgForm">
                                 <label for="bgPic" class="block mb-2">Upload Background Video/Photo</label>
                                 <input type="file" id="bgPic" class="w-full p-2 rounded bg-gray-800 border border-gray-700">
@@ -152,15 +146,14 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                             </svg>
                         </div>
-                        <div class="dropdown-content mt-4">
+                        <div class="dropdown-content hidden mt-4 pull-out">
                             <form id="bioTextForm">
                                 <label for="bioText" class="block mb-2">Enter Bio Text</label>
-                                <textarea id="bioText" class="w-full p-2 rounded bg-gray-800 border border-gray-700" rows="4"></textarea>
+                                <textarea id="bioText" class="w-full p-2 rounded bg-gray-800 border border-gray-700"></textarea>
                                 <button type="submit" class="w-full mt-4 btn-white rounded p-2 hover:bg-gray-200">Save</button>
                             </form>
                         </div>
                     </div>
-                    <!-- Repeat similar blocks for other options like 'Splash screen text', 'Bio layouts', 'Glow', 'Font', 'Effects', and 'Colors for bios in splash screens' -->
                 </div>
             </section>
             <section id="upload">
@@ -170,65 +163,87 @@
                     <input type="file" id="imageUpload" class="w-full p-2 rounded bg-gray-800 border border-gray-700" accept="image/*">
                     <button type="submit" class="w-full mt-4 btn-white rounded p-2 hover:bg-gray-200">Upload</button>
                 </form>
+                <div id="uploadedImages" class="mt-6">
+                    <!-- Uploaded images will be displayed here -->
+                </div>
             </section>
         </main>
     </div>
+
     <script>
-        // Toggle notifications container
-        document.getElementById('notificationBtn').addEventListener('click', () => {
-            const notificationContainer = document.getElementById('notificationContainer');
-            notificationContainer.classList.toggle('active');
-            notificationContainer.classList.toggle('inactive');
+        const API_TOKEN = 'hCMcz8UAEnsZirHnvaoWAVHN.MTcyMDQwMDAzNDY0OQ';
+
+        // Handle sign out button click
+        document.getElementById('signOutBtn').addEventListener('click', async () => {
+            await fetch('/api/signout', { method: 'POST' });
+            window.location.href = '/';
         });
 
-        // Dropdown functionality
+        // Toggle notifications
+        document.getElementById('notificationBtn').addEventListener('click', () => {
+            document.getElementById('notificationContainer').classList.toggle('active');
+        });
+
+        // Handle dropdown menu toggle
         document.querySelectorAll('.dropdown-button').forEach(button => {
             button.addEventListener('click', () => {
-                const dropdownContent = button.nextElementSibling;
-                dropdownContent.classList.toggle('show');
-                button.querySelector('svg').classList.toggle('rotate-180');
+                const content = button.nextElementSibling;
+                content.classList.toggle('hidden');
             });
         });
 
-        // Example for form submission
-        document.getElementById('profileForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            // Handle profile picture upload
-            const profilePic = document.getElementById('profilePic').files[0];
-            if (profilePic) {
-                // Example upload logic
-                console.log('Profile Picture Uploaded:', profilePic.name);
-            }
+        // Handle file uploads
+        document.getElementById('profileForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            await fetch('https://dash.luckycloud.in/dashboard/upload/file', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${API_TOKEN}`
+                },
+                body: formData
+            });
+            alert('Profile picture uploaded!');
         });
 
-        document.getElementById('bgForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            // Handle background image/video upload
-            const bgPic = document.getElementById('bgPic').files[0];
-            if (bgPic) {
-                // Example upload logic
-                console.log('Background Image/Video Uploaded:', bgPic.name);
-            }
+        document.getElementById('bgForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            await fetch('https://dash.luckycloud.in/dashboard/upload/file', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${API_TOKEN}`
+                },
+                body: formData
+            });
+            alert('Background image/video uploaded!');
         });
 
-        document.getElementById('bioTextForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            // Handle bio text update
+        document.getElementById('bioTextForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
             const bioText = document.getElementById('bioText').value;
-            if (bioText) {
-                // Example save logic
-                console.log('Bio Text Updated:', bioText);
-            }
+            // Send bio text to server
+            await fetch('/api/updateBio', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ bioText })
+            });
+            alert('Bio text updated!');
         });
 
-        // Example upload functionality
-        document.getElementById('uploadForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const imageUpload = document.getElementById('imageUpload').files[0];
-            if (imageUpload) {
-                // Example upload logic
-                console.log('Image Uploaded:', imageUpload.name);
-            }
+        document.getElementById('uploadForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            await fetch('https://dash.luckycloud.in/dashboard/upload/file', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${API_TOKEN}`
+                },
+                body: formData
+            });
+            alert('Image uploaded!');
         });
     </script>
 </body>

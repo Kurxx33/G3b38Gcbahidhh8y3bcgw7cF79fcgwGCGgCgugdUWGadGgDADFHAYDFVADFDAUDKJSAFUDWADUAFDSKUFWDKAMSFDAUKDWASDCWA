@@ -1,1 +1,59 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artemas.lol</title>
+    <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap');
+        body {
+            @apply bg-black text-white font-serif text-center m-0 p-0 overflow-hidden;
+            font-family: 'UnifrakturCook', cursive;
+        }
+        .landing-content {
+            @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.7); /* White glow */
+        }
+        .landing-content h1 {
+            @apply text-6xl font-bold mb-5;
+        }
+        .landing-content a {
+            @apply text-white no-underline text-2xl transition-all duration-300 relative mx-4;
+        }
+        .landing-content a:hover {
+            @apply transform scale-110;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.9); /* Stronger glow on hover */
+        }
+        .landing-content a::after {
+            @apply block w-0 h-0.5 bg-white absolute left-0;
+            content: '';
+            bottom: -3px;
+            transition: width 0.3s ease;
+        }
+        .landing-content a:hover::after {
+            @apply w-full;
+        }
+        .copyright {
+            @apply absolute bottom-2 left-2 text-sm text-gray-400;
+        }
+    </style>
+</head>
+<body>
+    <div class="landing-content">
+        <h1>Artemas.lol</h1>
+        <div>
+            <a href="https://artemas.lol/buy">Buy</a>
+            <a href="https://artemas.lol/k">Owner</a>
+        </div>
+    </div>
+    <audio loop autoplay>
+        <source src="docs/youtube_rMIkv-dEv2g_audio.mp3" type="audio/mp3">
+    </audio>
+    <div class="copyright">
+        <span class="align-middle" style="font-size: 0.6em;">©</span> artemas.lol, private bio link, releasing soon
+    </div>
+</body>
+</html>

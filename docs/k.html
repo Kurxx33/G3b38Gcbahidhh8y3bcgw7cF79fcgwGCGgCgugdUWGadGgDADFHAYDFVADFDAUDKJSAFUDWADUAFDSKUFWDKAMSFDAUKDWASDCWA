@@ -50,9 +50,9 @@
             transition: opacity 1s ease-in-out;
         }
         .card {
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9));
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9)); /* Darker gradient */
             border-radius: 16px;
-            border: 2px solid silver;
+            border: 2px solid silver; /* Silver border */
             padding: 30px;
             width: 350px;
             height: 400px;
@@ -131,7 +131,13 @@
         }
         .badge-container {
             position: relative;
-            display: inline-block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0 0 20px 20px; /* Rounded left and right sides */
+            border: 2px solid white;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            padding: 10px;
             margin-top: 10px;
         }
         .badge {
@@ -146,6 +152,7 @@
             color: white;
             font-size: 24px;
             transition: background 0.3s ease, border-color 0.3s ease;
+            margin: 0 5px;
         }
         .badge:hover {
             background: rgba(255, 255, 255, 0.3);
@@ -181,20 +188,12 @@
             visibility: visible;
             opacity: 1;
         }
-        #snowCanvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-        }
     </style>
 </head>
 <body>
     <audio id="backgroundMusic" loop src="british.mp3"></audio>
     <div class="clickanywhere" onclick="startExperience()">
-        <h4>[ Hi👋, Click Anywhere ]</h4>
+        <h4>[  Hi👋, Click Anywhere  ]</h4>
     </div>
     <main>
         <div id="biolink" class="biolink">
@@ -204,93 +203,37 @@
                     <!-- Badge Section -->
                     <div class="badge-container">
                         <i class="fa-brands fa-square-web-awesome badge" aria-label="Owner"></i>
+                        <i class="fa-solid fa-hammer badge" aria-label="Developer"></i>
                         <div class="tooltip">Owner</div>
+                        <div class="tooltip">Developer</div>
                     </div>
+                    <!-- Badge Section -->
                     <h1>Kurxx33<span class="small">VFX Artist and Developer</span></h1>
                     <div>
                         <a href="https://t.me/kurxx33" target="_blank"><i class="fa-brands fa-telegram"></i></a>
                         <a href="https://x.com/kurxx33" target="_blank"><i class="fa-brands fa-twitter"></i></a>
-                        <a href="https://www.tiktok.com/kurxx33" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+                        <a href="https://www.tiktok.com/kurxx33" target="_blank"><i class="fa-brands fa-tiktok"></i></a>              
                         <a href="https://www.instagram.com/kurxx33" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                    <div class="discord">
+                        <img class="avatar" src="https://cdn.discordapp.com/avatars/133519704645702400/9f5e9d2e1792f88b31d9e86df0669d02.png" alt="Discord Avatar" class="avatar">
+                        <div class="username">Kurxx33</div>
+                        <div class="status">Online</div>
                     </div>
                 </div>
             </div>
         </div>
     </main>
-    <canvas id="snowCanvas"></canvas>
-
     <script>
         function startExperience() {
             document.querySelector('.clickanywhere').style.display = 'none';
-            const backgroundMusic = document.getElementById('backgroundMusic');
-            backgroundMusic.play();
-
             const biolink = document.getElementById('biolink');
             biolink.style.display = 'flex';
             setTimeout(() => {
-                biolink.style.opacity = 1;
+                biolink.style.opacity = '1';
+                document.getElementById('backgroundMusic').play();
             }, 100);
         }
-
-        // Snow Effect
-        const canvas = document.getElementById('snowCanvas');
-        const ctx = canvas.getContext('2d');
-        const numFlakes = 200;
-        const flakes = [];
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        class Snowflake {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 3 + 1;
-                this.speedY = Math.random() * 3 + 1;
-                this.speedX = Math.random() * 1 - 0.5;
-            }
-
-            update() {
-                this.y += this.speedY;
-                this.x += this.speedX;
-
-                if (this.y > canvas.height) {
-                    this.y = -this.size;
-                }
-                if (this.x > canvas.width || this.x < 0) {
-                    this.x = Math.random() * canvas.width;
-                }
-            }
-
-            draw() {
-                ctx.fillStyle = 'white';
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
-
-        function createSnowflakes() {
-            for (let i = 0; i < numFlakes; i++) {
-                flakes.push(new Snowflake());
-            }
-        }
-
-        function animateSnowflakes() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            flakes.forEach(flake => {
-                flake.update();
-                flake.draw();
-            });
-            requestAnimationFrame(animateSnowflakes);
-        }
-
-        createSnowflakes();
-        animateSnowflakes();
-
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
     </script>
 </body>
 </html>

@@ -68,10 +68,18 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center; /* Center items vertically */
             opacity: 0.95; /* Slightly more transparent */
             width: 100%; /* Make card width responsive */
             max-width: 800px; /* Increased card width */
             height: 380px; /* 5 pixels longer */
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center; /* Center items horizontally */
         }
 
         .buttons img {
@@ -132,14 +140,13 @@
             position: relative;
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: center; /* Center badges horizontally */
             border-radius: 10px; /* Rounded corners */
             background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
             padding: 5px;
             margin-top: 10px;
             max-width: 250px; /* Less wide */
             flex-wrap: wrap; /* Wrap badges to fit within the container */
-            transform: translateX(6px); /* Shift badges to the right */
         }
 
         .badge {

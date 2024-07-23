@@ -38,7 +38,7 @@
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
 
-            fetch('https://dash.luckycloud.in/u/EP6BZT.json')
+            fetch('https://path/to/your/users.json')
                 .then(response => response.json())
                 .then(data => {
                     const user = data.users.find(user => user.username === username && user.password === password);
@@ -58,4 +58,3 @@
     </script>
 </body>
 </html>
-

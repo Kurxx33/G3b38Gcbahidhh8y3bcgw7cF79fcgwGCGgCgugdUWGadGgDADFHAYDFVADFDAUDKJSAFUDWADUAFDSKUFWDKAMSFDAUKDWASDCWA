@@ -17,7 +17,7 @@
             margin: 0;
             overflow: hidden;
             font-family: 'UnifrakturCook', cursive;
-            background: #fff; /* White background */
+            background: #000; /* Black background */
             color: white;
             position: relative;
         }
@@ -49,7 +49,8 @@
             transition: opacity 1s ease-in-out; /* Faster fade-in effect */
         }
         .card {
-            background: rgba(0, 0, 0, 0.8); /* Darker transparent glass with gradient */
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url('path-to-graph-lines-image'); /* Added background image for graph lines */
+            background-size: cover;
             border-radius: 16px;
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2); /* Adjusted shadow */
             backdrop-filter: blur(8px); /* Reduced blur */
@@ -64,6 +65,31 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            overflow: hidden; /* Hide overflowing content */
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 1px,
+                rgba(255, 255, 255, 0.1) 1px,
+                rgba(255, 255, 255, 0.1) 2px
+            ),
+            repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 1px,
+                rgba(255, 255, 255, 0.1) 1px,
+                rgba(255, 255, 255, 0.1) 2px
+            );
+            opacity: 0.3;
+            z-index: 1; /* Place graph lines above background but below content */
         }
         .buttons img {
             border-radius: 50%;
@@ -157,7 +183,7 @@
             visibility: hidden;
             opacity: 0;
             position: absolute;
-            bottom: 100%;
+            bottom: 120%; /* Adjusted position to avoid overlap */
             left: 50%;
             transform: translateX(-50%);
             background-color: rgba(0, 0, 0, 0.8);
@@ -168,6 +194,7 @@
             white-space: nowrap;
             transition: opacity 0.3s ease-in-out;
             z-index: 10;
+            pointer-events: none; /* Avoid blocking interactions */
         }
         .tooltip::after {
             content: '';
@@ -183,101 +210,97 @@
             visibility: visible;
             opacity: 1;
         }
+        .snowCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* Allow interactions with other elements */
+        }
     </style>
 </head>
 <body>
     <audio id="backgroundMusic" loop src="british.mp3"></audio>
-    <div class="clickanywhere" onclick="startExperience()">
-        <h4>[  Hi👋, Click Anywhere  ]</h4>
+    <div class="clickanywhere" onclick="startAnimation()">
+        <h4>Click anywhere to enter</h4>
     </div>
-    <main>
-        <div id="biolink" class="biolink">
-            <div class="card">
-                <div class="buttons">
-                    <img class="avatar" src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/e64afe2a731002d551ebb861d3ea9b45.jpg" title="pfp">
-                    <h1>Kurxx33<span class="small">VFX Artist and Developer</span></h1>
-                    <div>
-                        <a href="https://t.me/kurxx33" target="_blank"><i class="fa-brands fa-telegram"></i></a>
-                        <a href="https://x.com/kurxx33" target="_blank"><i class="fa-brands fa-twitter"></i></a>
-                        <a href="https://www.tiktok.com/kurxx33" target="_blank"><i class="fa-brands fa-tiktok"></i></a>                        
+    <div class="biolink">
+        <div class="card">
+            <div class="buttons">
+                <img src="profile-image.png" alt="Profile Image">
+                <h1>Your Name <span class="small">Title</span></h1>
+                <a href="https://discord.com" target="_blank"><i class="fab fa-discord"></i></a>
+                <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                <div class="discord">
+                    <img src="avatar.png" alt="Discord Avatar" class="avatar">
+                    <div class="username">
+                        <div class="status">Status</div>
                     </div>
-                    <!-- Badge Section -->
-                    <div class="badge-container">
-                        <i class="fa-brands fa-square-web-awesome badge" aria-label="Owner"></i>
-                        <div class="tooltip">Owner</div>
-                    </div>              
+                </div>
+                <div class="badge-container">
+                    <div class="badge">O</div>
+                    <div class="tooltip">Owner</div>
                 </div>
             </div>
         </div>
-    </main>
-    <canvas id="snowCanvas"></canvas>
-
+    </div>
+    <canvas id="snowCanvas" class="snowCanvas"></canvas>
     <script>
-        function startExperience() {
+        function startAnimation() {
             document.querySelector('.clickanywhere').style.display = 'none';
-            const backgroundMusic = document.getElementById('backgroundMusic');
-            backgroundMusic.play();
-
-            const biolink = document.getElementById('biolink');
-            biolink.style.display = 'flex';
-            setTimeout(() => {
-                biolink.style.opacity = 1; // Fade in the card
-            }, 100);
+            document.querySelector('.biolink').style.display = 'block';
+            document.querySelector('.biolink').style.opacity = 1;
+            document.getElementById('backgroundMusic').play();
         }
-
-        // Snow Effect
-        const canvas = document.getElementById('snowCanvas');
-        const ctx = canvas.getContext('2d');
-        let snowflakes = [];
-
-        function resize() {
+        document.addEventListener('DOMContentLoaded', function() {
+            const canvas = document.getElementById('snowCanvas');
+            const ctx = canvas.getContext('2d');
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resize);
-        resize();
 
-        function createSnowflake() {
-            const size = Math.random() * 5 + 2;
-            snowflakes.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                size,
-                speed: Math.random() * 3 + 1,
-            });
-            if (snowflakes.length > 100) { // Cap the number of snowflakes
-                snowflakes.shift();
+            let snowflakes = [];
+
+            function createSnowflake() {
+                const x = Math.random() * canvas.width;
+                const y = Math.random() * canvas.height;
+                const radius = Math.random() * 4 + 1;
+                const speed = Math.random() * 3 + 1;
+                const opacity = Math.random() * 0.8 + 0.2;
+                snowflakes.push({ x, y, radius, speed, opacity });
             }
-        }
 
-        function updateSnowflakes() {
-            for (let flake of snowflakes) {
-                flake.y += flake.speed;
-                if (flake.y > canvas.height) {
-                    flake.y = -flake.size;
-                    flake.x = Math.random() * canvas.width;
-                }
-            }
-        }
-
-        function drawSnowflakes() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = 'white';
-            for (let flake of snowflakes) {
+            function drawSnowflakes() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
                 ctx.beginPath();
-                ctx.arc(flake.x, flake.y, flake.size, 0, Math.PI * 2);
+                snowflakes.forEach(snowflake => {
+                    ctx.moveTo(snowflake.x, snowflake.y);
+                    ctx.arc(snowflake.x, snowflake.y, snowflake.radius, 0, Math.PI * 2);
+                });
                 ctx.fill();
             }
-        }
 
-        function animate() {
-            createSnowflake();
-            updateSnowflakes();
-            drawSnowflakes();
-            requestAnimationFrame(animate);
-        }
+            function updateSnowflakes() {
+                snowflakes.forEach(snowflake => {
+                    snowflake.y += snowflake.speed;
+                    if (snowflake.y > canvas.height) {
+                        snowflake.y = -snowflake.radius;
+                        snowflake.x = Math.random() * canvas.width;
+                    }
+                });
+            }
 
-        animate();
+            function animate() {
+                createSnowflake();
+                drawSnowflakes();
+                updateSnowflakes();
+                requestAnimationFrame(animate);
+            }
+
+            animate();
+        });
     </script>
 </body>
 </html>

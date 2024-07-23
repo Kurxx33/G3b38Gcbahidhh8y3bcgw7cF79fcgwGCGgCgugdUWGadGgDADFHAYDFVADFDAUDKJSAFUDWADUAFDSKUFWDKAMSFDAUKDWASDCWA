@@ -189,6 +189,63 @@
             visibility: visible;
             opacity: 1;
         }
+
+        /* Rain and lightning effect styles */
+        .rain {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .drop {
+            position: absolute;
+            bottom: 100%;
+            width: 1px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.1);
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+
+        .lightning {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            opacity: 0;
+            z-index: 2;
+        }
+
+        .strike {
+            position: absolute;
+            bottom: 100%;
+            width: 2px;
+            height: 100vh;
+            background: white;
+            opacity: 0;
+            animation: strike 0.2s ease-in-out infinite;
+        }
+
+        @keyframes strike {
+            0%, 100% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
     </style>
 </head>
 <body>
@@ -209,32 +266,63 @@
                         <!-- New Badge -->
                         <div class="badge badge-creditcard">
                             <img src="creditcard.gif" alt="Credit Card">
-                            <div class="tooltip">$</div>
+                            <div class="tooltip">Credit Card Badge</div>
                         </div>
-                        <div class="tooltip">Owner</div>
-                        <div class="tooltip">Developer</div>
                     </div>
-                    <!-- Badge Section -->
-                    <h1>Kurxx33<span class="small">VFX Artist and Developer</span></h1>
-                    <div>
-                        <a href="https://t.me/kurxx33" target="_blank"><i class="fa-brands fa-telegram"></i></a>
-                        <a href="https://x.com/kurxx33" target="_blank"><i class="fa-brands fa-twitter"></i></a>
-                        <a href="https://www.tiktok.com/kurxx33" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
-                    </div>
+                    <!-- End of Badge Section -->
+                    <h1>
+                        @Kurxx33<br>
+                        <span class="small">Welcome!</span>
+                    </h1>
+                    <a href="https://t.me/kurxx33" target="_blank" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+                    <a href="https://twitter.com/kurxx33" target="_blank" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="https://www.tiktok.com/@kurxx33" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
                 </div>
             </div>
         </div>
     </main>
+    <div class="rain" id="rain"></div>
+    <div class="lightning" id="lightning"></div>
     <script>
         function startExperience() {
             document.querySelector('.clickanywhere').style.display = 'none';
             const biolink = document.getElementById('biolink');
-            biolink.style.display = 'flex';
+            biolink.style.display = 'block';
             setTimeout(() => {
-                biolink.style.opacity = '1';
-                document.getElementById('backgroundMusic').play();
+                biolink.style.opacity = 1;
             }, 100);
+            document.getElementById('backgroundMusic').play();
         }
+
+        const rainContainer = document.getElementById('rain');
+        const lightningContainer = document.getElementById('lightning');
+
+        // Generate rain drops
+        for (let i = 0; i < 200; i++) {
+            const drop = document.createElement('div');
+            drop.className = 'drop';
+            drop.style.left = `${Math.random() * 100}%`;
+            drop.style.animationDuration = `${Math.random() * 0.5 + 0.5}s`;
+            drop.style.animationDelay = `${Math.random() * 1}s`;
+            rainContainer.appendChild(drop);
+        }
+
+        // Generate random lightning strikes
+        function createStrike() {
+            const strike = document.createElement('div');
+            strike.className = 'strike';
+            strike.style.left = `${Math.random() * 100}%`;
+            strike.style.animationDuration = `${Math.random() * 0.2 + 0.1}s`;
+            lightningContainer.appendChild(strike);
+
+            setTimeout(() => {
+                lightningContainer.removeChild(strike);
+            }, 200);
+
+            setTimeout(createStrike, Math.random() * 8000 + 2000);
+        }
+
+        createStrike();
     </script>
 </body>
 </html>

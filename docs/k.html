@@ -287,52 +287,51 @@
                     <a href="https://t.me/kurxx33" target="_blank" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
                     <a href="https://twitter.com/kurxx33" target="_blank" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
                     <a href="https://www.tiktok.com/@kurxx33" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="rain" id="rain">
+            <!-- Rain and lightning elements will be appended here by JavaScript -->
+        </div>
+        <div class="lightning" id="lightning"></div>
     </main>
-    <div class="rain" id="rain"></div>
-    <div class="lightning" id="lightning"></div>
+
     <script>
         function startExperience() {
             document.querySelector('.clickanywhere').style.display = 'none';
             const biolink = document.getElementById('biolink');
-            biolink.style.display = 'block';
+            biolink.style.display = 'flex';
             setTimeout(() => {
                 biolink.style.opacity = 1;
-            }, 100);
+            }, 50);
             document.getElementById('backgroundMusic').play();
+            createRain();
+            createLightning();
         }
 
-        const rainContainer = document.getElementById('rain');
-        const lightningContainer = document.getElementById('lightning');
-
-        // Generate rain drops
-        for (let i = 0; i < 200; i++) {
-            const drop = document.createElement('div');
-            drop.className = 'drop';
-            drop.style.left = ${Math.random() * 100}%;
-            drop.style.animationDuration = ${Math.random() * 0.5 + 0.5}s;
-            drop.style.animationDelay = ${Math.random() * 1}s;
-            rainContainer.appendChild(drop);
+        function createRain() {
+            const rainContainer = document.getElementById('rain');
+            for (let i = 0; i < 100; i++) {
+                const drop = document.createElement('div');
+                drop.className = 'drop';
+                drop.style.left = Math.random() * 100 + 'vw';
+                drop.style.animationDuration = Math.random() * 2 + 2 + 's';
+                rainContainer.appendChild(drop);
+            }
         }
 
-        // Generate random lightning strikes
-        function createStrike() {
+        function createLightning() {
+            const lightning = document.getElementById('lightning');
             const strike = document.createElement('div');
             strike.className = 'strike';
-            strike.style.left = ${Math.random() * 100}%;
-            strike.style.animationDuration = ${Math.random() * 0.2 + 0.1}s;
-            lightningContainer.appendChild(strike);
-
-            setTimeout(() => {
-                lightningContainer.removeChild(strike);
-            }, 200);
-
-            setTimeout(createStrike, Math.random() * 8000 + 2000);
+            strike.style.left = Math.random() * 100 + 'vw';
+            lightning.appendChild(strike);
+            setInterval(() => {
+                strike.style.opacity = 1;
+                setTimeout(() => strike.style.opacity = 0, 200);
+            }, Math.random() * 5000 + 3000);
         }
-
-        createStrike();
     </script>
 </body>
 </html>

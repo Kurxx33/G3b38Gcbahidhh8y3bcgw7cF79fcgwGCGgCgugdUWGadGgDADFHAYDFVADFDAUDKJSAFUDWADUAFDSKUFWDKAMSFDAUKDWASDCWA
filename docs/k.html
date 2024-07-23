@@ -22,6 +22,10 @@
             background-size: cover;
             color: white;
             position: relative;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         .clickanywhere {
             position: absolute;
@@ -43,27 +47,23 @@
         }
         .biolink {
             display: none;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 999;
             opacity: 0;
             transition: opacity 1s ease-in-out;
+            z-index: 999;
+            width: 100%;
+            max-width: 400px;
         }
         .card {
             background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)); /* Less transparent gradient */
             border-radius: 16px;
             border: 2px solid silver; /* Silver border */
             padding: 30px;
-            width: 350px;
-            height: 400px;
             text-align: center;
             color: white;
             position: relative;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            align-items: center;
         }
         .buttons img {
             border-radius: 50%;
@@ -74,7 +74,7 @@
             margin-bottom: 20px;
         }
         .buttons img:hover {
-            transform: scale(1);
+            transform: scale(1.1);
         }
         .buttons h1 {
             margin: 0;
@@ -89,7 +89,7 @@
         }
         .buttons a {
             color: white;
-            margin: 0 20px;
+            margin: 0 10px;
             text-decoration: none;
             font-size: 20px;
             transition: text-shadow 0.3s ease;

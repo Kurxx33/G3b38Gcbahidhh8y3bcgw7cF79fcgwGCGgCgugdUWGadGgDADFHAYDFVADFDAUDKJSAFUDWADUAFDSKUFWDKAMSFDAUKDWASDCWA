@@ -1,3 +1,7 @@
+Got it! To make the badges stack vertically and the links and badges align horizontally, you need to adjust the layout styles accordingly. Here’s the revised code:
+
+html
+Copy code
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,13 +58,13 @@
             transition: opacity 1s ease-in-out;
             z-index: 999;
             width: 100%;
-            max-width: 800px; /* Increased card width */
+            max-width: 800px;
         }
 
         .card {
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)); /* Less transparent gradient */
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9));
             border-radius: 16px;
-            border: 2px solid silver; /* Silver border */
+            border: 2px solid silver;
             padding: 30px;
             text-align: center;
             color: white;
@@ -68,23 +72,23 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center; /* Center items vertically */
-            opacity: 0.95; /* Slightly more transparent */
-            width: 100%; /* Make card width responsive */
-            max-width: 800px; /* Increased card width */
-            height: 380px; /* 5 pixels longer */
+            justify-content: center;
+            opacity: 0.95;
+            width: 100%;
+            max-width: 800px;
+            height: 380px;
         }
 
         .buttons {
             display: flex;
-            flex-direction: column;
+            flex-direction: column; /* Stack profile picture and title vertically */
             align-items: center;
-            justify-content: center; /* Center items horizontally */
+            justify-content: center;
         }
 
         .buttons img {
             border-radius: 50%;
-            width: 140px; /* Slightly smaller profile picture */
+            width: 140px;
             height: 140px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
@@ -104,16 +108,49 @@
             color: #ddd;
         }
 
+        .links-and-badges {
+            display: flex;
+            flex-direction: column; /* Stack links and badges vertically */
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .badge-container {
+            display: flex;
+            flex-direction: column; /* Stack badges vertically */
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .badge {
+            width: auto;
+            height: 32px;
+            background: transparent;
+            color: white;
+            font-size: 20px;
+            margin: 5px 0;
+            text-align: center;
+            border: none;
+        }
+
+        .badge img {
+            width: 32px;
+            height: 32px;
+            vertical-align: middle;
+        }
+
+        .badge span {
+            margin-left: 8px; /* Space between image and text */
+        }
+
         .buttons a {
             color: white;
-            margin: 0 10px;
+            margin: 5px; /* Space between links */
             text-decoration: none;
             font-size: 20px;
             transition: text-shadow 0.3s ease;
             position: relative;
-            top: 7px; /* Moved down by 7 pixels */
-            display: inline-block; /* Ensure links are inline-block to be clickable */
-            z-index: 10; /* Ensure links are above other content */
+            display: inline-block;
         }
 
         .buttons a i {
@@ -134,37 +171,6 @@
                 color: lightcoral;
                 text-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
             }
-        }
-
-        .badge-container {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column; /* Stack badges vertically */
-            border-radius: 10px; /* Rounded corners */
-            background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-            padding: 5px;
-            margin-top: 10px;
-            max-width: 250px; /* Less wide */
-            flex-wrap: wrap; /* Wrap badges to fit within the container */
-        }
-
-        .badge {
-            width: auto;
-            height: 32px; /* Bigger by 2px */
-            background: transparent; /* No background */
-            color: white;
-            font-size: 20px; /* Slightly bigger font size */
-            margin: 5px 0; /* Adjust margin for vertical alignment */
-            text-align: center;
-            border: none; /* Remove border */
-        }
-
-        .badge img {
-            width: 32px; /* Bigger by 2px */
-            height: 32px; /* Bigger by 2px */
-            vertical-align: middle;
         }
 
         .tooltip {
@@ -200,7 +206,6 @@
             opacity: 1;
         }
 
-        /* Rain and lightning effect styles */
         .rain {
             position: absolute;
             top: 0;
@@ -287,6 +292,7 @@
                     <a href="https://t.me/kurxx33" target="_blank" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
                     <a href="https://twitter.com/kurxx33" target="_blank" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
                     <a href="https://www.tiktok.com/@kurxx33" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>

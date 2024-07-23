@@ -85,15 +85,24 @@
 
         .buttons h1 {
             margin: 0;
-            font-size: 44px;
+            font-size: 36px;
             text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
             animation: breathing 3s infinite alternate;
+            line-height: 1.2;
         }
 
-        .buttons h1 .small {
-            display: block;
-            font-size: 24px;
-            color: #ddd;
+        .buttons h1 span {
+            font-weight: bold;
+        }
+
+        .buttons h1 .love,
+        .buttons h1 .hatred {
+            color: red;
+        }
+
+        .buttons h1 .eternal,
+        .buttons h1 .temporary {
+            color: blue;
         }
 
         .buttons a {
@@ -142,7 +151,7 @@
 
         .badge {
             width: auto;
-            height: 32px; /* Bigger by 2px */
+            height: 30px; /* Slightly bigger */
             background: transparent; /* No background */
             color: white;
             font-size: 20px; /* Slightly bigger font size */
@@ -152,8 +161,8 @@
         }
 
         .badge img {
-            width: 32px; /* Bigger by 2px */
-            height: 32px; /* Bigger by 2px */
+            width: 30px; /* Slightly bigger */
+            height: 30px; /* Slightly bigger */
             vertical-align: middle;
         }
 
@@ -260,19 +269,15 @@
                     <img class="avatar" src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/e64afe2a731002d551ebb861d3ea9b45.jpg" title="pfp">
                     <!-- Badge Section -->
                     <div class="badge-container">
-                        <!-- Re-added badges -->
-                        <i class="fa-brands fa-square-web-awesome badge" aria-label="Owner"></i>
+                        <i class="fa-brands fa-square-web-awesome badge" style="color: white;" aria-label="Owner"></i>
                         <i class="fa-solid fa-hammer badge" aria-label="Developer"></i>
                         <!-- New Badge -->
-                        <div class="badge badge-creditcard">
-                            <img src="creditcard.gif" alt="Credit Card">
-                            <div class="tooltip">Credit Card Badge</div>
-                        </div>
+                        <div class="badge badge-white" aria-label="New Badge">New Badge</div>
                     </div>
                     <!-- End of Badge Section -->
                     <h1>
-                        @Kurxx33<br>
-                        <span class="small">Welcome!</span>
+                        <span class="hatred">Hatred</span><span class="eternal"> is eternal, </span>
+                        <span class="love">Love</span><span class="temporary"> is temporary</span>
                     </h1>
                     <a href="https://t.me/kurxx33" target="_blank" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
                     <a href="https://twitter.com/kurxx33" target="_blank" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>

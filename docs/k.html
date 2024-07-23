@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>kurxx33</title>
     <meta property="og:title" content="kurxx33">
     <meta name="description" content="Kurxx33 forever">
@@ -38,6 +39,7 @@
         .clickanywhere h4 {
             color: white;
             font-size: 25px;
+            margin: 0;
         }
         .biolink {
             display: none;
@@ -50,7 +52,7 @@
             transition: opacity 1s ease-in-out;
         }
         .card {
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9)); /* Darker gradient */
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)); /* Less transparent gradient */
             border-radius: 16px;
             border: 2px solid silver; /* Silver border */
             padding: 30px;
@@ -134,23 +136,23 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 0 0 20px 20px; /* Rounded left and right sides */
-            border: 2px solid white;
+            border-radius: 10px; /* Rounded corners */
+            border: 1px solid white; /* Thinner border */
             background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-            padding: 10px;
+            padding: 5px;
             margin-top: 10px;
         }
         .badge {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
-            border: 2px solid white;
+            border: 1px solid white;
             background: rgba(255, 255, 255, 0.2);
             color: white;
-            font-size: 24px;
+            font-size: 18px;
             transition: background 0.3s ease, border-color 0.3s ease;
             margin: 0 5px;
         }
@@ -216,9 +218,9 @@
                         <a href="https://www.instagram.com/kurxx33" target="_blank"><i class="fa-brands fa-instagram"></i></a>
                     </div>
                     <div class="discord">
-                        <img class="avatar" src="https://cdn.discordapp.com/avatars/133519704645702400/9f5e9d2e1792f88b31d9e86df0669d02.png" alt="Discord Avatar" class="avatar">
+                        <img class="avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Discord Avatar">
                         <div class="username">Kurxx33</div>
-                        <div class="status">Online</div>
+                        <div class="status">Status: Online</div>
                     </div>
                 </div>
             </div>
@@ -230,7 +232,7 @@
             const biolink = document.getElementById('biolink');
             biolink.style.display = 'flex';
             setTimeout(() => {
-                biolink.style.opacity = '1';
+                biolink.style.opacity = 1;
                 document.getElementById('backgroundMusic').play();
             }, 100);
         }

@@ -1,7 +1,7 @@
 {
   "users": [
-    { "uid": 1, "username": "Kurxx33", "password": "ONG", "bio": "/k" },
-    { "uid": 2, "username": "Test", "password": "1234", "bio": "n/a" },
-    { "uid": 3, "username": "Aria", "password": "Shadow", "bio": "/aria" }
+    { "uid": 1, "username": "Kurxx33", "password": "ONG", "bio": "n/a" },
+    { "uid": 2, "username": "Test", "password": "1234", "bio": "artemas.lol/test" },
+    { "uid": 3, "username": "Aria", "password": "Shadow", "bio": "n/a" }
   ]
 }

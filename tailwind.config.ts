@@ -1,15 +1,4 @@
-module.exports = {
-  content: [
-    './pages/**/*.{js,ts,jsx,tsx,html}',
-    './components/**/*.{js,ts,jsx,tsx}',
-  ],
-  theme: {
-    extend: {},
-  },
-  plugins: [],
-};
-
-
+// tailwind.config.js
 module.exports = {
   darkMode: 'class', // Enable dark mode
   theme: {
@@ -29,6 +18,7 @@ module.exports = {
       },
       boxShadow: {
         'white-glow': '0 0 10px rgba(255, 255, 255, 0.5)',
+        'white-glow-fade': '0 0 10px rgba(255, 255, 255, 0.3)',
       },
       backgroundImage: theme => ({
         'scanlines': 'url(/path/to/scanlines.png)',
@@ -38,6 +28,20 @@ module.exports = {
         '72': '18rem',
         '84': '21rem',
         '96': '24rem',
+      },
+      animation: {
+        'fade-in': 'fadeIn 1s ease-out',
+        'fade-out': 'fadeOut 1s ease-out',
+      },
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        fadeOut: {
+          '0%': { opacity: '1' },
+          '100%': { opacity: '0' },
+        },
       },
     },
   },

@@ -82,12 +82,21 @@
             height: 120px; /* Smaller profile picture */
             object-fit: cover;
             margin-bottom: 20px;
-            margin-top: 60px; /* Move profile picture down */
+            margin-top: 40px; /* Move profile picture down */
             filter: brightness(90%); /* Slightly less white */
         }
 
+        .badges-container {
+            margin: 20px 0; /* Move badges further down */
+        }
+
+        .badges-container .badge {
+            font-size: 24px;
+            margin: 0 5px;
+        }
+
         .links-container {
-            margin: 30px 0; /* Move links further down */
+            margin: 40px 0; /* Move links further down */
         }
 
         .links-container a {
@@ -101,15 +110,6 @@
         .links-container a:hover {
             transform: scale(1.3); /* Zoom in effect */
             color: #f0f0f0; /* Slight color change on hover */
-        }
-
-        .badges-container {
-            margin: 20px 0; /* Increased space from username */
-        }
-
-        .badges-container .badge {
-            font-size: 24px;
-            margin: 0 5px;
         }
 
         .spotify-widget iframe {
@@ -190,4 +190,3 @@
     </script>
 </body>
 </html>
-

@@ -81,16 +81,71 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            z-index: 1000; /* Ensure buttons are on top */
+            z-index: 1000;
+        }
+
+        .buttons img {
+            border-radius: 50%;
+            width: 140px;
+            height: 140px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            margin-bottom: 20px;
+        }
+
+        .buttons h1 {
+            margin: 0;
+            font-size: 44px;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+            animation: breathing 3s infinite alternate;
+        }
+
+        .buttons h1 .small {
+            display: block;
+            font-size: 24px;
+            color: #ddd;
         }
 
         .links-and-badges {
             display: flex;
-            flex-direction: row; /* Change to row for horizontal alignment */
-            gap: 15px; /* Add spacing between links */
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
             margin-top: 20px;
+            width: 100%;
+        }
+
+        .badges-container, .links-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .badge-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .badge {
+            display: flex;
+            align-items: center;
+            background: transparent;
+            color: white;
+            font-size: 20px;
+            margin: 5px 0;
+            text-align: center;
+            border: none;
+        }
+
+        .badge img {
+            width: 32px;
+            height: 32px;
+            vertical-align: middle;
+        }
+
+        .badge span {
+            margin-left: 8px;
         }
 
         .buttons a {
@@ -112,34 +167,6 @@
             transform: scale(1.2);
         }
 
-        .badge-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .badge {
-            width: auto;
-            height: 32px;
-            background: transparent;
-            color: white;
-            font-size: 20px;
-            margin: 5px 0;
-            text-align: center;
-            border: none;
-        }
-
-        .badge img {
-            width: 32px;
-            height: 32px;
-            vertical-align: middle;
-        }
-
-        .badge span {
-            margin-left: 8px;
-        }
-
         @keyframes breathing {
             0% {
                 color: white;
@@ -149,6 +176,39 @@
                 color: lightcoral;
                 text-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
             }
+        }
+
+        .tooltip {
+            visibility: hidden;
+            opacity: 0;
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+            border-radius: 5px;
+            padding: 5px;
+            white-space: nowrap;
+            transition: opacity 0.3s ease-in-out;
+            z-index: 10;
+        }
+
+        .tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 5px;
+            border-style: solid;
+            border-color: rgba(0, 0, 0, 0.8) transparent transparent transparent;
+        }
+
+        .tooltip.show {
+            visibility: visible;
+            opacity: 1;
         }
 
         .rain {
@@ -228,10 +288,10 @@
                     </div>
                     <h1>
                         @Kurxx33<br>
-                        <span class="small">Love is the most twisted curse of all</span>
+                        <span class="small">Love & Peace</span>
                     </h1>
                     <div class="links-and-badges">
-                        <div class="buttons">
+                        <div class="links-container">
                             <a href="https://t.me/kurxx33" target="_blank" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
                             <a href="https://twitter.com/kurxx33" target="_blank" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
                             <a href="https://www.tiktok.com/@kurxx33" target="_blank" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>

@@ -230,61 +230,81 @@
             }, 100);
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
-            const canvas = document.getElementById('snowCanvas');
-            const ctx = canvas.getContext('2d');
+    document.addEventListener('DOMContentLoaded', function() {
+        startSnow();
+    });
+
+    function startSnow() {
+        const canvas = document.getElementById('snowCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const snowflakes = [];
+        const numFlakes = 200;
+
+        class Snowflake {
+            constructor(x, y, speed, size, opacity) {
+                this.x = x;
+                this.y = y;
+                this.speed = speed;
+                this.size = size;
+                this.opacity = opacity;
+                this.angle = Math.random() * 2 * Math.PI;
+                this.spin = Math.random() * 0.02 - 0.01;
+            }
+
+            update() {
+                this.y += this.speed;
+                this.x += Math.sin(this.angle) * 0.5;
+                this.angle += this.spin;
+
+                if (this.y > canvas.height) {
+                    this.y = -this.size;
+                    this.x = Math.random() * canvas.width;
+                    this.opacity = 1;
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.angle);
+                ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`; // White color for snowflakes
+                ctx.shadowBlur = 10; // Increased blur for a more pronounced glow
+                ctx.shadowColor = 'white'; // White glow effect color for snowflakes
+                ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size);
+                ctx.restore();
+            }
+        }
+
+        for (let i = 0; i < numFlakes; i++) {
+            snowflakes.push(new Snowflake(
+                Math.random() * canvas.width,
+                Math.random() * -canvas.height, // Ensure snowflakes start above the top of the canvas
+                Math.random() * 3 + 1,
+                Math.random() * 2 + 1,
+                1
+            ));
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            snowflakes.forEach(flake => {
+                flake.update();
+                flake.draw();
+            });
+            requestAnimationFrame(draw);
+        }
+
+        draw();
+
+        window.addEventListener('resize', () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
-
-            let snowflakes = [];
-
-            function createSnowflake() {
-                const x = Math.random() * canvas.width;
-                const y = Math.random() * canvas.height;
-                const size = Math.random() * 5 + 1;
-                const speed = Math.random() * 3 + 1;
-                const opacity = Math.random() * 0.5 + 0.3;
-                return { x, y, size, speed, opacity };
-            }
-
-            function drawSnowflakes() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
-                ctx.beginPath();
-                snowflakes.forEach(snowflake => {
-                    ctx.globalAlpha = snowflake.opacity;
-                    ctx.arc(snowflake.x, snowflake.y, snowflake.size, 0, Math.PI * 2);
-                    ctx.fill();
-                });
-            }
-
-            function updateSnowflakes() {
-                snowflakes.forEach(snowflake => {
-                    snowflake.y += snowflake.speed;
-                    if (snowflake.y > canvas.height) {
-                        snowflake.y = -snowflake.size;
-                        snowflake.x = Math.random() * canvas.width;
-                    }
-                });
-            }
-
-            function animateSnow() {
-                drawSnowflakes();
-                updateSnowflakes();
-                requestAnimationFrame(animateSnow);
-            }
-
-            for (let i = 0; i < 100; i++) {
-                snowflakes.push(createSnowflake());
-            }
-
-            animateSnow();
-
-            window.addEventListener('resize', () => {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-            });
         });
-    </script>
+    }
+</script>
+<canvas id="snowCanvas"></canvas>
 </body>
 </html>

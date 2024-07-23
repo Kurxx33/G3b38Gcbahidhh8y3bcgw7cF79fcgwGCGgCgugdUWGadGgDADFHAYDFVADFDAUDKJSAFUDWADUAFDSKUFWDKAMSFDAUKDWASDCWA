@@ -54,13 +54,13 @@
             transition: opacity 1s ease-in-out;
             z-index: 999;
             width: 100%;
-            max-width: 800px; /* Increased card width */
+            max-width: 800px;
         }
 
         .card {
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)); /* Less transparent gradient */
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9));
             border-radius: 16px;
-            border: 2px solid silver; /* Silver border */
+            border: 2px solid silver;
             padding: 30px;
             text-align: center;
             color: white;
@@ -68,23 +68,23 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center; /* Center items vertically */
-            opacity: 0.95; /* Slightly more transparent */
-            width: 100%; /* Make card width responsive */
-            max-width: 800px; /* Increased card width */
-            height: 380px; /* 5 pixels longer */
+            justify-content: center;
+            opacity: 0.95;
+            width: 100%;
+            max-width: 800px;
+            height: 380px;
         }
 
         .buttons {
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center; /* Center items horizontally */
+            justify-content: center;
         }
 
         .buttons img {
             border-radius: 50%;
-            width: 140px; /* Slightly smaller profile picture */
+            width: 140px;
             height: 140px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
@@ -111,9 +111,9 @@
             font-size: 20px;
             transition: text-shadow 0.3s ease;
             position: relative;
-            top: 7px; /* Moved down by 7 pixels */
-            display: inline-block; /* Ensure links are inline-block to be clickable */
-            z-index: 10; /* Ensure links are above other content */
+            top: 7px;
+            display: inline-block;
+            z-index: 10;
         }
 
         .buttons a i {
@@ -140,29 +140,29 @@
             position: relative;
             display: flex;
             align-items: center;
-            justify-content: center; /* Center badges horizontally */
-            border-radius: 10px; /* Rounded corners */
-            background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            justify-content: center;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.5);
             padding: 5px;
             margin-top: 10px;
-            max-width: 250px; /* Less wide */
-            flex-wrap: wrap; /* Wrap badges to fit within the container */
+            max-width: 250px;
+            flex-wrap: wrap;
         }
 
         .badge {
             width: auto;
-            height: 32px; /* Bigger by 2px */
-            background: transparent; /* No background */
+            height: 32px;
+            background: transparent;
             color: white;
-            font-size: 20px; /* Slightly bigger font size */
+            font-size: 20px;
             margin: 0 5px;
             text-align: center;
-            border: none; /* Remove border */
+            border: none;
         }
 
         .badge img {
-            width: 32px; /* Bigger by 2px */
-            height: 32px; /* Bigger by 2px */
+            width: 32px;
+            height: 32px;
             vertical-align: middle;
         }
 
@@ -199,7 +199,6 @@
             opacity: 1;
         }
 
-        /* Rain and lightning effect styles */
         .rain {
             position: absolute;
             top: 0;
@@ -283,55 +282,59 @@
                         @Kurxx33<br>
                         <span class="small">Love is the most twisted curse of all</span>
                     </h1>
-                    <a href="https://t.me/kurxx33" target="_blank" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
-                    <a href="https://twitter.com/kurxx33" target="_blank" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
-                    <a href="https://www.tiktok.com/@kurxx33" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                    <div class="social-links">
+                        <a href="https://t.me/kurxx33" target="_blank" aria-label="Telegram"><i class="ri-telegram-line"></i></a>
+                        <a href="https://twitter.com/kurxx33" target="_blank" aria-label="Twitter"><i class="ri-twitter-line"></i></a>
+                        <a href="https://www.tiktok.com/@kurxx33" target="_blank" aria-label="TikTok"><i class="ri-tiktok-line"></i></a>
+                    </div>
                 </div>
             </div>
         </div>
     </main>
-    <div class="rain" id="rain"></div>
-    <div class="lightning" id="lightning"></div>
+    <div class="rain"></div>
     <script>
+        // Show tooltip on badge hover
+        $(document).on('mouseover', '.badge-creditcard', function() {
+            $(this).find('.tooltip').addClass('show');
+        });
+
+        $(document).on('mouseout', '.badge-creditcard', function() {
+            $(this).find('.tooltip').removeClass('show');
+        });
+
         function startExperience() {
             document.querySelector('.clickanywhere').style.display = 'none';
-            const biolink = document.getElementById('biolink');
-            biolink.style.display = 'block';
+            document.querySelector('#biolink').style.display = 'flex';
             setTimeout(() => {
-                biolink.style.opacity = 1;
-            }, 100);
-            document.getElementById('backgroundMusic').play();
+                document.querySelector('#biolink').style.opacity = '1';
+            }, 50);
+            document.querySelector('#backgroundMusic').play();
         }
 
-        const rainContainer = document.getElementById('rain');
-        const lightningContainer = document.getElementById('lightning');
-
-        // Generate rain drops
-        for (let i = 0; i < 200; i++) {
-            const drop = document.createElement('div');
-            drop.className = 'drop';
-            drop.style.left = `${Math.random() * 100}%`;
-            drop.style.animationDuration = `${Math.random() * 0.5 + 0.5}s`;
-            drop.style.animationDelay = `${Math.random() * 1}s`;
-            rainContainer.appendChild(drop);
+        function createRain() {
+            const rain = document.querySelector('.rain');
+            for (let i = 0; i < 100; i++) {
+                const drop = document.createElement('div');
+                drop.classList.add('drop');
+                drop.style.left = `${Math.random() * 100}%`;
+                drop.style.animationDuration = `${Math.random() * 2 + 1}s`;
+                drop.style.animationDelay = `${Math.random() * 5}s`;
+                rain.appendChild(drop);
+            }
         }
 
-        // Generate random lightning strikes
-        function createStrike() {
-            const strike = document.createElement('div');
-            strike.className = 'strike';
-            strike.style.left = `${Math.random() * 100}%`;
-            strike.style.animationDuration = `${Math.random() * 0.2 + 0.1}s`;
-            lightningContainer.appendChild(strike);
+        function createLightning() {
+            const lightning = document.createElement('div');
+            lightning.classList.add('lightning');
+            document.body.appendChild(lightning);
 
-            setTimeout(() => {
-                lightningContainer.removeChild(strike);
-            }, 200);
-
-            setTimeout(createStrike, Math.random() * 8000 + 2000);
+            setInterval(() => {
+                lightning.style.opacity = Math.random() > 0.5 ? 0 : 0.7;
+            }, 2000);
         }
 
-        createStrike();
+        createRain();
+        createLightning();
     </script>
 </body>
 </html>

@@ -3,130 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Artemas</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
-        body {
-            background-color: #121212;
-            color: #e0e0e0;
-            font-family: 'Fira Code', monospace;
-            margin: 0;
-            padding: 0;
-        }
-        .sidebar {
-            background-color: #1e1e1e;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-        }
-        .main-content {
-            background-color: #1f1f1f;
-        }
-        .btn-white {
-            background-color: #fff;
-            color: #000;
-        }
-        .btn-white:hover {
-            background-color: #e0e0e0;
-        }
-        .notification-container {
-            display: none;
-            position: fixed;
-            top: 0;
-            right: 0;
-            width: 40%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            backdrop-filter: blur(8px);
-            color: #fff;
-            padding: 1rem;
-            overflow-y: auto;
-            z-index: 1000;
-            transition: transform 0.3s ease, opacity 0.3s ease;
-            transform: translateX(100%);
-            opacity: 0;
-        }
-        .notification-container.active {
-            transform: translateX(0);
-            opacity: 1;
-        }
         .dropdown-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
+            display: none;
         }
-        .dropdown-content.show {
-            max-height: 300px; /* adjust as needed */
-        }
-        .dropdown-button {
-            position: relative;
-        }
-        .dropdown-button svg {
-            transition: transform 0.3s ease;
-        }
-        .dropdown-button.active svg {
-            transform: rotate(180deg);
-        }
-        .fade-in {
-            animation: fadeIn 0.5s ease-in-out;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        .dropdown-content.active {
+            display: block;
         }
         .pull-out {
-            animation: pullOut 0.3s ease-in-out;
+            transform: translateY(0);
+            transition: transform 0.3s ease;
         }
-        @keyframes pullOut {
-            from { transform: translateX(100%); }
-            to { transform: translateX(0); }
-        }
-        .notification-button {
-            width: 24px;
-            height: 24px;
-        }
-        .notification-icon {
-            fill: currentColor;
+        .pull-out:not(.show) {
+            transform: translateY(-20px);
         }
     </style>
 </head>
-<body>
-    <div class="flex">
-        <aside class="w-64 p-4 h-screen fixed sidebar fade-in">
-            <div class="mb-6">
-                <h2 class="text-xl font-semibold text-gray-200">Dashboard</h2>
-            </div>
-            <nav class="space-y-4">
-                <a href="/dashboard" class="block p-2 rounded-lg hover:bg-gray-700 transition">Bio Page</a>
-                <a href="#upload" class="block p-2 rounded-lg hover:bg-gray-700 transition">Image Host</a>
-                <a href="/analytics" class="block p-2 rounded-lg hover:bg-gray-700 transition">Analytics</a>
-                <a href="/Socials" class="block p-2 rounded-lg hover:bg-gray-700 transition">Socials</a>
-                <div class="mt-6">
-                    <a href="#" id="signOutBtn" class="block p-2 rounded-lg bg-red-600 hover:bg-red-700 transition">Sign Out</a>
-                </div>
-                <div class="flex items-center mt-6 p-2 rounded-lg bg-gray-800">
-                    <img src="profile.jpg" alt="Profile Picture" class="w-12 h-12 rounded-full border-2 border-gray-600">
-                    <div class="ml-4">
-                        <p id="username" class="font-semibold text-gray-200">Kurxx33</p>
-                        <p id="uid" class="text-sm text-gray-400">UID: 1</p>
-                    </div>
-                </div>
-            </nav>
-        </aside>
-        <main class="flex-grow ml-64 p-6 main-content fade-in relative">
-            <button id="notificationBtn" class="absolute top-4 right-4 btn-white rounded-full p-2 shadow-lg hover:bg-gray-200">
-                <svg class="notification-button notification-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 22c1.104 0 2-.896 2-2H10c0 1.104.896 2 2 2zm-1-3h2v-6h-2v6zm1-15c-2.21 0-4 1.79-4 4v6c0 1.104-.896 2-2 2h-1v2h16v-2h-1c-1.104 0-2-.896-2-2V8c0-2.21-1.79-4-4-4z"/></svg>
-            </button>
-            <div id="notificationContainer" class="notification-container">
-                <h3 class="text-lg font-semibold mb-4">Notifications</h3>
-                <div id="notificationList" class="space-y-2">
-                    <!-- Notifications will be added here dynamically -->
+<body class="bg-gray-900 text-gray-100 font-mono">
+    <div class="container mx-auto p-4">
+        <!-- User Profile Section -->
+        <section class="bg-gray-800 p-6 rounded-lg shadow-md mb-6">
+            <div class="flex items-center space-x-4">
+                <img id="userProfilePic" src="" alt="Profile Picture" class="w-16 h-16 rounded-full border-2 border-gray-700">
+                <div class="flex-1">
+                    <h2 id="username" class="text-2xl font-semibold">Username</h2>
+                    <p id="uid" class="text-gray-400">UID: n/a</p>
+                    <p id="totalViews" class="text-gray-400">Total Views: 0</p>
                 </div>
             </div>
-            <section id="bio" class="mb-12">
-                <h2 class="text-2xl font-semibold mb-4 text-gray-200">Bio Page</h2>
-                <div class="space-y-4">
-                    <!-- Dropdowns for Bio Page -->
-                    <!-- Dropdown 1 -->
+        </section>
                     <div class="bg-gray-800 p-4 rounded-lg shadow-md">
                         <div class="dropdown-button flex justify-between items-center cursor-pointer text-gray-200">
                             <span>Profile</span>
@@ -283,6 +190,7 @@
             </section>
         </main>
     </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Handle dropdowns
@@ -294,7 +202,75 @@
                     if (!isActive) content.classList.add('active');
                 });
             });
+
+            // Fetch user data
+            fetch('/path/to/users.json')
+                .then(response => response.json())
+                .then(data => {
+                    // Simulate fetching user data based on session
+                    const currentUserId = 1; // This would be dynamic in a real app
+                    const user = data.users.find(u => u.uid === currentUserId);
+                    if (user) {
+                        document.getElementById('userProfilePic').src = `/path/to/profile-pics/${user.uid}.jpg`; // Replace with actual path
+                        document.getElementById('username').textContent = user.username;
+                        document.getElementById('uid').textContent = `UID: ${user.uid}`;
+                        document.getElementById('totalViews').textContent = `Total Views: ${user.totalViews || 0}`;
+                    } else {
+                        document.getElementById('uid').textContent = 'UID: n/a';
+                    }
+                })
+                .catch(error => console.error('Error fetching user data:', error));
+
+            // Handle sign-out
+            document.getElementById('signOutBtn').addEventListener('click', () => {
+                fetch('/api/signout', { method: 'POST' })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            window.location.href = '/';
+                        } else {
+                            alert('Sign out failed!');
+                        }
+                    });
+            });
+
+            // Handle form submissions
+            document.getElementById('profileForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const file = document.getElementById('profilePic').files[0];
+                uploadFile(file, '/dashboard/upload/profile');
+            });
+
+            document.getElementById('bgForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const file = document.getElementById('bgPic').files[0];
+                uploadFile(file, '/dashboard/upload/background');
+            });
+
+            // Other form handlers (same as before)
+            // ...
         });
+
+        function uploadFile(file, endpoint) {
+            const formData = new FormData();
+            formData.append('file', file);
+            fetch(endpoint, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Authorization': 'Bearer hCMcz8UAEnsZirHnvaoWAVHN.MTcyMDQwMDAzNDY0OQ'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                // Handle successful upload
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                // Handle upload error
+            });
+        }
     </script>
 </body>
 </html>

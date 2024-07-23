@@ -131,6 +131,58 @@
         .discord .status {
             display: none; /* Hide status */
         }
+        .badge-container {
+            position: relative;
+            display: inline-block;
+            margin-top: 10px; /* Space above badge */
+        }
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid white;
+            background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
+            color: white;
+            font-size: 24px;
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+        .badge:hover {
+            background: rgba(255, 255, 255, 0.3); /* Slightly more opaque on hover */
+            border-color: #ddd;
+        }
+        .tooltip {
+            visibility: hidden;
+            opacity: 0;
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+            border-radius: 5px;
+            padding: 5px;
+            white-space: nowrap;
+            transition: opacity 0.3s ease-in-out;
+            z-index: 10;
+        }
+        .tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 5px;
+            border-style: solid;
+            border-color: rgba(0, 0, 0, 0.8) transparent transparent transparent;
+        }
+        .badge-container:hover .tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
@@ -147,9 +199,14 @@
                     <div>
                         <a href="https://t.me/kurxx33" target="_blank"><i class="fa-brands fa-telegram"></i></a>
                         <a href="https://x.com/kurxx33" target="_blank"><i class="fa-brands fa-twitter"></i></a>
-                        <a href="https://www.tiktok.com/kurxx33" target="_blank"><i class="fa-brands fa-tiktok"></i></a>                     
-                        <a href="https://www.instagram.com/kurxx33" target="_blank"><i class="fa-brands fa-instagram"></i></a>                     
-                    </div>                             
+                        <a href="https://www.tiktok.com/kurxx33" target="_blank"><i class="fa-brands fa-tiktok"></i></a>              
+                        <a href="https://www.instagram.com/kurxx33" target="_blank"><i class="fa-brands fa-instagram"></i></a>                    
+                    </div>
+                    <!-- Badge Section -->
+                    <div class="badge-container">
+                        <i class="fa-brands fa-square-web-awesome badge" aria-label="Owner"></i>
+                        <div class="tooltip">Owner</div>
+                    </div>              
                 </div>
             </div>
         </div>
@@ -157,39 +214,8 @@
     <canvas id="snowCanvas"></canvas>
 
     <script>
-        document.addEventListener('contextmenu', (e) => e.preventDefault());
-
-        function ctrlShiftKey(e, keyCode) {
-            return e.ctrlKey && e.shiftKey && e.keyCode === keyCode.charCodeAt(0);
-        }
-
-        document.onkeydown = (e) => {
-            if (
-                e.keyCode === 123 ||
-                ctrlShiftKey(e, 'I') ||
-                ctrlShiftKey(e, 'J') ||
-                ctrlShiftKey(e, 'C') ||
-                (e.ctrlKey && e.keyCode === 'U'.charCodeAt(0)) ||
-                ctrlShiftKey(e, 'U') ||
-                (e.ctrlKey && e.keyCode === 'F'.charCodeAt(0)) ||
-                ctrlShiftKey(e, 'F') ||
-                (e.ctrlKey && e.keyCode === 'P'.charCodeAt(0)) ||
-                ctrlShiftKey(e, 'P') ||
-                (e.ctrlKey && e.keyCode === 'S'.charCodeAt(0)) ||
-                ctrlShiftKey(e, 'S') ||
-                (e.ctrlKey && e.keyCode === 'H'.charCodeAt(0)) ||
-                (e.ctrlKey && e.keyCode === 'W'.charCodeAt(0)) ||
-                (e.ctrlKey && e.keyCode === 'Q'.charCodeAt(0)) ||
-                (e.ctrlKey && e.keyCode === 'R'.charCodeAt(0))
-            ) {
-                e.preventDefault();
-            }
-        };
-
         function startExperience() {
             document.querySelector('.clickanywhere').style.display = 'none';
-
-            // Start playing the music
             const backgroundMusic = document.getElementById('backgroundMusic');
             backgroundMusic.play();
 

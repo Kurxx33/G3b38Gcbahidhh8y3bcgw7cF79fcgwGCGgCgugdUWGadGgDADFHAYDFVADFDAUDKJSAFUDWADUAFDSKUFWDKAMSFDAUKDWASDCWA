@@ -51,7 +51,7 @@
             transition: opacity 1s ease-in-out;
             z-index: 999;
             width: 100%;
-            max-width: 400px;
+            max-width: 450px; /* Slightly wider card */
         }
         .card {
             background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)); /* Less transparent gradient */
@@ -65,17 +65,15 @@
             flex-direction: column;
             align-items: center;
             opacity: 0.95; /* Slightly more transparent */
+            height: 380px; /* 5 pixels longer */
         }
         .buttons img {
             border-radius: 50%;
-            width: 150px;
-            height: 150px;
+            width: 140px; /* Slightly smaller profile picture */
+            height: 140px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
             margin-bottom: 20px;
-        }
-        .buttons img:hover {
-            transform: scale(1.1);
         }
         .buttons h1 {
             margin: 0;
@@ -94,6 +92,8 @@
             text-decoration: none;
             font-size: 20px;
             transition: text-shadow 0.3s ease;
+            position: relative;
+            top: 7px; /* Moved down by 7 pixels */
         }
         .buttons a i {
             font-size: 30px;
@@ -124,7 +124,7 @@
             background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
             padding: 5px;
             margin-top: 10px;
-            max-width: 300px; /* Less wide */
+            max-width: 250px; /* Less wide */
             flex-wrap: wrap; /* Wrap badges to fit within the container */
         }
         .badge {
@@ -137,9 +137,7 @@
             transition: background 0.3s ease;
             margin: 0 5px;
             text-align: center;
-        }
-        .badge:hover {
-            background: rgba(255, 255, 255, 0.3);
+            position: relative;
         }
         .badge img {
             width: 30px;
@@ -172,9 +170,13 @@
             border-style: solid;
             border-color: rgba(0, 0, 0, 0.8) transparent transparent transparent;
         }
-        .badge-container:hover .tooltip {
+        .tooltip.show {
             visibility: visible;
             opacity: 1;
+        }
+        .badge-container .badge-creditcard {
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Mimic badge shape glow */
+            border-radius: 5px; /* Rounded corners */
         }
     </style>
 </head>
@@ -190,19 +192,23 @@
                     <img class="avatar" src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/e64afe2a731002d551ebb861d3ea9b45.jpg" title="pfp">
                     <!-- Badge Section -->
                     <div class="badge-container">
+                        <!-- Re-added badges -->
+                        <i class="fa-brands fa-square-web-awesome badge" aria-label="Owner"></i>
+                        <i class="fa-solid fa-hammer badge" aria-label="Developer"></i>
                         <!-- New Badge -->
-                        <div class="badge">
+                        <div class="badge badge-creditcard">
                             <img src="creditcard.gif" alt="Credit Card">
                             <div class="tooltip">$</div>
                         </div>
+                        <div class="tooltip">Owner</div>
+                        <div class="tooltip">Developer</div>
                     </div>
                     <!-- Badge Section -->
                     <h1>Kurxx33<span class="small">VFX Artist and Developer</span></h1>
                     <div>
                         <a href="https://t.me/kurxx33" target="_blank"><i class="fa-brands fa-telegram"></i></a>
                         <a href="https://x.com/kurxx33" target="_blank"><i class="fa-brands fa-twitter"></i></a>
-                        <a href="https://www.tiktok.com/kurxx33" target="_blank"><i class="fa-brands fa-tiktok"></i></a>              
-                        <a href="https://www.instagram.com/kurxx33" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/kurxx33" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
                     </div>
                 </div>
             </div>
@@ -214,7 +220,7 @@
             const biolink = document.getElementById('biolink');
             biolink.style.display = 'flex';
             setTimeout(() => {
-                biolink.style.opacity = 1;
+                biolink.style.opacity = '1';
                 document.getElementById('backgroundMusic').play();
             }, 100);
         }

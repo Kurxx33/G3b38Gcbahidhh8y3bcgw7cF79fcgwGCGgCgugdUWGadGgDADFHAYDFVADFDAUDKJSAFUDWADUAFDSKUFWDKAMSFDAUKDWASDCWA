@@ -136,9 +136,9 @@
                             </svg>
                         </div>
                         <div class="dropdown-content mt-4 pull-out">
-                            <form id="profileForm">
+                            <form id="profileForm" enctype="multipart/form-data">
                                 <label for="profilePic" class="block mb-2">Upload Profile Picture</label>
-                                <input type="file" id="profilePic" class="w-full p-2 rounded bg-gray-800 border border-gray-700">
+                                <input type="file" id="profilePic" name="profilePic" class="w-full p-2 rounded bg-gray-800 border border-gray-700">
                                 <button type="submit" class="w-full mt-4 btn-white rounded p-2 hover:bg-gray-200">Save</button>
                             </form>
                         </div>
@@ -152,9 +152,9 @@
                             </svg>
                         </div>
                         <div class="dropdown-content mt-4 pull-out">
-                            <form id="bgForm">
+                            <form id="bgForm" enctype="multipart/form-data">
                                 <label for="bgPic" class="block mb-2">Upload Background Video/Photo</label>
-                                <input type="file" id="bgPic" class="w-full p-2 rounded bg-gray-800 border border-gray-700">
+                                <input type="file" id="bgPic" name="bgPic" class="w-full p-2 rounded bg-gray-800 border border-gray-700">
                                 <button type="submit" class="w-full mt-4 btn-white rounded p-2 hover:bg-gray-200">Save</button>
                             </form>
                         </div>
@@ -170,7 +170,7 @@
                         <div class="dropdown-content mt-4 pull-out">
                             <form id="bioTextForm">
                                 <label for="bioText" class="block mb-2">Enter Bio Text</label>
-                                <textarea id="bioText" class="w-full p-2 rounded bg-gray-800 border border-gray-700"></textarea>
+                                <textarea id="bioText" name="bioText" class="w-full p-2 rounded bg-gray-800 border border-gray-700"></textarea>
                                 <button type="submit" class="w-full mt-4 btn-white rounded p-2 hover:bg-gray-200">Save</button>
                             </form>
                         </div>
@@ -186,7 +186,7 @@
                         <div class="dropdown-content mt-4 pull-out">
                             <form id="splashTextForm">
                                 <label for="splashText" class="block mb-2">Enter Splash Screen Text</label>
-                                <textarea id="splashText" class="w-full p-2 rounded bg-gray-800 border border-gray-700"></textarea>
+                                <textarea id="splashText" name="splashText" class="w-full p-2 rounded bg-gray-800 border border-gray-700"></textarea>
                                 <button type="submit" class="w-full mt-4 btn-white rounded p-2 hover:bg-gray-200">Save</button>
                             </form>
                         </div>
@@ -200,14 +200,14 @@
                             </svg>
                         </div>
                         <div class="dropdown-content mt-4 pull-out">
-                            <form id="bioLayoutsForm">
-                                <label for="layoutSelect" class="block mb-2">Choose Bio Layout</label>
-                                <select id="layoutSelect" class="w-full p-2 rounded bg-gray-800 border border-gray-700">
+                            <form id="bioLayoutForm">
+                                <label for="bioLayout" class="block mb-2">Select Bio Layout</label>
+                                <select id="bioLayout" name="bioLayout" class="w-full p-2 rounded bg-gray-800 border border-gray-700">
                                     <option value="layout1">Layout 1</option>
                                     <option value="layout2">Layout 2</option>
                                     <option value="layout3">Layout 3</option>
                                 </select>
-                                <button type="submit" class="w-full mt-4 btn-white rounded p-2 hover:bg-gray-200">Apply</button>
+                                <button type="submit" class="w-full mt-4 btn-white rounded p-2 hover:bg-gray-200">Save</button>
                             </form>
                         </div>
                     </div>
@@ -221,9 +221,13 @@
                         </div>
                         <div class="dropdown-content mt-4 pull-out">
                             <form id="glowForm">
-                                <label for="glowIntensity" class="block mb-2">Glow Intensity</label>
-                                <input type="range" id="glowIntensity" min="0" max="100" class="w-full">
-                                <button type="submit" class="w-full mt-4 btn-white rounded p-2 hover:bg-gray-200">Apply</button>
+                                <label for="glow" class="block mb-2">Select Glow Effect</label>
+                                <select id="glow" name="glow" class="w-full p-2 rounded bg-gray-800 border border-gray-700">
+                                    <option value="none">None</option>
+                                    <option value="subtle">Subtle</option>
+                                    <option value="intense">Intense</option>
+                                </select>
+                                <button type="submit" class="w-full mt-4 btn-white rounded p-2 hover:bg-gray-200">Save</button>
                             </form>
                         </div>
                     </div>
@@ -237,33 +241,33 @@
                         </div>
                         <div class="dropdown-content mt-4 pull-out">
                             <form id="fontForm">
-                                <label for="fontSelect" class="block mb-2">Choose Font</label>
-                                <select id="fontSelect" class="w-full p-2 rounded bg-gray-800 border border-gray-700">
-                                    <option value="fira-code">Fira Code</option>
-                                    <option value="arial">Arial</option>
-                                    <option value="monospace">Monospace</option>
+                                <label for="font" class="block mb-2">Select Font</label>
+                                <select id="font" name="font" class="w-full p-2 rounded bg-gray-800 border border-gray-700">
+                                    <option value="fira">Fira Code</option>
+                                    <option value="roboto">Roboto</option>
+                                    <option value="open-sans">Open Sans</option>
                                 </select>
-                                <button type="submit" class="w-full mt-4 btn-white rounded p-2 hover:bg-gray-200">Apply</button>
+                                <button type="submit" class="w-full mt-4 btn-white rounded p-2 hover:bg-gray-200">Save</button>
                             </form>
                         </div>
                     </div>
                     <!-- Dropdown 8 -->
                     <div class="bg-gray-900 p-4 rounded-lg">
                         <div class="dropdown-button flex justify-between items-center cursor-pointer">
-                            <span>Effects</span>
+                            <span>Effects (rain, snow, etc)</span>
                             <svg class="w-6 h-6 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                             </svg>
                         </div>
                         <div class="dropdown-content mt-4 pull-out">
                             <form id="effectsForm">
-                                <label for="effectsSelect" class="block mb-2">Choose Effect</label>
-                                <select id="effectsSelect" class="w-full p-2 rounded bg-gray-800 border border-gray-700">
+                                <label for="effects" class="block mb-2">Select Effects</label>
+                                <select id="effects" name="effects" class="w-full p-2 rounded bg-gray-800 border border-gray-700">
+                                    <option value="none">None</option>
                                     <option value="rain">Rain</option>
                                     <option value="snow">Snow</option>
-                                    <option value="stars">Stars</option>
                                 </select>
-                                <button type="submit" class="w-full mt-4 btn-white rounded p-2 hover:bg-gray-200">Apply</button>
+                                <button type="submit" class="w-full mt-4 btn-white rounded p-2 hover:bg-gray-200">Save</button>
                             </form>
                         </div>
                     </div>
@@ -276,122 +280,55 @@
                             </svg>
                         </div>
                         <div class="dropdown-content mt-4 pull-out">
-                            <form id="colorsForm">
-                                <label for="colorsSelect" class="block mb-2">Choose Color</label>
-                                <input type="color" id="colorPicker" class="w-full p-2 rounded">
-                                <button type="submit" class="w-full mt-4 btn-white rounded p-2 hover:bg-gray-200">Apply</button>
+                            <form id="colorForm">
+                                <label for="bioColor" class="block mb-2">Select Bio Color</label>
+                                <input type="color" id="bioColor" name="bioColor" class="w-full p-2 rounded bg-gray-800 border border-gray-700">
+                                <button type="submit" class="w-full mt-4 btn-white rounded p-2 hover:bg-gray-200">Save</button>
                             </form>
                         </div>
                     </div>
                 </div>
-            </section>
-            <section id="upload" class="mb-12">
-                <h2 class="text-2xl font-bold mb-4">Image Upload</h2>
-                <form id="fileUploadForm">
-                    <label for="fileUpload" class="block mb-2">Upload your files:</label>
-                    <input type="file" id="fileUpload" class="w-full p-2 rounded bg-gray-800 border border-gray-700" multiple>
-                    <button type="submit" class="w-full mt-4 btn-white rounded p-2 hover:bg-gray-200">Upload</button>
-                </form>
             </section>
         </main>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Dropdown functionality
+            // Handle dropdowns
             document.querySelectorAll('.dropdown-button').forEach(button => {
                 button.addEventListener('click', () => {
                     const content = button.nextElementSibling;
-                    content.classList.toggle('show');
-                    button.classList.toggle('active');
+                    const isActive = button.classList.toggle('active');
+                    content.classList.toggle('show', isActive);
                 });
             });
 
-            // Notification button
-            const notificationBtn = document.getElementById('notificationBtn');
-            const notificationContainer = document.getElementById('notificationContainer');
-            notificationBtn.addEventListener('click', () => {
+            // Handle notifications
+            document.getElementById('notificationBtn').addEventListener('click', () => {
+                const notificationContainer = document.getElementById('notificationContainer');
                 notificationContainer.classList.toggle('active');
             });
 
-            // Form submission handlers
-            document.getElementById('profileForm').addEventListener('submit', (e) => {
-                e.preventDefault();
-                const file = document.getElementById('profilePic').files[0];
-                uploadFile(file, '/dashboard/upload/profile');
-            });
+            // Example notification addition
+            const notificationList = document.getElementById('notificationList');
+            const notification = document.createElement('div');
+            notification.textContent = 'New notification message!';
+            notification.className = 'p-2 bg-gray-800 mb-2 rounded';
+            notificationList.appendChild(notification);
 
-            document.getElementById('bgForm').addEventListener('submit', (e) => {
-                e.preventDefault();
-                const file = document.getElementById('bgPic').files[0];
-                uploadFile(file, '/dashboard/upload/background');
-            });
-
-            document.getElementById('splashTextForm').addEventListener('submit', (e) => {
-                e.preventDefault();
-                const text = document.getElementById('splashText').value;
-                // Handle splash screen text save
-            });
-
-            document.getElementById('bioLayoutsForm').addEventListener('submit', (e) => {
-                e.preventDefault();
-                const layout = document.getElementById('layoutSelect').value;
-                // Handle bio layout change
-            });
-
-            document.getElementById('glowForm').addEventListener('submit', (e) => {
-                e.preventDefault();
-                const intensity = document.getElementById('glowIntensity').value;
-                // Handle glow intensity change
-            });
-
-            document.getElementById('fontForm').addEventListener('submit', (e) => {
-                e.preventDefault();
-                const font = document.getElementById('fontSelect').value;
-                // Handle font change
-            });
-
-            document.getElementById('effectsForm').addEventListener('submit', (e) => {
-                e.preventDefault();
-                const effect = document.getElementById('effectsSelect').value;
-                // Handle effect change
-            });
-
-            document.getElementById('colorsForm').addEventListener('submit', (e) => {
-                e.preventDefault();
-                const color = document.getElementById('colorPicker').value;
-                // Handle color change
-            });
-
-            document.getElementById('fileUploadForm').addEventListener('submit', (e) => {
-                e.preventDefault();
-                const files = document.getElementById('fileUpload').files;
-                for (const file of files) {
-                    uploadFile(file, '/dashboard/upload/file');
-                }
+            // Handle sign-out
+            document.getElementById('signOutBtn').addEventListener('click', () => {
+                fetch('/api/signout', { method: 'POST' })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            window.location.href = '/';
+                        } else {
+                            alert('Sign out failed!');
+                        }
+                    });
             });
         });
-
-        function uploadFile(file, endpoint) {
-            const formData = new FormData();
-            formData.append('file', file);
-            fetch(endpoint, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Authorization': 'Bearer hCMcz8UAEnsZirHnvaoWAVHN.MTcyMDQwMDAzNDY0OQ'
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Success:', data);
-                // Handle successful upload
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                // Handle upload error
-            });
-        }
     </script>
 </body>
 </html>

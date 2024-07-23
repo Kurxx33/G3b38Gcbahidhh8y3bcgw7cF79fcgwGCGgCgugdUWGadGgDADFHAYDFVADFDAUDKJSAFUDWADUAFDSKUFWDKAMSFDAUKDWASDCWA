@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{username}</title>
+    <meta property="og:title" content="{username}">
+    <meta name="description" content="{bio_text}">
+    <meta name="twitter:image:src" content="{profile_picture}">
+    <meta name="theme-color" content="{theme_color}">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ionicons/7.1.0/esm/ionicons.min.js"></script>
+    <script src="https://kit.fontawesome.com/b0c7a14384.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* Your existing CSS styles */
+    </style>
+</head>
+<body>
+    <audio id="backgroundMusic" loop src="{background_music}"></audio>
+    <div class="clickanywhere" onclick="startExperience()">
+        <h4>[  Hi👋, Click Anywhere  ]</h4>
+    </div>
+    <main>
+        <div id="biolink" class="biolink">
+            <div class="card">
+                <div class="buttons">
+                    <img class="avatar" src="{profile_picture}" title="pfp">
+                    <div class="discord">
+                        <div class="username">
+                            <div>The currently doing: {current_activity}</div>
+                            <div class="status">
+                                Status: <span class="status-dot"></span> {status}
+                            </div>
+                        </div>
+                    </div>
+                    <h1>{username}<span class="small">{bio_text}</span></h1>
+                    <div>
+                        <a href="{telegram_link}" target="_blank"><i class="fa-brands fa-telegram"></i></a>
+                        <a href="{twitter_link}" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="{tiktok_link}" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <canvas id="snowCanvas"></canvas>
+    <script>
+        // Your existing JavaScript
+    </script>
+</body>
+</html>

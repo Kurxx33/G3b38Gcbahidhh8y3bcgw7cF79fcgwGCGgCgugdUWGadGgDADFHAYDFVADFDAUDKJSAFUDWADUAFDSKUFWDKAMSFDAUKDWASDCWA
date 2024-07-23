@@ -64,6 +64,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            opacity: 0.95; /* Slightly more transparent */
         }
         .buttons img {
             border-radius: 50%;
@@ -113,24 +114,6 @@
                 text-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
             }
         }
-        .discord {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 10px;
-        }
-        .discord .avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            margin-right: 10px;
-        }
-        .discord .username {
-            text-align: center;
-        }
-        .discord .status {
-            display: none;
-        }
         .badge-container {
             position: relative;
             display: flex;
@@ -141,24 +124,27 @@
             background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
             padding: 5px;
             margin-top: 10px;
+            max-width: 300px; /* Less wide */
+            flex-wrap: wrap; /* Wrap badges to fit within the container */
         }
         .badge {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 30px;
+            width: auto;
             height: 30px;
-            border-radius: 50%;
-            border: 1px solid white;
+            border: none;
             background: rgba(255, 255, 255, 0.2);
             color: white;
             font-size: 18px;
-            transition: background 0.3s ease, border-color 0.3s ease;
+            transition: background 0.3s ease;
             margin: 0 5px;
+            text-align: center;
         }
         .badge:hover {
             background: rgba(255, 255, 255, 0.3);
-            border-color: #ddd;
+        }
+        .badge img {
+            width: 30px;
+            height: 30px;
+            vertical-align: middle;
         }
         .tooltip {
             visibility: hidden;
@@ -204,10 +190,11 @@
                     <img class="avatar" src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/e64afe2a731002d551ebb861d3ea9b45.jpg" title="pfp">
                     <!-- Badge Section -->
                     <div class="badge-container">
-                        <i class="fa-brands fa-square-web-awesome badge" aria-label="Owner"></i>
-                        <i class="fa-solid fa-hammer badge" aria-label="Developer"></i>
-                        <div class="tooltip">Owner</div>
-                        <div class="tooltip">Developer</div>
+                        <!-- New Badge -->
+                        <div class="badge">
+                            <img src="creditcard.gif" alt="Credit Card">
+                            <div class="tooltip">$</div>
+                        </div>
                     </div>
                     <!-- Badge Section -->
                     <h1>Kurxx33<span class="small">VFX Artist and Developer</span></h1>
@@ -216,11 +203,6 @@
                         <a href="https://x.com/kurxx33" target="_blank"><i class="fa-brands fa-twitter"></i></a>
                         <a href="https://www.tiktok.com/kurxx33" target="_blank"><i class="fa-brands fa-tiktok"></i></a>              
                         <a href="https://www.instagram.com/kurxx33" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-                    </div>
-                    <div class="discord">
-                        <img class="avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Discord Avatar">
-                        <div class="username">Kurxx33</div>
-                        <div class="status">Status: Online</div>
                     </div>
                 </div>
             </div>

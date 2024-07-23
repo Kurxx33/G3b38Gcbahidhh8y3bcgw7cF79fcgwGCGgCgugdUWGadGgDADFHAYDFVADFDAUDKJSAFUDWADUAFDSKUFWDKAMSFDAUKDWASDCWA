@@ -75,14 +75,16 @@
             height: 380px;
         }
 
-        .buttons {
+        .profile-container {
             display: flex;
-            flex-direction: column; /* Profile picture and title vertically aligned */
+            flex-direction: column; /* Align profile picture, badges, and username vertically */
             align-items: center;
             justify-content: center;
+            width: 100%;
+            height: 100%;
         }
 
-        .buttons img {
+        .profile-container img {
             border-radius: 50%;
             width: 140px;
             height: 140px;
@@ -91,32 +93,11 @@
             margin-bottom: 20px;
         }
 
-        .buttons h1 {
-            margin: 0;
-            font-size: 44px;
-            text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
-            animation: breathing 3s infinite alternate;
-        }
-
-        .buttons h1 .small {
-            display: block;
-            font-size: 24px;
-            color: #ddd;
-        }
-
-        .links-and-badges {
-            display: flex; /* Align badges and links horizontally */
-            flex-direction: row;
-            align-items: center;
-            margin-top: 20px;
-            justify-content: center; /* Center the badges and links */
-        }
-
-        .badge-container {
+        .profile-container .badges {
             display: flex; /* Align badges horizontally */
             flex-direction: row;
             align-items: center;
-            margin-right: 20px;
+            margin-bottom: 20px; /* Space between badges and username */
         }
 
         .badge {
@@ -138,6 +119,27 @@
 
         .badge span {
             margin-left: 8px; /* Space between image and text */
+        }
+
+        .profile-container h1 {
+            margin: 0;
+            font-size: 44px;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+            animation: breathing 3s infinite alternate;
+        }
+
+        .profile-container h1 .small {
+            display: block;
+            font-size: 24px;
+            color: #ddd;
+        }
+
+        .links-and-badges {
+            display: flex; /* Align badges and links horizontally */
+            flex-direction: row;
+            align-items: center;
+            margin-top: 20px;
+            justify-content: center; /* Center the badges and links */
         }
 
         .buttons a {
@@ -268,24 +270,26 @@
     <main>
         <div id="biolink" class="biolink">
             <div class="card">
-                <div class="buttons">
+                <div class="profile-container">
                     <img class="avatar" src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/e64afe2a731002d551ebb861d3ea9b45.jpg" title="pfp">
+                    <div class="badges">
+                        <i class="fa-brands fa-square-web-awesome badge" aria-label="Owner"></i>
+                        <i class="fa-solid fa-hammer badge" aria-label="Developer"></i>
+                        <div class="badge badge-creditcard">
+                            <img src="creditcard.gif" alt="Credit Card">
+                            <div class="tooltip">Credit Card Badge</div>
+                        </div>
+                    </div>
                     <h1>
                         @Kurxx33<br>
                         <span class="small">Love is the most twisted curse of all</span>
                     </h1>
                     <div class="links-and-badges">
-                        <div class="badge-container">
-                            <i class="fa-brands fa-square-web-awesome badge" aria-label="Owner"></i>
-                            <i class="fa-solid fa-hammer badge" aria-label="Developer"></i>
-                            <div class="badge badge-creditcard">
-                                <img src="creditcard.gif" alt="Credit Card">
-                                <div class="tooltip">Credit Card Badge</div>
-                            </div>
+                        <div class="buttons">
+                            <a href="https://t.me/kurxx33" target="_blank" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
+                            <a href="https://twitter.com/kurxx33" target="_blank" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="https://www.tiktok.com/@kurxx33" target="_blank" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
                         </div>
-                        <a href="https://t.me/kurxx33" target="_blank" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
-                        <a href="https://twitter.com/kurxx33" target="_blank" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
-                        <a href="https://www.tiktok.com/@kurxx33" target="_blank" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
                     </div>
                 </div>
             </div>

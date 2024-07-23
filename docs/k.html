@@ -62,7 +62,7 @@
             background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9));
             border-radius: 16px;
             border: 2px solid silver;
-            padding: 30px;
+            padding: 40px; /* Increased padding */
             text-align: center;
             color: white;
             position: relative;
@@ -73,7 +73,7 @@
             opacity: 0.95;
             width: 100%;
             max-width: 800px;
-            height: 380px;
+            height: 440px; /* Increased height */
         }
 
         .buttons {
@@ -86,8 +86,8 @@
 
         .buttons img {
             border-radius: 50%;
-            width: 140px;
-            height: 140px;
+            width: 120px; /* Reduced profile picture size */
+            height: 120px; /* Reduced profile picture size */
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
             margin-bottom: 20px;
@@ -149,28 +149,26 @@
             margin-left: 8px;
         }
 
-.buttons a {
-    color: white; /* Ensure the text is white */
-    margin: 10px; /* Increased margin to prevent touching the card */
-    text-decoration: none;
-    font-size: 28px; /* Adjust icon size */
-    transition: text-shadow 0.3s ease, transform 0.3s ease;
-    position: relative;
-    display: inline-block;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Add glow effect */
-    margin-top: 10px; /* Move icons down slightly */
-}
+        .buttons a {
+            color: white; /* Ensure the text is white */
+            margin: 15px; /* Adjusted margin */
+            text-decoration: none;
+            font-size: 32px; /* Increased icon size */
+            transition: text-shadow 0.3s ease, transform 0.3s ease;
+            position: relative;
+            display: inline-block;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Add glow effect */
+        }
 
-.buttons a i {
-    font-size: 40px; /* Adjust icon size */
-    color: white; /* Ensure icons are white */
-    transition: transform 0.3s ease;
-}
+        .buttons a i {
+            font-size: 40px; /* Adjust icon size */
+            color: white; /* Ensure icons are white */
+            transition: transform 0.3s ease;
+        }
 
-.buttons a:hover i {
-    transform: scale(1.2); /* Scale effect on hover */
-}
-
+        .buttons a:hover i {
+            transform: scale(1.2); /* Scale effect on hover */
+        }
 
         @keyframes breathing {
             0% {
@@ -290,8 +288,15 @@
         <div id="biolink" class="biolink">
             <div class="card">
                 <div class="buttons">
-                    <img class="avatar" src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/e64afe2a731002d551ebb861d3ea9b45.jpg" title="pfp">
-                       <div class="badge-container">
+                    <img class="avatar" src="docs/profilepic.jpg" alt="Profile Picture">
+                    <h1>Kurxx33<span class="small">@Kurxx33</span></h1>
+                    <div class="links-and-badges">
+                        <div class="links-container">
+                            <a href="https://t.me/kurxx33" target="_blank" title="Telegram" class="tooltip">Telegram <i class="fa-brands fa-telegram"></i></a>
+                            <a href="https://twitter.com/kurxx33" target="_blank" title="Twitter" class="tooltip">Twitter <i class="fa-brands fa-twitter"></i></a>
+                            <a href="https://www.tiktok.com/@kurxx33" target="_blank" title="TikTok" class="tooltip">TikTok <i class="fa-brands fa-tiktok"></i></a>
+                        </div>
+                        <div class="badges-container">
                         <i class="fa-brands fa-square-web-awesome badge" aria-label="Owner"></i>
                         <i class="fa-solid fa-hammer badge" aria-label="Developer"></i>
                         <i class="fa-brands fa-bitcoin" aria-label="Money maker"></i>

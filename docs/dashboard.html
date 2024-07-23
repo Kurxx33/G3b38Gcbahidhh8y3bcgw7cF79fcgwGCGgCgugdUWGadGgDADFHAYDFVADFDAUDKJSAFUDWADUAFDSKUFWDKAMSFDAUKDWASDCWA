@@ -283,6 +283,53 @@
         </main>
     </div>
 
+        <div class="main-content w-4/5 h-screen p-10">
+            <h2 class="text-3xl mb-5">Edit Profile</h2>
+            <form id="profileForm" class="space-y-5">
+                <div>
+                    <label for="username" class="block">Username</label>
+                    <input type="text" id="username" name="username" class="w-full p-2">
+                </div>
+                <div>
+                    <label for="bio_text" class="block">Bio Text</label>
+                    <input type="text" id="bio_text" name="bio_text" class="w-full p-2">
+                </div>
+                <div>
+                    <label for="profile_picture" class="block">Profile Picture URL</label>
+                    <input type="text" id="profile_picture" name="profile_picture" class="w-full p-2">
+                </div>
+                <div>
+                    <label for="background_music" class="block">Background Music URL</label>
+                    <input type="text" id="background_music" name="background_music" class="w-full p-2">
+                </div>
+                <div>
+                    <label for="theme_color" class="block">Theme Color</label>
+                    <input type="color" id="theme_color" name="theme_color" class="w-full p-2">
+                </div>
+                <div>
+                    <label for="current_activity" class="block">Current Activity</label>
+                    <input type="text" id="current_activity" name="current_activity" class="w-full p-2">
+                </div>
+                <div>
+                    <label for="status" class="block">Status</label>
+                    <input type="text" id="status" name="status" class="w-full p-2">
+                </div>
+                <div>
+                    <label for="telegram_link" class="block">Telegram Link</label>
+                    <input type="text" id="telegram_link" name="telegram_link" class="w-full p-2">
+                </div>
+                <div>
+                    <label for="twitter_link" class="block">Twitter Link</label>
+                    <input type="text" id="twitter_link" name="twitter_link" class="w-full p-2">
+                </div>
+                <div>
+                    <label for="tiktok_link" class="block">TikTok Link</label>
+                    <input type="text" id="tiktok_link" name="tiktok_link" class="w-full p-2">
+                </div>
+                <button type="submit" class="btn-white p-2 rounded">Save Changes</button>
+            </form>
+        </div>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -328,6 +375,34 @@
                 // Implement saving splash text functionality here
             });
         });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = { uid: 2, username: "Test", password: "1234", bio: "artemas.lol/test" }; // Dummy user for example
+            
+            // Populate form with current user data
+            document.getElementById('username').value = user.username;
+            document.getElementById('bio_text').value = user.bio;
+            // Populate other fields similarly
+
+            document.getElementById('profileForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const updatedProfile = {
+                    username: document.getElementById('username').value,
+                    bio_text: document.getElementById('bio_text').value,
+                    profile_picture: document.getElementById('profile_picture').value,
+                    background_music: document.getElementById('background_music').value,
+                    theme_color: document.getElementById('theme_color').value,
+                    current_activity: document.getElementById('current_activity').value,
+                    status: document.getElementById('status').value,
+                    telegram_link: document.getElementById('telegram_link').value,
+                    twitter_link: document.getElementById('twitter_link').value,
+                    tiktok_link: document.getElementById('tiktok_link').value,
+                };
+
+                // Here you would send the updated profile to the server to save to the users.json file
+                console.log('Updated Profile:', updatedProfile);
+
     </script>
 </body>
 </html>

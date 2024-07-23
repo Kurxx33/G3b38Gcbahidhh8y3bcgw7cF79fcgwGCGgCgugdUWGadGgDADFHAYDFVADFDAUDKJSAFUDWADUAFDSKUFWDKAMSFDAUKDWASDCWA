@@ -78,22 +78,33 @@
 
         .profile-pic {
             border-radius: 50%;
-            width: 150px;
-            height: 150px;
+            width: 130px; /* Slightly smaller */
+            height: 130px; /* Slightly smaller */
             object-fit: cover;
             margin-bottom: 20px;
-            margin-top: 30px; /* Move profile picture down */
+            margin-top: 50px; /* Move profile picture down */
+            filter: brightness(90%); /* Slightly less white */
         }
 
-        .links-container, .badges-container {
-            margin: 10px 0;
+        .links-container {
+            margin: 20px 0; /* Moved down */
         }
 
         .links-container a {
             color: #fff;
             text-decoration: none;
-            margin: 0 10px;
-            font-size: 18px;
+            margin: 0 15px; /* Increase margin */
+            font-size: 24px; /* Bigger links */
+            transition: transform 0.3s ease, color 0.3s ease; /* Hover animation */
+        }
+
+        .links-container a:hover {
+            transform: scale(1.2); /* Zoom in effect */
+            color: #f0f0f0; /* Slight color change on hover */
+        }
+
+        .badges-container {
+            margin: 10px 0;
         }
 
         .badges-container .badge {
@@ -179,3 +190,4 @@
     </script>
 </body>
 </html>
+

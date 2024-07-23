@@ -54,7 +54,7 @@
             transition: opacity 1s ease-in-out;
             z-index: 999;
             width: 100%;
-            max-width: 600px; /* Even wider card */
+            max-width: 800px; /* Increased card width */
         }
 
         .card {
@@ -70,7 +70,7 @@
             align-items: center;
             opacity: 0.95; /* Slightly more transparent */
             width: 100%; /* Make card width responsive */
-            max-width: 600px; /* Even wider card */
+            max-width: 800px; /* Increased card width */
             height: 380px; /* 5 pixels longer */
         }
 
@@ -104,6 +104,8 @@
             transition: text-shadow 0.3s ease;
             position: relative;
             top: 7px; /* Moved down by 7 pixels */
+            display: inline-block; /* Ensure links are inline-block to be clickable */
+            z-index: 10; /* Ensure links are above other content */
         }
 
         .buttons a i {

@@ -1,15 +1,86 @@
-body {
-    font-family: 'Fira Code', monospace;
+/* Dropdown Container */
+section {
+  padding: 16px;
 }
 
-aside {
-    transition: transform 0.3s ease;
+/* Dropdown Button */
+.dropdown-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  color: #e5e7eb; /* Gray-200 */
+  transition: color 0.3s ease;
 }
 
-aside:hover {
-    transform: translateX(0);
+.dropdown-button:hover {
+  color: #ffffff; /* White on hover */
 }
 
-main {
-    transition: margin-left 0.3s ease;
+.dropdown-button svg {
+  transition: transform 0.3s ease;
+}
+
+/* Dropdown Content */
+.dropdown-content {
+  display: none;
+  transition: max-height 0.3s ease;
+  max-height: 0;
+  overflow: hidden;
+}
+
+.dropdown-content.show {
+  display: block;
+  max-height: 300px; /* Adjust as needed */
+}
+
+.dropdown-content form {
+  display: flex;
+  flex-direction: column;
+}
+
+input[type="file"],
+select,
+textarea {
+  background-color: #374151; /* Gray-700 */
+  border: 1px solid #4b5563; /* Gray-600 */
+  color: #e5e7eb; /* Gray-200 */
+  border-radius: 0.375rem; /* Rounded-lg */
+}
+
+input[type="file"]::file-selector-button {
+  border: none;
+  background-color: #1f2937; /* Gray-800 */
+  color: #e5e7eb; /* Gray-200 */
+}
+
+button {
+  background-color: #ffffff; /* White */
+  color: #000000; /* Black */
+  border-radius: 0.375rem; /* Rounded-lg */
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #f3f4f6; /* Gray-200 */
+}
+
+textarea {
+  resize: vertical; /* Allow vertical resize */
+}
+
+input[type="color"] {
+  border: 1px solid #4b5563; /* Gray-600 */
+}
+
+/* Dropdown Animations */
+.pull-out {
+  transform: translateY(-20px);
+}
+
+.show.pull-out {
+  transform: translateY(0);
 }

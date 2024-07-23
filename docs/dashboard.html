@@ -8,21 +8,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
     <style>
         body {
-            background-color: black;
-            color: white;
+            background-color: #121212;
+            color: #e0e0e0;
             font-family: 'Fira Code', monospace;
             margin: 0;
             padding: 0;
         }
         .sidebar {
-            background-color: #121212;
+            background-color: #1e1e1e;
         }
         .main-content {
             background-color: #0d0d0d;
         }
         .btn-white {
-            background-color: white;
-            color: black;
+            background-color: #ffffff;
+            color: #000000;
         }
         .btn-white:hover {
             background-color: #e0e0e0;
@@ -45,7 +45,7 @@
             height: 100%;
             background: rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(10px);
-            color: white;
+            color: #e0e0e0;
             padding: 1rem;
             overflow-y: auto;
             z-index: 1000;
@@ -58,12 +58,14 @@
             opacity: 1;
         }
         .dropdown-content {
-            transition: all 0.3s ease;
+            transition: max-height 0.3s ease, opacity 0.3s ease;
             max-height: 0;
             overflow: hidden;
+            opacity: 0;
         }
         .dropdown-content.show {
             max-height: 500px; /* adjust as needed */
+            opacity: 1;
         }
         .dropdown-button {
             position: relative;
@@ -181,31 +183,32 @@
                             </svg>
                         </div>
                         <div class="dropdown-content mt-4 pull-out">
-                            <form id="bioLayoutsForm">
-                                <label for="layoutSelect" class="block mb-2 text-gray-400">Select Bio Layout</label>
-                                <select id="layoutSelect" name="layoutSelect" class="w-full p-2 rounded-lg bg-gray-700 border border-gray-600 text-gray-200">
-                                    <option value="layout1">Layout 1</option>
-                                    <option value="layout2">Layout 2</option>
-                                    <option value="layout3">Layout 3</option>
-                                </select>
-                                <button type="submit" class="w-full mt-4 btn-white rounded-lg p-2 hover:bg-gray-200">Apply</button>
-                            </form>
+                            <label for="bioLayout" class="block mb-2 text-gray-400">Select Bio Layout</label>
+                            <select id="bioLayout" name="bioLayout" class="w-full p-2 rounded-lg bg-gray-700 border border-gray-600 text-gray-200">
+                                <option value="layout1">Layout 1</option>
+                                <option value="layout2">Layout 2</option>
+                                <option value="layout3">Layout 3</option>
+                            </select>
+                            <button type="button" class="w-full mt-4 btn-white rounded-lg p-2 hover:bg-gray-200">Apply</button>
                         </div>
                     </div>
                     <!-- Dropdown 5 -->
                     <div class="bg-gray-800 p-4 rounded-lg shadow-md">
                         <div class="dropdown-button flex justify-between items-center cursor-pointer text-gray-200">
-                            <span>Glow Intensity</span>
+                            <span>Glow</span>
                             <svg class="w-6 h-6 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                             </svg>
                         </div>
                         <div class="dropdown-content mt-4 pull-out">
-                            <form id="glowForm">
-                                <label for="glowIntensity" class="block mb-2 text-gray-400">Glow Intensity</label>
-                                <input type="range" id="glowIntensity" name="glowIntensity" min="1" max="10" class="w-full">
-                                <button type="submit" class="w-full mt-4 btn-white rounded-lg p-2 hover:bg-gray-200">Save</button>
-                            </form>
+                            <label for="glowEffect" class="block mb-2 text-gray-400">Select Glow Effect</label>
+                            <select id="glowEffect" name="glowEffect" class="w-full p-2 rounded-lg bg-gray-700 border border-gray-600 text-gray-200">
+                                <option value="none">None</option>
+                                <option value="glow1">Glow 1</option>
+                                <option value="glow2">Glow 2</option>
+                                <option value="glow3">Glow 3</option>
+                            </select>
+                            <button type="button" class="w-full mt-4 btn-white rounded-lg p-2 hover:bg-gray-200">Apply</button>
                         </div>
                     </div>
                     <!-- Dropdown 6 -->
@@ -217,14 +220,13 @@
                             </svg>
                         </div>
                         <div class="dropdown-content mt-4 pull-out">
-                            <form id="fontForm">
-                                <label for="fontSelect" class="block mb-2 text-gray-400">Select Font</label>
-                                <select id="fontSelect" name="fontSelect" class="w-full p-2 rounded-lg bg-gray-700 border border-gray-600 text-gray-200">
-                                    <option value="fira-code">Fira Code</option>
-                                    <option value="mono">Monospace</option>
-                                </select>
-                                <button type="submit" class="w-full mt-4 btn-white rounded-lg p-2 hover:bg-gray-200">Apply</button>
-                            </form>
+                            <label for="fontSelect" class="block mb-2 text-gray-400">Select Font</label>
+                            <select id="fontSelect" name="fontSelect" class="w-full p-2 rounded-lg bg-gray-700 border border-gray-600 text-gray-200">
+                                <option value="firaCode">Fira Code</option>
+                                <option value="roboto">Roboto</option>
+                                <option value="openSans">Open Sans</option>
+                            </select>
+                            <button type="button" class="w-full mt-4 btn-white rounded-lg p-2 hover:bg-gray-200">Apply</button>
                         </div>
                     </div>
                     <!-- Dropdown 7 -->
@@ -236,46 +238,28 @@
                             </svg>
                         </div>
                         <div class="dropdown-content mt-4 pull-out">
-                            <form id="effectsForm">
-                                <label for="effectsSelect" class="block mb-2 text-gray-400">Select Effect</label>
-                                <select id="effectsSelect" name="effectsSelect" class="w-full p-2 rounded-lg bg-gray-700 border border-gray-600 text-gray-200">
-                                    <option value="rain">Rain</option>
-                                    <option value="snow">Snow</option>
-                                </select>
-                                <button type="submit" class="w-full mt-4 btn-white rounded-lg p-2 hover:bg-gray-200">Apply</button>
-                            </form>
+                            <label for="effects" class="block mb-2 text-gray-400">Select Effects</label>
+                            <select id="effects" name="effects" class="w-full p-2 rounded-lg bg-gray-700 border border-gray-600 text-gray-200">
+                                <option value="none">None</option>
+                                <option value="rain">Rain</option>
+                                <option value="snow">Snow</option>
+                                <option value="confetti">Confetti</option>
+                            </select>
+                            <button type="button" class="w-full mt-4 btn-white rounded-lg p-2 hover:bg-gray-200">Apply</button>
                         </div>
                     </div>
                     <!-- Dropdown 8 -->
                     <div class="bg-gray-800 p-4 rounded-lg shadow-md">
                         <div class="dropdown-button flex justify-between items-center cursor-pointer text-gray-200">
-                            <span>Colors</span>
+                            <span>Colors for Bios in Splash Screens</span>
                             <svg class="w-6 h-6 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                             </svg>
                         </div>
                         <div class="dropdown-content mt-4 pull-out">
-                            <form id="colorsForm">
-                                <label for="colorPicker" class="block mb-2 text-gray-400">Pick a Color</label>
-                                <input type="color" id="colorPicker" name="colorPicker" class="w-full p-2 rounded-lg bg-gray-700 border border-gray-600 text-gray-200">
-                                <button type="submit" class="w-full mt-4 btn-white rounded-lg p-2 hover:bg-gray-200">Apply</button>
-                            </form>
-                        </div>
-                    </div>
-                    <!-- Dropdown 9 -->
-                    <div class="bg-gray-800 p-4 rounded-lg shadow-md">
-                        <div class="dropdown-button flex justify-between items-center cursor-pointer text-gray-200">
-                            <span>File Upload</span>
-                            <svg class="w-6 h-6 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
-                        </div>
-                        <div class="dropdown-content mt-4 pull-out">
-                            <form id="fileUploadForm" enctype="multipart/form-data">
-                                <label for="fileUpload" class="block mb-2 text-gray-400">Upload Files</label>
-                                <input type="file" id="fileUpload" name="fileUpload" multiple class="w-full p-2 rounded-lg bg-gray-700 border border-gray-600 text-gray-200">
-                                <button type="submit" class="w-full mt-4 btn-white rounded-lg p-2 hover:bg-gray-200">Upload</button>
-                            </form>
+                            <label for="bioColors" class="block mb-2 text-gray-400">Select Colors</label>
+                            <input type="color" id="bioColors" name="bioColors" class="w-full p-2 rounded-lg bg-gray-700 border border-gray-600 text-gray-200">
+                            <button type="button" class="w-full mt-4 btn-white rounded-lg p-2 hover:bg-gray-200">Apply</button>
                         </div>
                     </div>
                 </div>
@@ -283,126 +267,65 @@
         </main>
     </div>
 
-        <div class="main-content w-4/5 h-screen p-10">
-            <h2 class="text-3xl mb-5">Edit Profile</h2>
-            <form id="profileForm" class="space-y-5">
-                <div>
-                    <label for="username" class="block">Username</label>
-                    <input type="text" id="username" name="username" class="w-full p-2">
-                </div>
-                <div>
-                    <label for="bio_text" class="block">Bio Text</label>
-                    <input type="text" id="bio_text" name="bio_text" class="w-full p-2">
-                </div>
-                <div>
-                    <label for="profile_picture" class="block">Profile Picture URL</label>
-                    <input type="text" id="profile_picture" name="profile_picture" class="w-full p-2">
-                </div>
-                <div>
-                    <label for="background_music" class="block">Background Music URL</label>
-                    <input type="text" id="background_music" name="background_music" class="w-full p-2">
-                </div>
-                <div>
-                    <label for="theme_color" class="block">Theme Color</label>
-                    <input type="color" id="theme_color" name="theme_color" class="w-full p-2">
-                </div>
-                <div>
-                    <label for="current_activity" class="block">Current Activity</label>
-                    <input type="text" id="current_activity" name="current_activity" class="w-full p-2">
-                </div>
-                <div>
-                    <label for="status" class="block">Status</label>
-                    <input type="text" id="status" name="status" class="w-full p-2">
-                </div>
-                <div>
-                    <label for="telegram_link" class="block">Telegram Link</label>
-                    <input type="text" id="telegram_link" name="telegram_link" class="w-full p-2">
-                </div>
-                <div>
-                    <label for="twitter_link" class="block">Twitter Link</label>
-                    <input type="text" id="twitter_link" name="twitter_link" class="w-full p-2">
-                </div>
-                <div>
-                    <label for="tiktok_link" class="block">TikTok Link</label>
-                    <input type="text" id="tiktok_link" name="tiktok_link" class="w-full p-2">
-                </div>
-                <button type="submit" class="btn-white p-2 rounded">Save Changes</button>
-            </form>
+    <!-- Notification Sidebar -->
+    <div id="notificationSidebar" class="notification-container fade-in">
+        <div class="flex justify-between items-center border-b border-gray-600 pb-2 mb-4">
+            <h3 class="text-lg font-bold">Notifications</h3>
+            <button id="closeNotifications" class="text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
         </div>
+        <ul id="notificationsList">
+            <!-- Notifications will be injected here -->
+        </ul>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Handle dropdowns
-            document.querySelectorAll('.dropdown-button').forEach(button => {
+        document.addEventListener('DOMContentLoaded', function () {
+            const dropdownButtons = document.querySelectorAll('.dropdown-button');
+            const notificationSidebar = document.getElementById('notificationSidebar');
+            const closeNotifications = document.getElementById('closeNotifications');
+            const notificationsList = document.getElementById('notificationsList');
+            const signOutBtn = document.getElementById('signOutBtn');
+
+            dropdownButtons.forEach(button => {
                 button.addEventListener('click', () => {
                     const content = button.nextElementSibling;
-                    const isActive = content.classList.contains('show');
-                    document.querySelectorAll('.dropdown-content').forEach(el => el.classList.remove('show'));
-                    if (!isActive) content.classList.add('show');
+                    content.classList.toggle('show');
+                    button.classList.toggle('active');
                 });
             });
 
-            // Fetch user data
-            const user = JSON.parse(localStorage.getItem('loggedInUser'));
-            if (user) {
-                fetch('https://dash.luckycloud.in/u/EP6BZT.json')
-                    .then(response => response.json())
-                    .then(data => {
-                        const profile = data.users.find(u => u.username === user.username);
-                        if (profile) {
-                            document.getElementById('userProfilePic').src = `/path/to/profile-pics/${profile.uid}.jpg`; // Replace with actual path
-                            document.getElementById('username').textContent = profile.username;
-                            document.getElementById('uid').textContent = `UID: ${profile.uid}`;
-                            document.getElementById('totalViews').textContent = `Total Views: ${profile.totalViews || 0}`;
-                        }
-                    })
-                    .catch(error => console.error('Error fetching user data:', error));
-            } else {
-                window.location.href = 'login.html'; // Redirect to login if not logged in
+            // Function to show notifications
+            function showNotification(message, type = 'success') {
+                const li = document.createElement('li');
+                li.className = `bg-${type === 'success' ? 'green' : 'red'}-600 p-4 rounded mb-2`;
+                li.textContent = message;
+                notificationsList.appendChild(li);
             }
 
-            // Handle sign-out
-            document.getElementById('signOutBtn').addEventListener('click', () => {
-                localStorage.removeItem('loggedInUser');
-                window.location.href = 'login.html';
+            // Event listener for notification sidebar
+            notificationSidebar.addEventListener('click', function (e) {
+                if (e.target === closeNotifications) {
+                    notificationSidebar.classList.remove('active');
+                }
             });
 
-            // Handle form submissions
-            document.getElementById('splashTextForm').addEventListener('submit', (e) => {
+            // Example notification
+            showNotification('Welcome back, User!', 'success');
+            setTimeout(() => {
+                notificationSidebar.classList.add('active');
+            }, 1000);
+
+            // Sign Out Button
+            signOutBtn.addEventListener('click', function (e) {
                 e.preventDefault();
-                const splashText = document.getElementById('splashText').value;
-                // Implement saving splash text functionality here
+                // Perform sign out action here
+                showNotification('You have been signed out.', 'success');
             });
         });
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const user = { uid: 2, username: "Test", password: "1234", bio: "artemas.lol/test" }; // Dummy user for example
-            
-            // Populate form with current user data
-            document.getElementById('username').value = user.username;
-            document.getElementById('bio_text').value = user.bio;
-            // Populate other fields similarly
-
-            document.getElementById('profileForm').addEventListener('submit', (e) => {
-                e.preventDefault();
-
-                const updatedProfile = {
-                    username: document.getElementById('username').value,
-                    bio_text: document.getElementById('bio_text').value,
-                    profile_picture: document.getElementById('profile_picture').value,
-                    background_music: document.getElementById('background_music').value,
-                    theme_color: document.getElementById('theme_color').value,
-                    current_activity: document.getElementById('current_activity').value,
-                    status: document.getElementById('status').value,
-                    telegram_link: document.getElementById('telegram_link').value,
-                    twitter_link: document.getElementById('twitter_link').value,
-                    tiktok_link: document.getElementById('tiktok_link').value,
-                };
-
-                // Here you would send the updated profile to the server to save to the users.json file
-                console.log('Updated Profile:', updatedProfile);
-
     </script>
 </body>
 </html>

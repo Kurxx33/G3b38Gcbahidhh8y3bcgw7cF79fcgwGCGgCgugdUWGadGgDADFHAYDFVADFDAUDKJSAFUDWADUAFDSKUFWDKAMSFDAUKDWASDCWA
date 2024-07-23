@@ -6,7 +6,6 @@
     <title>Dashboard - Artemas</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <style>
         body {
             background-color: black;
@@ -14,34 +13,6 @@
             font-family: 'Fira Code', monospace;
             margin: 0;
             padding: 0;
-        }
-        .header-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 16px;
-            background: rgba(0, 0, 0, 0.5);
-            border-bottom: 1px solid lightgrey;
-            display: flex;
-            align-items: center;
-            padding: 0 1rem;
-            z-index: 2000;
-        }
-        .header-bar img {
-            width: 16px;
-            height: 16px;
-            margin-right: 0.5rem;
-        }
-        .header-bar h1 {
-            margin: 0;
-            font-size: 1rem;
-            color: white;
-            animation: rotate3d 5s linear infinite;
-        }
-        @keyframes rotate3d {
-            0% { transform: rotateY(0deg); }
-            100% { transform: rotateY(360deg); }
         }
         .sidebar {
             background-color: #121212;
@@ -120,10 +91,6 @@
     </style>
 </head>
 <body>
-    <div class="header-bar">
-        <img src="favicon.ico" alt="Favicon">
-        <h1>artemas.lol</h1>
-    </div>
     <div class="flex mt-16">
         <aside class="w-64 p-4 h-screen fixed sidebar fade-in">
             <div class="mb-6">
@@ -211,7 +178,7 @@
                     <!-- Dropdown 4 -->
                     <div class="bg-gray-900 p-4 rounded-lg">
                         <div class="dropdown-button flex justify-between items-center cursor-pointer">
-                            <span>Splash screen text</span>
+                            <span>Splash Screen Text</span>
                             <svg class="w-6 h-6 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                             </svg>
@@ -227,80 +194,204 @@
                     <!-- Dropdown 5 -->
                     <div class="bg-gray-900 p-4 rounded-lg">
                         <div class="dropdown-button flex justify-between items-center cursor-pointer">
-                            <span>Bio layouts</span>
+                            <span>Bio Layouts</span>
                             <svg class="w-6 h-6 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                             </svg>
                         </div>
                         <div class="dropdown-content mt-4 pull-out">
                             <form id="bioLayoutsForm">
-                                <label for="bioLayouts" class="block mb-2">Choose Bio Layout</label>
-                                <select id="bioLayouts" class="w-full p-2 rounded bg-gray-800 border border-gray-700">
+                                <label for="layoutSelect" class="block mb-2">Choose Bio Layout</label>
+                                <select id="layoutSelect" class="w-full p-2 rounded bg-gray-800 border border-gray-700">
                                     <option value="layout1">Layout 1</option>
                                     <option value="layout2">Layout 2</option>
                                     <option value="layout3">Layout 3</option>
                                 </select>
-                                <button type="submit" class="w-full mt-4 btn-white rounded p-2 hover:bg-gray-200">Save</button>
+                                <button type="submit" class="w-full mt-4 btn-white rounded p-2 hover:bg-gray-200">Apply</button>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Dropdown 6 -->
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <div class="dropdown-button flex justify-between items-center cursor-pointer">
+                            <span>Glow</span>
+                            <svg class="w-6 h-6 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                        <div class="dropdown-content mt-4 pull-out">
+                            <form id="glowForm">
+                                <label for="glowIntensity" class="block mb-2">Glow Intensity</label>
+                                <input type="range" id="glowIntensity" min="0" max="100" class="w-full">
+                                <button type="submit" class="w-full mt-4 btn-white rounded p-2 hover:bg-gray-200">Apply</button>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Dropdown 7 -->
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <div class="dropdown-button flex justify-between items-center cursor-pointer">
+                            <span>Font</span>
+                            <svg class="w-6 h-6 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                        <div class="dropdown-content mt-4 pull-out">
+                            <form id="fontForm">
+                                <label for="fontSelect" class="block mb-2">Choose Font</label>
+                                <select id="fontSelect" class="w-full p-2 rounded bg-gray-800 border border-gray-700">
+                                    <option value="fira-code">Fira Code</option>
+                                    <option value="arial">Arial</option>
+                                    <option value="monospace">Monospace</option>
+                                </select>
+                                <button type="submit" class="w-full mt-4 btn-white rounded p-2 hover:bg-gray-200">Apply</button>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Dropdown 8 -->
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <div class="dropdown-button flex justify-between items-center cursor-pointer">
+                            <span>Effects</span>
+                            <svg class="w-6 h-6 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                        <div class="dropdown-content mt-4 pull-out">
+                            <form id="effectsForm">
+                                <label for="effectsSelect" class="block mb-2">Choose Effect</label>
+                                <select id="effectsSelect" class="w-full p-2 rounded bg-gray-800 border border-gray-700">
+                                    <option value="rain">Rain</option>
+                                    <option value="snow">Snow</option>
+                                    <option value="stars">Stars</option>
+                                </select>
+                                <button type="submit" class="w-full mt-4 btn-white rounded p-2 hover:bg-gray-200">Apply</button>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Dropdown 9 -->
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <div class="dropdown-button flex justify-between items-center cursor-pointer">
+                            <span>Colors for Bios in Splash Screens</span>
+                            <svg class="w-6 h-6 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                        <div class="dropdown-content mt-4 pull-out">
+                            <form id="colorsForm">
+                                <label for="colorsSelect" class="block mb-2">Choose Color</label>
+                                <input type="color" id="colorPicker" class="w-full p-2 rounded">
+                                <button type="submit" class="w-full mt-4 btn-white rounded p-2 hover:bg-gray-200">Apply</button>
                             </form>
                         </div>
                     </div>
                 </div>
             </section>
-            <!-- More sections can be added as needed -->
+            <section id="upload" class="mb-12">
+                <h2 class="text-2xl font-bold mb-4">Image Upload</h2>
+                <form id="fileUploadForm">
+                    <label for="fileUpload" class="block mb-2">Upload your files:</label>
+                    <input type="file" id="fileUpload" class="w-full p-2 rounded bg-gray-800 border border-gray-700" multiple>
+                    <button type="submit" class="w-full mt-4 btn-white rounded p-2 hover:bg-gray-200">Upload</button>
+                </form>
+            </section>
         </main>
     </div>
 
     <script>
-        const notificationBtn = document.getElementById('notificationBtn');
-        const notificationContainer = document.getElementById('notificationContainer');
-        const dropdownButtons = document.querySelectorAll('.dropdown-button');
-        
-        notificationBtn.addEventListener('click', () => {
-            notificationContainer.classList.toggle('active');
-        });
+        document.addEventListener('DOMContentLoaded', () => {
+            // Dropdown functionality
+            document.querySelectorAll('.dropdown-button').forEach(button => {
+                button.addEventListener('click', () => {
+                    const content = button.nextElementSibling;
+                    content.classList.toggle('show');
+                    button.classList.toggle('active');
+                });
+            });
 
-        dropdownButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const content = button.nextElementSibling;
-                content.classList.toggle('show');
-                button.classList.toggle('active');
+            // Notification button
+            const notificationBtn = document.getElementById('notificationBtn');
+            const notificationContainer = document.getElementById('notificationContainer');
+            notificationBtn.addEventListener('click', () => {
+                notificationContainer.classList.toggle('active');
+            });
+
+            // Form submission handlers
+            document.getElementById('profileForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const file = document.getElementById('profilePic').files[0];
+                uploadFile(file, '/dashboard/upload/profile');
+            });
+
+            document.getElementById('bgForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const file = document.getElementById('bgPic').files[0];
+                uploadFile(file, '/dashboard/upload/background');
+            });
+
+            document.getElementById('splashTextForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const text = document.getElementById('splashText').value;
+                // Handle splash screen text save
+            });
+
+            document.getElementById('bioLayoutsForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const layout = document.getElementById('layoutSelect').value;
+                // Handle bio layout change
+            });
+
+            document.getElementById('glowForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const intensity = document.getElementById('glowIntensity').value;
+                // Handle glow intensity change
+            });
+
+            document.getElementById('fontForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const font = document.getElementById('fontSelect').value;
+                // Handle font change
+            });
+
+            document.getElementById('effectsForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const effect = document.getElementById('effectsSelect').value;
+                // Handle effect change
+            });
+
+            document.getElementById('colorsForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const color = document.getElementById('colorPicker').value;
+                // Handle color change
+            });
+
+            document.getElementById('fileUploadForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const files = document.getElementById('fileUpload').files;
+                for (const file of files) {
+                    uploadFile(file, '/dashboard/upload/file');
+                }
             });
         });
 
-        document.getElementById('signOutBtn').addEventListener('click', (e) => {
-            e.preventDefault();
-            signOut();
-        });
-
-        function signOut() {
-            // Sign out logic
+        function uploadFile(file, endpoint) {
+            const formData = new FormData();
+            formData.append('file', file);
+            fetch(endpoint, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Authorization': 'Bearer hCMcz8UAEnsZirHnvaoWAVHN.MTcyMDQwMDAzNDY0OQ'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                // Handle successful upload
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                // Handle upload error
+            });
         }
-
-        // Add event listeners for form submissions
-        document.getElementById('profileForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            // Handle profile picture upload
-        });
-
-        document.getElementById('bgForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            // Handle background upload
-        });
-
-        document.getElementById('bioTextForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            // Handle bio text save
-        });
-
-        document.getElementById('splashTextForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            // Handle splash text save
-        });
-
-        document.getElementById('bioLayoutsForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            // Handle bio layouts save
-        });
     </script>
 </body>
 </html>

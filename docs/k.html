@@ -54,13 +54,13 @@
             transition: opacity 1s ease-in-out;
             z-index: 999;
             width: 100%;
-            max-width: 600px; /* Even wider card */
+            max-width: 600px;
         }
 
         .card {
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)); /* Less transparent gradient */
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9));
             border-radius: 16px;
-            border: 2px solid silver; /* Silver border */
+            border: 2px solid silver;
             padding: 30px;
             text-align: center;
             color: white;
@@ -68,16 +68,17 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            opacity: 0.95; /* Slightly more transparent */
-            width: 100%; /* Make card width responsive */
-            max-width: 600px; /* Even wider card */
-            height: 380px; /* 5 pixels longer */
+            opacity: 0.95;
+            width: 100%;
+            max-width: 600px;
+            height: auto; /* Adjust height to fit content */
+            box-sizing: border-box;
         }
 
         .buttons img {
             border-radius: 50%;
-            width: 140px; /* Slightly smaller profile picture */
-            height: 140px;
+            width: 120px; /* Adjusted size for better fit */
+            height: 120px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
             margin-bottom: 20px;
@@ -85,29 +86,29 @@
 
         .buttons h1 {
             margin: 0;
-            font-size: 44px;
+            font-size: 36px; /* Adjusted size for better fit */
             text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
             animation: breathing 3s infinite alternate;
         }
 
         .buttons h1 .small {
             display: block;
-            font-size: 24px;
+            font-size: 20px; /* Adjusted size for better fit */
             color: #ddd;
         }
 
         .buttons a {
             color: white;
-            margin: 0 10px;
+            margin: 0 5px; /* Adjusted spacing for better fit */
             text-decoration: none;
-            font-size: 20px;
+            font-size: 18px; /* Adjusted size for better fit */
             transition: text-shadow 0.3s ease;
             position: relative;
-            top: 7px; /* Moved down by 7 pixels */
+            top: 5px; /* Adjusted position for better fit */
         }
 
         .buttons a i {
-            font-size: 30px;
+            font-size: 24px; /* Adjusted size for better fit */
             transition: transform 0.3s ease;
         }
 
@@ -127,33 +128,35 @@
         }
 
         .badge-container {
-            position: relative;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 10px; /* Rounded corners */
-            background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-            padding: 5px;
+            flex-wrap: wrap;
+            justify-content: center; /* Center badges horizontally */
+            gap: 10px; /* Space between badges */
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
             margin-top: 10px;
-            max-width: 250px; /* Less wide */
-            flex-wrap: wrap; /* Wrap badges to fit within the container */
-            transform: translateX(6px); /* Shift badges to the right */
+            max-width: 100%;
+            box-sizing: border-box;
         }
 
         .badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             width: auto;
-            height: 32px; /* Bigger by 2px */
-            background: transparent; /* No background */
+            height: 32px;
+            background: transparent;
             color: white;
-            font-size: 20px; /* Slightly bigger font size */
-            margin: 0 5px;
+            font-size: 20px;
+            margin: 0;
             text-align: center;
-            border: none; /* Remove border */
+            border: none;
         }
 
         .badge img {
-            width: 32px; /* Bigger by 2px */
-            height: 32px; /* Bigger by 2px */
+            width: 32px;
+            height: 32px;
             vertical-align: middle;
         }
 
@@ -246,84 +249,119 @@
                 opacity: 1;
             }
         }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .buttons img {
+                width: 100px;
+                height: 100px;
+            }
+
+            .buttons h1 {
+                font-size: 28px;
+            }
+
+            .buttons h1 .small {
+                font-size: 16px;
+            }
+
+            .buttons a {
+                font-size: 16px;
+            }
+
+            .buttons a i {
+                font-size: 20px;
+            }
+
+            .badge-container {
+                flex-direction: column; /* Stack badges vertically on small screens */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .buttons img {
+                width: 80px;
+                height: 80px;
+            }
+
+            .buttons h1 {
+                font-size: 24px;
+            }
+
+            .buttons h1 .small {
+                font-size: 14px;
+            }
+
+            .buttons a {
+                font-size: 14px;
+            }
+
+            .buttons a i {
+                font-size: 18px;
+            }
+
+            .badge-container {
+                padding: 5px;
+            }
+        }
     </style>
 </head>
 <body>
     <audio id="backgroundMusic" loop src="british.mp3"></audio>
-    <div class="clickanywhere" onclick="startExperience()">
-        <h4>[  Hi👋, Click Anywhere  ]</h4>
+    <div class="clickanywhere" onclick="showBio()">
+        <h4>Click anywhere to enter</h4>
     </div>
-    <main>
-        <div id="biolink" class="biolink">
-            <div class="card">
-                <div class="buttons">
-                    <img class="avatar" src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/e64afe2a731002d551ebb861d3ea9b45.jpg" title="pfp">
-                    <!-- Badge Section -->
-                    <div class="badge-container">
-                        <!-- Re-added badges -->
-                        <i class="fa-brands fa-square-web-awesome badge" aria-label="Owner"></i>
-                        <i class="fa-solid fa-hammer badge" aria-label="Developer"></i>
-                        <!-- New Badge -->
-                        <div class="badge badge-creditcard">
-                            <img src="creditcard.gif" alt="Credit Card">
-                            <div class="tooltip">Credit Card Badge</div>
-                        </div>
-                    </div>
-                    <!-- End of Badge Section -->
-                    <h1>
-                        @Kurxx33<br>
-                        <span class="small">Love is the most twisted curse of all</span>
-                    </h1>
-                    <a href="https://t.me/kurxx33" target="_blank" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
-                    <a href="https://twitter.com/kurxx33" target="_blank" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
-                    <a href="https://www.tiktok.com/@kurxx33" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-                    <a href="https://www.instagram.com/@kurxx33" target="_blank" aria-label="TikTok"><i class="fa-brands fa-instagram"></i></a>
+    <div class="biolink">
+        <div class="card">
+            <div class="buttons">
+                <img src="kurxx33.png" alt="kurxx33">
+                <h1>
+                    @Kurxx33<br>
+                    <span class="small">Kurxxy</span>
+                </h1>
+                <a href="https://t.me/kurxx33" target="_blank" title="Telegram"><i class="ri-telegram-fill"></i></a>
+                <a href="https://twitter.com/kurxx33" target="_blank" title="Twitter"><i class="ri-twitter-fill"></i></a>
+                <a href="https://tiktok.com/@kurxx33" target="_blank" title="TikTok"><i class="ri-tiktok-fill"></i></a>
+                <div class="badge-container">
+                    <div class="badge" title="Developer Badge"><img src="https://img.shields.io/badge/Developer-2D72D9?style=for-the-badge&logo=github&logoColor=white" alt="Developer Badge"></div>
+                    <div class="badge" title="Content Creator Badge"><img src="https://img.shields.io/badge/Content%20Creator-FF8C00?style=for-the-badge&logo=youtube&logoColor=white" alt="Content Creator Badge"></div>
+                    <div class="badge" title="Artist Badge"><img src="https://img.shields.io/badge/Artist-FF1493?style=for-the-badge&logo=spotify&logoColor=white" alt="Artist Badge"></div>
                 </div>
             </div>
         </div>
-    </main>
-    <div class="rain" id="rain"></div>
-    <div class="lightning" id="lightning"></div>
+        <div class="rain"></div>
+        <div class="lightning">
+            <div class="strike"></div>
+        </div>
+    </div>
     <script>
-        function startExperience() {
+        function showBio() {
             document.querySelector('.clickanywhere').style.display = 'none';
-            const biolink = document.getElementById('biolink');
-            biolink.style.display = 'block';
-            setTimeout(() => {
-                biolink.style.opacity = 1;
-            }, 100);
+            document.querySelector('.biolink').style.display = 'block';
+            document.querySelector('.biolink').style.opacity = 1;
             document.getElementById('backgroundMusic').play();
         }
 
-        const rainContainer = document.getElementById('rain');
-        const lightningContainer = document.getElementById('lightning');
-
-        // Generate rain drops
-        for (let i = 0; i < 200; i++) {
+        // Rain effect
+        const rain = document.querySelector('.rain');
+        for (let i = 0; i < 100; i++) {
             const drop = document.createElement('div');
-            drop.className = 'drop';
-            drop.style.left = `${Math.random() * 100}%`;
-            drop.style.animationDuration = `${Math.random() * 0.5 + 0.5}s`;
-            drop.style.animationDelay = `${Math.random() * 1}s`;
-            rainContainer.appendChild(drop);
+            drop.classList.add('drop');
+            drop.style.left = `${Math.random() * 100}vw`;
+            drop.style.animationDuration = `${Math.random() * 2 + 1}s`;
+            rain.appendChild(drop);
         }
 
-        // Generate random lightning strikes
-        function createStrike() {
-            const strike = document.createElement('div');
-            strike.className = 'strike';
-            strike.style.left = `${Math.random() * 100}%`;
-            strike.style.animationDuration = `${Math.random() * 0.2 + 0.1}s`;
-            lightningContainer.appendChild(strike);
-
-            setTimeout(() => {
-                lightningContainer.removeChild(strike);
-            }, 200);
-
-            setTimeout(createStrike, Math.random() * 8000 + 2000);
+        // Lightning effect
+        function createLightning() {
+            const lightning = document.createElement('div');
+            lightning.classList.add('strike');
+            lightning.style.left = `${Math.random() * 100}vw`;
+            lightning.style.animationDuration = `${Math.random() * 0.2 + 0.1}s`;
+            document.querySelector('.lightning').appendChild(lightning);
         }
 
-        createStrike();
+        setInterval(createLightning, 1000);
     </script>
 </body>
 </html>

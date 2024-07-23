@@ -121,55 +121,54 @@
             flex-wrap: wrap;
         }
 
-.badge-container {
-    display: flex;
-    justify-content: center;
-    gap: 15px; /* Adjust this gap value as needed */
-    margin-bottom: 20px;
-}
+        .badge-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px; /* Adjust this gap value as needed */
+            margin-bottom: 20px;
+        }
 
-.badge {
-    display: flex;
-    align-items: center;
-    background: transparent;
-    color: white;
-    font-size: 20px;
-    text-align: center;
-    border: none;
-    margin: 0;
-}
+        .badge {
+            display: flex;
+            align-items: center;
+            background: transparent;
+            color: white;
+            font-size: 20px;
+            text-align: center;
+            border: none;
+            margin: 0;
+        }
 
-.badge img {
-    width: 32px;
-    height: 32px;
-    vertical-align: middle;
-}
-
+        .badge img {
+            width: 32px;
+            height: 32px;
+            vertical-align: middle;
+        }
 
         .badge span {
             margin-left: 8px;
         }
 
-.buttons a {
-    color: white; /* Ensure the text is white */
-    margin: 5px;
-    text-decoration: none;
-    font-size: 28px; /* Increase the font size */
-    transition: text-shadow 0.3s ease, transform 0.3s ease;
-    position: relative;
-    display: inline-block;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Add glow effect */
-}
+        .buttons a {
+            color: white; /* Ensure the text is white */
+            margin: 5px;
+            text-decoration: none;
+            font-size: 28px; /* Increase the font size */
+            transition: text-shadow 0.3s ease, transform 0.3s ease;
+            position: relative;
+            display: inline-block;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Add glow effect */
+        }
 
-.buttons a i {
-    font-size: 30px;
-    transition: transform 0.3s ease;
-}
+        .buttons a i {
+            font-size: 40px; /* Increase icon size */
+            color: white; /* Ensure icons are white */
+            transition: transform 0.3s ease;
+        }
 
-.buttons a:hover i {
-    transform: scale(1.2);
-}
-
+        .buttons a:hover i {
+            transform: scale(1.2);
+        }
 
         @keyframes breathing {
             0% {
@@ -269,6 +268,14 @@
             50% {
                 opacity: 1;
             }
+        }
+
+        .spotify-widget iframe {
+            width: 300px;
+            height: 80px;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
         }
     </style>
 </head>

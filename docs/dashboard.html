@@ -197,212 +197,110 @@
                         <div class="dropdown-button flex justify-between items-center cursor-pointer">
                             <span>Bio text</span>
                             <svg class="w-6 h-6 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 
-                            <!-- Dropdown 3 -->
-                            <div class="bg-gray-900 p-4 rounded-lg">
-                                <div class="dropdown-button flex justify-between items-center cursor-pointer">
-                                    <span>Bio text</span>
-                                    <svg class="w-6 h-6 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                    </svg>
-                                </div>
-                                <div class="dropdown-content mt-4 pull-out">
-                                    <form id="bioTextForm">
-                                        <label for="bioText" class="block mb-2">Edit Bio Text</label>
-                                        <textarea id="bioText" class="w-full p-2 rounded bg-gray-800 border border-gray-700" rows="4"></textarea>
-                                        <button type="submit" class="w-full mt-4 btn-white rounded p-2 hover:bg-gray-200">Save</button>
-                                    </form>
-                                </div>
-                            </div>
-                            <!-- Dropdown 4 -->
-                            <div class="bg-gray-900 p-4 rounded-lg">
-                                <div class="dropdown-button flex justify-between items-center cursor-pointer">
-                                    <span>Splash screen text</span>
-                                    <svg class="w-6 h-6 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                    </svg>
-                                </div>
-                                <div class="dropdown-content mt-4 pull-out">
-                                    <form id="splashTextForm">
-                                        <label for="splashText" class="block mb-2">Edit Splash Screen Text</label>
-                                        <textarea id="splashText" class="w-full p-2 rounded bg-gray-800 border border-gray-700" rows="4"></textarea>
-                                        <button type="submit" class="w-full mt-4 btn-white rounded p-2 hover:bg-gray-200">Save</button>
-                                    </form>
-                                </div>
-                            </div>
-                            <!-- Dropdown 5 -->
-                            <div class="bg-gray-900 p-4 rounded-lg">
-                                <div class="dropdown-button flex justify-between items-center cursor-pointer">
-                                    <span>Bio layouts</span>
-                                    <svg class="w-6 h-6 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                    </svg>
-                                </div>
-                                <div class="dropdown-content mt-4 pull-out">
-                                    <form id="bioLayoutsForm">
-                                        <label for="bioLayouts" class="block mb-2">Select Bio Layout</label>
-                                        <select id="bioLayouts" class="w-full p-2 rounded bg-gray-800 border border-gray-700">
-                                            <option value="layout1">Layout 1</option>
-                                            <option value="layout2">Layout 2</option>
-                                            <option value="layout3">Layout 3</option>
-                                        </select>
-                                        <button type="submit" class="w-full mt-4 btn-white rounded p-2 hover:bg-gray-200">Apply</button>
-                                    </form>
-                                </div>
-                            </div>
-                            <!-- Dropdown 6 -->
-                            <div class="bg-gray-900 p-4 rounded-lg">
-                                <div class="dropdown-button flex justify-between items-center cursor-pointer">
-                                    <span>Glow</span>
-                                    <svg class="w-6 h-6 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                    </svg>
-                                </div>
-                                <div class="dropdown-content mt-4 pull-out">
-                                    <form id="glowForm">
-                                        <label for="glowIntensity" class="block mb-2">Glow Intensity</label>
-                                        <input type="range" id="glowIntensity" class="w-full" min="0" max="100" value="50">
-                                        <button type="submit" class="w-full mt-4 btn-white rounded p-2 hover:bg-gray-200">Apply</button>
-                                    </form>
-                                </div>
-                            </div>
-                            <!-- Dropdown 7 -->
-                            <div class="bg-gray-900 p-4 rounded-lg">
-                                <div class="dropdown-button flex justify-between items-center cursor-pointer">
-                                    <span>Font</span>
-                                    <svg class="w-6 h-6 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                    </svg>
-                                </div>
-                                <div class="dropdown-content mt-4 pull-out">
-                                    <form id="fontForm">
-                                        <label for="fontFamily" class="block mb-2">Select Font Family</label>
-                                        <select id="fontFamily" class="w-full p-2 rounded bg-gray-800 border border-gray-700">
-                                            <option value="fira-code">Fira Code</option>
-                                            <option value="arial">Arial</option>
-                                            <option value="verdana">Verdana</option>
-                                        </select>
-                                        <button type="submit" class="w-full mt-4 btn-white rounded p-2 hover:bg-gray-200">Apply</button>
-                                    </form>
-                                </div>
-                            </div>
-                            <!-- Dropdown 8 -->
-                            <div class="bg-gray-900 p-4 rounded-lg">
-                                <div class="dropdown-button flex justify-between items-center cursor-pointer">
-                                    <span>Effects</span>
-                                    <svg class="w-6 h-6 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                    </svg>
-                                </div>
-                                <div class="dropdown-content mt-4 pull-out">
-                                    <form id="effectsForm">
-                                        <label for="effects" class="block mb-2">Select Effect</label>
-                                        <select id="effects" class="w-full p-2 rounded bg-gray-800 border border-gray-700">
-                                            <option value="rain">Rain</option>
-                                            <option value="snow">Snow</option>
-                                            <option value="stars">Stars</option>
-                                        </select>
-                                        <button type="submit" class="w-full mt-4 btn-white rounded p-2 hover:bg-gray-200">Apply</button>
-                                    </form>
-                                </div>
-                            </div>
-                            <!-- Dropdown 9 -->
-                            <div class="bg-gray-900 p-4 rounded-lg">
-                                <div class="dropdown-button flex justify-between items-center cursor-pointer">
-                                    <span>Colors for bios in splash screens</span>
-                                    <svg class="w-6 h-6 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                    </svg>
-                                </div>
-                                <div class="dropdown-content mt-4 pull-out">
-                                    <form id="colorsForm">
-                                        <label for="colorScheme" class="block mb-2">Select Color Scheme</label>
-                                        <select id="colorScheme" class="w-full p-2 rounded bg-gray-800 border border-gray-700">
-                                            <option value="light">Light</option>
-                                            <option value="dark">Dark</option>
-                                        </select>
-                                        <button type="submit" class="w-full mt-4 btn-white rounded p-2 hover:bg-gray-200">Apply</button>
-                                    </form>
-                                </div>
-                            </div>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
                         </div>
-                    </section>
-                </main>
-            </div>
-            <script>
-                // Dropdown toggle functionality
-                document.querySelectorAll('.dropdown-button').forEach(button => {
-                    button.addEventListener('click', () => {
-                        const dropdownContent = button.nextElementSibling;
-                        dropdownContent.classList.toggle('show');
-                        button.classList.toggle('active');
-                    });
-                });
+                        <div class="dropdown-content mt-4 pull-out">
+                            <form id="bioTextForm">
+                                <label for="bioText" class="block mb-2">Enter Bio Text</label>
+                                <textarea id="bioText" class="w-full p-2 rounded bg-gray-800 border border-gray-700"></textarea>
+                                <button type="submit" class="w-full mt-4 btn-white rounded p-2 hover:bg-gray-200">Save</button>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Dropdown 4 -->
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <div class="dropdown-button flex justify-between items-center cursor-pointer">
+                            <span>Splash screen text</span>
+                            <svg class="w-6 h-6 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                        <div class="dropdown-content mt-4 pull-out">
+                            <form id="splashTextForm">
+                                <label for="splashText" class="block mb-2">Enter Splash Screen Text</label>
+                                <textarea id="splashText" class="w-full p-2 rounded bg-gray-800 border border-gray-700"></textarea>
+                                <button type="submit" class="w-full mt-4 btn-white rounded p-2 hover:bg-gray-200">Save</button>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Dropdown 5 -->
+                    <div class="bg-gray-900 p-4 rounded-lg">
+                        <div class="dropdown-button flex justify-between items-center cursor-pointer">
+                            <span>Bio layouts</span>
+                            <svg class="w-6 h-6 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                        <div class="dropdown-content mt-4 pull-out">
+                            <form id="bioLayoutsForm">
+                                <label for="bioLayouts" class="block mb-2">Choose Bio Layout</label>
+                                <select id="bioLayouts" class="w-full p-2 rounded bg-gray-800 border border-gray-700">
+                                    <option value="layout1">Layout 1</option>
+                                    <option value="layout2">Layout 2</option>
+                                    <option value="layout3">Layout 3</option>
+                                </select>
+                                <button type="submit" class="w-full mt-4 btn-white rounded p-2 hover:bg-gray-200">Save</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- More sections can be added as needed -->
+        </main>
+    </div>
 
-                // Sign out button functionality
-                document
-                    </section>
-                </main>
-            </div>
-            <script>
-                // Dropdown toggle functionality
-                document.querySelectorAll('.dropdown-button').forEach(button => {
-                    button.addEventListener('click', () => {
-                        const dropdownContent = button.nextElementSibling;
-                        dropdownContent.classList.toggle('show');
-                        const icon = button.querySelector('svg');
-                        icon.classList.toggle('rotate-180');
-                    });
-                });
+    <script>
+        const notificationBtn = document.getElementById('notificationBtn');
+        const notificationContainer = document.getElementById('notificationContainer');
+        const dropdownButtons = document.querySelectorAll('.dropdown-button');
+        
+        notificationBtn.addEventListener('click', () => {
+            notificationContainer.classList.toggle('active');
+        });
 
-                // Form submission handlers
-                document.getElementById('bioTextForm').addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    const bioText = document.getElementById('bioText').value;
-                    // Handle bio text update logic here
-                });
+        dropdownButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const content = button.nextElementSibling;
+                content.classList.toggle('show');
+                button.classList.toggle('active');
+            });
+        });
 
-                document.getElementById('splashTextForm').addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    const splashText = document.getElementById('splashText').value;
-                    // Handle splash screen text update logic here
-                });
+        document.getElementById('signOutBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            signOut();
+        });
 
-                document.getElementById('bioLayoutsForm').addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    const layout = document.getElementById('bioLayouts').value;
-                    // Handle bio layout update logic here
-                });
+        function signOut() {
+            // Sign out logic
+        }
 
-                document.getElementById('glowForm').addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    const intensity = document.getElementById('glowIntensity').value;
-                    // Handle glow update logic here
-                });
+        // Add event listeners for form submissions
+        document.getElementById('profileForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Handle profile picture upload
+        });
 
-                document.getElementById('fontForm').addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    const fontFamily = document.getElementById('fontFamily').value;
-                    // Handle font update logic here
-                });
+        document.getElementById('bgForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Handle background upload
+        });
 
-                document.getElementById('effectsForm').addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    const effect = document.getElementById('effects').value;
-                    // Handle effect update logic here
-                });
+        document.getElementById('bioTextForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Handle bio text save
+        });
 
-                document.getElementById('colorsForm').addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    const colorScheme = document.getElementById('colorScheme').value;
-                    // Handle color scheme update logic here
-                });
+        document.getElementById('splashTextForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Handle splash text save
+        });
 
-                // Sign out button functionality
-                document.getElementById('signOutBtn').addEventListener('click', () => {
-                    // Add sign out functionality here
-                    alert('Sign out');
-                });
-            </script>
-        </body>
+        document.getElementById('bioLayoutsForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Handle bio layouts save
+        });
+    </script>
+</body>
 </html>

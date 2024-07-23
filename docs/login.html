@@ -12,6 +12,13 @@
             color: white;
             font-family: 'Fira Code', monospace;
         }
+        .btn-white {
+            background-color: white;
+            color: black;
+        }
+        .btn-white:hover {
+            background-color: #e0e0e0;
+        }
     </style>
 </head>
 <body class="flex items-center justify-center min-h-screen">
@@ -38,9 +45,18 @@
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
 
-            fetch('https://path/to/your/users.json')
-                .then(response => response.json())
+            // Debugging: Check if username and password are correctly captured
+            console.log('Username:', username);
+            console.log('Password:', password);
+
+            fetch('https://path/to/your/users.json') // Update this URL
+                .then(response => {
+                    // Debugging: Check response status and content
+                    console.log('Response Status:', response.status);
+                    return response.json();
+                })
                 .then(data => {
+                    console.log('Data:', data); // Debugging: Check fetched data
                     const user = data.users.find(user => user.username === username && user.password === password);
                     if (user) {
                         // Store session data
@@ -58,3 +74,4 @@
     </script>
 </body>
 </html>
+

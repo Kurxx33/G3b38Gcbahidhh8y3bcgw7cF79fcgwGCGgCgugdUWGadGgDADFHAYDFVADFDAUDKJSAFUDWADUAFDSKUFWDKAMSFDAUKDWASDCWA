@@ -284,47 +284,69 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const dropdownButtons = document.querySelectorAll('.dropdown-button');
-            const notificationSidebar = document.getElementById('notificationSidebar');
-            const closeNotifications = document.getElementById('closeNotifications');
-            const notificationsList = document.getElementById('notificationsList');
-            const signOutBtn = document.getElementById('signOutBtn');
+            // Handle Dropdown Button Click
+            document.querySelectorAll('.dropdown-button').forEach(button => {
+                button.addEventListener('click', function () {
+                    const dropdownContent = this.nextElementSibling;
+                    const isOpen = dropdownContent.classList.contains('show');
+                    
+                    // Close all other dropdowns
+                    document.querySelectorAll('.dropdown-content').forEach(content => {
+                        content.classList.remove('show');
+                        content.style.maxHeight = '0';
+                        content.style.opacity = '0';
+                        if (content.previousElementSibling.classList.contains('active')) {
+                            content.previousElementSibling.classList.remove('active');
+                        }
+                    });
 
-            dropdownButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const content = button.nextElementSibling;
-                    content.classList.toggle('show');
-                    button.classList.toggle('active');
+                    // Toggle the current dropdown
+                    if (!isOpen) {
+                        dropdownContent.classList.add('show');
+                        dropdownContent.style.maxHeight = '500px'; // adjust as needed
+                        dropdownContent.style.opacity = '1';
+                        this.classList.add('active');
+                    } else {
+                        dropdownContent.classList.remove('show');
+                        dropdownContent.style.maxHeight = '0';
+                        dropdownContent.style.opacity = '0';
+                        this.classList.remove('active');
+                    }
                 });
             });
 
-            // Function to show notifications
-            function showNotification(message, type = 'success') {
-                const li = document.createElement('li');
-                li.className = `bg-${type === 'success' ? 'green' : 'red'}-600 p-4 rounded mb-2`;
-                li.textContent = message;
-                notificationsList.appendChild(li);
+            // Handle Sign Out Button
+            document.getElementById('signOutBtn').addEventListener('click', function () {
+                // Logic to sign out the user (e.g., redirect to sign-out endpoint)
+                window.location.href = '/signout';
+            });
+
+            // Handle Notification Sidebar
+            const notificationSidebar = document.getElementById('notificationSidebar');
+            const closeNotificationsBtn = document.getElementById('closeNotifications');
+            const notificationIcon = document.createElement('img');
+            notificationIcon.src = 'notification-icon.svg'; // Replace with your actual icon path
+            notificationIcon.className = 'notification-icon';
+            document.body.appendChild(notificationIcon);
+
+            notificationIcon.addEventListener('click', function () {
+                notificationSidebar.classList.toggle('active');
+            });
+
+            closeNotificationsBtn.addEventListener('click', function () {
+                notificationSidebar.classList.remove('active');
+            });
+
+            // Add sample notification
+            function addNotification(message, type = 'info') {
+                const notification = document.createElement('li');
+                notification.className = `p-2 rounded mb-2 ${type === 'info' ? 'bg-blue-600' : 'bg-red-600'}`;
+                notification.innerText = message;
+                document.getElementById('notificationsList').appendChild(notification);
             }
 
-            // Event listener for notification sidebar
-            notificationSidebar.addEventListener('click', function (e) {
-                if (e.target === closeNotifications) {
-                    notificationSidebar.classList.remove('active');
-                }
-            });
-
-            // Example notification
-            showNotification('Welcome back, User!', 'success');
-            setTimeout(() => {
-                notificationSidebar.classList.add('active');
-            }, 1000);
-
-            // Sign Out Button
-            signOutBtn.addEventListener('click', function (e) {
-                e.preventDefault();
-                // Perform sign out action here
-                showNotification('You have been signed out.', 'success');
-            });
+            // Sample call to add a notification
+            addNotification('Welcome to your dashboard!', 'info');
         });
     </script>
 </body>

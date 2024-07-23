@@ -18,7 +18,7 @@
             overflow: hidden;
             font-family: 'UnifrakturCook', cursive;
             background: url('kurxxbackground.png') no-repeat center center fixed;
-            background-size: cover; /* Ensure the background image covers the entire viewport */
+            background-size: cover;
             color: white;
             position: relative;
         }
@@ -33,11 +33,11 @@
             justify-content: center;
             text-align: center;
             cursor: pointer;
-            z-index: 9999; /* Ensure it's on top */
+            z-index: 9999;
         }
         .clickanywhere h4 {
-            color: black; /* Black text */
-            font-size: 25px; /* Larger font size */
+            color: black;
+            font-size: 25px;
         }
         .biolink {
             display: none;
@@ -45,84 +45,84 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            z-index: 999; /* Place above snow canvas */
+            z-index: 999;
             opacity: 0;
-            transition: opacity 1s ease-in-out; /* Faster fade-in effect */
-.card {
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)); /* Gradient from dark to light */
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2); /* Adjusted shadow */
-    backdrop-filter: blur(8px); /* Reduced blur */
-    -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(0, 0, 0, 1);
-    padding: 30px;
-    width: 350px;
-    height: 400px;
-    text-align: center;
-    color: white; /* Ensure text color remains white */
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
+            transition: opacity 1s ease-in-out;
+        }
+        .card {
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)); /* Lighter top, darker bottom */
+            border-radius: 16px;
+            border: 2px solid silver; /* Silver border */
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3); /* Adjusted shadow */
+            backdrop-filter: blur(6px); /* Slightly reduced blur */
+            -webkit-backdrop-filter: blur(6px);
+            padding: 30px;
+            width: 350px;
+            height: 400px;
+            text-align: center;
+            color: white;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
         .buttons img {
             border-radius: 50%;
-            width: 150px; /* Larger image size */
-            height: 150px; /* Larger image size */
+            width: 150px;
+            height: 150px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Larger shadow */
-            margin-bottom: 20px; /* Space between image and text */
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            margin-bottom: 20px;
         }
         .buttons img:hover {
             transform: scale(1); /* Prevent image from getting bigger on hover */
         }
         .buttons h1 {
-            margin: 0; /* Remove top margin */
-            font-size: 44px; /* Increased font size by 20px */
-            text-shadow: 0 0 8px rgba(255, 255, 255, 0.5); /* Larger shadow */
+            margin: 0;
+            font-size: 44px;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
             animation: breathing 3s infinite alternate;
         }
         .buttons h1 .small {
             display: block;
-            font-size: 24px; /* Increased font size by 20px */
+            font-size: 24px;
             color: #ddd;
         }
         .buttons a {
             color: white;
-            margin: 0 20px; /* Larger margin */
+            margin: 0 20px;
             text-decoration: none;
-            font-size: 20px; /* Larger font size */
+            font-size: 20px;
             transition: text-shadow 0.3s ease;
         }
         .buttons a i {
-            font-size: 30px; /* Larger font size */
+            font-size: 30px;
             transition: transform 0.3s ease;
-            text-shadow: 0 0 8px rgba(255, 255, 255, 0.5); /* Larger shadow */
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
         }
         .buttons a:hover i {
             transform: scale(1.2);
-            text-shadow: 0 0 16px rgba(255, 255, 255, 0.8); /* Larger shadow on hover */
+            text-shadow: 0 0 16px rgba(255, 255, 255, 0.8);
         }
         @keyframes breathing {
             0% {
                 color: white;
-                text-shadow: 0 0 8px rgba(255, 255, 255, 0.5); /* Larger shadow */
+                text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
             }
             100% {
                 color: lightcoral;
-                text-shadow: 0 0 20px rgba(255, 0, 0, 0.7); /* Larger shadow */
+                text-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
             }
         }
         .discord {
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-top: 10px; /* Smaller margin */
+            margin-top: 10px;
         }
         .discord .avatar {
-            width: 50px; /* Smaller image size */
-            height: 50px; /* Smaller image size */
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             margin-right: 10px;
         }
@@ -130,12 +130,12 @@
             text-align: center;
         }
         .discord .status {
-            display: none; /* Hide status */
+            display: none;
         }
         .badge-container {
             position: relative;
             display: inline-block;
-            margin-top: 10px; /* Space above badge */
+            margin-top: 10px;
         }
         .badge {
             display: inline-flex;
@@ -145,13 +145,13 @@
             height: 40px;
             border-radius: 50%;
             border: 2px solid white;
-            background: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
+            background: rgba(255, 255, 255, 0.2);
             color: white;
             font-size: 24px;
             transition: background 0.3s ease, border-color 0.3s ease;
         }
         .badge:hover {
-            background: rgba(255, 255, 255, 0.3); /* Slightly more opaque on hover */
+            background: rgba(255, 255, 255, 0.3);
             border-color: #ddd;
         }
         .tooltip {
@@ -201,7 +201,6 @@
                         <i class="fa-brands fa-square-web-awesome badge" aria-label="Owner"></i>
                         <div class="tooltip">Owner</div>
                     <div>
-                    <div>
                     <!-- Badge Section -->
                     <h1>Kurxx33<span class="small">VFX Artist and Developer</span></h1>
                     <div>
@@ -225,65 +224,67 @@
             backgroundMusic.play();
 
             const biolink = document.getElementById('biolink');
-            biolink.style.display = 'flex';
+            biolink.style.display = 'block';
             setTimeout(() => {
-                biolink.style.opacity = 1; // Fade in the card
+                biolink.style.opacity = '1';
             }, 100);
         }
 
-        // Snow Effect
-        const canvas = document.getElementById('snowCanvas');
-        const ctx = canvas.getContext('2d');
-        let snowflakes = [];
-
-        function resize() {
+        document.addEventListener('DOMContentLoaded', function() {
+            const canvas = document.getElementById('snowCanvas');
+            const ctx = canvas.getContext('2d');
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resize);
-        resize();
 
-        function createSnowflake() {
-            const size = Math.random() * 5 + 2;
-            snowflakes.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                size,
-                speed: Math.random() * 3 + 1,
-            });
-            if (snowflakes.length > 100) { // Cap the number of snowflakes
-                snowflakes.shift();
+            let snowflakes = [];
+
+            function createSnowflake() {
+                const x = Math.random() * canvas.width;
+                const y = Math.random() * canvas.height;
+                const size = Math.random() * 5 + 1;
+                const speed = Math.random() * 3 + 1;
+                const opacity = Math.random() * 0.5 + 0.3;
+                return { x, y, size, speed, opacity };
             }
-        }
 
-        function updateSnowflakes() {
-            for (let flake of snowflakes) {
-                flake.y += flake.speed;
-                if (flake.y > canvas.height) {
-                    flake.y = -flake.size;
-                    flake.x = Math.random() * canvas.width;
-                }
-            }
-        }
-
-        function drawSnowflakes() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = 'white';
-            for (let flake of snowflakes) {
+            function drawSnowflakes() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
                 ctx.beginPath();
-                ctx.arc(flake.x, flake.y, flake.size, 0, Math.PI * 2);
-                ctx.fill();
+                snowflakes.forEach(snowflake => {
+                    ctx.globalAlpha = snowflake.opacity;
+                    ctx.arc(snowflake.x, snowflake.y, snowflake.size, 0, Math.PI * 2);
+                    ctx.fill();
+                });
             }
-        }
 
-        function animate() {
-            createSnowflake();
-            updateSnowflakes();
-            drawSnowflakes();
-            requestAnimationFrame(animate);
-        }
+            function updateSnowflakes() {
+                snowflakes.forEach(snowflake => {
+                    snowflake.y += snowflake.speed;
+                    if (snowflake.y > canvas.height) {
+                        snowflake.y = -snowflake.size;
+                        snowflake.x = Math.random() * canvas.width;
+                    }
+                });
+            }
 
-        animate();
+            function animateSnow() {
+                drawSnowflakes();
+                updateSnowflakes();
+                requestAnimationFrame(animateSnow);
+            }
+
+            for (let i = 0; i < 100; i++) {
+                snowflakes.push(createSnowflake());
+            }
+
+            animateSnow();
+
+            window.addEventListener('resize', () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
+        });
     </script>
 </body>
 </html>

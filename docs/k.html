@@ -77,7 +77,7 @@
 
         .profile-container {
             display: flex;
-            flex-direction: column; /* Align profile picture, badges, and username vertically */
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             width: 100%;
@@ -94,10 +94,10 @@
         }
 
         .profile-container .badges {
-            display: flex; /* Align badges horizontally */
+            display: flex;
             flex-direction: row;
             align-items: center;
-            margin-bottom: 20px; /* Space between badges and username */
+            margin-bottom: 20px;
         }
 
         .badge {
@@ -109,6 +109,7 @@
             margin: 0 5px;
             text-align: center;
             border: none;
+            position: relative;
         }
 
         .badge img {
@@ -118,7 +119,7 @@
         }
 
         .badge span {
-            margin-left: 8px; /* Space between image and text */
+            margin-left: 8px;
         }
 
         .profile-container h1 {
@@ -135,21 +136,23 @@
         }
 
         .links-and-badges {
-            display: flex; /* Align badges and links horizontally */
+            display: flex;
             flex-direction: row;
             align-items: center;
             margin-top: 20px;
-            justify-content: center; /* Center the badges and links */
+            justify-content: center;
+            z-index: 2; /* Ensure it's above other elements */
         }
 
         .buttons a {
             color: white;
-            margin: 0 5px; /* Space between links */
+            margin: 0 5px;
             text-decoration: none;
             font-size: 20px;
             transition: text-shadow 0.3s ease;
             position: relative;
             display: inline-block;
+            z-index: 2; /* Ensure links are clickable */
         }
 
         .buttons a i {
@@ -275,14 +278,13 @@
                     <div class="badges">
                         <i class="fa-brands fa-square-web-awesome badge" aria-label="Owner"></i>
                         <i class="fa-solid fa-hammer badge" aria-label="Developer"></i>
+                        <i class="fa-brands fa-ethereum badge" aria-label="Crypto Enthusiast"></i>
                         <div class="badge badge-creditcard">
                             <img src="creditcard.gif" alt="Credit Card">
-                            <div class="tooltip">Credit Card Badge</div>
-                        </div>
                     </div>
                     <h1>
-                        @Kurxx33<br>
-                        <span class="small">Love is the most twisted curse of all</span>
+                        @Kurxx33
+                        <span class="small">Click to view profile</span>
                     </h1>
                     <div class="links-and-badges">
                         <div class="buttons">

@@ -54,7 +54,7 @@
             transition: opacity 1s ease-in-out;
             z-index: 999;
             width: 100%;
-            max-width: 550px; /* Slightly wider card */
+            max-width: 450px; /* Slightly wider card */
         }
 
         .card {
@@ -70,7 +70,7 @@
             align-items: center;
             opacity: 0.95; /* Slightly more transparent */
             width: 100%; /* Make card width responsive */
-            max-width: 600px; /* Slightly longer card */
+            max-width: 500px; /* Slightly longer card */
             height: 380px; /* 5 pixels longer */
         }
 
@@ -188,6 +188,14 @@
         .tooltip.show {
             visibility: visible;
             opacity: 1;
+        }
+
+        /* Added .badge-creditcard class to remove the circle */
+        .badge-creditcard {
+            background: transparent;
+            border-radius: 0;
+            padding: 0;
+            margin: 0;
         }
     </style>
 </head>

@@ -200,111 +200,86 @@
                     <div class="badge-container">
                         <i class="fa-brands fa-square-web-awesome badge" aria-label="Owner"></i>
                         <div class="tooltip">Owner</div>
-                    <div>
+                    </div>
                     <!-- Badge Section -->
                     <h1>Kurxx33<span class="small">VFX Artist and Developer</span></h1>
-                    <div>
                     <div>
                         <a href="https://t.me/kurxx33" target="_blank"><i class="fa-brands fa-telegram"></i></a>
                         <a href="https://x.com/kurxx33" target="_blank"><i class="fa-brands fa-twitter"></i></a>
                         <a href="https://www.tiktok.com/kurxx33" target="_blank"><i class="fa-brands fa-tiktok"></i></a>              
                         <a href="https://www.instagram.com/kurxx33" target="_blank"><i class="fa-brands fa-instagram"></i></a>                    
                     </div>
-                    </div>              
-                </div>
+                </div>              
             </div>
         </div>
     </main>
-    <canvas id="snowCanvas"></canvas>
+    <canvas id="rainCanvas"></canvas>
 
     <script>
         function startExperience() {
             document.querySelector('.clickanywhere').style.display = 'none';
             const backgroundMusic = document.getElementById('backgroundMusic');
             backgroundMusic.play();
-
-            const biolink = document.getElementById('biolink');
-            biolink.style.display = 'block';
+            document.getElementById('biolink').style.display = 'flex';
             setTimeout(() => {
-                biolink.style.opacity = '1';
+                document.getElementById('biolink').style.opacity = 1;
             }, 100);
         }
 
-    document.addEventListener('DOMContentLoaded', function() {
-        startSnow();
-    });
-
-    function startSnow() {
-        const canvas = document.getElementById('snowCanvas');
+        // Rain Animation
+        const canvas = document.getElementById('rainCanvas');
         const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        let particles = [];
+        const maxParticles = 100;
+        const width = canvas.width = window.innerWidth;
+        const height = canvas.height = window.innerHeight;
 
-        const snowflakes = [];
-        const numFlakes = 200;
+        function createParticle() {
+            return {
+                x: Math.random() * width,
+                y: Math.random() * height,
+                length: Math.random() * 20 + 10,
+                speed: Math.random() * 2 + 2
+            };
+        }
 
-        class Snowflake {
-            constructor(x, y, speed, size, opacity) {
-                this.x = x;
-                this.y = y;
-                this.speed = speed;
-                this.size = size;
-                this.opacity = opacity;
-                this.angle = Math.random() * 2 * Math.PI;
-                this.spin = Math.random() * 0.02 - 0.01;
-            }
+        function drawParticles() {
+            ctx.clearRect(0, 0, width, height);
+            ctx.strokeStyle = 'white';
+            ctx.lineWidth = 2;
 
-            update() {
-                this.y += this.speed;
-                this.x += Math.sin(this.angle) * 0.5;
-                this.angle += this.spin;
+            for (const particle of particles) {
+                ctx.beginPath();
+                ctx.moveTo(particle.x, particle.y);
+                ctx.lineTo(particle.x, particle.y + particle.length);
+                ctx.stroke();
+                particle.y += particle.speed;
 
-                if (this.y > canvas.height) {
-                    this.y = -this.size;
-                    this.x = Math.random() * canvas.width;
-                    this.opacity = 1;
+                if (particle.y > height) {
+                    particle.y = -particle.length;
                 }
             }
+        }
 
-            draw() {
-                ctx.save();
-                ctx.translate(this.x, this.y);
-                ctx.rotate(this.angle);
-                ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`; // White color for snowflakes
-                ctx.shadowBlur = 10; // Increased blur for a more pronounced glow
-                ctx.shadowColor = 'white'; // White glow effect color for snowflakes
-                ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size);
-                ctx.restore();
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < maxParticles; i++) {
+                particles.push(createParticle());
             }
         }
 
-        for (let i = 0; i < numFlakes; i++) {
-            snowflakes.push(new Snowflake(
-                Math.random() * canvas.width,
-                Math.random() * -canvas.height, // Ensure snowflakes start above the top of the canvas
-                Math.random() * 3 + 1,
-                Math.random() * 2 + 1,
-                1
-            ));
+        function animateRain() {
+            drawParticles();
+            requestAnimationFrame(animateRain);
         }
-
-        function draw() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            snowflakes.forEach(flake => {
-                flake.update();
-                flake.draw();
-            });
-            requestAnimationFrame(draw);
-        }
-
-        draw();
 
         window.addEventListener('resize', () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
         });
-    }
-</script>
-<canvas id="snowCanvas"></canvas>
+
+        initParticles();
+        animateRain();
+    </script>
 </body>
 </html>

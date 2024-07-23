@@ -55,6 +55,7 @@
             z-index: 999;
             width: 100%;
             max-width: 600px;
+            position: relative;
         }
 
         .card {
@@ -73,6 +74,7 @@
             max-width: 600px;
             height: auto; /* Adjust height to fit content */
             box-sizing: border-box;
+            z-index: 10; /* Ensure the card is above other elements */
         }
 
         .buttons img {
@@ -105,6 +107,7 @@
             transition: text-shadow 0.3s ease;
             position: relative;
             top: 5px; /* Adjusted position for better fit */
+            z-index: 20; /* Ensure links are above other content */
         }
 
         .buttons a i {
@@ -305,61 +308,72 @@
     </style>
 </head>
 <body>
-    <audio id="backgroundMusic" loop src="british.mp3"></audio>
-    <div class="clickanywhere" onclick="showBio()">
+    <div class="clickanywhere" onclick="showContent()">
         <h4>Click anywhere to enter</h4>
     </div>
     <div class="biolink">
         <div class="card">
             <div class="buttons">
-                <img src="kurxx33.png" alt="kurxx33">
-                <h1>
-                    @Kurxx33<br>
-                    <span class="small">Kurxxy</span>
-                </h1>
-                <a href="https://t.me/kurxx33" target="_blank" title="Telegram"><i class="ri-telegram-fill"></i></a>
-                <a href="https://twitter.com/kurxx33" target="_blank" title="Twitter"><i class="ri-twitter-fill"></i></a>
-                <a href="https://tiktok.com/@kurxx33" target="_blank" title="TikTok"><i class="ri-tiktok-fill"></i></a>
+                <img src="kurxxpic.jpg" alt="Profile Picture">
+                <h1>kurxx33<span class="small">forever</span></h1>
                 <div class="badge-container">
-                    <div class="badge" title="Developer Badge"><img src="https://img.shields.io/badge/Developer-2D72D9?style=for-the-badge&logo=github&logoColor=white" alt="Developer Badge"></div>
-                    <div class="badge" title="Content Creator Badge"><img src="https://img.shields.io/badge/Content%20Creator-FF8C00?style=for-the-badge&logo=youtube&logoColor=white" alt="Content Creator Badge"></div>
-                    <div class="badge" title="Artist Badge"><img src="https://img.shields.io/badge/Artist-FF1493?style=for-the-badge&logo=spotify&logoColor=white" alt="Artist Badge"></div>
+                    <div class="badge" data-tooltip="Telegram">
+                        <a href="https://t.me/kurxx33" target="_blank">
+                            <img src="telegram_icon.png" alt="Telegram">
+                        </a>
+                        <div class="tooltip">Telegram</div>
+                    </div>
+                    <div class="badge" data-tooltip="Twitter">
+                        <a href="https://twitter.com/kurxx33" target="_blank">
+                            <img src="twitter_icon.png" alt="Twitter">
+                        </a>
+                        <div class="tooltip">Twitter</div>
+                    </div>
+                    <div class="badge" data-tooltip="TikTok">
+                        <a href="https://www.tiktok.com/@kurxx33" target="_blank">
+                            <img src="tiktok_icon.png" alt="TikTok">
+                        </a>
+                        <div class="tooltip">TikTok</div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="rain"></div>
-        <div class="lightning">
-            <div class="strike"></div>
-        </div>
+    </div>
+    <div class="rain"></div>
+    <div class="lightning">
+        <div class="strike"></div>
     </div>
     <script>
-        function showBio() {
+        function showContent() {
             document.querySelector('.clickanywhere').style.display = 'none';
-            document.querySelector('.biolink').style.display = 'block';
-            document.querySelector('.biolink').style.opacity = 1;
-            document.getElementById('backgroundMusic').play();
+            const biolink = document.querySelector('.biolink');
+            biolink.style.display = 'block';
+            setTimeout(() => {
+                biolink.style.opacity = 1;
+            }, 10); // Adding a slight delay to trigger the fade-in
         }
 
-        // Rain effect
-        const rain = document.querySelector('.rain');
-        for (let i = 0; i < 100; i++) {
-            const drop = document.createElement('div');
-            drop.classList.add('drop');
-            drop.style.left = `${Math.random() * 100}vw`;
-            drop.style.animationDuration = `${Math.random() * 2 + 1}s`;
-            rain.appendChild(drop);
+        document.querySelectorAll('.badge').forEach(badge => {
+            badge.addEventListener('mouseover', () => {
+                badge.querySelector('.tooltip').classList.add('show');
+            });
+            badge.addEventListener('mouseout', () => {
+                badge.querySelector('.tooltip').classList.remove('show');
+            });
+        });
+
+        function createRain() {
+            const rainContainer = document.querySelector('.rain');
+            for (let i = 0; i < 100; i++) {
+                const drop = document.createElement('div');
+                drop.classList.add('drop');
+                drop.style.left = `${Math.random() * 100}vw`;
+                drop.style.animationDuration = `${0.5 + Math.random()}s`;
+                rainContainer.appendChild(drop);
+            }
         }
 
-        // Lightning effect
-        function createLightning() {
-            const lightning = document.createElement('div');
-            lightning.classList.add('strike');
-            lightning.style.left = `${Math.random() * 100}vw`;
-            lightning.style.animationDuration = `${Math.random() * 0.2 + 0.1}s`;
-            document.querySelector('.lightning').appendChild(lightning);
-        }
-
-        setInterval(createLightning, 1000);
+        createRain();
     </script>
 </body>
 </html>

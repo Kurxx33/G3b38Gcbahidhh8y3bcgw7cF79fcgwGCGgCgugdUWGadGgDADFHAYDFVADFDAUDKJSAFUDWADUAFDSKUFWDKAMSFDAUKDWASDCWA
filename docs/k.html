@@ -36,7 +36,7 @@
             z-index: 9999;
         }
         .clickanywhere h4 {
-            color: black;
+            color: white;
             font-size: 25px;
         }
         .biolink {
@@ -50,12 +50,9 @@
             transition: opacity 1s ease-in-out;
         }
         .card {
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)); /* Lighter top, darker bottom */
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9));
             border-radius: 16px;
-            border: 2px solid silver; /* Silver border */
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3); /* Adjusted shadow */
-            backdrop-filter: blur(6px); /* Slightly reduced blur */
-            -webkit-backdrop-filter: blur(6px);
+            border: 2px solid silver;
             padding: 30px;
             width: 350px;
             height: 400px;
@@ -75,7 +72,7 @@
             margin-bottom: 20px;
         }
         .buttons img:hover {
-            transform: scale(1); /* Prevent image from getting bigger on hover */
+            transform: scale(1);
         }
         .buttons h1 {
             margin: 0;
@@ -184,12 +181,20 @@
             visibility: visible;
             opacity: 1;
         }
+        #snowCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
     </style>
 </head>
 <body>
     <audio id="backgroundMusic" loop src="british.mp3"></audio>
     <div class="clickanywhere" onclick="startExperience()">
-        <h4>[  Hi👋, Click Anywhere  ]</h4>
+        <h4>[ Hi👋, Click Anywhere ]</h4>
     </div>
     <main>
         <div id="biolink" class="biolink">
@@ -201,85 +206,91 @@
                         <i class="fa-brands fa-square-web-awesome badge" aria-label="Owner"></i>
                         <div class="tooltip">Owner</div>
                     </div>
-                    <!-- Badge Section -->
                     <h1>Kurxx33<span class="small">VFX Artist and Developer</span></h1>
                     <div>
                         <a href="https://t.me/kurxx33" target="_blank"><i class="fa-brands fa-telegram"></i></a>
                         <a href="https://x.com/kurxx33" target="_blank"><i class="fa-brands fa-twitter"></i></a>
-                        <a href="https://www.tiktok.com/kurxx33" target="_blank"><i class="fa-brands fa-tiktok"></i></a>              
-                        <a href="https://www.instagram.com/kurxx33" target="_blank"><i class="fa-brands fa-instagram"></i></a>                    
+                        <a href="https://www.tiktok.com/kurxx33" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+                        <a href="https://www.instagram.com/kurxx33" target="_blank"><i class="fa-brands fa-instagram"></i></a>
                     </div>
-                </div>              
+                </div>
             </div>
         </div>
     </main>
-    <canvas id="rainCanvas"></canvas>
+    <canvas id="snowCanvas"></canvas>
 
     <script>
         function startExperience() {
             document.querySelector('.clickanywhere').style.display = 'none';
             const backgroundMusic = document.getElementById('backgroundMusic');
             backgroundMusic.play();
-            document.getElementById('biolink').style.display = 'flex';
+
+            const biolink = document.getElementById('biolink');
+            biolink.style.display = 'flex';
             setTimeout(() => {
-                document.getElementById('biolink').style.opacity = 1;
+                biolink.style.opacity = 1;
             }, 100);
         }
 
-        // Rain Animation
-        const canvas = document.getElementById('rainCanvas');
+        // Snow Effect
+        const canvas = document.getElementById('snowCanvas');
         const ctx = canvas.getContext('2d');
-        let particles = [];
-        const maxParticles = 100;
-        const width = canvas.width = window.innerWidth;
-        const height = canvas.height = window.innerHeight;
+        const numFlakes = 200;
+        const flakes = [];
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
 
-        function createParticle() {
-            return {
-                x: Math.random() * width,
-                y: Math.random() * height,
-                length: Math.random() * 20 + 10,
-                speed: Math.random() * 2 + 2
-            };
-        }
+        class Snowflake {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 3 + 1;
+                this.speedY = Math.random() * 3 + 1;
+                this.speedX = Math.random() * 1 - 0.5;
+            }
 
-        function drawParticles() {
-            ctx.clearRect(0, 0, width, height);
-            ctx.strokeStyle = 'white';
-            ctx.lineWidth = 2;
+            update() {
+                this.y += this.speedY;
+                this.x += this.speedX;
 
-            for (const particle of particles) {
-                ctx.beginPath();
-                ctx.moveTo(particle.x, particle.y);
-                ctx.lineTo(particle.x, particle.y + particle.length);
-                ctx.stroke();
-                particle.y += particle.speed;
-
-                if (particle.y > height) {
-                    particle.y = -particle.length;
+                if (this.y > canvas.height) {
+                    this.y = -this.size;
+                }
+                if (this.x > canvas.width || this.x < 0) {
+                    this.x = Math.random() * canvas.width;
                 }
             }
-        }
 
-        function initParticles() {
-            particles = [];
-            for (let i = 0; i < maxParticles; i++) {
-                particles.push(createParticle());
+            draw() {
+                ctx.fillStyle = 'white';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
             }
         }
 
-        function animateRain() {
-            drawParticles();
-            requestAnimationFrame(animateRain);
+        function createSnowflakes() {
+            for (let i = 0; i < numFlakes; i++) {
+                flakes.push(new Snowflake());
+            }
         }
+
+        function animateSnowflakes() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            flakes.forEach(flake => {
+                flake.update();
+                flake.draw();
+            });
+            requestAnimationFrame(animateSnowflakes);
+        }
+
+        createSnowflakes();
+        animateSnowflakes();
 
         window.addEventListener('resize', () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
         });
-
-        initParticles();
-        animateRain();
     </script>
 </body>
 </html>

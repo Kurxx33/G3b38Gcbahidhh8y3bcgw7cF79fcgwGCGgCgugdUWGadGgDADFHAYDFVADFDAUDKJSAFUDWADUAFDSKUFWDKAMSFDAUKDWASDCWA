@@ -136,6 +136,9 @@
             position: relative;
             justify-content: center;
             overflow: hidden;
+            /* Debugging styles */
+            border: 2px solid red; /* Red border to check visibility */
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
         }
 
         .discord-widget img {
@@ -189,32 +192,6 @@
                 document.getElementById('backgroundMusic').play();
             }, 100);
         }
-
-        // Create raindrops
-        function createRaindrops() {
-            const rain = document.querySelector('.rain');
-            for (let i = 0; i < 100; i++) {
-                const drop = document.createElement('div');
-                drop.classList.add('drop');
-                drop.style.left = `${Math.random() * 100}vw`;
-                drop.style.animationDuration = `${0.5 + Math.random() * 1.5}s`;
-                rain.appendChild(drop);
-            }
-        }
-        createRaindrops();
-
-        // Create lightning strikes
-        function createLightning() {
-            const lightning = document.querySelector('.lightning');
-            for (let i = 0; i < 5; i++) {
-                const strike = document.createElement('div');
-                strike.classList.add('strike');
-                strike.style.left = `${Math.random() * 100}vw`;
-                strike.style.animationDuration = `${0.5 + Math.random() * 1.5}s`;
-                lightning.appendChild(strike);
-            }
-        }
-        createLightning();
     </script>
 </body>
 </html>

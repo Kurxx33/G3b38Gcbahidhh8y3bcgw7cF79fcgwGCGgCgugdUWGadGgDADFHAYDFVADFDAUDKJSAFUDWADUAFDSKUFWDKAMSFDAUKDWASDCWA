@@ -226,7 +226,6 @@
         }
         createLightning();
 
-        // Fetch and display```html
         // Fetch and display Discord user info using Lanyard
         async function fetchDiscordData() {
             const userId = '1206723479681106092';
@@ -237,7 +236,7 @@
                 const discordWidget = document.getElementById('discord-widget');
 
                 const discordProfilePic = document.createElement('img');
-                discordProfilePic.src = `https://cdn.discordapp.com/avatars/${userId}/${data.data.discord_user.avatar}.png?size=64`;
+                discordProfilePic.src = `https://cdn.discordapp.com/avatars/${userId}/${data.data.discord_user.avatar}.png?size=128`;
                 discordProfilePic.classList.add('discord-profile-pic');
 
                 const discordInfo = document.createElement('div');
@@ -251,7 +250,7 @@
                 const badges = data.data.discord_user.public_flags;
                 const badgeContainer = document.createElement('div');
                 badgeContainer.classList.add('badges-container');
-                
+
                 if (badges & (1 << 1)) { // Partner
                     const badge = document.createElement('i');
                     badge.classList.add('fa-solid', 'fa-shield-halved', 'badge');
@@ -292,7 +291,7 @@
 
                 const discordStatus = document.createElement('div');
                 discordStatus.classList.add('discord-status');
-                discordStatus.textContent = data.data.discord_status;
+                discordStatus.textContent = data.data.discord_status || 'Offline';
 
                 discordInfo.appendChild(discordUsername);
                 discordInfo.appendChild(discordStatus);

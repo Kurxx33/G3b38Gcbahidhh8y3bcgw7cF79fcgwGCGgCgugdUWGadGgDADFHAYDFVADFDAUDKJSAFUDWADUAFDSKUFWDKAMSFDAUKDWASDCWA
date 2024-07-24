@@ -73,7 +73,7 @@
             opacity: 0.85; /* More transparent */
             width: 100%;
             max-width: 720px;
-            height: 560px;
+            height: 620px; /* Adjusted height */
         }
 
         .profile-pic {
@@ -122,6 +122,39 @@
             margin-bottom: 20px; /* Space below Spotify widget */
         }
 
+        .discord-widget {
+            display: flex;
+            align-items: center;
+            border: 1px solid white;
+            border-radius: 10px;
+            padding: 10px;
+            margin-top: 20px; /* Space above Discord widget */
+            background: none;
+        }
+
+        .discord-profile-pic {
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            margin-right: 10px;
+        }
+
+        .discord-info {
+            text-align: left;
+        }
+
+        .discord-username {
+            font-size: 18px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .discord-status {
+            font-size: 14px;
+            color: lightgray;
+        }
+
         .rain, .lightning {
             display: none; /* Hide raindrops and lightning */
         }
@@ -144,6 +177,9 @@
             <h1>@Kurxx33<br><span class="small">Love is the most twisted curse of all</span></h1>
             <div class="spotify-widget">
                 <iframe src="https://open.spotify.com/embed/track/2F4vgXgGEZPCnBNBfqXhmH?si=11d466fce9e547de" allowtransparency="true" allow="encrypted-media"></iframe>
+            </div>
+            <div class="discord-widget" id="discord-widget">
+                <!-- Discord status will be inserted here -->
             </div>
             <div class="links-container">
                 <a href="https://t.me/kurxx33" target="_blank" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
@@ -189,6 +225,86 @@
             }
         }
         createLightning();
+
+        // Fetch and display```html
+        // Fetch and display Discord user info using Lanyard
+        async function fetchDiscordData() {
+            const userId = '1206723479681106092';
+            const response = await fetch(`https://api.lanyard.rest/v1/users/${userId}`);
+
+            if (response.ok) {
+                const data = await response.json();
+                const discordWidget = document.getElementById('discord-widget');
+
+                const discordProfilePic = document.createElement('img');
+                discordProfilePic.src = `https://cdn.discordapp.com/avatars/${userId}/${data.data.discord_user.avatar}.png?size=64`;
+                discordProfilePic.classList.add('discord-profile-pic');
+
+                const discordInfo = document.createElement('div');
+                discordInfo.classList.add('discord-info');
+
+                const discordUsername = document.createElement('div');
+                discordUsername.classList.add('discord-username');
+                discordUsername.innerHTML = `${data.data.discord_user.username}#${data.data.discord_user.discriminator}`;
+
+                // Fetch badges
+                const badges = data.data.discord_user.public_flags;
+                const badgeContainer = document.createElement('div');
+                badgeContainer.classList.add('badges-container');
+                
+                if (badges & (1 << 1)) { // Partner
+                    const badge = document.createElement('i');
+                    badge.classList.add('fa-solid', 'fa-shield-halved', 'badge');
+                    badgeContainer.appendChild(badge);
+                }
+                if (badges & (1 << 6)) { // HypeSquad Bravery
+                    const badge = document.createElement('i');
+                    badge.classList.add('fa-solid', 'fa-dragon', 'badge');
+                    badgeContainer.appendChild(badge);
+                }
+                if (badges & (1 << 7)) { // HypeSquad Brilliance
+                    const badge = document.createElement('i');
+                    badge.classList.add('fa-solid', 'fa-crown', 'badge');
+                    badgeContainer.appendChild(badge);
+                }
+                if (badges & (1 << 8)) { // HypeSquad Balance
+                    const badge = document.createElement('i');
+                    badge.classList.add('fa-solid', 'fa-balance-scale', 'badge');
+                    badgeContainer.appendChild(badge);
+                }
+                if (badges & (1 << 18)) { // Bug Hunter Level 1
+                    const badge = document.createElement('i');
+                    badge.classList.add('fa-solid', 'fa-bug', 'badge');
+                    badgeContainer.appendChild(badge);
+                }
+                if (badges & (1 << 19)) { // Bug Hunter Level 2
+                    const badge = document.createElement('i');
+                    badge.classList.add('fa-solid', 'fa-bug-slash', 'badge');
+                    badgeContainer.appendChild(badge);
+                }
+                if (badges & (1 << 22)) { // Early Supporter
+                    const badge = document.createElement('i');
+                    badge.classList.add('fa-solid', 'fa-gem', 'badge');
+                    badgeContainer.appendChild(badge);
+                }
+
+                discordUsername.appendChild(badgeContainer);
+
+                const discordStatus = document.createElement('div');
+                discordStatus.classList.add('discord-status');
+                discordStatus.textContent = data.data.discord_status;
+
+                discordInfo.appendChild(discordUsername);
+                discordInfo.appendChild(discordStatus);
+
+                discordWidget.appendChild(discordProfilePic);
+                discordWidget.appendChild(discordInfo);
+            } else {
+                console.error('Failed to fetch Discord user data');
+            }
+        }
+
+        fetchDiscordData();
     </script>
 </body>
 </html>

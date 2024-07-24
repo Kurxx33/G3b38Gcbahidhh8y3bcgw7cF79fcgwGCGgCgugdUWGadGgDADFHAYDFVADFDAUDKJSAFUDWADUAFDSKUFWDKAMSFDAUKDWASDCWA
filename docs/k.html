@@ -13,139 +13,137 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ionicons/7.1.0/esm/ionicons.min.js"></script>
     <script src="https://kit.fontawesome.com/b0c7a14384.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            margin: 0;
-            overflow: hidden;
-            font-family: 'UnifrakturCook', cursive;
-            background: url('darkclouds.jpg') no-repeat center center fixed;
-            background-size: cover;
-            color: white;
-            position: relative;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+<style>
+    body {
+        margin: 0;
+        overflow: hidden;
+        font-family: 'UnifrakturCook', cursive;
+        background: url('darkclouds.jpg') no-repeat center center fixed;
+        background-size: cover;
+        color: white;
+        position: relative;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-        .clickanywhere {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            cursor: pointer;
-            z-index: 9999;
-        }
+    .clickanywhere {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        cursor: pointer;
+        z-index: 9999;
+    }
 
-        .clickanywhere h4 {
-            color: white;
-            font-size: 25px;
-            margin: 0;
-        }
+    .clickanywhere h4 {
+        color: white;
+        font-size: 25px;
+        margin: 0;
+    }
 
-        .biolink {
-            display: none;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-            z-index: 999;
-            width: 100%;
-            max-width: 720px;
-            position: relative;
-        }
+    .biolink {
+        display: none;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+        z-index: 999;
+        width: 100%;
+        max-width: 720px;
+        position: relative;
+    }
 
-        .card {
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9));
-            border-radius: 16px;
-            border: 1px solid silver;
-            padding: 20px;
-            text-align: center;
-            color: white;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            opacity: 0.85;
-            width: 100%;
-            max-width: 720px;
-            height: 620px;
-        }
+    .card {
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9));
+        border-radius: 16px;
+        border: 1px solid silver;
+        padding: 20px;
+        text-align: center;
+        color: white;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        opacity: 0.85;
+        width: 100%;
+        max-width: 650px;
+        height: 620px;
+    }
 
-        .profile-pic {
-            border-radius: 50%;
-            width: 120px;
-            height: 120px;
-            object-fit: cover;
-            margin-bottom: 20px;
-            margin-top: 40px;
-            filter: brightness(90%);
-        }
+    .profile-pic {
+        border-radius: 50%;
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        margin-bottom: 20px;
+        margin-top: 40px;
+        filter: brightness(90%);
+    }
 
-        .badges-container {
-            margin: 20px 0;
-        }
+    .badges-container {
+        margin: 20px 0;
+    }
 
-        .badges-container .badge {
-            font-size: 24px;
-            margin: 0 5px;
-        }
+    .badges-container .badge {
+        font-size: 24px;
+        margin: 0 5px;
+    }
 
-        .links-container {
-            margin: 40px 0;
-        }
+    .links-container {
+        margin: 40px 0;
+    }
 
-        .links-container a {
-            color: #fff;
-            text-decoration: none;
-            margin: 0 20px;
-            font-size: 36px;
-            font-weight: bold;
-            transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
-        }
+    .links-container a {
+        color: #fff;
+        text-decoration: none;
+        margin: 0 20px;
+        font-size: 36px;
+        font-weight: bold;
+        transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
+    }
 
-        .links-container a:hover {
-            transform: scale(1.4);
-            color: #f0f0f0;
-            text-shadow: 0 0 10px #f0f0f0;
-        }
+    .links-container a:hover {
+        transform: scale(1.4);
+        color: #f0f0f0;
+        text-shadow: 0 0 10px #f0f0f0;
+    }
 
-        .spotify-widget iframe {
-            border: none;
-            width: 300px;
-            height: 80px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
+    .spotify-widget iframe {
+        border: none;
+        width: 300px;
+        height: 80px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
 
-        .discord-widget {
-            border-radius: 10px;
-            padding: 10px;
-            background: none;
-            width: 100%;
-            max-width: 300px;
-            height: 100px; /* Adjust height as needed */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
+    .discord-widget {
+        width: 100%;
+        max-width: 300px; /* Adjust this value to control width */
+        height: 150px; /* Adjust height as needed */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        margin-top: 20px;
+    }
 
-        .discord-widget img {
-            width: 100%;
-            height: auto;
-            max-height: 100%; /* Ensure it scales properly */
-            object-fit: contain; /* Keep aspect ratio */
-        }
+    .discord-widget img {
+        width: 100%;
+        height: auto;
+        max-height: 100%; /* Ensure it scales properly */
+        object-fit: contain; /* Keep aspect ratio */
+    }
 
-        .rain, .lightning {
-            display: none;
-        }
-    </style>
+    .rain, .lightning {
+        display: none;
+    }
+</style>
 </head>
 <body>
     <div class="clickanywhere" onclick="startExperience()">

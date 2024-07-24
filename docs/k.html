@@ -61,7 +61,7 @@
         .card {
             background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9));
             border-radius: 16px;
-            border: 1px solid silver; /* Very thin border */
+            border: 1px solid silver;
             padding: 20px;
             text-align: center;
             color: white;
@@ -70,24 +70,24 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            opacity: 0.85; /* More transparent */
+            opacity: 0.85;
             width: 100%;
             max-width: 720px;
-            height: 620px; /* Adjusted height */
+            height: 620px;
         }
 
         .profile-pic {
             border-radius: 50%;
-            width: 120px; /* Smaller profile picture */
-            height: 120px; /* Smaller profile picture */
+            width: 120px;
+            height: 120px;
             object-fit: cover;
             margin-bottom: 20px;
-            margin-top: 40px; /* Move profile picture down */
-            filter: brightness(90%); /* Slightly less white */
+            margin-top: 40px;
+            filter: brightness(90%);
         }
 
         .badges-container {
-            margin: 20px 0; /* Move badges further down */
+            margin: 20px 0;
         }
 
         .badges-container .badge {
@@ -96,22 +96,22 @@
         }
 
         .links-container {
-            margin: 40px 0; /* Move links further down */
+            margin: 40px 0;
         }
 
         .links-container a {
             color: #fff;
             text-decoration: none;
-            margin: 0 20px; /* Increase margin */
-            font-size: 36px; /* Make links bigger */
-            font-weight: bold; /* Bold text */
-            transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease; /* Hover animation */
+            margin: 0 20px;
+            font-size: 36px;
+            font-weight: bold;
+            transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
         }
 
         .links-container a:hover {
-            transform: scale(1.4); /* Zoom in effect */
-            color: #f0f0f0; /* Slight color change on hover */
-            text-shadow: 0 0 10px #f0f0f0; /* Glowing text effect */
+            transform: scale(1.4);
+            color: #f0f0f0;
+            text-shadow: 0 0 10px #f0f0f0;
         }
 
         .spotify-widget iframe {
@@ -119,22 +119,21 @@
             width: 300px;
             height: 80px;
             border-radius: 10px;
-            margin-bottom: 20px; /* Space below Spotify widget */
+            margin-bottom: 20px;
         }
 
         .discord-widget {
-            display: flex;
-            align-items: center;
             border: 1px solid white;
             border-radius: 10px;
             padding: 10px;
-            margin-top: 20px; /* Space above Discord widget */
             background: none;
             width: 100%;
-            max-width: 300px; /* Adjust width as needed */
-            height: 120px; /* Increased height */
+            max-width: 300px;
+            height: 120px;
             position: relative;
+            display: flex;
             justify-content: center;
+            align-items: center;
             overflow: hidden;
             /* Debugging styles */
             border: 2px solid red; /* Red border to check visibility */
@@ -142,14 +141,14 @@
         }
 
         .discord-widget img {
-            border-radius: 10px;
             width: 100%;
-            height: 100%; /* Ensure image covers the widget */
+            height: 100%;
             object-fit: cover;
+            border-radius: 10px;
         }
 
         .rain, .lightning {
-            display: none; /* Hide raindrops and lightning */
+            display: none;
         }
     </style>
 </head>

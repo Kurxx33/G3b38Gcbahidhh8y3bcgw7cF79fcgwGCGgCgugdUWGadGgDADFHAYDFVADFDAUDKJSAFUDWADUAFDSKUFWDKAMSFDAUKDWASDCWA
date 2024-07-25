@@ -74,7 +74,7 @@
             max-width: 610px;
             height: auto;
             box-sizing: border-box;
-            backdrop-filter: blur(10px); /* Added background blur */
+            backdrop-filter: blur(20px); /* Increased background blur */
         }
 
         .profile-pic {
@@ -117,15 +117,27 @@
             color: #fff;
             text-decoration: none;
             margin: 0 10px; /* Adjusted margin for more spacing */
-            font-size: 24px; /* Slightly larger size */
+            font-size: 30px; /* Slightly larger size */
             font-weight: bold;
             transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
         }
 
         .links-container a:hover {
             transform: scale(1.1); /* Slightly larger scale */
-            color: #f0f0f0;
             text-shadow: 0 0 5px #f0f0f0; /* Adjusted text-shadow */
+        }
+
+        /* Social Media Icon Colors */
+        .links-container a i.fa-telegram {
+            color: #0088cc; /* Telegram brand color */
+        }
+
+        .links-container a i.fa-twitter {
+            color: #1da1f2; /* Twitter blue color */
+        }
+
+        .links-container a i.fa-tiktok {
+            color: #fff; /* White color for TikTok */
         }
 
         .rain, .lightning {

@@ -2,47 +2,23 @@
 // Include the database connection file
 include('db_conn.php');
 
-// Check if the user is logged in
-session_start();
-if(!isset($_SESSION['username'])) {
-    header("Location: login.php");
-    exit();
-}
+// Check if the username parameter is set in the URL
+if(isset($_GET['username'])) {
+    // Retrieve the username from the URL
+    $username = $_GET['username'];
 
-// Retrieve the logged-in username
-$username = $_SESSION['username'];
+    // Prepare and execute the SQL query to fetch user information
+    $sql = "SELECT * FROM user_profiles WHERE username = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-// Prepare and execute the SQL query to fetch user information
-$sql = "SELECT * FROM usernames WHERE username = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("s", $username);
-$stmt->execute();
-$result = $stmt->get_result();
-
-// Check if the user exists in the database
-if($result->num_rows > 0) {
-    // Fetch user data
-    $user = $result->fetch_assoc();
-    
-    // Handle form submission
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $pfp = $_POST['pfp'];
-        $background = $_POST['background'];
-        $bio = $_POST['bio'];
-        $discord_link = $_POST['discord_link'];
-        $telegram_link = $_POST['telegram_link'];
-        $twitter_link = $_POST['twitter_link'];
-        // Add other links here
+    // Check if the user exists in the database
+    if($result->num_rows > 0) {
+        // Fetch user data
+        $user = $result->fetch_assoc();
         
-        // Prepare and execute the update query
-        $sql = "UPDATE usernames SET pfp = ?, background = ?, bio = ?, discord_link = ?, telegram_link = ?, twitter_link = ? WHERE username = ?";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sssssss", $pfp, $background, $bio, $discord_link, $telegram_link, $twitter_link, $username);
-        $stmt->execute();
-        
-        // Redirect or show success message
-        header("Location: dashboard.php");
-    }
 ?>
 
 <!DOCTYPE html>
@@ -52,98 +28,167 @@ if($result->num_rows > 0) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
-    <title>Dashboard</title>
+    <title>/<?php echo htmlspecialchars($user['username']); ?></title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #000;
-            color: #fff;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            width: 80%;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-        }
-        .form-group input[type="text"],
-        .form-group textarea {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #333;
-            border-radius: 5px;
-            background-color: #222;
-            color: #fff;
-        }
-        .form-group input[type="submit"] {
-            background-color: #444;
-            border: none;
-            padding: 10px 20px;
-            color: #fff;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .form-group input[type="submit"]:hover {
-            background-color: #555;
-        }
+        /* Add your styles here */
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Dashboard</h1>
-        <form action="dashboard.php" method="post">
-            <div class="form-group">
-                <label for="pfp">Profile Picture URL:</label>
-                <input type="text" id="pfp" name="pfp" value="<?php echo htmlspecialchars($user['pfp']); ?>">
+<?php if (!empty($user['background']) && pathinfo($user['background'], PATHINFO_EXTENSION) === 'mp4'): ?>
+    <!-- Splash screen -->
+    <div id="clickanywhere">
+        <h1><?php echo !empty($user['splash_text']) ? htmlspecialchars($user['splash_text']) : "click to enter"; ?></h1>
+    </div>
+
+    <!-- Audio player -->
+    <audio id="song" volume="<?php echo !empty($user['music_url']) ? '0' : '0.3'; ?>">
+        <source id="audioSource" src="<?php echo !empty($user['music_url']) ? htmlspecialchars($user['music_url']) : ''; ?>">
+    </audio>
+
+    <video playsinline draggable="false" loop id="myVideo" class="background-container">
+        <source src="<?php echo htmlspecialchars($user['background']); ?>" type="video/mp4">
+    </video>
+
+    <script>
+        document.addEventListener("click", function () {
+            var clickAnywhereElement = document.getElementById("clickanywhere");
+            clickAnywhereElement.style.opacity = "0";
+            setTimeout(function () {
+                clickAnywhereElement.style.display = "none";
+            }, 500);
+            var video = document.getElementById("myVideo");
+            var audio = document.getElementById("song");
+            video.volume = 0.3; // Set video volume to 0.3
+            video.play();
+            audio.play();
+        });
+    </script>
+<?php elseif (!empty($user['music_url'])): ?>
+    <!-- Splash screen -->
+    <div id="clickanywhere">
+        <h1><?php echo !empty($user['splash_text']) ? htmlspecialchars($user['splash_text']) : "click to enter"; ?></h1>
+    </div>
+
+    <!-- Audio player -->
+    <audio id="song" volume="0.3">
+        <source id="audioSource" src="<?php echo htmlspecialchars($user['music_url']); ?>">
+    </audio>
+
+    <video playsinline draggable="false" loop id="myVideo" class="background-container">
+        <source src="<?php echo htmlspecialchars($user['background']); ?>" type="video/mp4">
+    </video>
+
+    <script>
+        document.addEventListener("click", function () {
+            var clickAnywhereElement = document.getElementById("clickanywhere");
+            clickAnywhereElement.style.opacity = "0";
+            setTimeout(function () {
+                clickAnywhereElement.style.display = "none";
+            }, 500);
+            var video = document.getElementById("myVideo");
+            var audio = document.getElementById("song");
+            video.volume = 0.3; // Set video volume to 0.3
+            video.play();
+            audio.play();
+        });
+    </script>
+<?php endif; ?>
+
+    <!-- Background container -->
+    <div class="background-container"></div>
+
+    <!-- Profile container -->
+    <div class="profile-container">
+        <!-- Profile picture -->
+        <?php if(!empty($user['pfp'])): ?>
+            <img class="profile-picture" src="<?php echo htmlspecialchars($user['pfp']); ?>" alt="Profile Picture">
+        <?php endif; ?>
+        
+        <!-- Profile title -->
+        <h1 class="profile-title">
+            <span class="tooltip"><?php echo !empty($user['title']) ? htmlspecialchars($user['title']) : htmlspecialchars($user['username']); ?>
+                <span class="tooltiptext">User ID: <?php echo htmlspecialchars($user['id']); ?></span>
+            </span>
+        </h1>
+
+        <!-- Admin badge -->
+        <?php if($user['power'] === 'Admin'): ?>
+            <div class="tooltip">
+                <img class="badge" src="badges/staff.png" alt="Admin Badge">
+                <span class="tooltiptext">User is a staff member</span>
             </div>
-            <div class="form-group">
-                <label for="background">Background URL:</label>
-                <input type="text" id="background" name="background" value="<?php echo htmlspecialchars($user['background']); ?>">
+        <?php endif; ?>
+
+        <!-- Early Supporter badge -->
+        <?php if($user['early_supporter'] === 1): ?>
+            <div class="tooltip">
+                <img class="badge" src="badges/early.png" alt="Early Supporter Badge">
+                <span class="tooltiptext">User is an early supporter</span>
             </div>
-            <div class="form-group">
-                <label for="bio">Bio:</label>
-                <textarea id="bio" name="bio" rows="4"><?php echo htmlspecialchars($user['bio']); ?></textarea>
+        <?php endif; ?>
+
+        <!-- Verified badge -->
+        <?php if($user['verified'] === 1): ?>
+            <div class="tooltip">
+                <img class="badge" src="badges/image.png" alt="Verified Badge">
+                <span class="tooltiptext">User is verified</span>
             </div>
-            <div class="form-group">
-                <label for="discord_link">Discord Link:</label>
-                <input type="text" id="discord_link" name="discord_link" value="<?php echo htmlspecialchars($user['discord_link']); ?>">
+        <?php endif; ?>
+
+        <!-- Booster badge -->
+        <?php if($user['booster'] === 1): ?>
+            <div class="tooltip">
+                <img class="badge" src="badges/booster.gif" alt="Booster Badge">
+                <span class="tooltiptext">User is a Booster</span>
             </div>
-            <div class="form-group">
-                <label for="telegram_link">Telegram Link:</label>
-                <input type="text" id="telegram_link" name="telegram_link" value="<?php echo htmlspecialchars($user['telegram_link']); ?>">
+        <?php endif; ?>
+
+        <!-- Donator badge -->
+        <?php if($user['donator'] === 1): ?>
+            <div class="tooltip">
+                <img class="badge" src="badges/donator.png" alt="Donator Badge">
+                <span class="tooltiptext">User is a Donator</span>
             </div>
-            <div class="form-group">
-                <label for="twitter_link">Twitter Link:</label>
-                <input type="text" id="twitter_link" name="twitter_link" value="<?php echo htmlspecialchars($user['twitter_link']); ?>">
-            </div>
-            <!-- Add other links here -->
-            <div class="form-group">
-                <input type="submit" value="Update Profile">
-            </div>
-        </form>
+        <?php endif; ?>
+
+        <!-- Bio -->
+        <p class="bio"><?php echo !empty($user['bio']) ? htmlspecialchars($user['bio']) : "No bio available."; ?></p>
+
+        <!-- Social Media Links -->
+        <div class="social-media">
+            <?php if(!empty($user['discord_link'])): ?>
+                <div class="tooltip">
+                    <a href="<?php echo htmlspecialchars($user['discord_link']); ?>" target="_blank">
+                        <i class="fa-brands fa-discord social-icons"></i>
+                    </a>
+                    <span class="tooltiptext">Discord</span>
+                </div>
+            <?php endif; ?>
+
+            <?php if(!empty($user['telegram_link'])): ?>
+                <div class="tooltip">
+                    <a href="<?php echo htmlspecialchars($user['telegram_link']); ?>" target="_blank">
+                        <i class="fa-brands fa-telegram social-icons"></i>
+                    </a>
+                    <span class="tooltiptext">Telegram</span>
+                </div>
+            <?php endif; ?>
+        </div>
     </div>
 </body>
 </html>
 
 <?php
-} else {
-    // User not found
-    include('404.php');
-}
+    } else {
+        // User not found
+        include('404.php');
+    }
 
-// Close the database connection
-$stmt->close();
-$conn->close();
+    // Close the database connection
+    $stmt->close();
+    $conn->close();
 } else {
-    // User not logged in
-    header("Location: login.php");
-    exit();
+    // Username parameter not provided in the URL
+    include('404.php');
 }
 ?>

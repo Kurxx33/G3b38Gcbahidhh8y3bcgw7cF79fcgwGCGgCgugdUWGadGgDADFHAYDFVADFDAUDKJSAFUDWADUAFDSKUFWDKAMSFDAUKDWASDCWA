@@ -8,26 +8,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'];
 
     // Prepare and execute SQL query
-    $sql = "SELECT * FROM user_profiles WHERE username = ?";
+    $sql = "SELECT * FROM user_profiles WHERE username = ? AND password = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $username);
+    $stmt->bind_param("ss", $username, $password);
     $stmt->execute();
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
-        $user = $result->fetch_assoc();
-        // Check hashed password
-        if (password_verify($password, $user['password'])) {
-            session_start();
-            $_SESSION['username'] = $user['username'];
-            $_SESSION['role'] = $user['role'];
-            header('Location: dashboard.php');
-            exit();
-        } else {
-            echo "Invalid password.";
-        }
+        session_start();
+        $_SESSION['username'] = $username;
+        $_SESSION['role'] = $result->fetch_assoc()['role'];
+        header('Location: dashboard.php');
+        exit();
     } else {
-        echo "User not found.";
+        echo "Invalid username or password.";
     }
 
     $stmt->close();

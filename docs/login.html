@@ -4,75 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            background-color: black;
-            color: white;
-            font-family: 'Fira Code', monospace;
-        }
-        .btn-white {
-            background-color: white;
-            color: black;
-        }
-        .btn-white:hover {
-            background-color: #e0e0e0;
-        }
-    </style>
+    <link href="tailwind.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
 </head>
-<body class="flex items-center justify-center min-h-screen">
-    <div class="bg-gray-900 p-8 rounded-lg shadow-md w-80">
-        <h1 class="text-2xl font-bold mb-4">Login</h1>
-        <form id="loginForm">
+<body class="bg-gray-900 text-white flex items-center justify-center min-h-screen">
+    <div class="bg-gray-800 p-8 rounded-lg shadow-lg">
+        <h2 class="text-2xl font-bold mb-4">Login</h2>
+        <form action="auth.php" method="POST">
             <div class="mb-4">
-                <label for="username" class="block mb-2">Username</label>
-                <input type="text" id="username" class="w-full p-2 rounded bg-gray-800 border border-gray-700" required>
+                <label for="username" class="block text-sm font-medium">Username</label>
+                <input type="text" id="username" name="username" class="mt-1 block w-full px-3 py-2 bg-gray-700 text-white rounded-md" required>
             </div>
             <div class="mb-4">
-                <label for="password" class="block mb-2">Password</label>
-                <input type="password" id="password" class="w-full p-2 rounded bg-gray-800 border border-gray-700" required>
+                <label for="password" class="block text-sm font-medium">Password</label>
+                <input type="password" id="password" name="password" class="mt-1 block w-full px-3 py-2 bg-gray-700 text-white rounded-md" required>
             </div>
-            <button type="submit" class="w-full btn-white rounded p-2 hover:bg-gray-200">Login</button>
+            <button type="submit" name="login" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Login</button>
         </form>
-        <p id="error" class="text-red-500 mt-4 hidden">Invalid username or password</p>
     </div>
-
-    <script>
-        document.getElementById('loginForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-
-            // Debugging: Check if username and password are correctly captured
-            console.log('Username:', username);
-            console.log('Password:', password);
-
-            fetch('https://artemas.lol/users.json') // Ensure this path is correct
-                .then(response => {
-                    // Debugging: Check response status and content
-                    console.log('Response Status:', response.status);
-                    return response.json();
-                })
-                .then(data => {
-                    console.log('Data:', data); // Debugging: Check fetched data
-                    const user = data.users.find(user => user.username === username && user.password === password);
-                    if (user) {
-                        // Store session data
-                        localStorage.setItem('loggedInUser', JSON.stringify(user));
-                        window.location.href = 'dashboard';
-                    } else {
-                        document.getElementById('error').classList.remove('hidden');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error fetching user data:', error);
-                    document.getElementById('error').classList.remove('hidden');
-                });
-        });
-    </script>
 </body>
 </html>
-
-

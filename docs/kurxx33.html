@@ -51,7 +51,7 @@
         .biolink {
             display: none;
             opacity: 0;
-            transition: opacity 1s ease-in-out;
+            transition: opacity 2s ease-in-out; /* Slow fade-in effect */
             z-index: 999;
             width: 100%;
             max-width: 720px;
@@ -194,7 +194,7 @@
             height: 60px;
             background: rgba(255, 255, 255, 0.1);
             animation: fall linear infinite;
-            animation-duration: 1s; /* Faster rain */
+            animation-duration: 0.75s; /* Faster rain */
         }
 
         @keyframes fall {
@@ -263,8 +263,8 @@
         </div>
     </div>
 
-    <div class="rain" id="rain"></div>
-    <div class="lightning" id="lightning"></div>
+    <div id="rain" class="rain"></div>
+    <div id="lightning" class="lightning"></div>
 
     <audio id="background-music" loop autoplay>
         <source src="https://r2.interrupted.me/107/youtube-nwoapqiptvm-audio.mp3" type="audio/mp3">

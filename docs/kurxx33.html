@@ -59,12 +59,12 @@
         }
 
         .card {
-            background: rgba(0, 0, 0, 0.49); /* Updated background color */
+            background: rgba(0, 0, 0, 0.49);
             border-radius: 16px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Updated box-shadow */
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
             backdrop-filter: blur(15.3px);
             -webkit-backdrop-filter: blur(15.3px);
-            border: 1px solid rgba(0, 0, 0, 1); /* Updated border */
+            border: 1px solid rgba(0, 0, 0, 1);
             padding: 20px;
             text-align: center;
             color: white;
@@ -82,27 +82,27 @@
 
         .profile-pic {
             border-radius: 50%;
-            width: 100px; /* Smaller size */
-            height: 100px; /* Smaller size */
+            width: 100px;
+            height: 100px;
             object-fit: cover;
-            margin-bottom: 10px; /* Adjusted margin */
-            margin-top: 10px; /* Adjusted margin */
+            margin-bottom: 10px;
+            margin-top: 10px;
             filter: brightness(90%);
         }
 
         .username {
-            font-size: 18px; /* Smaller text */
+            font-size: 18px;
             margin: 10px 0;
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.6); /* Glow effect */
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
         }
 
         .badge-container {
             border: 2px solid rgba(255, 255, 255, 0.7);
-            border-radius: 16px; /* Rounded left and right sides */
+            border-radius: 16px;
             padding: 5px;
             display: inline-flex;
             align-items: center;
-            gap: 5px; /* Space between badges */
+            gap: 5px;
             margin: 10px 0;
         }
 
@@ -135,50 +135,63 @@
         }
 
         .badges-container .badge {
-            font-size: 20px; /* Adjusted size */
+            font-size: 20px;
             margin: 0 5px;
-            color: #ccc; /* Color to differentiate */
+            color: #ccc;
         }
 
         .bio-text {
-            font-size: 16px; /* Slightly larger text */
+            font-size: 16px;
             margin: 10px 0;
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.6); /* Glow effect */
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
         }
 
         .links-container {
-            margin: 10px 0; /* Reduced margin */
+            margin: 10px 0;
         }
 
         .links-container a {
             color: #fff;
             text-decoration: none;
-            margin: 0 10px; /* Adjusted margin for more spacing */
-            font-size: 24px; /* Slightly larger size */
+            margin: 0 10px;
+            font-size: 24px;
             font-weight: bold;
             transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
         }
 
         .links-container a:hover {
-            transform: scale(1.1); /* Slightly larger scale */
-            text-shadow: 0 0 5px #f0f0f0; /* Adjusted text-shadow */
+            transform: scale(1.1);
+            text-shadow: 0 0 5px #f0f0f0;
         }
 
         /* Social Media Icon Colors */
         .links-container a i.fa-telegram {
-            color: #0088cc; /* Telegram brand color */
+            color: #0088cc;
         }
 
         .links-container a i.fa-twitter {
-            color: #1da1f2; /* Twitter blue color */
+            color: #1da1f2;
         }
 
         .links-container a i.fa-tiktok {
-            color: #fff; /* White color for TikTok */
+            color: #fff;
         }
 
-        .rain, .lightning {
-            display: none;
+        .cat-gif {
+            position: absolute;
+            top: -120px; /* Adjust this value as needed */
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 998;
+            width: 120px; /* Adjust size as needed */
+            height: auto;
+        }
+
+        .cat-gif img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
     </style>
 </head>
@@ -188,6 +201,9 @@
     </div>
 
     <div class="biolink" id="biolink">
+        <div class="cat-gif">
+            <img src="cat2.gif" alt="Sleeping Cat">
+        </div>
         <div class="card">
             <img class="profile-pic" src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/Screenshot%202024-07-12%20012005.png" alt="Profile Picture">
             <h1 class="username">@Kurxx33</h1>

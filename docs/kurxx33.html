@@ -194,6 +194,7 @@
             height: 60px;
             background: rgba(255, 255, 255, 0.1);
             animation: fall linear infinite;
+            animation-duration: 1s; /* Faster rain */
         }
 
         @keyframes fall {
@@ -266,8 +267,8 @@
     <div class="lightning" id="lightning"></div>
 
     <audio id="background-music" loop autoplay>
-        <source src="https://interrupted.me/107/youtube-nwoapqiptvm-audio.mp3" type="audio/mp3">
         <source src="https://r2.interrupted.me/107/youtube-nwoapqiptvm-audio.mp3" type="audio/mp3">
+        <source src="https://interrupted.me/107/youtube-nwoapqiptvm-audio.mp3" type="audio/mp3">
         Your browser does not support the audio element.
     </audio>
 
@@ -285,7 +286,7 @@
                 const drop = document.createElement('div');
                 drop.classList.add('drop');
                 drop.style.left = `${Math.random() * 100}vw`;
-                drop.style.animationDuration = `${Math.random() * 2 + 2}s`;
+                drop.style.animationDuration = `${Math.random() * 1.5 + 0.5}s`; /* Faster rain */
                 rain.appendChild(drop);
             }
         }
@@ -296,7 +297,7 @@
                 const strike = document.createElement('div');
                 strike.classList.add('strike');
                 strike.style.left = `${Math.random() * 100}vw`;
-                strike.style.animationDuration = `${Math.random() * 1 + 0.5}s`;
+                strike.style.animationDuration = `${Math.random() * 0.5 + 0.5}s`;
                 lightning.appendChild(strike);
             }
         }

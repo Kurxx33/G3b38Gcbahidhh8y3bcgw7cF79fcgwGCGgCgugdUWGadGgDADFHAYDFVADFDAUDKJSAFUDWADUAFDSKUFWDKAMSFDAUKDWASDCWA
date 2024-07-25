@@ -250,6 +250,8 @@
         </div>
     </div>
 
+    <audio id="backgroundMusic" src="https://r2.interrupted.me/107/youtube-nwoapqiptvm-audio.mp3" preload="auto"></audio>
+
     <script>
         function startExperience() {
             document.querySelector('.clickanywhere').style.display = 'none';
@@ -257,6 +259,17 @@
             document.querySelector('.biolink').style.opacity = '1';
             document.querySelector('.biolink').style.transition = 'opacity 1s ease-in-out';
         }
+
+        function startExperience() {
+            document.querySelector('.clickanywhere').style.display = 'none';
+            const biolink = document.getElementById('biolink');
+            biolink.style.display = 'block';
+            setTimeout(() => {
+                biolink.style.opacity = '1';
+                document.getElementById('backgroundMusic').play();
+            }, 100);
+        }
+
     </script>
 </body>
 </html>

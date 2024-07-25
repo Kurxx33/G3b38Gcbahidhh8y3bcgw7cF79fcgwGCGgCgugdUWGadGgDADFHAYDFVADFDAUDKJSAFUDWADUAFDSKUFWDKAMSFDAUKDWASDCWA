@@ -59,8 +59,12 @@
         }
 
         .card {
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9));
+            background: rgba(0, 0, 0, 0.49); /* Updated background color */
             border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Updated box-shadow */
+            backdrop-filter: blur(12.2px); /* Updated blur */
+            -webkit-backdrop-filter: blur(12.2px); /* Updated blur for WebKit */
+            border: 1px solid rgba(0, 0, 0, 1); /* Updated border */
             padding: 20px;
             text-align: center;
             color: white;
@@ -74,7 +78,6 @@
             max-width: 610px;
             height: auto;
             box-sizing: border-box;
-            backdrop-filter: blur(20px); /* Increased background blur */
         }
 
         .profile-pic {
@@ -117,7 +120,7 @@
             color: #fff;
             text-decoration: none;
             margin: 0 10px; /* Adjusted margin for more spacing */
-            font-size: 34px; /* Slightly larger size */
+            font-size: 24px; /* Slightly larger size */
             font-weight: bold;
             transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
         }
@@ -185,3 +188,4 @@
     </script>
 </body>
 </html>
+

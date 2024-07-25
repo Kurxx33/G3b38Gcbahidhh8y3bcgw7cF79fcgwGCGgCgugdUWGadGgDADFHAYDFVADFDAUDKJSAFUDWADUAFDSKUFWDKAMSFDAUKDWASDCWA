@@ -1,24 +1,16 @@
 <?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $apiUrl = 'https://luckycloud.in/api/upload';
-    $headers = [
-        'Authorization: Bearer YOUR_API_KEY',
-    ];
+session_start();
+include 'db_conn.php';
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['file'])) {
+    $file = $_FILES['file'];
+    $target_dir = "uploads/";
+    $target_file = $target_dir . basename($file["name"]);
     
-    $postData = [
-        'file' => new CURLFile($_FILES['file']['tmp_name']),
-    ];
-
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $apiUrl);
-    curl_setopt($ch, CURLOPT_POST, true);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-    $response = curl_exec($ch);
-    curl_close($ch);
-
-    echo $response;
+    if (move_uploaded_file($file["tmp_name"], $target_file)) {
+        echo "The file " . htmlspecialchars(basename($file["name"])) . " has been uploaded.";
+    } else {
+        echo "Sorry, there was an error uploading your file.";
+    }
 }
 ?>

@@ -99,35 +99,11 @@
         .badges-wrapper {
             position: relative;
             border: 2px solid #ccc;
-            border-radius: 16px;
+            border-radius: 16px; /* Rounded corners on all sides */
             padding: 10px;
             margin: 10px 0;
             width: fit-content;
             background: transparent;
-        }
-
-        .badges-wrapper::before, .badges-wrapper::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            width: 30px;
-            border-top: 2px solid #ccc;
-            border-bottom: 2px solid #ccc;
-            border-radius: 50%;
-            background: transparent;
-        }
-
-        .badges-wrapper::before {
-            left: -20px;
-            transform: rotate(-90deg);
-            border-right: 2px solid #ccc;
-        }
-
-        .badges-wrapper::after {
-            right: -20px;
-            transform: rotate(90deg);
-            border-left: 2px solid #ccc;
         }
 
         .badges-container {
@@ -289,7 +265,11 @@
     <div class="rain" id="rain"></div>
     <div class="lightning" id="lightning"></div>
 
-    <audio id="background-music" src="https://r2.interrupted.me/107/youtube-nwoapqiptvm-audio.mp3" loop autoplay></audio>
+    <audio id="background-music" loop autoplay>
+        <source src="https://interrupted.me/107/youtube-nwoapqiptvm-audio.mp3" type="audio/mp3">
+        <source src="https://r2.interrupted.me/107/youtube-nwoapqiptvm-audio.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
 
     <script>
         function startExperience() {

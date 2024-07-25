@@ -96,12 +96,24 @@
             text-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
         }
 
+        .bio-text {
+            font-size: 16px;
+            margin: 10px 0;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
+        }
+
         .badge-container {
+            margin: 10px 0;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px; /* Space between badges */
-            margin: 10px 0;
+            gap: 10px; /* Add space between badges */
+        }
+
+        .badge-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Space between individual badges */
         }
 
         .badge {
@@ -142,12 +154,6 @@
             border-width: 5px;
             border-style: solid;
             border-color: rgba(0, 0, 0, 0.7) transparent transparent transparent;
-        }
-
-        .bio-text {
-            font-size: 16px;
-            margin: 10px 0;
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
         }
 
         .links-container {
@@ -211,23 +217,25 @@
         <div class="card">
             <img class="profile-pic" src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/Screenshot%202024-07-12%20012005.png" alt="Profile Picture">
             <h1 class="username">@Kurxx33</h1>
-            <p class="bio-text">Love is the most twisted curse of all</p>
+            <div class="bio-text">Love is the most twisted curse of all</div>
             <div class="badge-container">
-                <div class="badge" data-tooltip="Owner">
-                    <i class="fa-brands fa-square-web-awesome"></i>
-                    <div class="tooltip">Owner</div>
-                </div>
-                <div class="badge" data-tooltip="Developer">
-                    <i class="fa-solid fa-hammer"></i>
-                    <div class="tooltip">Developer</div>
-                </div>
-                <div class="badge" data-tooltip="Money maker">
-                    <i class="fa-brands fa-bitcoin"></i>
-                    <div class="tooltip">Money maker</div>
-                </div>
-                <div class="badge" data-tooltip="Viacoin">
-                    <i class="fa-brands fa-viacoin"></i>
-                    <div class="tooltip">Viacoin</div>
+                <div class="badge-wrapper">
+                    <div class="badge" data-tooltip="Owner">
+                        <i class="fa-brands fa-square-web-awesome"></i>
+                        <div class="tooltip">Owner</div>
+                    </div>
+                    <div class="badge" data-tooltip="Developer">
+                        <i class="fa-solid fa-hammer"></i>
+                        <div class="tooltip">Developer</div>
+                    </div>
+                    <div class="badge" data-tooltip="Money maker">
+                        <i class="fa-brands fa-bitcoin"></i>
+                        <div class="tooltip">Money maker</div>
+                    </div>
+                    <div class="badge" data-tooltip="Viacoin">
+                        <i class="fa-brands fa-viacoin"></i>
+                        <div class="tooltip">Viacoin</div>
+                    </div>
                 </div>
             </div>
             <div class="links-container">
@@ -238,18 +246,14 @@
         </div>
     </div>
 
-    <audio id="backgroundMusic" src="https://r2.interrupted.me/107/youtube-chpj6z2xiji-audio.mp3" preload="auto"></audio>
-
     <script>
         function startExperience() {
             document.querySelector('.clickanywhere').style.display = 'none';
-            var bioLink = document.getElementById('biolink');
-            bioLink.style.display = 'block';
+            const biolink = document.getElementById('biolink');
+            biolink.style.display = 'flex';
             setTimeout(() => {
-                bioLink.style.opacity = 1;
-            }, 10);
-            var music = document.getElementById('backgroundMusic');
-            music.play();
+                biolink.style.opacity = 1;
+            }, 100);
         }
     </script>
 </body>

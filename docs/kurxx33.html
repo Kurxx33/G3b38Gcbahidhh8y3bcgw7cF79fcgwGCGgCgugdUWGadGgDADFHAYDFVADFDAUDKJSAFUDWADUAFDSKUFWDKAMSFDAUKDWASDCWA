@@ -97,47 +97,52 @@
         }
 
         .badge-container {
-            border: 2px solid rgba(255, 255, 255, 0.7);
-            border-radius: 16px;
-            padding: 5px;
+            position: relative;
             display: inline-flex;
             align-items: center;
             gap: 5px;
             margin: 10px 0;
         }
 
-        .badge-container::before,
-        .badge-container::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            width: 100%;
-            border-radius: 16px;
-            background: inherit;
-            z-index: -1;
-        }
-
-        .badge-container::before {
-            left: -8px;
-            border-radius: 16px 0 0 16px;
-            transform: scaleX(1.5);
-        }
-
-        .badge-container::after {
-            right: -8px;
-            border-radius: 0 16px 16px 0;
-            transform: scaleX(1.5);
-        }
-
-        .badges-container {
-            margin: 10px 0;
-        }
-
-        .badges-container .badge {
+        .badge {
             font-size: 20px;
             margin: 0 5px;
             color: #ccc;
+            position: relative;
+        }
+
+        .badge:hover .tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .tooltip::before {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 5px;
+            border-style: solid;
+            border-color: rgba(0, 0, 0, 0.7) transparent transparent transparent;
         }
 
         .bio-text {
@@ -208,10 +213,22 @@
             <img class="profile-pic" src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/Screenshot%202024-07-12%20012005.png" alt="Profile Picture">
             <h1 class="username">@Kurxx33</h1>
             <div class="badge-container">
-                <i class="fa-brands fa-square-web-awesome badge" aria-label="Owner"></i>
-                <i class="fa-solid fa-hammer badge" aria-label="Developer"></i>
-                <i class="fa-brands fa-bitcoin badge" aria-label="Money maker"></i>
-                <i class="fa-brands fa-viacoin badge" aria-label="Viacoin"></i>
+                <div class="badge" data-tooltip="Owner">
+                    <i class="fa-brands fa-square-web-awesome"></i>
+                    <div class="tooltip">Owner</div>
+                </div>
+                <div class="badge" data-tooltip="Developer">
+                    <i class="fa-solid fa-hammer"></i>
+                    <div class="tooltip">Developer</div>
+                </div>
+                <div class="badge" data-tooltip="Money maker">
+                    <i class="fa-brands fa-bitcoin"></i>
+                    <div class="tooltip">Money maker</div>
+                </div>
+                <div class="badge" data-tooltip="Viacoin">
+                    <i class="fa-brands fa-viacoin"></i>
+                    <div class="tooltip">Viacoin</div>
+                </div>
             </div>
             <p class="bio-text">Love is the most twisted curse of all</p>
             <div class="links-container">
@@ -228,12 +245,24 @@
         function startExperience() {
             document.querySelector('.clickanywhere').style.display = 'none';
             const biolink = document.getElementById('biolink');
-            biolink.style.display = 'block';
-            setTimeout(() => {
-                biolink.style.opacity = 1;
-            }, 100);
+            biolink.style.display = 'flex';
+            biolink.style.opacity = '1';
             document.getElementById('backgroundMusic').play();
         }
+
+        // Add mouseover event to badge elements
+        document.querySelectorAll('.badge').forEach(badge => {
+            badge.addEventListener('mouseover', function() {
+                this.querySelector('.tooltip').style.opacity = '1';
+                this.querySelector('.tooltip').style.visibility = 'visible';
+                this.querySelector('.tooltip').style.transform = 'translateY(0)';
+            });
+            badge.addEventListener('mouseout', function() {
+                this.querySelector('.tooltip').style.opacity = '0';
+                this.querySelector('.tooltip').style.visibility = 'hidden';
+                this.querySelector('.tooltip').style.transform = 'translateY(10px)';
+            });
+        });
     </script>
 </body>
 </html>

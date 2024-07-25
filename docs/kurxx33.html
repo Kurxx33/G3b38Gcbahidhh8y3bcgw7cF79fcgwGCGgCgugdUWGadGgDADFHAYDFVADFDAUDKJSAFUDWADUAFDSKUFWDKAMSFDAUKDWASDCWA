@@ -1,160 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Open Graph Meta Tags for Discord Embed -->
-    <meta property="og:title" content="Kurxx33">
-    <meta property="og:description" content="Kurxx33 forever...">
-    <meta property="og:image" content="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/Screenshot%202024-07-12%20012005.png">
-    <meta property="og:type" content="profile">
-    <!-- End Open Graph Meta Tags -->
-    
-    <title>Kurxx33's Bio</title>
-    <link rel="stylesheet" href="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/bio-style%20(7).css">
+    <title>kurxx33</title>
+    <meta property="og:title" content="kurxx33">
+    <meta name="description" content="Kurxx33 forever">
+    <meta name="twitter:image:src" content="kurxxbackground.png">
+    <meta name="theme-color" content="#000000">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ionicons/7.1.0/esm/ionicons.min.js"></script>
+    <script src="https://kit.fontawesome.com/b0c7a14384.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
     <style>
-        body, html {
+        body {
             margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            background-color: black;
             overflow: hidden;
-        }
-        
-        .sparkle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: white;
-            pointer-events: none;
-            opacity: 1;
-            animation: fade-out 0.5s forwards;
-        }
-        
-        @keyframes fade-out {
-            to {
-                opacity: 0;
-                transform: scale(2);
-            }
-        }
-        
-        #snowCanvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            pointer-events: none; /* Allow mouse events to pass through */
-            z-index: 1000; /* Ensure snow is above other content */
+            font-family: 'UnifrakturCook', cursive;
+            background: url('darkclouds.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            position: relative;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        .bio-container {
+        .clickanywhere {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            cursor: pointer;
+            z-index: 9999;
+        }
+
+        .clickanywhere h4 {
+            color: white;
+            font-size: 25px;
+            margin: 0;
+        }
+
+        .biolink {
+            display: none;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            z-index: 999;
+            width: 100%;
+            max-width: 720px;
             position: relative;
-            z-index: 2000; /* Ensure bio content is above snow */
+        }
+
+        .card {
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9));
+            border-radius: 16px;
+            border: 1px solid silver;
+            padding: 20px;
+            text-align: center;
+            color: white;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.85;
+            width: 100%;
+            max-width: 650px;
+            height: auto; /* Adjust height to fit content */
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+        }
+
+        .profile-pic {
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            margin-bottom: 20px;
+            margin-top: 20px; /* Reduced margin for better fit */
+            filter: brightness(90%);
+        }
+
+        .badges-container {
+            margin: 10px 0; /* Reduced margin */
+        }
+
+        .badges-container .badge {
+            font-size: 24px;
+            margin: 0 5px;
+        }
+
+        .links-container {
+            margin: 20px 0; /* Reduced margin */
+        }
+
+        .links-container a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px; /* Reduced margin */
+            font-size: 28px; /* Adjusted font size */
+            font-weight: bold;
+            transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        .links-container a:hover {
+            transform: scale(1.2); /* Adjusted scale */
+            color: #f0f0f0;
+            text-shadow: 0 0 8px #f0f0f0; /* Adjusted text-shadow */
+        }
+
+        .rain, .lightning {
+            display: none;
         }
     </style>
 </head>
 <body>
-    <canvas id="snowCanvas"></canvas>
-    <div class="bio-container">
-        <div class="bio-card">
-            <img class="profile-pic" src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/Screenshot%202024-07-12%20012005.png" alt="Kurxx33 Profile Picture">
-            <div id="bio-content" class="bio-text">
-                Kurxx33 forever...
+    <div class="clickanywhere" onclick="startExperience()">
+        <h4>Click anywhere to enter</h4>
+    </div>
+
+    <div class="biolink" id="biolink">
+        <div class="card">
+            <img class="profile-pic" src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/Screenshot%202024-07-12%20012005.png" alt="Profile Picture">
+            <div class="badges-container">
+                <i class="fa-brands fa-square-web-awesome badge" aria-label="Owner"></i>
+                <i class="fa-solid fa-hammer badge" aria-label="Developer"></i>
+                <i class="fa-brands fa-bitcoin badge" aria-label="Money maker"></i>
+                <i class="fa-brands fa-viacoin badge" aria-label="Viacoin"></i>
             </div>
-            <!-- Spotify Widget -->
-            <iframe src="https://open.spotify.com/embed/track/7KdQOqCspznOjPDT0KAnuq?theme=0" width="100%" height="300" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+            <h1>@Kurxx33<br><span class="small">Love is the most twisted curse of all</span></h1>
+        </div>
+            <div class="links-container">
+                <a href="https://t.me/kurxx33" target="_blank" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
+                <a href="https://twitter.com/kurxx33" target="_blank" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+                <a href="https://www.tiktok.com/@kurxx33" target="_blank" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+            </div>
         </div>
     </div>
-    <script src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/bio-script.js"></script>
-    <script src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/tilt.js"></script>
+
     <script>
-        // Snow Animation
-        const canvas = document.getElementById('snowCanvas');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        const snowflakes = [];
-        const numFlakes = 200;
-
-        class Snowflake {
-            constructor(x, y, speed, size, opacity) {
-                this.x = x;
-                this.y = y;
-                this.speed = speed;
-                this.size = size;
-                this.opacity = opacity;
-                this.angle = Math.random() * 2 * Math.PI;
-                this.spin = Math.random() * 0.02 - 0.01; // Random spin between -0.01 and 0.01
-            }
-
-            update() {
-                this.y += this.speed;
-                this.x += Math.sin(this.angle) * 0.5; // Slight horizontal movement
-                this.angle += this.spin; // Rotate the snowflake
-
-                if (this.y > canvas.height) {
-                    this.y = -this.size;
-                    this.x = Math.random() * canvas.width;
-                    this.opacity = 1;
-                }
-            }
-
-            draw() {
-                ctx.save();
-                ctx.translate(this.x, this.y);
-                ctx.rotate(this.angle);
-                ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
-                ctx.shadowBlur = 5;
-                ctx.shadowColor = 'white';
-                ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size);
-                ctx.restore();
-            }
-        }
-
-        for (let i = 0; i < numFlakes; i++) {
-            snowflakes.push(new Snowflake(
-                Math.random() * canvas.width,
-                Math.random() * canvas.height,
-                Math.random() * 3 + 1,
-                Math.random() * 2 + 1,
-                1
-            ));
-        }
-
-        function draw() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            snowflakes.forEach(flake => {
-                flake.update();
-                flake.draw();
-            });
-            requestAnimationFrame(draw);
-        }
-
-        draw();
-
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
-
-        // Sparkle Mouse Trail
-        document.addEventListener('mousemove', function (e) {
-            createSparkle(e.pageX, e.pageY);
-        });
-
-        function createSparkle(x, y) {
-            const sparkle = document.createElement('div');
-            sparkle.className = 'sparkle';
-            sparkle.style.left = `${x}px`;
-            sparkle.style.top = `${y}px`;
-
-            document.body.appendChild(sparkle);
-
+        function startExperience() {
+            document.querySelector('.clickanywhere').style.display = 'none';
+            const biolink = document.getElementById('biolink');
+            biolink.style.display = 'block';
             setTimeout(() => {
-                sparkle.remove();
-            }, 500);
+                biolink.style.opacity = '1';
+                // Add your background music element here if needed
+                // document.getElementById('backgroundMusic').play();
+            }, 100);
         }
     </script>
 </body>

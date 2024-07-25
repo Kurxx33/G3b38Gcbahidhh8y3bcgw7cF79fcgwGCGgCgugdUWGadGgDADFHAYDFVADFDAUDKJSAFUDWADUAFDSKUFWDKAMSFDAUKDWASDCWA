@@ -1,45 +1,38 @@
 <?php
-session_start();
-include 'db_conn.php';
+// auth.php
 
-function login($username, $password) {
-    global $conn;
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    include('db_conn.php');
 
-    $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    // Prepare and execute SQL query
+    $sql = "SELECT * FROM user_profiles WHERE username = ?";
+    $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $username);
     $stmt->execute();
     $result = $stmt->get_result();
-    $user = $result->fetch_assoc();
 
-    if ($user && password_verify($password, $user['password'])) {
-        $_SESSION['user_id'] = $user['id'];
-        $_SESSION['role'] = $user['role'];
-        return true;
-    }
-    return false;
-}
-
-function register($username, $password, $invite_key) {
-    global $conn;
-
-    $stmt = $conn->prepare("SELECT * FROM invite_keys WHERE key_value = ? AND used = FALSE");
-    $stmt->bind_param("s", $invite_key);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    
     if ($result->num_rows > 0) {
-        $hashed_password = password_hash($password, PASSWORD_BCRYPT);
-
-        $stmt = $conn->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
-        $stmt->bind_param("ss", $username, $hashed_password);
-        $stmt->execute();
-
-        $stmt = $conn->prepare("UPDATE invite_keys SET used = TRUE WHERE key_value = ?");
-        $stmt->bind_param("s", $invite_key);
-        $stmt->execute();
-
-        return true;
+        $user = $result->fetch_assoc();
+        // Check hashed password
+        if (password_verify($password, $user['password'])) {
+            session_start();
+            $_SESSION['username'] = $user['username'];
+            $_SESSION['role'] = $user['role'];
+            header('Location: dashboard.php');
+            exit();
+        } else {
+            echo "Invalid password.";
+        }
+    } else {
+        echo "User not found.";
     }
-    return false;
+
+    $stmt->close();
+    $conn->close();
+} else {
+    echo "Invalid request method.";
 }
 ?>

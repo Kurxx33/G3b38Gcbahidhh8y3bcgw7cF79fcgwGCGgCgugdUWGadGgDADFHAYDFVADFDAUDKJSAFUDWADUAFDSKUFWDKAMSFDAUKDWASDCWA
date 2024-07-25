@@ -179,11 +179,11 @@
 
         .cat-gif {
             position: absolute;
-            top: -120px; /* Adjust this value as needed */
+            top: -60px; /* Move it down a bit */
             left: 50%;
             transform: translateX(-50%);
             z-index: 998;
-            width: 120px; /* Adjust size as needed */
+            width: 240px; /* Make it twice as big */
             height: auto;
         }
 
@@ -222,8 +222,7 @@
         </div>
     </div>
 
-    <!-- Audio element for background music -->
-    <audio id="backgroundMusic" src="abc.mp3" preload="auto"></audio>
+    <audio id="backgroundMusic" src="https://interrupted.me/107/youtube-chpj6z2xiji-audio.mp3" preload="auto"></audio>
 
     <script>
         function startExperience() {
@@ -231,9 +230,9 @@
             const biolink = document.getElementById('biolink');
             biolink.style.display = 'block';
             setTimeout(() => {
-                biolink.style.opacity = '1';
-                document.getElementById('backgroundMusic').play(); // Play the background music
+                biolink.style.opacity = 1;
             }, 100);
+            document.getElementById('backgroundMusic').play();
         }
     </script>
 </body>

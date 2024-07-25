@@ -3,35 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up - Artemas</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
-    <link href="signup.css" rel="stylesheet">
+    <title>Sign Up</title>
+    <link href="tailwind.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
 </head>
-<body class="bg-black text-white font-fira flex items-center justify-center min-h-screen">
-    <div class="bg-gray-900 p-8 rounded-lg shadow-lg w-full max-w-md">
-        <h2 class="text-2xl font-bold mb-6">Sign Up</h2>
-        <form id="signupForm">
+<body class="bg-gray-900 text-white flex items-center justify-center min-h-screen">
+    <div class="bg-gray-800 p-8 rounded-lg shadow-lg">
+        <h2 class="text-2xl font-bold mb-4">Sign Up</h2>
+        <form action="auth.php" method="POST">
             <div class="mb-4">
-                <label for="username" class="block mb-2">Username</label>
-                <input type="text" id="username" class="w-full p-2 rounded bg-gray-800 border border-gray-700">
+                <label for="username" class="block text-sm font-medium">Username</label>
+                <input type="text" id="username" name="username" class="mt-1 block w-full px-3 py-2 bg-gray-700 text-white rounded-md" required>
             </div>
             <div class="mb-4">
-                <label for="password" class="block mb-2">Password</label>
-                <input type="password" id="password" class="w-full p-2 rounded bg-gray-800 border border-gray-700">
+                <label for="password" class="block text-sm font-medium">Password</label>
+                <input type="password" id="password" name="password" class="mt-1 block w-full px-3 py-2 bg-gray-700 text-white rounded-md" required>
             </div>
             <div class="mb-4">
-                <label for="confirmPassword" class="block mb-2">Confirm Password</label>
-                <input type="password" id="confirmPassword" class="w-full p-2 rounded bg-gray-800 border border-gray-700">
+                <label for="invite_key" class="block text-sm font-medium">Invite Key</label>
+                <input type="text" id="invite_key" name="invite_key" class="mt-1 block w-full px-3 py-2 bg-gray-700 text-white rounded-md" required>
             </div>
-            <div class="mb-4">
-                <label for="invite" class="block mb-2">Invite Code</label>
-                <input type="text" id="invite" class="w-full p-2 rounded bg-gray-800 border border-gray-700">
-            </div>
-            <button type="submit" class="w-full bg-blue-600 p-2 rounded hover:bg-blue-700 transition">Sign Up</button>
+            <button type="submit" name="register" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Sign Up</button>
         </form>
     </div>
-    <script src="signup.js"></script>
 </body>
 </html>
-

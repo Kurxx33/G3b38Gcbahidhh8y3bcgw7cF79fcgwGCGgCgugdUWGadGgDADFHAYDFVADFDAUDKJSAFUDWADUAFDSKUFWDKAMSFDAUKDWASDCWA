@@ -96,6 +96,22 @@
             text-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
         }
 
+        .badges-container {
+            margin: 10px 0;
+            display: flex;
+            gap: 10px;
+        }
+
+        .badge {
+            font-size: 24px;
+            color: #ccc;
+            transition: color 0.3s ease;
+        }
+
+        .badge:hover {
+            color: #fff;
+        }
+
         .badge-container {
             position: relative;
             display: inline-flex;
@@ -207,6 +223,63 @@
             border-radius: 8px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
+
+        /* Rain and Lightning Styles */
+        .rain {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .drop {
+            position: absolute;
+            bottom: 100%;
+            width: 1px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.1);
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+
+        .lightning {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            opacity: 0;
+            z-index: 2;
+        }
+
+        .strike {
+            position: absolute;
+            bottom: 100%;
+            width: 2px;
+            height: 100vh;
+            background: white;
+            opacity: 0;
+            animation: strike 0.2s ease-in-out infinite;
+        }
+
+        @keyframes strike {
+            0%, 100% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
     </style>
 </head>
 <body>
@@ -219,57 +292,62 @@
             <img src="cat.gif" alt="Sleeping Cat">
         </div>
         <div class="card">
-            <img class="profile-pic" src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/Screenshot%202024-07-12%20012005.png" alt="Profile Picture">
-            <h1 class="username">@Kurxx33</h1>
-            <div class="badge-container">
-                <div class="badge-wrapper">
-                    <div class="badge">
-                        <i class="fa-brands fa-square-web-awesome" aria-label="Owner"></i>
-                        <div class="tooltip">Owner</div>
-                    </div>
-                    <div class="badge">
-                        <i class="fa-solid fa-hammer" aria-label="Developer"></i>
-                        <div class="tooltip">Developer</div>
-                    </div>
-                    <div class="badge">
-                        <i class="fa-brands fa-bitcoin" aria-label="Money maker"></i>
-                        <div class="tooltip">Money Maker</div>
-                    </div>
-                    <div class="badge">
-                        <i class="fa-brands fa-viacoin" aria-label="Viacoin"></i>
-                        <div class="tooltip">Viacoin</div>
-                    </div>
-                </div>
+            <img class="profile-pic" src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/Screenshot%202023-10-21%20at%204.23.46%20PM.png" alt="Profile Picture">
+            <div class="username">kurxx33</div>
+            <div class="badges-container">
+                <i class="fa-brands fa-square-web-awesome badge" aria-label="Owner"></i>
+                <i class="fa-solid fa-hammer badge" aria-label="Developer"></i>
+                <i class="fa-brands fa-bitcoin badge" aria-label="Money maker"></i>
+                <i class="fa-brands fa-viacoin badge" aria-label="Viacoin"></i>
             </div>
             <p class="bio-text">Love is the most twisted curse of all</p>
             <div class="links-container">
-                <a href="https://t.me/kurxx33" target="_blank" title="Telegram"><i class="fa-brands fa-telegram"></i></a>
-                <a href="https://twitter.com/kurxx33" target="_blank" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
-                <a href="https://www.tiktok.com/@kurxx33" target="_blank" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="https://t.me/Kurxx33" target="_blank"><i class="fa-brands fa-telegram"></i></a>
+                <a href="https://twitter.com/Kurxx33" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+                <a href="https://www.tiktok.com/@kurxx33" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
             </div>
         </div>
     </div>
 
-    <audio id="backgroundMusic" src="https://r2.interrupted.me/107/youtube-nwoapqiptvm-audio.mp3" preload="auto"></audio>
+    <div class="rain" id="rain"></div>
+    <div class="lightning" id="lightning"></div>
+
+    <audio id="background-music" src="https://r2.interrupted.me/107/youtube-nwoapqiptvm-audio.mp3" loop autoplay></audio>
 
     <script>
         function startExperience() {
             document.querySelector('.clickanywhere').style.display = 'none';
-            document.querySelector('.biolink').style.display = 'block';
-            document.querySelector('.biolink').style.opacity = '1';
-            document.querySelector('.biolink').style.transition = 'opacity 1s ease-in-out';
-        }
-
-        function startExperience() {
-            document.querySelector('.clickanywhere').style.display = 'none';
             const biolink = document.getElementById('biolink');
             biolink.style.display = 'block';
-            setTimeout(() => {
-                biolink.style.opacity = '1';
-                document.getElementById('backgroundMusic').play();
-            }, 100);
+            biolink.style.opacity = 1;
         }
 
+        function createRain() {
+            const rain = document.getElementById('rain');
+            for (let i = 0; i < 100; i++) {
+                const drop = document.createElement('div');
+                drop.classList.add('drop');
+                drop.style.left = `${Math.random() * 100}vw`;
+                drop.style.animationDuration = `${Math.random() * 2 + 2}s`;
+                rain.appendChild(drop);
+            }
+        }
+
+        function createLightning() {
+            const lightning = document.getElementById('lightning');
+            for (let i = 0; i < 5; i++) {
+                const strike = document.createElement('div');
+                strike.classList.add('strike');
+                strike.style.left = `${Math.random() * 100}vw`;
+                strike.style.animationDuration = `${Math.random() * 1 + 0.5}s`;
+                lightning.appendChild(strike);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            createRain();
+            createLightning();
+        });
     </script>
 </body>
 </html>

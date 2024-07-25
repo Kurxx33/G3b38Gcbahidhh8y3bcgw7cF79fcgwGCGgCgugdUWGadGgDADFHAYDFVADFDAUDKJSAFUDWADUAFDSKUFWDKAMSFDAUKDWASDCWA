@@ -156,6 +156,9 @@
         </div>
     </div>
 
+    <!-- Audio element for background music -->
+    <audio id="backgroundMusic" src="british.mp3" preload="auto"></audio>
+
     <script>
         function startExperience() {
             document.querySelector('.clickanywhere').style.display = 'none';
@@ -163,8 +166,7 @@
             biolink.style.display = 'block';
             setTimeout(() => {
                 biolink.style.opacity = '1';
-                // Add your background music element here if needed
-                // document.getElementById('backgroundMusic').play();
+                document.getElementById('backgroundMusic').play(); // Play the background music
             }, 100);
         }
     </script>

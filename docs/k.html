@@ -73,7 +73,8 @@
             opacity: 0.85;
             width: 100%;
             max-width: 650px;
-            height: 670px;
+            height: auto; /* Adjust height to fit content */
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
         }
 
         .profile-pic {
@@ -82,12 +83,12 @@
             height: 120px;
             object-fit: cover;
             margin-bottom: 20px;
-            margin-top: 40px;
+            margin-top: 20px; /* Reduced margin for better fit */
             filter: brightness(90%);
         }
 
         .badges-container {
-            margin: 20px 0;
+            margin: 10px 0; /* Reduced margin */
         }
 
         .badges-container .badge {
@@ -96,27 +97,28 @@
         }
 
         .links-container {
-            margin: 40px 0;
+            margin: 20px 0; /* Reduced margin */
         }
 
         .links-container a {
             color: #fff;
             text-decoration: none;
-            margin: 0 20px;
-            font-size: 36px;
+            margin: 0 10px; /* Reduced margin */
+            font-size: 28px; /* Adjusted font size */
             font-weight: bold;
             transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
         }
 
         .links-container a:hover {
-            transform: scale(1.4);
+            transform: scale(1.2); /* Adjusted scale */
             color: #f0f0f0;
-            text-shadow: 0 0 10px #f0f0f0;
+            text-shadow: 0 0 8px #f0f0f0; /* Adjusted text-shadow */
         }
 
         .spotify-widget iframe {
             border: none;
-            width: 530px;
+            width: 100%; /* Adjusted width */
+            max-width: 530px;
             height: 120px;
             border-radius: 10px;
             margin-bottom: 20px;
@@ -126,13 +128,14 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: 20px;
+            margin-top: 10px; /* Moved up */
         }
 
         .discord-widget img {
             width: 100%;
+            max-width: 250px; /* Adjusted max width */
             height: auto; /* Maintains aspect ratio */
-            display: block; /* Remove any inline spacing */
+            display: block;
             background: none; /* Ensure no background is applied */
         }
 
@@ -177,7 +180,8 @@
             biolink.style.display = 'block';
             setTimeout(() => {
                 biolink.style.opacity = '1';
-                document.getElementById('backgroundMusic').play();
+                // Add your background music element here if needed
+                // document.getElementById('backgroundMusic').play();
             }, 100);
         }
     </script>

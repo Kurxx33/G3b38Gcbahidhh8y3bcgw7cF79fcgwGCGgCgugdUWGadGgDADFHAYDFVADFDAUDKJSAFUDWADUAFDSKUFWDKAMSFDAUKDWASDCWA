@@ -104,6 +104,15 @@
             margin: 10px 0;
         }
 
+        .badge-wrapper {
+            display: inline-flex;
+            border: 2px solid #ccc;
+            border-radius: 16px;
+            padding: 5px 10px;
+            background-clip: padding-box;
+            box-sizing: border-box;
+        }
+
         .badge {
             font-size: 20px;
             margin: 0 5px;
@@ -213,21 +222,23 @@
             <img class="profile-pic" src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/Screenshot%202024-07-12%20012005.png" alt="Profile Picture">
             <h1 class="username">@Kurxx33</h1>
             <div class="badge-container">
-                <div class="badge">
-                    <i class="fa-brands fa-square-web-awesome" aria-label="Owner"></i>
-                    <div class="tooltip">Owner</div>
-                </div>
-                <div class="badge">
-                    <i class="fa-solid fa-hammer" aria-label="Developer"></i>
-                    <div class="tooltip">Developer</div>
-                </div>
-                <div class="badge">
-                    <i class="fa-brands fa-bitcoin" aria-label="Money maker"></i>
-                    <div class="tooltip">Money Maker</div>
-                </div>
-                <div class="badge">
-                    <i class="fa-brands fa-viacoin" aria-label="Viacoin"></i>
-                    <div class="tooltip">Viacoin</div>
+                <div class="badge-wrapper">
+                    <div class="badge">
+                        <i class="fa-brands fa-square-web-awesome" aria-label="Owner"></i>
+                        <div class="tooltip">Owner</div>
+                    </div>
+                    <div class="badge">
+                        <i class="fa-solid fa-hammer" aria-label="Developer"></i>
+                        <div class="tooltip">Developer</div>
+                    </div>
+                    <div class="badge">
+                        <i class="fa-brands fa-bitcoin" aria-label="Money maker"></i>
+                        <div class="tooltip">Money Maker</div>
+                    </div>
+                    <div class="badge">
+                        <i class="fa-brands fa-viacoin" aria-label="Viacoin"></i>
+                        <div class="tooltip">Viacoin</div>
+                    </div>
                 </div>
             </div>
             <p class="bio-text">Love is the most twisted curse of all</p>
@@ -239,17 +250,12 @@
         </div>
     </div>
 
-    <audio id="backgroundMusic" src="https://r2.interrupted.me/107/youtube-chpj6z2xiji-audio.mp3" preload="auto"></audio>
-
     <script>
         function startExperience() {
             document.querySelector('.clickanywhere').style.display = 'none';
-            const biolink = document.getElementById('biolink');
-            biolink.style.display = 'block';
-            setTimeout(() => {
-                biolink.style.opacity = '1';
-                document.getElementById('backgroundMusic').play();
-            }, 100);
+            document.querySelector('.biolink').style.display = 'block';
+            document.querySelector('.biolink').style.opacity = '1';
+            document.querySelector('.biolink').style.transition = 'opacity 1s ease-in-out';
         }
     </script>
 </body>

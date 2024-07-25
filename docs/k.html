@@ -118,8 +118,8 @@
         .spotify-widget iframe {
             border: none;
             width: 100%; /* Adjusted width */
-            max-width: 400px;
-            height: 100px;
+            max-width: 530px;
+            height: 120px;
             border-radius: 10px;
             margin-bottom: 20px;
         }
@@ -128,12 +128,12 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: 1px; /* Moved up */
+            margin-top: 10px; /* Moved up */
         }
 
         .discord-widget img {
             width: 100%;
-            max-width: 450px; /* Adjusted max width */
+            max-width: 250px; /* Adjusted max width */
             height: auto; /* Maintains aspect ratio */
             display: block;
             background: none; /* Ensure no background is applied */
@@ -141,6 +141,53 @@
 
         .rain, .lightning {
             display: none;
+        }
+
+        .username {
+            position: relative;
+            display: inline-block;
+            font-size: 36px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .username::before,
+        .username::after {
+            content: '';
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 10px white;
+            animation: sparkle 1.5s infinite;
+        }
+
+        .username::before {
+            top: 10%;
+            left: 20%;
+            animation-delay: 0s;
+        }
+
+        .username::after {
+            top: 60%;
+            left: 70%;
+            animation-delay: 0.75s;
+        }
+
+        @keyframes sparkle {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.5);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
         }
     </style>
 </head>
@@ -158,7 +205,7 @@
                 <i class="fa-brands fa-bitcoin badge" aria-label="Money maker"></i>
                 <i class="fa-brands fa-viacoin badge" aria-label="Viacoin"></i>
             </div>
-            <h1>@Kurxx33<br><span class="small">Love is the most twisted curse of all</span></h1>
+            <h1 class="username">@Kurxx33<br><span class="small">Love is the most twisted curse of all</span></h1>
             <div class="spotify-widget">
                 <iframe src="https://open.spotify.com/embed/track/2F4vgXgGEZPCnBNBfqXhmH?si=11d466fce9e547de" allowtransparency="true" allow="encrypted-media"></iframe>
             </div>
@@ -181,8 +228,8 @@
             setTimeout(() => {
                 biolink.style.opacity = '1';
                 // Add your background music element here if needed
-                // document.getElementById('backgroundMusic').play();
-            }, 100);
+                // e.g., document.getElementById('background-music').play();
+            }, 1000); // Adjust time as needed
         }
     </script>
 </body>

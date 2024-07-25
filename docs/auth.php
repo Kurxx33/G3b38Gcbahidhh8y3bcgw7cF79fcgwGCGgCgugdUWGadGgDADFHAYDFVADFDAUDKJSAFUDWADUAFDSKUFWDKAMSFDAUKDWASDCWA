@@ -1,32 +1,45 @@
 <?php
 // auth.php
 
+// Check if the form is submitted via POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    include('db_conn.php');
+    include('db_conn.php'); // Include your database connection file
 
+    // Retrieve form data
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Prepare and execute SQL query
-    $sql = "SELECT * FROM user_profiles WHERE username = ? AND password = ?";
+    // Prepare and execute SQL query to fetch user information
+    $sql = "SELECT * FROM user_profiles WHERE username = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ss", $username, $password);
+    $stmt->bind_param("s", $username);
     $stmt->execute();
     $result = $stmt->get_result();
-
+    
+    // Check if user exists
     if ($result->num_rows > 0) {
-        session_start();
-        $_SESSION['username'] = $username;
-        $_SESSION['role'] = $result->fetch_assoc()['role'];
-        header('Location: dashboard.php');
-        exit();
+        $user = $result->fetch_assoc();
+
+        // Verify password
+        if ($user['password'] === $password) {
+            // Password is correct, start session and redirect
+            session_start();
+            $_SESSION['username'] = $user['username'];
+            $_SESSION['role'] = $user['role'];
+            header('Location: dashboard.php');
+            exit();
+        } else {
+            echo "Invalid password.";
+        }
     } else {
-        echo "Invalid username or password.";
+        echo "User not found.";
     }
 
+    // Close the database connection
     $stmt->close();
     $conn->close();
 } else {
+    // If not POST request, show an error or redirect
     echo "Invalid request method.";
 }
 ?>

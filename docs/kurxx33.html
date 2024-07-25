@@ -96,8 +96,41 @@
             text-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
         }
 
-        .badges-container {
+        .badges-wrapper {
+            position: relative;
+            border: 2px solid #ccc;
+            border-radius: 16px;
+            padding: 10px;
             margin: 10px 0;
+            width: fit-content;
+            background: transparent;
+        }
+
+        .badges-wrapper::before, .badges-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 30px;
+            border-top: 2px solid #ccc;
+            border-bottom: 2px solid #ccc;
+            border-radius: 50%;
+            background: transparent;
+        }
+
+        .badges-wrapper::before {
+            left: -20px;
+            transform: rotate(-90deg);
+            border-right: 2px solid #ccc;
+        }
+
+        .badges-wrapper::after {
+            right: -20px;
+            transform: rotate(90deg);
+            border-left: 2px solid #ccc;
+        }
+
+        .badges-container {
             display: flex;
             gap: 10px;
         }
@@ -110,64 +143,6 @@
 
         .badge:hover {
             color: #fff;
-        }
-
-        .badge-container {
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            margin: 10px 0;
-        }
-
-        .badge-wrapper {
-            display: inline-flex;
-            border: 2px solid #ccc;
-            border-radius: 16px;
-            padding: 5px 10px;
-            background-clip: padding-box;
-            box-sizing: border-box;
-        }
-
-        .badge {
-            font-size: 20px;
-            margin: 0 5px;
-            color: #ccc;
-            position: relative;
-        }
-
-        .tooltip {
-            position: absolute;
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.8);
-            color: #fff;
-            border-radius: 4px;
-            padding: 5px;
-            white-space: nowrap;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-            font-size: 14px;
-            text-align: center;
-            z-index: 1000;
-        }
-
-        .tooltip::after {
-            content: '';
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            border-width: 6px;
-            border-style: solid;
-            border-color: rgba(0, 0, 0, 0.8) transparent transparent transparent;
-        }
-
-        .badge:hover .tooltip {
-            opacity: 1;
-            visibility: visible;
         }
 
         .bio-text {
@@ -292,13 +267,15 @@
             <img src="cat.gif" alt="Sleeping Cat">
         </div>
         <div class="card">
-            <img class="profile-pic" src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/Screenshot%202023-10-21%20at%204.23.46%20PM.png" alt="Profile Picture">
+            <img class="profile-pic" src="https://r2.interrupted.me/107/de9gi.png" alt="Profile Picture">
             <div class="username">kurxx33</div>
-            <div class="badges-container">
-                <i class="fa-brands fa-square-web-awesome badge" aria-label="Owner"></i>
-                <i class="fa-solid fa-hammer badge" aria-label="Developer"></i>
-                <i class="fa-brands fa-bitcoin badge" aria-label="Money maker"></i>
-                <i class="fa-brands fa-viacoin badge" aria-label="Viacoin"></i>
+            <div class="badges-wrapper">
+                <div class="badges-container">
+                    <i class="fa-brands fa-square-web-awesome badge" aria-label="Owner"></i>
+                    <i class="fa-solid fa-hammer badge" aria-label="Developer"></i>
+                    <i class="fa-brands fa-bitcoin badge" aria-label="Money maker"></i>
+                    <i class="fa-brands fa-viacoin badge" aria-label="Viacoin"></i>
+                </div>
             </div>
             <p class="bio-text">Love is the most twisted curse of all</p>
             <div class="links-container">

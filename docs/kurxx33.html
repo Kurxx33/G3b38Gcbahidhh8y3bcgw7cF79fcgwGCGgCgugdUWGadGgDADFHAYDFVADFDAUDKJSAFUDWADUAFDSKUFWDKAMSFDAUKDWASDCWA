@@ -117,6 +117,7 @@
         .badges-container {
             display: flex;
             gap: 5px;
+            position: relative;
         }
 
         .badge {
@@ -127,6 +128,29 @@
 
         .badge:hover {
             color: #fff;
+        }
+
+        .badge-tooltip {
+            visibility: hidden;
+            width: 140px;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%; /* Position above the badge */
+            left: 50%;
+            margin-left: -70px; /* Center the tooltip */
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 12px;
+        }
+
+        .badge-container:hover .badge-tooltip {
+            visibility: visible;
+            opacity: 1;
         }
 
         .bio-text {
@@ -252,16 +276,26 @@
             <div class="username">kurxx33</div>
             <div class="badges-wrapper">
                 <div class="badges-container">
-                    <i class="fa-brands fa-square-web-awesome badge" aria-label="Owner"></i>
-                    <i class="fa-solid fa-hammer badge" aria-label="Developer"></i>
-                    <i class="fa-brands fa-bitcoin badge" aria-label="Money maker"></i>
-                    <i class="fa-brands fa-viacoin badge" aria-label="Viacoin"></i>
+                    <div class="badge-container">
+                        <i class="fa-brands fa-square-web-awesome badge" aria-label="Owner"></i>
+                        <span class="badge-tooltip">Owner</span>
+                    </div>
+                    <div class="badge-container">
+                        <i class="fa-solid fa-hammer badge" aria-label="Developer"></i>
+                        <span class="badge-tooltip">Developer</span>
+                    </div>
+                    <div class="badge-container">
+                        <i class="fa-brands fa-github badge" aria-label="GitHub"></i>
+                        <span class="badge-tooltip">GitHub</span>
+                    </div>
                 </div>
             </div>
-            <p class="bio-text">Love is the most twisted curse of all</p>
+            <div class="bio-text">
+                I create bio pages. Follow me for updates.
+            </div>
             <div class="links-container">
-                <a href="https://t.me/Kurxx33" target="_blank"><i class="fa-brands fa-telegram"></i></a>
-                <a href="https://twitter.com/Kurxx33" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+                <a href="https://t.me/kurxx33" target="_blank"><i class="fa-brands fa-telegram"></i></a>
+                <a href="https://twitter.com/kurxx33" target="_blank"><i class="fa-brands fa-twitter"></i></a>
                 <a href="https://www.tiktok.com/@kurxx33" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
             </div>
         </div>
@@ -327,3 +361,4 @@
     </script>
 </body>
 </html>
+

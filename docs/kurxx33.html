@@ -13,261 +13,225 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ionicons/7.1.0/esm/ionicons.min.js"></script>
     <script src="https://kit.fontawesome.com/b0c7a14384.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
-<style>
-    body {
-        margin: 0;
-        overflow: hidden;
-        font-family: 'UnifrakturCook', cursive;
-        background: url('darkclouds.jpg') no-repeat center center fixed;
-        background-size: cover;
-        color: white;
-        position: relative;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .clickanywhere {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        cursor: pointer;
-        z-index: 9999;
-    }
-
-    .clickanywhere h4 {
-        color: white;
-        font-size: 25px;
-        margin: 0;
-    }
-
-    .biolink {
-        display: none;
-        opacity: 0;
-        transition: opacity 2s ease-in-out; /* Slow fade-in effect */
-        z-index: 999;
-        width: 100%;
-        max-width: 720px;
-        position: relative;
-    }
-
-    .card {
-        background: rgba(0, 0, 0, 0.49);
-        border-radius: 16px;
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        backdrop-filter: blur(15.3px);
-        -webkit-backdrop-filter: blur(15.3px);
-        padding: 20px;
-        text-align: center;
-        color: white;
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        opacity: 0.85;
-        width: 100%;
-        max-width: 610px;
-        height: auto;
-        box-sizing: border-box;
-        border: none; /* Remove border around card */
-    }
-
-    .profile-pic {
-        border-radius: 50%;
-        width: 100px;
-        height: 100px;
-        object-fit: cover;
-        margin-bottom: 10px;
-        margin-top: 10px;
-        filter: brightness(90%);
-    }
-
-    .username {
-        font-size: 18px;
-        margin: 10px 0;
-        text-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
-    }
-
-    .badges-wrapper {
-        position: relative;
-        border: 1px solid #ccc; /* Thinner border */
-        border-radius: 16px; /* Rounded corners on all sides */
-        padding: 5px; /* Reduced padding */
-        margin: 10px 0;
-        width: fit-content;
-        background: transparent;
-    }
-
-    .badges-container {
-        display: flex;
-        gap: 5px; /* Reduced gap */
-    }
-
-    .badge {
-        font-size: 20px; /* Smaller badges */
-        color: #ccc;
-        transition: color 0.3s ease;
-    }
-
-    .badge:hover {
-        color: #fff;
-    }
-
-    .bio-text {
-        font-size: 16px;
-        margin: 10px 0;
-        text-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
-    }
-
-    .links-container {
-        margin: 10px 0;
-    }
-
-    .links-container a {
-        color: #fff;
-        text-decoration: none;
-        margin: 0 10px;
-        font-size: 24px;
-        font-weight: bold;
-        transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
-    }
-
-    .links-container a:hover {
-        transform: scale(1.1);
-        text-shadow: 0 0 5px #f0f0f0;
-    }
-
-    /* Social Media Icon Colors */
-    .links-container a i.fa-telegram {
-        color: #0088cc;
-    }
-
-    .links-container a i.fa-twitter {
-        color: #1da1f2;
-    }
-
-    .links-container a i.fa-tiktok {
-        color: #fff;
-    }
-
-    .cat-gif {
-        position: absolute;
-        top: -40px; /* Move it down slightly */
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 998;
-        width: 240px; /* Keep it twice as big */
-        height: auto;
-    }
-
-    .cat-gif img {
-        width: 100%;
-        height: auto;
-        border-radius: 8px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    }
-
-/* Rain Styles */
-.rain {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    pointer-events: none;
-    z-index: 1;
-}
-
-.drop {
-    position: absolute;
-    bottom: 100%;
-    width: 1px;
-    background: rgba(255, 255, 255, 0.7);
-    animation: fall linear infinite;
-    animation-duration: 0.75s; /* Base fall speed */
-}
-
-@keyframes fall {
-    to {
-        transform: translateY(100vh);
-    }
-}
-
-
-    .lightning {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: white;
-        opacity: 0;
-        z-index: 2;
-    }
-
-    .strike {
-        position: absolute;
-        bottom: 100%;
-        width: 2px;
-        height: 100vh;
-        background: white;
-        opacity: 0;
-        animation: strike 0.2s ease-in-out infinite;
-    }
-
-    @keyframes strike {
-        0%, 100% {
-            opacity: 0;
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: 'UnifrakturCook', cursive;
+            background: url('darkclouds.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            position: relative;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
-        50% {
+
+        .clickanywhere {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            opacity: 1;
+            transition: opacity 1s ease-in-out;
+            z-index: 9999;
+        }
+
+        .clickanywhere h4 {
+            color: white;
+            font-size: 25px;
+            margin: 0;
+        }
+
+        .biolink {
+            display: none;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            z-index: 999;
+            width: 100%;
+            max-width: 720px;
+            position: relative;
+        }
+
+        .card {
+            background: rgba(0, 0, 0, 0.49);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(15.3px);
+            -webkit-backdrop-filter: blur(15.3px);
+            padding: 20px;
+            text-align: center;
+            color: white;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.85;
+            width: 100%;
+            max-width: 610px;
+            height: auto;
+            box-sizing: border-box;
+            border: none;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .card.show {
             opacity: 1;
         }
-    }
 
-    .clickanywhere {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        text-align: center;
-        opacity: 1;
-        transition: opacity 1s ease-in-out;
-    }
+        .profile-pic {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            margin-bottom: 10px;
+            margin-top: 10px;
+            filter: brightness(90%);
+        }
 
-    .biolink {
-        display: none;
-        opacity: 0;
-        transition: opacity 1s ease-in-out;
-    }
+        .username {
+            font-size: 18px;
+            margin: 10px 0;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
+        }
 
-    .biolink.show {
-        display: block;
-        opacity: 1;
-    }
+        .badges-wrapper {
+            position: relative;
+            border: 1px solid #ccc;
+            border-radius: 16px;
+            padding: 5px;
+            margin: 10px 0;
+            width: fit-content;
+            background: transparent;
+        }
 
-    /* Styles for card */
-    .card {
-        opacity: 0;
-        transition: opacity 1s ease-in-out;
-        border: none; /* Remove border around card */
-        border-radius: 20px;
-        padding: 20px;
-        margin: 20px;
-    }
+        .badges-container {
+            display: flex;
+            gap: 5px;
+        }
 
-    .card.show {
-        opacity: 1;
-    }
-</style>
+        .badge {
+            font-size: 20px;
+            color: #ccc;
+            transition: color 0.3s ease;
+        }
+
+        .badge:hover {
+            color: #fff;
+        }
+
+        .bio-text {
+            font-size: 16px;
+            margin: 10px 0;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
+        }
+
+        .links-container {
+            margin: 10px 0;
+        }
+
+        .links-container a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 24px;
+            font-weight: bold;
+            transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        .links-container a:hover {
+            transform: scale(1.1);
+            text-shadow: 0 0 5px #f0f0f0;
+        }
+
+        .links-container a i.fa-telegram {
+            color: #0088cc;
+        }
+
+        .links-container a i.fa-twitter {
+            color: #1da1f2;
+        }
+
+        .links-container a i.fa-tiktok {
+            color: #fff;
+        }
+
+        .cat-gif {
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 998;
+            width: 240px;
+            height: auto;
+        }
+
+        .cat-gif img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .rain {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .drop {
+            position: absolute;
+            bottom: 100%;
+            width: 1px;
+            background: rgba(255, 255, 255, 0.7);
+            animation: fall linear infinite;
+            animation-duration: 0.75s;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+
+        .lightning {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            opacity: 0;
+            z-index: 2;
+        }
+
+        .strike {
+            position: absolute;
+            bottom: 100%;
+            width: 2px;
+            height: 100vh;
+            background: white;
+            opacity: 0;
+            animation: strike 0.2s ease-in-out infinite;
+        }
+
+        @keyframes strike {
+            0%, 100% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="clickanywhere" onclick="startExperience()">
@@ -298,82 +262,55 @@
         </div>
     </div>
 
-    <div id="rain" class="rain"></div>
-    <div id="lightning" class="lightning"></div>
+    <div class="rain"></div>
+    <div class="lightning"></div>
 
-<audio id="background-music" loop>
-    <source src="https://r2.interrupted.me/107/guitar.mp3" type="audio/mp3">
-    Your browser does not support the audio element.
-</audio>
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const audio = document.getElementById('background-music');
-        const clickArea = document.querySelector('.clickanywhere');
-        const biolink = document.getElementById('biolink');
-        const card = document.querySelector('.card');
-        
+    <script>
         function startExperience() {
-            clickArea.style.opacity = 0;
+            const clickanywhere = document.querySelector('.clickanywhere');
+            const biolink = document.getElementById('biolink');
+
+            clickanywhere.style.opacity = '0';
             setTimeout(() => {
-                clickArea.style.display = 'none';
-                biolink.classList.add('show');
-                card.classList.add('show');
-                playAudio();
-            }, 1000); // Match the duration of the fade-out effect
+                clickanywhere.style.display = 'none';
+                biolink.style.display = 'block';
+                setTimeout(() => {
+                    biolink.style.opacity = '1';
+                }, 100); // Ensure fade-in effect
+            }, 1000); // Fade-out duration
         }
 
-        function playAudio() {
-            audio.play().catch((error) => {
-                console.error('Error playing audio:', error);
-            });
-        }
-
-        clickArea.addEventListener('click', startExperience);
-
-        // Start rain effect only when the page is fully loaded
-        startRain();
-document.addEventListener('DOMContentLoaded', () => {
-    function createRain() {
-        const rain = document.getElementById('rain');
-        for (let i = 0; i < 200; i++) { // Increase number of drops
-            const drop = document.createElement('div');
-            drop.classList.add('drop');
-
-            // Randomize length, position, tilt, and opacity
-            const length = Math.random() * 40 + 20; // Length between 20px and 60px
-            const leftPosition = Math.random() * 100; // Random position across viewport
-            const tilt = (Math.random() - 0.5) * 10; // Tilt between -5 and 5 degrees
-            const opacity = Math.random() * 0.5 + 0.5; // Random opacity between 0.5 and 1
-
-            drop.style.height = `${length}px`;
-            drop.style.left = `${leftPosition}vw`;
-            drop.style.transform = `rotate(${tilt}deg)`;
-            drop.style.opacity = opacity;
-            drop.style.animationDuration = `${Math.random() * 2 + 1}s`; // Random fall duration
-
-            rain.appendChild(drop);
-        }
-    }
-
-    createRain();
-});
-
-        function createLightning() {
-            const lightning = document.getElementById('lightning');
-            for (let i = 0; i < 5; i++) {
-                const strike = document.createElement('div');
-                strike.classList.add('strike');
-                strike.style.left = `${Math.random() * 100}vw`;
-                strike.style.animationDuration = `${Math.random() * 0.5 + 0.5}s`;
-                lightning.appendChild(strike);
+        // Initialize the rain effect
+        function createRain() {
+            const rainContainer = document.querySelector('.rain');
+            for (let i = 0; i < 100; i++) {
+                const drop = document.createElement('div');
+                drop.className = 'drop';
+                drop.style.left = Math.random() * 100 + 'vw';
+                drop.style.animationDuration = Math.random() * 0.5 + 0.5 + 's';
+                rainContainer.appendChild(drop);
             }
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
+        // Initialize the lightning effect
+        function createLightning() {
+            const lightningContainer = document.querySelector('.lightning');
+            setInterval(() => {
+                const strike = document.createElement('div');
+                strike.className = 'strike';
+                strike.style.left = Math.random() * 100 + 'vw';
+                lightningContainer.appendChild(strike);
+                setTimeout(() => {
+                    lightningContainer.removeChild(strike);
+                }, 200);
+            }, 1000);
+        }
+
+        // Start the effects on page load
+        window.onload = function() {
             createRain();
             createLightning();
-        });
+        };
     </script>
 </body>
 </html>

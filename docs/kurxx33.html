@@ -326,17 +326,16 @@
 
     <script>
         function startExperience() {
-            const clickanywhere = document.querySelector('.clickanywhere');
-            const biolink = document.getElementById('biolink');
-            const backgroundMusic = document.getElementById('background-music');
-            const bioText = document.querySelector('.bio-text');
+            const clickAnywhere = document.querySelector('.clickanywhere');
+            const bioLink = document.getElementById('biolink');
+            const bioText = document.getElementById('bio-text');
 
-            clickanywhere.style.opacity = '0';
+            clickAnywhere.style.opacity = '0';
             setTimeout(() => {
-                clickanywhere.style.display = 'none';
-                biolink.style.display = 'block';
+                clickAnywhere.style.display = 'none';
+                bioLink.style.display = 'flex';
                 setTimeout(() => {
-                    biolink.style.opacity = '1';
+                    bioLink.style.opacity = '1';
                     backgroundMusic.play(); // Start playing the background music
                     bioText.classList.add('fade-out'); // Fade out the description
                 }, 50); // Quick fade-in effect

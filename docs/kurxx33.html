@@ -13,228 +13,224 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ionicons/7.1.0/esm/ionicons.min.js"></script>
     <script src="https://kit.fontawesome.com/b0c7a14384.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            margin: 0;
-            overflow: hidden;
-            font-family: 'UnifrakturCook', cursive;
-            background: url('darkclouds.jpg') no-repeat center center fixed;
-            background-size: cover;
-            color: white;
-            position: relative;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .clickanywhere {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            cursor: pointer;
-            z-index: 9999;
-        }
-
-        .clickanywhere h4 {
-            color: white;
-            font-size: 25px;
-            margin: 0;
-        }
-
-        .biolink {
-            display: none;
-            opacity: 0;
-            transition: opacity 2s ease-in-out; /* Slow fade-in effect */
-            z-index: 999;
-            width: 100%;
-            max-width: 720px;
-            position: relative;
-        }
-
-        .card {
-            background: rgba(0, 0, 0, 0.49);
-            border-radius: 16px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(15.3px);
-            -webkit-backdrop-filter: blur(15.3px);
-            border: 1px solid rgba(0, 0, 0, 1);
-            padding: 20px;
-            text-align: center;
-            color: white;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            opacity: 0.85;
-            width: 100%;
-            max-width: 610px;
-            height: auto;
-            box-sizing: border-box;
-        }
-
-        .profile-pic {
-            border-radius: 50%;
-            width: 100px;
-            height: 100px;
-            object-fit: cover;
-            margin-bottom: 10px;
-            margin-top: 10px;
-            filter: brightness(90%);
-        }
-
-        .username {
-            font-size: 18px;
-            margin: 10px 0;
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
-        }
-
-        .badges-wrapper {
-            position: relative;
-            border: 2px solid #ccc;
-            border-radius: 16px; /* Rounded corners on all sides */
-            padding: 10px;
-            margin: 10px 0;
-            width: fit-content;
-            background: transparent;
-        }
-
-        .badges-container {
-            display: flex;
-            gap: 10px;
-        }
-
-        .badge {
-            font-size: 24px;
-            color: #ccc;
-            transition: color 0.3s ease;
-        }
-
-        .badge:hover {
-            color: #fff;
-        }
-
-        .bio-text {
-            font-size: 16px;
-            margin: 10px 0;
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
-        }
-
-        .links-container {
-            margin: 10px 0;
-        }
-
-        .links-container a {
-            color: #fff;
-            text-decoration: none;
-            margin: 0 10px;
-            font-size: 24px;
-            font-weight: bold;
-            transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
-        }
-
-        .links-container a:hover {
-            transform: scale(1.1);
-            text-shadow: 0 0 5px #f0f0f0;
-        }
-
-        /* Social Media Icon Colors */
-        .links-container a i.fa-telegram {
-            color: #0088cc;
-        }
-
-        .links-container a i.fa-twitter {
-            color: #1da1f2;
-        }
-
-        .links-container a i.fa-tiktok {
-            color: #fff;
-        }
-
-        .cat-gif {
-            position: absolute;
-            top: -60px; /* Move it down a bit */
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 998;
-            width: 240px; /* Make it twice as big */
-            height: auto;
-        }
-
-        .cat-gif img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Rain and Lightning Styles */
-        .rain {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .drop {
-            position: absolute;
-            bottom: 100%;
-            width: 1px;
-            height: 60px;
-            background: rgba(255, 255, 255, 0.1);
-            animation: fall linear infinite;
-            animation-duration: 0.75s; /* Faster rain */
-        }
-
-        @keyframes fall {
-            to {
-                transform: translateY(100vh);
-            }
-        }
-
-        .lightning {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: white;
-            opacity: 0;
-            z-index: 2;
-        }
-
-        .strike {
-            position: absolute;
-            bottom: 100%;
-            width: 2px;
-            height: 100vh;
-            background: white;
-            opacity: 0;
-            animation: strike 0.2s ease-in-out infinite;
-        }
-
-        @keyframes strike {
-            0%, 100% {
-                opacity: 0;
-            }
-            50% {
-                opacity: 1;
-            }
-        }
-
+<style>
     body {
-        overflow: hidden; /* Prevents scrollbars */
+        margin: 0;
+        overflow: hidden;
+        font-family: 'UnifrakturCook', cursive;
+        background: url('darkclouds.jpg') no-repeat center center fixed;
+        background-size: cover;
+        color: white;
+        position: relative;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .clickanywhere {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        cursor: pointer;
+        z-index: 9999;
+    }
+
+    .clickanywhere h4 {
+        color: white;
+        font-size: 25px;
+        margin: 0;
+    }
+
+    .biolink {
+        display: none;
+        opacity: 0;
+        transition: opacity 2s ease-in-out; /* Slow fade-in effect */
+        z-index: 999;
+        width: 100%;
+        max-width: 720px;
+        position: relative;
+    }
+
+    .card {
+        background: rgba(0, 0, 0, 0.49);
+        border-radius: 16px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(15.3px);
+        -webkit-backdrop-filter: blur(15.3px);
+        padding: 20px;
+        text-align: center;
+        color: white;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        opacity: 0.85;
+        width: 100%;
+        max-width: 610px;
+        height: auto;
+        box-sizing: border-box;
+        border: none; /* Remove border around card */
+    }
+
+    .profile-pic {
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        margin-bottom: 10px;
+        margin-top: 10px;
+        filter: brightness(90%);
+    }
+
+    .username {
+        font-size: 18px;
+        margin: 10px 0;
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
+    }
+
+    .badges-wrapper {
+        position: relative;
+        border: 1px solid #ccc; /* Thinner border */
+        border-radius: 16px; /* Rounded corners on all sides */
+        padding: 5px; /* Reduced padding */
+        margin: 10px 0;
+        width: fit-content;
+        background: transparent;
+    }
+
+    .badges-container {
+        display: flex;
+        gap: 5px; /* Reduced gap */
+    }
+
+    .badge {
+        font-size: 20px; /* Smaller badges */
+        color: #ccc;
+        transition: color 0.3s ease;
+    }
+
+    .badge:hover {
+        color: #fff;
+    }
+
+    .bio-text {
+        font-size: 16px;
+        margin: 10px 0;
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
+    }
+
+    .links-container {
+        margin: 10px 0;
+    }
+
+    .links-container a {
+        color: #fff;
+        text-decoration: none;
+        margin: 0 10px;
+        font-size: 24px;
+        font-weight: bold;
+        transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
+    }
+
+    .links-container a:hover {
+        transform: scale(1.1);
+        text-shadow: 0 0 5px #f0f0f0;
+    }
+
+    /* Social Media Icon Colors */
+    .links-container a i.fa-telegram {
+        color: #0088cc;
+    }
+
+    .links-container a i.fa-twitter {
+        color: #1da1f2;
+    }
+
+    .links-container a i.fa-tiktok {
+        color: #fff;
+    }
+
+    .cat-gif {
+        position: absolute;
+        top: -40px; /* Move it down slightly */
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 998;
+        width: 240px; /* Keep it twice as big */
+        height: auto;
+    }
+
+    .cat-gif img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Rain and Lightning Styles */
+    .rain {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    .drop {
+        position: absolute;
+        bottom: 100%;
+        width: 1px;
+        height: 60px;
+        background: rgba(255, 255, 255, 0.1);
+        animation: fall linear infinite;
+        animation-duration: 0.75s; /* Faster rain */
+    }
+
+    @keyframes fall {
+        to {
+            transform: translateY(100vh);
+        }
+    }
+
+    .lightning {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        opacity: 0;
+        z-index: 2;
+    }
+
+    .strike {
+        position: absolute;
+        bottom: 100%;
+        width: 2px;
+        height: 100vh;
+        background: white;
+        opacity: 0;
+        animation: strike 0.2s ease-in-out infinite;
+    }
+
+    @keyframes strike {
+        0%, 100% {
+            opacity: 0;
+        }
+        50% {
+            opacity: 1;
+        }
     }
 
     .clickanywhere {
@@ -262,17 +258,16 @@
     .card {
         opacity: 0;
         transition: opacity 1s ease-in-out;
-        border: 2px solid white;
+        border: none; /* Remove border around card */
         border-radius: 20px;
         padding: 20px;
         margin: 20px;
-        /* Additional styles for the card */
     }
 
     .card.show {
         opacity: 1;
     }
-    </style>
+</style>
 </head>
 <body>
     <div class="clickanywhere" onclick="startExperience()">

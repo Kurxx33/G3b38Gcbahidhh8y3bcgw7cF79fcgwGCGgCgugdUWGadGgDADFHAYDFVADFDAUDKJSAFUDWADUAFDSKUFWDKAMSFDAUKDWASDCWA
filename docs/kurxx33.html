@@ -324,56 +324,58 @@
         Your browser does not support the audio element.
     </audio>
 
-    <script>
-        function startExperience() {
-            const clickAnywhere = document.querySelector('.clickanywhere');
-            const bioLink = document.getElementById('biolink');
-            const bioText = document.getElementById('bio-text');
+<script>
+    function startExperience() {
+        const clickAnywhere = document.querySelector('.clickanywhere');
+        const bioLink = document.getElementById('biolink');
+        const bioText = document.getElementById('bio-text');
+        const backgroundMusic = document.getElementById('background-music');
 
-            clickAnywhere.style.opacity = '0';
+        clickAnywhere.style.opacity = '0';
+        setTimeout(() => {
+            clickAnywhere.style.display = 'none';
+            bioLink.style.display = 'flex';
             setTimeout(() => {
-                clickAnywhere.style.display = 'none';
-                bioLink.style.display = 'flex';
-                setTimeout(() => {
-                    bioLink.style.opacity = '1';
-                    backgroundMusic.play(); // Start playing the background music
-                    bioText.classList.add('fade-out'); // Fade out the description
-                }, 50); // Quick fade-in effect
-            }, 500); // Short fade-out duration
-        }
+                bioLink.style.opacity = '1';
+                backgroundMusic.play(); // Start playing the background music
+                bioText.classList.add('fade-out'); // Fade out the description
+            }, 50); // Quick fade-in effect
+        }, 500); // Short fade-out duration
+    }
 
-        // Initialize the rain effect
-        function createRain() {
-            const rainContainer = document.querySelector('.rain');
-            for (let i = 0; i < 150; i++) {
-                const drop = document.createElement('div');
-                drop.className = 'drop';
-                drop.style.left = Math.random() * 100 + 'vw';
-                drop.style.height = Math.random() * 20 + 20 + 'px'; // Varying drop heights
-                drop.style.animationDuration = Math.random() * 0.5 + 0.5 + 's'; // Varying speeds
-                rainContainer.appendChild(drop);
-            }
+    // Initialize the rain effect
+    function createRain() {
+        const rainContainer = document.querySelector('.rain');
+        for (let i = 0; i < 150; i++) {
+            const drop = document.createElement('div');
+            drop.className = 'drop';
+            drop.style.left = Math.random() * 100 + 'vw';
+            drop.style.height = Math.random() * 20 + 20 + 'px'; // Varying drop heights
+            drop.style.animationDuration = Math.random() * 0.5 + 0.5 + 's'; // Varying speeds
+            rainContainer.appendChild(drop);
         }
+    }
 
-        // Initialize the lightning effect
-        function createLightning() {
-            const lightningContainer = document.querySelector('.lightning');
-            setInterval(() => {
-                const strike = document.createElement('div');
-                strike.className = 'strike';
-                strike.style.left = Math.random() * 100 + 'vw';
-                lightningContainer.appendChild(strike);
-                setTimeout(() => {
-                    lightningContainer.removeChild(strike);
-                }, 200);
-            }, 2000); // Lightning strikes every 2 seconds
-        }
+    // Initialize the lightning effect
+    function createLightning() {
+        const lightningContainer = document.querySelector('.lightning');
+        setInterval(() => {
+            const strike = document.createElement('div');
+            strike.className = 'strike';
+            strike.style.left = Math.random() * 100 + 'vw';
+            lightningContainer.appendChild(strike);
+            setTimeout(() => {
+                lightningContainer.removeChild(strike);
+            }, 200);
+        }, 2000); // Lightning strikes every 2 seconds
+    }
 
-        // Start the effects on page load
-        window.onload = function() {
-            createRain();
-            createLightning();
-        };
-    </script>
+    // Start the effects on page load
+    window.onload = function() {
+        createRain();
+        createLightning();
+    };
+</script>
+
 </body>
 </html>

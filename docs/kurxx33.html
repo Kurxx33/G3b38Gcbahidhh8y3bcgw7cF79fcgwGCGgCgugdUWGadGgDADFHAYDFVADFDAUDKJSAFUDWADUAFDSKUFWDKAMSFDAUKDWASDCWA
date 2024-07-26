@@ -30,25 +30,31 @@
 
         .clickanywhere {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             text-align: center;
             opacity: 1;
-            transition: opacity 1s ease-in-out;
+            transition: opacity 0.5s ease-in-out;
             z-index: 9999;
+            cursor: pointer;
         }
 
         .clickanywhere h4 {
             color: white;
             font-size: 25px;
             margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
 
         .biolink {
             display: none;
             opacity: 0;
-            transition: opacity 1s ease-in-out;
+            transition: opacity 0.5s ease-in-out;
             z-index: 999;
             width: 100%;
             max-width: 720px;
@@ -189,11 +195,10 @@
 
         .drop {
             position: absolute;
-            bottom: 100%;
             width: 1px;
             background: rgba(255, 255, 255, 0.7);
             animation: fall linear infinite;
-            animation-duration: 0.75s;
+            animation-duration: 1s;
         }
 
         @keyframes fall {
@@ -265,10 +270,16 @@
     <div class="rain"></div>
     <div class="lightning"></div>
 
+    <audio id="background-music" loop>
+        <source src="https://r2.interrupted.me/107/guitar.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
     <script>
         function startExperience() {
             const clickanywhere = document.querySelector('.clickanywhere');
             const biolink = document.getElementById('biolink');
+            const backgroundMusic = document.getElementById('background-music');
 
             clickanywhere.style.opacity = '0';
             setTimeout(() => {
@@ -276,18 +287,20 @@
                 biolink.style.display = 'block';
                 setTimeout(() => {
                     biolink.style.opacity = '1';
-                }, 100); // Ensure fade-in effect
-            }, 1000); // Fade-out duration
+                    backgroundMusic.play(); // Start playing the background music
+                }, 50); // Quick fade-in effect
+            }, 500); // Short fade-out duration
         }
 
         // Initialize the rain effect
         function createRain() {
             const rainContainer = document.querySelector('.rain');
-            for (let i = 0; i < 100; i++) {
+            for (let i = 0; i < 150; i++) {
                 const drop = document.createElement('div');
                 drop.className = 'drop';
                 drop.style.left = Math.random() * 100 + 'vw';
-                drop.style.animationDuration = Math.random() * 0.5 + 0.5 + 's';
+                drop.style.height = Math.random() * 20 + 20 + 'px'; // Varying drop heights
+                drop.style.animationDuration = Math.random() * 0.5 + 0.5 + 's'; // Varying speeds
                 rainContainer.appendChild(drop);
             }
         }
@@ -303,7 +316,7 @@
                 setTimeout(() => {
                     lightningContainer.removeChild(strike);
                 }, 200);
-            }, 1000);
+            }, 2000); // Lightning strikes every 2 seconds
         }
 
         // Start the effects on page load
@@ -314,4 +327,3 @@
     </script>
 </body>
 </html>
-

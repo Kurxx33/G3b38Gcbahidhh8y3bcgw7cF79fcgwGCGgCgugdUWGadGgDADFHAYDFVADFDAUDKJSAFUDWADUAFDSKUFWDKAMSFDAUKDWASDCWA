@@ -120,6 +120,11 @@
             position: relative;
         }
 
+        .badge-container {
+            position: relative;
+            display: inline-block;
+        }
+
         .badge {
             font-size: 20px;
             color: #ccc;
@@ -157,6 +162,11 @@
             font-size: 16px;
             margin: 10px 0;
             text-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
+            transition: opacity 0.5s ease;
+        }
+
+        .bio-text.fade-out {
+            opacity: 0;
         }
 
         .links-container {
@@ -285,8 +295,12 @@
                         <span class="badge-tooltip">Developer</span>
                     </div>
                     <div class="badge-container">
-                        <i class="fa-brands fa-github badge" aria-label="GitHub"></i>
-                        <span class="badge-tooltip">GitHub</span>
+                        <i class="fa-brands fa-bitcoin badge" aria-label="Money maker"></i>
+                        <span class="badge-tooltip">Money maker</span>
+                    </div>
+                    <div class="badge-container">
+                        <i class="fa-brands fa-viacoin badge" aria-label="Viacoin"></i>
+                        <span class="badge-tooltip">Viacoin</span>
                     </div>
                 </div>
             </div>
@@ -314,6 +328,7 @@
             const clickanywhere = document.querySelector('.clickanywhere');
             const biolink = document.getElementById('biolink');
             const backgroundMusic = document.getElementById('background-music');
+            const bioText = document.querySelector('.bio-text');
 
             clickanywhere.style.opacity = '0';
             setTimeout(() => {
@@ -322,6 +337,7 @@
                 setTimeout(() => {
                     biolink.style.opacity = '1';
                     backgroundMusic.play(); // Start playing the background music
+                    bioText.classList.add('fade-out'); // Fade out the description
                 }, 50); // Quick fade-in effect
             }, 500); // Short fade-out duration
         }
@@ -361,4 +377,3 @@
     </script>
 </body>
 </html>
-

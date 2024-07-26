@@ -232,6 +232,46 @@
                 opacity: 1;
             }
         }
+
+    body {
+        overflow: hidden; /* Prevents scrollbars */
+    }
+
+    .clickanywhere {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        opacity: 1;
+        transition: opacity 1s ease-in-out;
+    }
+
+    .biolink {
+        display: none;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+    }
+
+    .biolink.show {
+        display: block;
+        opacity: 1;
+    }
+
+    /* Styles for card */
+    .card {
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+        border: 2px solid white;
+        border-radius: 20px;
+        padding: 20px;
+        margin: 20px;
+        /* Additional styles for the card */
+    }
+
+    .card.show {
+        opacity: 1;
+    }
     </style>
 </head>
 <body>
@@ -271,13 +311,34 @@
         Your browser does not support the audio element.
     </audio>
 
-    <script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const audio = document.getElementById('background-music');
+        const clickArea = document.querySelector('.clickanywhere');
+        const biolink = document.getElementById('biolink');
+        const card = document.querySelector('.card');
+        
         function startExperience() {
-            document.querySelector('.clickanywhere').style.display = 'none';
-            const biolink = document.getElementById('biolink');
-            biolink.style.display = 'block';
-            biolink.style.opacity = 1;
+            clickArea.style.opacity = 0;
+            setTimeout(() => {
+                clickArea.style.display = 'none';
+                biolink.classList.add('show');
+                card.classList.add('show');
+                playAudio();
+            }, 1000); // Match the duration of the fade-out effect
         }
+
+        function playAudio() {
+            audio.play().catch((error) => {
+                console.error('Error playing audio:', error);
+            });
+        }
+
+        clickArea.addEventListener('click', startExperience);
+
+        // Start rain effect only when the page is fully loaded
+        startRain();
+    });
 
         function createRain() {
             const rain = document.getElementById('rain');

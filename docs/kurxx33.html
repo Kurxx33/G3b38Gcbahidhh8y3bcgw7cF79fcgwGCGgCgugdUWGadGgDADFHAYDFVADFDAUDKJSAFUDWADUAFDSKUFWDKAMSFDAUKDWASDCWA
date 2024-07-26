@@ -175,33 +175,33 @@
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     }
 
-    /* Rain and Lightning Styles */
-    .rain {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-        pointer-events: none;
-        z-index: 1;
-    }
+/* Rain Styles */
+.rain {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
+}
 
-    .drop {
-        position: absolute;
-        bottom: 100%;
-        width: 1px;
-        height: 60px;
-        background: rgba(255, 255, 255, 0.1);
-        animation: fall linear infinite;
-        animation-duration: 0.75s; /* Faster rain */
-    }
+.drop {
+    position: absolute;
+    bottom: 100%;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.7);
+    animation: fall linear infinite;
+    animation-duration: 0.75s; /* Base fall speed */
+}
 
-    @keyframes fall {
-        to {
-            transform: translateY(100vh);
-        }
+@keyframes fall {
+    to {
+        transform: translateY(100vh);
     }
+}
+
 
     .lightning {
         position: absolute;
@@ -333,18 +333,31 @@
 
         // Start rain effect only when the page is fully loaded
         startRain();
-    });
+document.addEventListener('DOMContentLoaded', () => {
+    function createRain() {
+        const rain = document.getElementById('rain');
+        for (let i = 0; i < 200; i++) { // Increase number of drops
+            const drop = document.createElement('div');
+            drop.classList.add('drop');
 
-        function createRain() {
-            const rain = document.getElementById('rain');
-            for (let i = 0; i < 100; i++) {
-                const drop = document.createElement('div');
-                drop.classList.add('drop');
-                drop.style.left = `${Math.random() * 100}vw`;
-                drop.style.animationDuration = `${Math.random() * 1.5 + 0.5}s`; /* Faster rain */
-                rain.appendChild(drop);
-            }
+            // Randomize length, position, tilt, and opacity
+            const length = Math.random() * 40 + 20; // Length between 20px and 60px
+            const leftPosition = Math.random() * 100; // Random position across viewport
+            const tilt = (Math.random() - 0.5) * 10; // Tilt between -5 and 5 degrees
+            const opacity = Math.random() * 0.5 + 0.5; // Random opacity between 0.5 and 1
+
+            drop.style.height = `${length}px`;
+            drop.style.left = `${leftPosition}vw`;
+            drop.style.transform = `rotate(${tilt}deg)`;
+            drop.style.opacity = opacity;
+            drop.style.animationDuration = `${Math.random() * 2 + 1}s`; // Random fall duration
+
+            rain.appendChild(drop);
         }
+    }
+
+    createRain();
+});
 
         function createLightning() {
             const lightning = document.getElementById('lightning');

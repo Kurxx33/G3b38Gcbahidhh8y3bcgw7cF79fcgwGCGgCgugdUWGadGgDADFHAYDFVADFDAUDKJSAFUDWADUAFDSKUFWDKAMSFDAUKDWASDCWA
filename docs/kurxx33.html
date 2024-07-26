@@ -247,19 +247,18 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: white;
-            opacity: 0;
+            pointer-events: none;
+            overflow: hidden;
             z-index: 2;
         }
 
         .strike {
             position: absolute;
-            bottom: 100%;
             width: 2px;
             height: 100vh;
             background: white;
             opacity: 0;
-            animation: strike 0.2s ease-in-out infinite;
+            animation: strike 0.2s ease-in-out;
         }
 
         @keyframes strike {
@@ -343,39 +342,48 @@
         }, 500); // Short fade-out duration
     }
 
-    // Initialize the rain effect
-    function createRain() {
-        const rainContainer = document.querySelector('.rain');
-        for (let i = 0; i < 150; i++) {
-            const drop = document.createElement('div');
-            drop.className = 'drop';
-            drop.style.left = Math.random() * 100 + 'vw';
-            drop.style.height = Math.random() * 20 + 20 + 'px'; // Varying drop heights
-            drop.style.animationDuration = Math.random() * 0.5 + 0.5 + 's'; // Varying speeds
-            rainContainer.appendChild(drop);
+      function createLightning() {
+            const lightningContainer = document.querySelector('.lightning');
+            lightningContainer.innerHTML = '';
+            
+            for (let i = 0; i < 2; i++) {
+                const strike = document.createElement('div');
+                strike.className = 'strike';
+                strike.style.left = `${Math.random() * 100}vw`;
+                strike.style.animationDuration = `${Math.random() * 0.5 + 0.2}s`;
+                lightningContainer.appendChild(strike);
+            }
         }
-    }
 
-    // Initialize the lightning effect
-    function createLightning() {
-        const lightningContainer = document.querySelector('.lightning');
-        setInterval(() => {
-            const strike = document.createElement('div');
-            strike.className = 'strike';
-            strike.style.left = Math.random() * 100 + 'vw';
-            lightningContainer.appendChild(strike);
-            setTimeout(() => {
-                lightningContainer.removeChild(strike);
-            }, 200);
-        }, 2000); // Lightning strikes every 2 seconds
-    }
+        function startLightning() {
+            createLightning();
+            setInterval(createLightning, 2000);
+        }
 
-    // Start the effects on page load
-    window.onload = function() {
+        function startExperience() {
+            document.querySelector('.clickanywhere').style.opacity = '0';
+            document.getElementById('biolink').style.display = 'block';
+            document.getElementById('biolink').style.opacity = '1';
+            startLightning();
+            // Start any other animations or content reveals here
+        }
+        
+        document.querySelector('.clickanywhere').addEventListener('click', startExperience);
+
+        // Rain Effect
+        function createRain() {
+            const rainContainer = document.querySelector('.rain');
+            const numberOfDrops = 100;
+            for (let i = 0; i < numberOfDrops; i++) {
+                const drop = document.createElement('div');
+                drop.className = 'drop';
+                drop.style.left = `${Math.random() * 100}vw`;
+                drop.style.animationDuration = `${Math.random() * 1 + 1}s`;
+                rainContainer.appendChild(drop);
+            }
+        }
+
         createRain();
-        createLightning();
-    };
-</script>
-
+    </script>
 </body>
 </html>

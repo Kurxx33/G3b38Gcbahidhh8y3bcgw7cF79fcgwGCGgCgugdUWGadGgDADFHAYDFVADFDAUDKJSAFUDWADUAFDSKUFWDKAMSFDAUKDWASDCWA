@@ -13,7 +13,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ionicons/7.1.0/esm/ionicons.min.js"></script>
     <script src="https://kit.fontawesome.com/b0c7a14384.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
-        <style>
+    <style>
         body {
             margin: 0;
             overflow: hidden;
@@ -39,7 +39,6 @@
             transition: opacity 0.5s ease-in-out;
             z-index: 9999;
             cursor: pointer;
-            background: rgba(0, 0, 0, 0.8);
         }
 
         .clickanywhere h4 {
@@ -76,7 +75,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            opacity: 0;
+            opacity: 0.85;
             width: 100%;
             max-width: 610px;
             height: auto;
@@ -87,22 +86,6 @@
 
         .card.show {
             opacity: 1;
-        }
-
-        .card .cat-gif {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            width: 80px;
-            height: auto;
-            z-index: 998;
-        }
-
-        .card .cat-gif img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
 
         .profile-pic {
@@ -162,9 +145,9 @@
             padding: 5px;
             position: absolute;
             z-index: 1;
-            bottom: 125%;
+            bottom: 125%; /* Position above the badge */
             left: 50%;
-            margin-left: -70px;
+            margin-left: -70px; /* Center the tooltip */
             opacity: 0;
             transition: opacity 0.3s;
             font-size: 12px;
@@ -214,6 +197,16 @@
 
         .links-container a i.fa-tiktok {
             color: #fff;
+        }
+
+        .cat-gif {
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 998;
+            width: 240px;
+            height: auto;
         }
 
         .cat-gif img {
@@ -285,14 +278,15 @@
     </div>
 
     <div class="biolink" id="biolink">
+        <div class="cat-gif">
+            <img src="cat.gif" alt="Sleeping Cat">
+        </div>
         <div class="card">
-            <div class="cat-gif">
-                <img src="cat.gif" alt="Sleeping Cat">
-            </div>
             <img class="profile-pic" src="https://r2.interrupted.me/107/de9gi.png" alt="Profile Picture">
             <div class="username">kurxx33</div>
             <div class="badges-wrapper">
                 <div class="badges-container">
+                    <div class="badge-container">
                         <i class="fa-brands fa-square-web-awesome badge" aria-label="Owner"></i>
                         <span class="badge-tooltip">Owner</span>
                     </div>
@@ -310,58 +304,78 @@
                     </div>
                 </div>
             </div>
-            <div class="bio-text" id="bio-text">
+            <div class="bio-text">
                 Love is the most twisted curse of all
             </div>
             <div class="links-container">
                 <a href="https://t.me/kurxx33" target="_blank"><i class="fa-brands fa-telegram"></i></a>
                 <a href="https://twitter.com/kurxx33" target="_blank"><i class="fa-brands fa-twitter"></i></a>
                 <a href="https://www.tiktok.com/@kurxx33" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="https://instagram.com/kurxx33" target="_blank"><i class="fa-brands fa-instagram"></i></a>
             </div>
         </div>
     </div>
 
-    <div class="rain" id="rain"></div>
-    <div class="lightning" id="lightning"></div>
+    <div class="rain"></div>
+    <div class="lightning"></div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
-    <script>
-        function startExperience() {
-            document.querySelector('.clickanywhere').style.opacity = '0';
+    <audio id="background-music" loop>
+        <source src="https://r2.interrupted.me/107/guitar.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+<script>
+    function startExperience() {
+        const clickAnywhere = document.querySelector('.clickanywhere');
+        const bioLink = document.getElementById('biolink');
+        const bioText = document.getElementById('bio-text');
+        const backgroundMusic = document.getElementById('background-music');
+
+        clickAnywhere.style.opacity = '0';
+        setTimeout(() => {
+            clickAnywhere.style.display = 'none';
+            bioLink.style.display = 'flex';
             setTimeout(() => {
-                document.querySelector('.clickanywhere').style.display = 'none';
-                document.getElementById('biolink').style.display = 'block';
-                document.getElementById('biolink').style.opacity = '1';
-            }, 500);
-        }
+                bioLink.style.opacity = '1';
+                backgroundMusic.play(); // Start playing the background music
+                bioText.classList.add('fade-out'); // Fade out the description
+            }, 50); // Quick fade-in effect
+        }, 500); // Short fade-out duration
+    }
 
-        function startRain() {
-            const rain = document.getElementById('rain');
-            const numberOfDrops = 100;
-            for (let i = 0; i < numberOfDrops; i++) {
-                let drop = document.createElement('div');
-                drop.classList.add('drop');
-                drop.style.left = Math.random() * 100 + 'vw';
-                drop.style.animationDuration = Math.random() * 2 + 1 + 's';
-                drop.style.animationDelay = Math.random() * 5 + 's';
-                rain.appendChild(drop);
-            }
+    // Initialize the rain effect
+    function createRain() {
+        const rainContainer = document.querySelector('.rain');
+        for (let i = 0; i < 150; i++) {
+            const drop = document.createElement('div');
+            drop.className = 'drop';
+            drop.style.left = Math.random() * 100 + 'vw';
+            drop.style.height = Math.random() * 20 + 20 + 'px'; // Varying drop heights
+            drop.style.animationDuration = Math.random() * 0.5 + 0.5 + 's'; // Varying speeds
+            rainContainer.appendChild(drop);
         }
+    }
 
-        function startLightning() {
-            const lightning = document.getElementById('lightning');
-            setInterval(() => {
-                lightning.innerHTML = '<div class="strike"></div>';
-                setTimeout(() => {
-                    lightning.innerHTML = '';
-                }, 200);
-            }, Math.random() * 3000 + 1000);
-        }
+    // Initialize the lightning effect
+    function createLightning() {
+        const lightningContainer = document.querySelector('.lightning');
+        setInterval(() => {
+            const strike = document.createElement('div');
+            strike.className = 'strike';
+            strike.style.left = Math.random() * 100 + 'vw';
+            lightningContainer.appendChild(strike);
+            setTimeout(() => {
+                lightningContainer.removeChild(strike);
+            }, 200);
+        }, 2000); // Lightning strikes every 2 seconds
+    }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            startRain();
-            startLightning();
-        });
-    </script>
+    // Start the effects on page load
+    window.onload = function() {
+        createRain();
+        createLightning();
+    };
+</script>
+
 </body>
 </html>

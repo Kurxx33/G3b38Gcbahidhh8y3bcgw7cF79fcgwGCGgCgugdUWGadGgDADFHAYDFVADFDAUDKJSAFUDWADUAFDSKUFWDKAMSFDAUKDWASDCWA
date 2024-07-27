@@ -1,10 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
-    <style>
+    <title>kurxx33</title>
+    <meta property="og:title" content="kurxx33">
+    <meta name="description" content="Kurxx33 forever">
+    <meta name="twitter:image:src" content="kurxxbackground.png">
+    <meta name="theme-color" content="#000000">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ionicons/7.1.0/esm/ionicons.min.js"></script>
+    <script src="https://kit.fontawesome.com/b0c7a14384.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+        <style>
         body {
             margin: 0;
             overflow: hidden;
@@ -315,42 +324,44 @@
     <div class="rain" id="rain"></div>
     <div class="lightning" id="lightning"></div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
     <script>
-        function createRainDrop() {
-            const rain = document.getElementById('rain');
-            const drop = document.createElement('div');
-            drop.className = 'drop';
-            drop.style.left = `${Math.random() * 100}vw`;
-            drop.style.animationDuration = `${Math.random() * 1 + 0.5}s`;
-            rain.appendChild(drop);
-        }
-
-        function startRain() {
-            setInterval(createRainDrop, 100);
-        }
-
         function startExperience() {
             document.querySelector('.clickanywhere').style.opacity = '0';
             setTimeout(() => {
                 document.querySelector('.clickanywhere').style.display = 'none';
-                const biolink = document.getElementById('biolink');
-                biolink.style.display = 'block';
-                biolink.classList.add('show');
-                startRain();
+                document.getElementById('biolink').style.display = 'block';
+                document.getElementById('biolink').style.opacity = '1';
             }, 500);
+        }
+
+        function startRain() {
+            const rain = document.getElementById('rain');
+            const numberOfDrops = 100;
+            for (let i = 0; i < numberOfDrops; i++) {
+                let drop = document.createElement('div');
+                drop.classList.add('drop');
+                drop.style.left = Math.random() * 100 + 'vw';
+                drop.style.animationDuration = Math.random() * 2 + 1 + 's';
+                drop.style.animationDelay = Math.random() * 5 + 's';
+                rain.appendChild(drop);
+            }
         }
 
         function startLightning() {
             const lightning = document.getElementById('lightning');
             setInterval(() => {
-                lightning.classList.add('strike');
+                lightning.innerHTML = '<div class="strike"></div>';
                 setTimeout(() => {
-                    lightning.classList.remove('strike');
+                    lightning.innerHTML = '';
                 }, 200);
-            }, 5000);
+            }, Math.random() * 3000 + 1000);
         }
 
-        startLightning();
+        document.addEventListener('DOMContentLoaded', () => {
+            startRain();
+            startLightning();
+        });
     </script>
 </body>
 </html>

@@ -199,22 +199,24 @@
             color: #fff;
         }
 
-        .cat-gif {
-            position: absolute;
-            top: -40px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 998;
-            width: 240px;
-            height: auto;
-        }
+.cat-gif {
+    position: absolute;
+    top: -50px; /* Move up by 10px from -40px to -50px */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 998;
+    width: 240px;
+    height: auto;
+    box-shadow: none; /* Remove background effects */
+}
 
-        .cat-gif img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
+.cat-gif img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: none; /* Remove box shadow */
+}
+
 
         .rain {
             position: absolute;

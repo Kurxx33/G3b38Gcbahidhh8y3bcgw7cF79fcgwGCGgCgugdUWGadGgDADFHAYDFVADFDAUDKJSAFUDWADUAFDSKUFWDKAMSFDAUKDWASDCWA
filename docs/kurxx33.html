@@ -39,7 +39,7 @@ body {
     transition: opacity 0.5s ease-in-out;
     z-index: 9999;
     cursor: pointer;
-    background: rgba(0, 0, 0, 0.8); /* Add a background to fully cover the content */
+    background: rgba(0, 0, 0, 0.8);
 }
 
 .clickanywhere h4 {
@@ -76,7 +76,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    opacity: 0.85;
+    opacity: 0;
     width: 100%;
     max-width: 610px;
     height: auto;
@@ -91,9 +91,9 @@ body {
 
 .card .cat-gif {
     position: absolute;
-    top: 10px; /* Move the cat gif slightly lower to fit in the corner */
-    right: 10px; /* Position cat gif to the right */
-    width: 80px; /* Adjust size */
+    top: 10px;
+    right: 10px;
+    width: 80px;
     height: auto;
     z-index: 998;
 }
@@ -162,9 +162,9 @@ body {
     padding: 5px;
     position: absolute;
     z-index: 1;
-    bottom: 125%; /* Position above the badge */
+    bottom: 125%;
     left: 50%;
-    margin-left: -70px; /* Center the tooltip */
+    margin-left: -70px;
     opacity: 0;
     transition: opacity 0.3s;
     font-size: 12px;
@@ -279,6 +279,7 @@ body {
 }
 
     </style>
+body {
 </head>
 <body>
     <div class="clickanywhere" onclick="startExperience()">
@@ -327,7 +328,6 @@ body {
     <div class="lightning" id="lightning"></div>
 
     <script>
-        // Add rain effect dynamically
         function createRainDrop() {
             const rain = document.getElementById('rain');
             const drop = document.createElement('div');
@@ -348,11 +348,10 @@ body {
                 const biolink = document.getElementById('biolink');
                 biolink.style.display = 'block';
                 biolink.classList.add('show');
-                startRain(); // Start rain effect
+                startRain();
             }, 500);
         }
 
-        // Lightning effect
         function startLightning() {
             const lightning = document.getElementById('lightning');
             setInterval(() => {
@@ -363,7 +362,6 @@ body {
             }, 5000);
         }
 
-        // Start lightning effect
         startLightning();
     </script>
 </body>

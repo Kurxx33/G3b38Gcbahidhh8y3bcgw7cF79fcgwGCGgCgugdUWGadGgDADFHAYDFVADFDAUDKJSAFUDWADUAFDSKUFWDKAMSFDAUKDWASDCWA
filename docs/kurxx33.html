@@ -272,6 +272,19 @@
                 opacity: 1;
             }
         }
+.doxbin-badge {
+    font-size: 20px;
+    color: #ccc;
+    transition: color 0.3s ease;
+    background: url('doxbin.gif') no-repeat center center;
+    background-size: contain;
+    width: 24px; /* Adjust size as needed */
+    height: 24px; /* Adjust size as needed */
+}
+
+.doxbin-badge:hover {
+    color: #fff; /* Color change on hover if needed */
+}
     </style>
 </head>
 <body>
@@ -286,26 +299,31 @@
         <div class="card">
             <img class="profile-pic" src="https://r2.interrupted.me/107/de9gi.png" alt="Profile Picture">
             <div class="username">kurxx33</div>
-            <div class="badges-wrapper">
-                <div class="badges-container">
-                    <div class="badge-container">
-                        <i class="fa-brands fa-square-web-awesome badge" aria-label="Owner"></i>
-                        <span class="badge-tooltip">Owner</span>
-                    </div>
-                    <div class="badge-container">
-                        <i class="fa-solid fa-hammer badge" aria-label="Developer"></i>
-                        <span class="badge-tooltip">Developer</span>
-                    </div>
-                    <div class="badge-container">
-                        <i class="fa-brands fa-bitcoin badge" aria-label="Money maker"></i>
-                        <span class="badge-tooltip">Money maker</span>
-                    </div>
-                    <div class="badge-container">
-                        <i class="fa-brands fa-viacoin badge" aria-label="Viacoin"></i>
-                        <span class="badge-tooltip">Viacoin</span>
-                    </div>
-                </div>
-            </div>
+<div class="badges-wrapper">
+    <div class="badges-container">
+        <div class="badge-container">
+            <i class="fa-brands fa-square-web-awesome badge" aria-label="Owner"></i>
+            <span class="badge-tooltip">Owner</span>
+        </div>
+        <div class="badge-container">
+            <i class="fa-solid fa-hammer badge" aria-label="Developer"></i>
+            <span class="badge-tooltip">Developer</span>
+        </div>
+        <div class="badge-container">
+            <i class="fa-brands fa-bitcoin badge" aria-label="Money maker"></i>
+            <span class="badge-tooltip">Money maker</span>
+        </div>
+        <div class="badge-container">
+            <i class="fa-brands fa-viacoin badge" aria-label="Viacoin"></i>
+            <span class="badge-tooltip">Viacoin</span>
+        </div>
+        <!-- New Badge -->
+        <div class="badge-container">
+            <div class="doxbin-badge"></div>
+            <span class="badge-tooltip">Doxbin</span>
+        </div>
+    </div>
+</div>
             <div class="bio-text">
                 Love is the most twisted curse of all
             </div>

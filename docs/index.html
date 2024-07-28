@@ -70,9 +70,8 @@
    us888u.  ="8888f8888r -*8888888   ud8888.  ~`8888~'888X`?888f`    us888u.   .@^%8888"           888R    888R Y888r   888R   
 .@88 "8888"   4888>'88"    8888    :888'8888.   X888  888X '888>  .@88 "8888" x88:  `)8b.          888R    888R I888>   888R   
 9888  9888    4888> '      8888    d888 '88%"   X888  888X '888>  9888  9888  8888N=*8888          888R    888R I888>   888R   
-9888  9888    4888>        8888    8888.+"      X888  888X '888>  9888  9888   %8"    R88          888R    888R I888>   888R   
-9888  9888   .d888L .+    .8888Lu= 8888L        X888  888X '888>  9888  9888    @8Wou 9%     .     888R   u8888cJ888    888R   
-9888  9888   ^"8888*"     ^%888*   '8888c. .+  "*88%""*88" '888!` 9888  9888  .888888P`    .@8c   .888B .  "*888*P"    .888B . 
+9888  9888    4888>        8888    8888.+"      X888  888X '888>  9888  9888    @8Wou 9%     .     888R   u8888cJ888    888R   
+9888  9888   .d888L .+    .8888Lu= 8888L        X888  888X '888>  9888  9888   .888888P`    .@8c   .888B .  "*888*P"    .888B . 
 "888*""888"     "Y"         'Y"     "88888%      `~    "    `"`   "888*""888" `   ^"F     '%888"  ^*888%     'Y"       ^*888%  
  ^Y"   ^Y'                            "YP'                         ^Y"   ^Y'                ^*      "%                   "%    
         </pre>
@@ -112,16 +111,16 @@
                 function Snowflake() {
                     this.x = Math.random() * width;
                     this.y = Math.random() * height;
-                    this.length = Math.random() * 20 + 5; // Line length
-                    this.size = Math.random() * 2 + 1; // Thickness
-                    this.speed = Math.random() * 1 + 0.5;
+                    this.length = Math.random() * 10 + 2; // Smaller line length
+                    this.size = Math.random() * 1 + 0.5; // Smaller thickness
+                    this.speed = Math.random() * 3 + 1; // Increased speed
                     this.opacity = Math.random() * 0.5 + 0.3;
                     this.angle = Math.random() * 2 * Math.PI;
                     this.followMouse = Math.random() * 0.1 + 0.1; // Slightly follow the mouse
                 }
 
                 function createSnowflakes() {
-                    for (var i = 0; i < 100; i++) {
+                    for (var i = 0; i < 150; i++) {
                         snowflakes.push(new Snowflake());
                     }
                 }
@@ -130,7 +129,7 @@
                     ctx.clearRect(0, 0, width, height);
                     ctx.fillStyle = 'rgba(211, 168, 212, 0.8)'; // Same color as the ASCII art text
                     ctx.shadowColor = '#d3a8d4';
-                    ctx.shadowBlur = 10; // Glowing effect
+                    ctx.shadowBlur = 5; // Glowing effect
                     ctx.strokeStyle = 'rgba(211, 168, 212, 0.8)'; // Same color as the snowflakes
                     ctx.lineWidth = 1;
                     ctx.beginPath();

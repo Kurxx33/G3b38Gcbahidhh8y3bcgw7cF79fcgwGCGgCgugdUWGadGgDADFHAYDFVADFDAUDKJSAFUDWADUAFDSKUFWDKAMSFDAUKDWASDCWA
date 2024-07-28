@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ASCII Art Page</title>
+    <title>artemas.lol</title>
     <style>
         body {
             background-color: #000; /* Dark background */
@@ -96,14 +96,6 @@
                     console.log('Autoplay prevented: ', error);
                 });
             }
-        });
-        document.addEventListener('DOMContentLoaded', function () {
-            var audio = document.getElementById('background-music');
-            if (audio) {
-                audio.play().catch(function (error) {
-                    console.log('Autoplay prevented: ', error);
-                });
-            }
 
             // Snow effect JavaScript
             (function() {
@@ -117,10 +109,11 @@
 
                 var snowflakes = [];
 
-                function snowflake() {
+                function Snowflake() {
                     this.x = Math.random() * width;
                     this.y = Math.random() * height;
-                    this.size = Math.random() * 3 + 1; // Smaller size
+                    this.length = Math.random() * 20 + 5; // Line length
+                    this.size = Math.random() * 2 + 1; // Thickness
                     this.speed = Math.random() * 1 + 0.5;
                     this.opacity = Math.random() * 0.5 + 0.3;
                     this.angle = Math.random() * 2 * Math.PI;
@@ -129,7 +122,7 @@
 
                 function createSnowflakes() {
                     for (var i = 0; i < 100; i++) {
-                        snowflakes.push(new snowflake());
+                        snowflakes.push(new Snowflake());
                     }
                 }
 
@@ -137,14 +130,18 @@
                     ctx.clearRect(0, 0, width, height);
                     ctx.fillStyle = 'rgba(211, 168, 212, 0.8)'; // Same color as the ASCII art text
                     ctx.shadowColor = '#d3a8d4';
-                    ctx.shadowBlur = 5;
+                    ctx.shadowBlur = 10; // Glowing effect
+                    ctx.strokeStyle = 'rgba(211, 168, 212, 0.8)'; // Same color as the snowflakes
+                    ctx.lineWidth = 1;
                     ctx.beginPath();
                     for (var i = 0; i < snowflakes.length; i++) {
                         var flake = snowflakes[i];
+                        var xEnd = flake.x + Math.sin(flake.angle) * flake.length;
+                        var yEnd = flake.y + Math.cos(flake.angle) * flake.length;
                         ctx.moveTo(flake.x, flake.y);
-                        ctx.arc(flake.x, flake.y, flake.size, 0, Math.PI * 2, true);
+                        ctx.lineTo(xEnd, yEnd);
                     }
-                    ctx.fill();
+                    ctx.stroke();
                     moveSnowflakes();
                 }
 
@@ -158,31 +155,25 @@
                             flake.y = 0;
                             flake.x = Math.random() * width;
                         }
-                        if (flake.x > width || flake.x < 0) {
-                            flake.x = Math.random() * width;
-                            flake.y = 0;
+                        if (flake.x > width) {
+                            flake.x = 0;
+                        } else if (flake.x < 0) {
+                            flake.x = width;
                         }
                     }
                 }
 
-                var mouseX = width / 2;
-                var mouseY = height / 2;
-
-                window.addEventListener('mousemove', function(event) {
-                    mouseX = event.clientX;
-                    mouseY = event.clientY;
+                window.addEventListener('resize', function() {
+                    width = window.innerWidth;
+                    height = window.innerHeight;
+                    canvas.width = width;
+                    canvas.height = height;
                 });
 
-                function animate() {
-                    drawSnowflakes();
-                    requestAnimationFrame(animate);
-                }
-
                 createSnowflakes();
-                animate();
+                setInterval(drawSnowflakes, 30);
             })();
         });
     </script>
 </body>
 </html>
-

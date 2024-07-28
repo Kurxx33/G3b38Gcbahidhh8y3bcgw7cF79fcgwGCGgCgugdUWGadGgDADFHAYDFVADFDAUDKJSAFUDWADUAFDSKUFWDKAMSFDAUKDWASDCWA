@@ -1,3 +1,8 @@
+
+Here's the updated HTML snippet with the new badges (uzi.gif and butterfly1.gif) added:
+
+html
+Copy code
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -199,24 +204,27 @@
             color: #fff;
         }
 
-.cat-gif {
-    position: absolute;
-    top: -50px; /* Move up by 10px from -40px to -50px */
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 998;
-    width: 240px;
-    height: auto;
-    box-shadow: none; /* Remove background effects */
-}
+        .links-container a i.fa-instagram {
+            color: #e4405f;
+        }
 
-.cat-gif img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    box-shadow: none; /* Remove box shadow */
-}
+        .cat-gif {
+            position: absolute;
+            top: -50px; /* Move up by 10px from -40px to -50px */
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 998;
+            width: 240px;
+            height: auto;
+            box-shadow: none; /* Remove background effects */
+        }
 
+        .cat-gif img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: none; /* Remove box shadow */
+        }
 
         .rain {
             position: absolute;
@@ -272,7 +280,10 @@
                 opacity: 1;
             }
         }
-        .doxbin-badge, .uzi-badge, .butterfly-badge {
+
+        .doxbin-badge,
+        .uzi-badge,
+        .butterfly-badge {
             font-size: 20px;
             color: #ccc;
             transition: color 0.3s ease;
@@ -293,8 +304,10 @@
             background: url('https://r2.interrupted.me/107/butterfly1.gif') no-repeat center center;
         }
 
-        .doxbin-badge:hover, .uzi-badge:hover, .butterfly-badge:hover {
-            color: #fff;
+        .doxbin-badge:hover,
+        .uzi-badge:hover,
+        .butterfly-badge:hover {
+            color: #fff; /* Color change on hover if needed */
         }
     </style>
 </head>
@@ -333,15 +346,14 @@
             <div class="doxbin-badge"></div>
             <span class="badge-tooltip">Doxbin</span>
         </div>
-    </div>
-    <div class="badge-container">
-<div class="uzi"></div>
-<div class="badge-tooltip">Uzi</div>
- </div>
-    <div class="badge-container">
-        <div class="butterfly"></div>
-            <div class="badge-tooltip">Butterfly</div>
-               </div>
+        <div class="badge-container">
+            <div class="uzi-badge badge"></div>
+               <div class="badge-tooltip">Uzi</div>
+                    </div>
+                    <div class="badge-container">
+                        <div class="butterfly-badge badge"></div>
+                        <div class="badge-tooltip">Butterfly</div>
+                    </div>
                 </div>
             </div>
             <div class="bio-text">

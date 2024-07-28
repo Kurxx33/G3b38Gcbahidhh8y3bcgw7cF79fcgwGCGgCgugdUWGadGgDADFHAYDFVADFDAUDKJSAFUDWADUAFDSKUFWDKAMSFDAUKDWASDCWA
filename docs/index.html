@@ -87,7 +87,6 @@
                                                                                                    
                                                                                                    
         </pre>
-\
         <div>
             <a href="https://artemas.lol/buy">Buy</a>
         </div>
@@ -98,9 +97,19 @@
             <a href="/docs/dox/paste.php">Pastes</a> <!-- Link to the paste feature -->
         </div>
     </div>
-    <audio loop autoplay>
+    <audio id="background-music" loop autoplay>
         <source src="https://r2.interrupted.me/107/guitar.mp3" type="audio/mp3">
     </audio>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var audio = document.getElementById('background-music');
+            if (audio) {
+                audio.play().catch(function (error) {
+                    console.log('Autoplay prevented: ', error);
+                });
+            }
+        });
+    </script>
 </body>
 </html>
 

@@ -69,3 +69,15 @@ body {
     width: 100px;
     height: 100px;
 }
+.ascii-art {
+    color: #d8aaff; /* Light purple color */
+    font-family: monospace;
+    white-space: pre; /* Preserve whitespace formatting */
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+    border: 1px solid #d8aaff;
+    border-radius: 5px;
+    background-color: #1a1a1a; /* Dark background for contrast */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Subtle shadow for better visibility */
+}

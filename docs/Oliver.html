@@ -1,56 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-    <!-- meta -->
-    <head>
-        <meta charset="utf-8">
-        <body oncontextmenu="return false">
-        <title>Oliver</title>
-        <meta property="og:title" content="Oliver">
-        <meta name="description" content="Certified Pedo Hunter">
-        <meta name="twitter:image:src" content="yourimage">
-        <meta name="theme-color" content="#000000">
-        <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/ionicons/7.1.0/esm/ionicons.min.js"></script>
-        <script src="https://kit.fontawesome.com/b0c7a14384.js" crossorigin="anonymous"></script>
-        <link href="layout2.css" rel="stylesheet"/>
-    </head>
-    <!-- main -->
-    <body class="id">
-        <audio loop src="copy_A8257C8D-75B4-452E-B4A3-1A49943B2C6B.mp3"></audio> <!-- your audio (mp3) -->
-        <div id="pattern"></div>
-        <video class="background" id="background" loop> 
-            <source src="https://r2.interrupted.me/107/oliverbackground.gif" type="gif"> <!-- mp4 -->
-        </video>
-        <style>
-            .clickanywhere {
-                margin: 0;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-            } 
-        </style>
-        <div class="clickanywhere">
-            <h4 style="color:white; font-size: 16px;">[Click Anywhere]</h4> <!-- click anywhere -->
-        </div>   
-        <main>
-            <div scroll="no" id="biolink" class="biolink" style="display:none; overflow: hidden;">
-                <div scroll="no" id="biolink" class="card">
-                    <div class="buttons">
-                        <img class="avatar" src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/60D88CD8-C2EC-41DD-97AF-D27FD69C5652.jpg" title="pfp"> <!-- profile picture -->
-                        <!-- name -->
-                        <h1>Oliver<span class="small">Certified Pedo Hunter</span></h1> <!-- the gray thingy next to the name (can be left blank) -->
-                        <!-- socials, ex. i put telegram, discord & github -->
-                        <div>   
-                            <a href="https://t.me/kushovo" target=""><i class="fa-brands fa-telegram"></i></a>
-                        </div>
-                    </div> <!-- weird code -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oliver</title>
+    <meta property="og:title" content="Oliver">
+    <meta name="description" content="Certified Pedo Hunter">
+    <meta name="twitter:image:src" content="yourimage">
+    <meta name="theme-color" content="#000000">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ionicons/7.1.0/esm/ionicons.min.js"></script>
+    <script src="https://kit.fontawesome.com/b0c7a14384.js" crossorigin="anonymous"></script>
+    <link href="layout2.css" rel="stylesheet"/>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #000; 
+        }
+        video.background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -1; 
+        }
+        .clickanywhere {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .clickanywhere h4 {
+            color: white;
+            font-size: 16px;
+        }
+        .biolink {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1; 
+        }
+        .biolink .card {
+            background: rgba(0, 0, 0, 0.8); 
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .avatar {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+        }
+        .buttons h1 {
+            color: white;
+            font-size: 24px;
+        }
+        .buttons .small {
+            color: gray;
+            font-size: 16px;
+        }
+        .buttons a {
+            color: white;
+            text-decoration: none;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body oncontextmenu="return false">
+    <audio loop src="copy_A8257C8D-75B4-452E-B4A3-1A49943B2C6B.mp3"></audio> 
+    <video class="background" id="background" loop> 
+        <source src="https://r2.interrupted.me/107/oliverbackground.gif" type="video/mp4"> 
+    </video>
+    <div class="clickanywhere">
+        <h4>[Click Anywhere]</h4>
+    </div>
+    <main>
+        <div id="biolink" class="biolink">
+            <div class="card">
+                <div class="buttons">
+                    <img class="avatar" src="https://pub-2284c75c95fc4a7982093319d9faf433.r2.dev/60D88CD8-C2EC-41DD-97AF-D27FD69C5652.jpg" title="pfp"> <!-- profile picture -->
+                    <h1>Oliver<span class="small">Certified Pedo Hunter</span></h1> <!-- the gray thingy next to the name -->
+                    <div>   
+                        <a href="https://t.me/kushovo" target="_blank"><i class="fa-brands fa-telegram"></i></a>
+                    </div>
                 </div>
             </div>
-        </main>
-    </body>
-    <!-- dev inspect blocking script -->
+        </div>
+    </main>
     <script>
         document.addEventListener('contextmenu', (e) => e.preventDefault());
 
@@ -68,8 +113,7 @@
             )
                 return false;
         };
-    
-        // func playaudio
+
         function playMedia() {
             const audio = document.querySelector("audio");
             if (audio) {
@@ -77,7 +121,7 @@
                 audio.volume = 0.1;
             }
         }
-        // func playvideo
+
         function playVideo() {
             const video = document.querySelector("video");
             if (video) {
@@ -88,12 +132,20 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            document.querySelector('.id').addEventListener('click', () => {
+            document.querySelector('.clickanywhere').addEventListener('click', () => {
                 playVideo();
                 playMedia();
                 $(".clickanywhere").fadeOut(300);
                 $(".biolink").fadeIn(2000);
             });
+
+            const video = document.querySelector("video");
+            if (video) {
+                video.addEventListener('ended', () => {
+                    video.play();
+                });
+            }
         });
     </script>
+</body>
 </html>

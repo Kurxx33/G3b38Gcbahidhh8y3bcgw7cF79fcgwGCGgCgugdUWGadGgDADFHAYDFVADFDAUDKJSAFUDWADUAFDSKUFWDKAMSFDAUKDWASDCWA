@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User List</title>
+    <meta name="description" content="List of users with their UID, Name, and Rank.">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='legacy/index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='files/dropdown.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='files/doxbin.css') }}">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0e0e0e;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+/* Top Navigation Bar */
+.top-nav {
+    display: flex;
+    justify-content: center;
+    background-color: #000; /* Black background */
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid white; /* White line at the bottom */
+}
+
+.top-nav a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-right: 1px solid white; /* White lines dividing the buttons */
+}
+
+.top-nav a:last-child {
+    border-right: none; /* Remove border from the last button */
+}
+
+.top-nav a:hover {
+    background-color: #333;
+}
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #282828;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #444;
+        }
+
+        th {
+            background-color: #3d3d3d;
+        }
+
+        tr:nth-child(even) {
+            background-color: #1c1c1c;
+        }
+
+        tr:hover {
+            background-color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #ffffff;
+        }
+
+        .admin-text {
+            color: red;
+            font-weight: bold;
+        }
+
+        @media only screen and (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+
+            table {
+                font-size: 14px;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Top Navigation Bar -->
+    <div class="top-nav">
+        <a href="https://artemas.lol/dox/kbin">Home</a>
+        <a href="history">History</a>
+        <a href="users">Users</a>
+        <a href="hol">Hall of Losers</a>
+    <div class="container">
+        <h1>User List</h1>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>UID</th>
+                        <th>Name</th>
+                        <th>Rank</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Example Row -->
+                    <tr>
+                        <td>001</td>
+                        <td>John Doe</td>
+                        <td>Admin</td>
+                    </tr>
+                    <!-- Add more rows as needed -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
+

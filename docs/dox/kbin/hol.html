@@ -1,21 +1,24 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>kBin - Hall of Loosers</title>
-    <meta name="description" content="Here lies the bullied, antisocial & doxed rejects who stepped into the wrong side of the internet.">
-    <meta property="og:locale" content="en_US">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="kBin - Hall of Autism">
-    <meta property="og:description" content="Here lies the bullied, antisocial & doxed rejects who stepped into the wrong side of the internet.">
+    <title>Doxbin - Hall of Loosers</title>
+    <meta name="description"
+        content="Here lies the bullied, antisocial & doxed rejects who stepped into the wrong side of the internet.">
 
-    <!-- Update the file paths if necessary -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:url" content="{{ url_for('hall_of_loosers') }}">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Doxbin - Hall of Autism">
+    <meta property="og:description"
+        content="Here lies the bullied, antisocial & doxed rejects who stepped into the wrong side of the internet.">
+
     <link rel="stylesheet" href="{{ url_for('static', filename='legacy/index.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='files/dropdown.css') }}">
-    <!-- Removed bootstrap.min.js; it should be a .js file -->
-    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='files/bootstrap.min.js') }}"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='files/bootstrap.min.js') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='files/doxbin.css') }}">
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -56,6 +59,12 @@
             padding: 7px 5px;
         }
 
+        input,
+        select,
+        option {
+            font-size: 100%;
+        }
+
         input[type=submit]:hover {
             color: white;
             background: #3d3d3d;
@@ -92,10 +101,12 @@
             width: 32%;
             border-radius: 2px;
             float: left;
-            margin: 10px 5px;
+            margin: 10px 5px 10px 5px;
             position: relative;
             padding: 15px;
-            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.75);
+            -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+            -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+            box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
             height: 460px;
         }
 
@@ -160,56 +171,130 @@
         }
 
         ::-webkit-scrollbar {
+            /*scroll bar*/
             width: 7px;
         }
 
+        /* Track */
         ::-webkit-scrollbar-track {
             background: #cacaca;
         }
 
+        /* Handle */
         ::-webkit-scrollbar-thumb {
             background: rgb(110, 110, 110);
         }
 
+        /* Handle on hover */
         ::-webkit-scrollbar-thumb:hover {
             background: rgb(68, 68, 68);
         }
 
         .rainbow {
+            /* Font options */
             text-shadow: 2px 2px 4px #000000;
+
+            /* Chrome, Safari, Opera */
             -webkit-animation: rainbow 5s infinite;
+
+            /* Internet Explorer */
             -ms-animation: rainbow 5s infinite;
+
+            /* Standar Syntax */
             animation: rainbow 5s infinite;
         }
 
+        /* Chrome, Safari, Opera */
         @-webkit-keyframes rainbow {
-            0% { color: red; }
-            17% { color: orange; }
-            33% { color: yellow; }
-            50% { color: green; }
-            67% { color: blue; }
-            84% { color: purple; }
-            100% { color: red; }
+            0% {
+                color: red;
+            }
+
+            17% {
+                color: orange;
+            }
+
+            33% {
+                color: yellow;
+            }
+
+            50% {
+                color: green;
+            }
+
+            67% {
+                color: blue;
+            }
+
+            84% {
+                color: purple;
+            }
+
+            100% {
+                color: red;
+            }
         }
 
+        /* Internet Explorer */
         @-ms-keyframes rainbow {
-            0% { color: red; }
-            17% { color: orange; }
-            33% { color: yellow; }
-            50% { color: green; }
-            67% { color: blue; }
-            84% { color: purple; }
-            100% { color: red; }
+            0% {
+                color: red;
+            }
+
+            17% {
+                color: orange;
+            }
+
+            33% {
+                color: yellow;
+            }
+
+            50% {
+                color: green;
+            }
+
+            67% {
+                color: blue;
+            }
+
+            84% {
+                color: purple;
+            }
+
+            100% {
+                color: red;
+            }
         }
 
+        /* Standar Syntax */
         @keyframes rainbow {
-            0% { color: red; }
-            17% { color: orange; }
-            33% { color: yellow; }
-            50% { color: green; }
-            67% { color: blue; }
-            84% { color: purple; }
-            100% { color: red; }
+            0% {
+                color: red;
+            }
+
+            17% {
+                color: orange;
+            }
+
+            33% {
+                color: yellow;
+            }
+
+            50% {
+                color: green;
+            }
+
+            67% {
+                color: blue;
+            }
+
+            84% {
+                color: purple;
+            }
+
+            100% {
+                color: red;
+            }
         }
     </style>
 
@@ -222,26 +307,26 @@
         var swide = 800;
         var shigh = 600;
         var sleft = sdown = 0;
-        var tiny = [];
-        var star = [];
-        var starv = [];
-        var starx = [];
-        var stary = [];
-        var tinyx = [];
-        var tinyy = [];
-        var tinyv = [];
+        var tiny = new Array();
+        var star = new Array();
+        var starv = new Array();
+        var starx = new Array();
+        var stary = new Array();
+        var tinyx = new Array();
+        var tinyy = new Array();
+        var tinyv = new Array();
 
         window.onload = function () {
             if (document.getElementById) {
-                var i;
-                for (i = 0; i < sparkles; i++) {
+                var i, rats, rlef, rdow;
+                for (var i = 0; i < sparkles; i++) {
                     var rats = createDiv(3, 3);
                     rats.style.visibility = "hidden";
                     rats.style.zIndex = "999";
                     document.body.appendChild(tiny[i] = rats);
                     starv[i] = 0;
                     tinyv[i] = 0;
-                    rats = createDiv(5, 5);
+                    var rats = createDiv(5, 5);
                     rats.style.backgroundColor = "transparent";
                     rats.style.visibility = "hidden";
                     rats.style.zIndex = "999";
@@ -266,72 +351,207 @@
                 ox = x;
                 oy = y;
                 for (c = 0; c < sparkles; c++) if (!starv[c]) {
-                    star[c].style.visibility = "hidden";
-                    starv[c] = 0;
+                    star[c].style.left = (starx[c] = x) + "px";
+                    star[c].style.top = (stary[c] = y + 1) + "px";
+                    star[c].style.clip = "rect(0px, 5px, 5px, 0px)";
+                    star[c].childNodes[0].style.backgroundColor = star[c].childNodes[1].style.backgroundColor = (colour == "random") ? newColour() : colour;
+                    star[c].style.visibility = "visible";
+                    starv[c] = 50;
+                    break;
                 }
-                var w = window.innerWidth;
-                var h = window.innerHeight;
-                var i = Math.floor(sparkles * Math.random());
-                var j = Math.floor(Math.random() * 200);
-                var k = Math.floor(Math.random() * 200);
-                var l = Math.floor(Math.random() * 200);
-                var m = Math.floor(Math.random() * 255);
-                var o = Math.floor(Math.random() * 255);
-                var p = Math.floor(Math.random() * 255);
-                var q = Math.floor(Math.random() * 255);
-                if (colour === "random") {
-                    star[i].style.backgroundColor = "rgb(" + m + "," + o + "," + p + ")";
-                    star[i].style.boxShadow = "0 0 2px 2px rgba(" + m + "," + o + "," + p + ",1)";
-                    tiny[i].style.backgroundColor = "rgb(" + q + "," + q + "," + q + ")";
-                } else if (colour === "white") {
-                    star[i].style.backgroundColor = "white";
-                    star[i].style.boxShadow = "0 0 2px 2px rgba(255,255,255,1)";
-                    tiny[i].style.backgroundColor = "white";
+            }
+            for (c = 0; c < sparkles; c++) {
+                if (starv[c]) update_star(c);
+                if (tinyv[c]) update_tiny(c);
+            }
+            setTimeout("sparkle()", 40);
+        }
+
+        function update_star(i) {
+            if (--starv[i] == 25) star[i].style.clip = "rect(1px, 4px, 4px, 1px)";
+            if (starv[i]) {
+                stary[i] += 1 + Math.random() * 3;
+                starx[i] += (i % 5 - 2) / 5;
+                if (stary[i] < shigh + sdown) {
+                    star[i].style.top = stary[i] + "px";
+                    star[i].style.left = starx[i] + "px";
                 }
-                star[i].style.width = "5px";
-                star[i].style.height = "5px";
-                star[i].style.left = x + "px";
-                star[i].style.top = y + "px";
-                star[i].style.visibility = "visible";
-                starv[i] = 20;
-                tiny[i].style.left = (Math.random() * w) + "px";
-                tiny[i].style.top = (Math.random() * h) + "px";
+                else {
+                    star[i].style.visibility = "hidden";
+                    starv[i] = 0;
+                    return;
+                }
+            }
+            else {
+                tinyv[i] = 50;
+                tiny[i].style.top = (tinyy[i] = stary[i]) + "px";
+                tiny[i].style.left = (tinyx[i] = starx[i]) + "px";
                 tiny[i].style.width = "2px";
                 tiny[i].style.height = "2px";
-                tiny[i].style.visibility = "visible";
-                tinyv[i] = 20;
-                x = Math.random() * w;
-                y = Math.random() * h;
+                tiny[i].style.backgroundColor = star[i].childNodes[0].style.backgroundColor;
+                star[i].style.visibility = "hidden";
+                tiny[i].style.visibility = "visible"
             }
-            for (var j = 0; j < sparkles; j++) {
-                if (starv[j]) {
-                    starv[j]--;
-                    var t = starv[j] / 20;
-                    star[j].style.opacity = t;
-                    star[j].style.width = 5 - (starv[j] / 6) + "px";
-                    star[j].style.height = 5 - (starv[j] / 6) + "px";
-                    if (!starv[j]) star[j].style.visibility = "hidden";
-                }
-                if (tinyv[j]) {
-                    tinyv[j]--;
-                    var t = tinyv[j] / 20;
-                    tiny[j].style.opacity = t;
-                    tiny[j].style.width = 2 - (tinyv[j] / 20) + "px";
-                    tiny[j].style.height = 2 - (tinyv[j] / 20) + "px";
-                    if (!tinyv[j]) tiny[j].style.visibility = "hidden";
-                }
-            }
-            setTimeout(sparkle, 30);
         }
 
+        function update_tiny(i) {
+            if (--tinyv[i] == 25) {
+                tiny[i].style.width = "1px";
+                tiny[i].style.height = "1px";
+            }
+            if (tinyv[i]) {
+                tinyy[i] += 1 + Math.random() * 3;
+                tinyx[i] += (i % 5 - 2) / 5;
+                if (tinyy[i] < shigh + sdown) {
+                    tiny[i].style.top = tinyy[i] + "px";
+                    tiny[i].style.left = tinyx[i] + "px";
+                }
+                else {
+                    tiny[i].style.visibility = "hidden";
+                    tinyv[i] = 0;
+                    return;
+                }
+            }
+            else tiny[i].style.visibility = "hidden";
+        }
+
+        document.onmousemove = mouse;
+        function mouse(e) {
+            if (e) {
+                y = e.pageY;
+                x = e.pageX;
+            }
+            else {
+                set_scroll();
+                y = event.y + sdown;
+                x = event.x + sleft;
+            }
+        }
+
+        window.onscroll = set_scroll;
+        function set_scroll() {
+            if (typeof (self.pageYOffset) == 'number') {
+                sdown = self.pageYOffset;
+                sleft = self.pageXOffset;
+            }
+            else if (document.body && (document.body.scrollTop || document.body.scrollLeft)) {
+                sdown = document.body.scrollTop;
+                sleft = document.body.scrollLeft;
+            }
+            else if (document.documentElement && (document.documentElement.scrollTop || document.documentElement.scrollLeft)) {
+                sleft = document.documentElement.scrollLeft;
+                sdown = document.documentElement.scrollTop;
+            }
+            else {
+                sdown = 0;
+                sleft = 0;
+            }
+        }
+
+        window.onresize = set_width;
         function set_width() {
-            swide = window.innerWidth;
-            shigh = window.innerHeight;
+            var sw_min = 999999;
+            var sh_min = 999999;
+            if (document.documentElement && document.documentElement.clientWidth) {
+                if (document.documentElement.clientWidth > 0) sw_min = document.documentElement.clientWidth;
+                if (document.documentElement.clientHeight > 0) sh_min = document.documentElement.clientHeight;
+            }
+            if (typeof (self.innerWidth) == 'number' && self.innerWidth) {
+                if (self.innerWidth > 0 && self.innerWidth < sw_min) sw_min = self.innerWidth;
+                if (self.innerHeight > 0 && self.innerHeight < sh_min) sh_min = self.innerHeight;
+            }
+            if (document.body.clientWidth) {
+                if (document.body.clientWidth > 0 && document.body.clientWidth < sw_min) sw_min = document.body.clientWidth;
+                if (document.body.clientHeight > 0 && document.body.clientHeight < sh_min) sh_min = document.body.clientHeight;
+            }
+            if (sw_min == 999999 || sh_min == 999999) {
+                sw_min = 800;
+                sh_min = 600;
+            }
+            swide = sw_min;
+            shigh = sh_min;
         }
 
-        function createDiv(width, height) {
+        function createDiv(height, width) {
             var div = document.createElement("div");
-            div.style.width = width + "px";
-            div.style.height = height + "px";
             div.style.position = "absolute";
-            return
+            div.style.height = height + "px";
+            div.style.width = width + "px";
+            div.style.overflow = "hidden";
+            return (div);
+        }
+
+        function newColour() {
+            var c = new Array();
+            c[0] = 255;
+            c[1] = Math.floor(Math.random() * 256);
+            c[2] = Math.floor(Math.random() * (256 - c[1] / 2));
+            c.sort(function () { return (0.5 - Math.random()); });
+            return ("rgb(" + c[0] + ", " + c[1] + ", " + c[2] + ")");
+        }
+    </script>
+
+</head>
+
+<body>
+    <iframe src="/files/hoa/audio.mp3" allow="autoplay" style="display:none"></iframe>
+    {% endblock %}
+
+    {% block bottom %}
+    <div class="col-md-12" style="margin-top: 60px;">
+        <div class="center">
+            <pre class="doxbin-text">
+  _  ___    _      
+ | |/ / |__(_)_ _  
+ | ' <| '_ \ | ' \ 
+ |_|\_\_.__/_|_||_|
+                   </pre>
+            <h4 class="hoa-title rainbow"><b>HALL OF LOOSERS</b></h4>
+        </div>
+        <div class="container" style="margin-top:20px;">
+
+            <!-- 
+            <div class="hoa-container">
+                <div class="hoa-image">
+                    <img src="https://doxbin.com/files/hoa/white/arion.jpg">
+                </div>
+                <div class="hoa-name rainbow">
+                    White / Breachbase
+                </div>
+                <div class="hoa-description">
+                    <b>Arion Kurtaj</b><br>
+                    16 year old Albanian immigrant who loves fishing with his uncle Simon.<br>
+                    From begging people to hack Minecraft servers to having a 14MIL net worth.<br>
+                    Getting scammed over 600k total (Should've used MM).<br>
+                    Begged kt to stop texting his friends and family.<br>
+                    Folded, cried & ran at the first sight of someone @ his crib.<br>
+                </div>
+            </div> 
+            -->
+
+            {% for looser in loosers_list %}
+            <div class="hoa-container">
+                <div class="hoa-image">
+                    <img src="{{ looser.image }}">
+                </div>
+                <div class="hoa-name rainbow">
+                    {{ looser.topic }}
+                </div>
+                <div class="hoa-description">
+                    <b>{{ looser.subtopic }}</b>
+                    <br>
+                    {% for line in looser.body %}
+                    {{ line }}
+                    <br>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+
+            <!-- loosers_list -->
+
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Doxbin - {{ filename }}</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='legacy/app.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='legacy/google-code-prettify/tomorrow-night.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='legacy/css/show.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='legacy/toastr/toastr.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='legacy/custom.modernizr.js') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='legacy/jquery.min.js') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='files/doxbin.css') }}">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Created on {{ creation_date }}. Size: {{ size }} KB">
+
+    <style>
+        select,
+        option {
+            line-height: 1.2;
+            color: white;
+            background: #282828;
+            border: 0;
+            border-radius: 2px;
+            display: inline-block;
+            -webkit-font-smoothing: antialiased;
+            outline: none;
+            padding: 7px 5px;
+            width: 50%;
+            /* margin-bottom: 10px; */
+        }
+
+        .right {
+            text-align: right;
+            width: 100%;
+        }
+
+        select,
+        option {
+            font-size: 100%;
+        }
+
+        input#paste-password:disabled {
+            color: rgb(190, 190, 190);
+        }
+
+        pre a:hover {
+            text-decoration: underline;
+        }
+
+        @font-face {
+            font-family: 'Material Icons';
+            font-style: normal;
+            font-weight: 400;
+            src: url(https://example.com/MaterialIcons-Regular.eot);
+            /* For IE6-8 */
+            src: local('Material Icons'),
+                local('MaterialIcons-Regular'),
+                url(https://doxbin.org/MaterialIcons-Regular.woff2) format('woff2'),
+                url(https://doxbin.org/MaterialIcons-Regular.woff) format('woff'),
+                url(https://doxbin.org/MaterialIcons-Regular.ttf) format('truetype');
+        }
+
+
+        .material-icons {
+            font-family: 'Material Icons';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            /* Preferred icon size */
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+
+            /* Support for all WebKit browsers. */
+            -webkit-font-smoothing: antialiased;
+            /* Support for Safari and Chrome. */
+            text-rendering: optimizeLegibility;
+
+            /* Support for Firefox. */
+            -moz-osx-font-smoothing: grayscale;
+
+            /* Support for IE. */
+            font-feature-settings: 'liga';
+        }
+
+
+        .like-dislike-paste a,
+        .like-dislike-paste span {
+            display: inline-block;
+        }
+
+        .like-dislike-paste a span.material-icons,
+        .like-dislike-paste span span.material-icons {
+            font-size: 17px;
+            margin-right: 3px;
+        }
+
+        .like-dislike-paste a span.paste-likes,
+        .like-dislike-paste a span.paste-dislikes {
+            font-size: 13px;
+        }
+
+
+
+        .like-dislike-comment a,
+        .like-dislike-comment span {
+            display: inline-block;
+        }
+
+        .like-dislike-comment a span.material-icons,
+        .like-dislike-comment span span.material-icons {
+            font-size: 15px;
+            margin-right: 2px;
+        }
+
+        .like-dislike-comment a span.comment-likes,
+        .like-dislike-comment a span.comment-dislikes {
+            font-size: 11px;
+        }
+
+
+
+        #like-paste,
+        #dislike-paste,
+        a.like-comment,
+        a.dislike-comment {
+            color: white;
+        }
+
+        #like-paste:hover,
+        #dislike-paste:hover,
+        .like-comment:hover,
+        div.like-dislike-comment .dislike-comment:hover {
+            color: rgb(161, 161, 161) !important;
+        }
+
+        a.button {
+            font-size: 14px !important;
+            text-transform: none !important;
+        }
+    </style>
+
+</head>
+
+<body class="bin" style="overflow-x: hidden;">
+    <div class="wrapper">
+        <div class="table">
+
+            <!-- <a href="#" class="show-sidebar show"><i class="fa fa-arrow-right"></i></a> -->
+
+            <div class="sidebar">
+                <a class="sidebar-logo" href="{{ url_for('index') }}">
+                    <pre>
+  ____            _     _       
+ |  _ \  _____  _| |__ (_)_ __  
+ | | | |/ _ \ \/ / '_ \| | '_ \ 
+ | |_| | (_) &gt;  &lt;| |_) | | | | |
+ |____/ \___/_/\_\_.__/|_|_| |_|
+                    </pre>
+                </a>
+
+                <div class="options" style="padding-top:3px;">
+                    <div class="paste-properties">
+                    </div>
+
+                    <p>
+                        <span style="font-weight:bold; color: white;">
+                            Title:
+                        </span>
+                        <span style="float: right;">
+                            {{ filename }}
+                        </span>
+                    </p>
+                    <p>
+                        <span style="font-weight:bold; color: white;">
+                            By:
+                        </span>
+                        <span style="float: right; color: red;">
+                            Admin
+                        </span>
+                    </p>
+                    <p>
+                        <span style="font-weight:bold; color: white;">
+                            Size:
+                        </span>
+                        <span style="float: right;">
+                            {{ size }} KB
+                        </span>
+                    </p>
+                    <p>
+                        <span style="font-weight:bold; color: white;">
+                            Time:
+                        </span>
+                        <span style="float: right;">
+                            {{ creation_time }}
+                        </span>
+                    </p>
+                    <p>
+                        <span style="font-weight:bold; color: white;">
+                            Date:
+                        </span>
+                        <span style="float: right;">
+                            {{ creation_date }}
+                        </span>
+                    </p>
+
+                </div>
+
+                <div class="options" id="btns">
+                    <ul>
+                        <li><a href="{{ url_for('new_paste') }}" class="btn new">New</a></li>
+                        <li><a href="{{ url_for('tos') }}" class="btn new">Terms of Service</a></li>
+
+                    </ul>
+                </div>
+
+                <div class="options r-hide" id="tos-display">
+                    <p style="margin-top: 0;color: white;">
+                        Please note that all posted information is publicly available and must follow our
+                        <a href="{{ url_for('tos') }}" style="text-decoration: underline;">
+                            TOS.
+                        </a>
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="show-container" style="padding-left: 20px;">
+                <pre style="color: white; margin: 0;">{{ file_content }}</pre>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

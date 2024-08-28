@@ -36,28 +36,35 @@
             font-family: Arial, sans-serif;
         }
 
-        /* Top Navigation Bar */
-        .top-nav {
-            display: flex;
-            justify-content: center;
-            background-color: #333;
-            padding: 10px 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
+/* Top Navigation Bar */
+.top-nav {
+    display: flex;
+    justify-content: center;
+    background-color: #000; /* Black background */
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid white; /* White line at the bottom */
+}
 
-        .top-nav a {
-            color: white;
-            text-decoration: none;
-            padding: 10px 20px;
-            font-size: 16px;
-        }
+.top-nav a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-right: 1px solid white; /* White lines dividing the buttons */
+}
 
-        .top-nav a:hover {
-            background-color: #575757;
-        }
+.top-nav a:last-child {
+    border-right: none; /* Remove border from the last button */
+}
+
+.top-nav a:hover {
+    background-color: #333;
+}
+
 
         .container {
             margin-top: 60px;

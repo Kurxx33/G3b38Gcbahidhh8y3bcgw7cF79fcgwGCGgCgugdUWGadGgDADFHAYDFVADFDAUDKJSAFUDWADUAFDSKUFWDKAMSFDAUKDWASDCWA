@@ -1,0 +1,283 @@
+{% extends "navbar.html" %}
+
+{% block top %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>kBin</title>
+
+    <!-- Main Imports -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='legacy/index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='legacy/css/main.css') }}">
+    <link href="{{ url_for('static', filename='legacy/dropdown.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='files/doxbin.css') }}" rel="stylesheet">
+
+    <!-- Other Imports -->
+    <link href="{{ url_for('static', filename='others/font-awesome.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='others/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='others/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='others/bootstrap-responsive.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='others/bootstrap-responsive.min.css') }}" rel="stylesheet">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Main Meta Tags -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Doxbin-FOSS is a document sharing and publishing website for text-based information such as dox, code-snippets and other stuff.">
+    <!-- All Meta Tags Ends here -->
+
+    <!-- Custom CSS to fix some dark-mode issues -->
+    <style>
+        body,
+        p {
+            background-color: #060606;
+            color: white;
+        }
+
+        td,
+        tr,
+        tbody {
+            background-color: #060606;
+            color: white;
+        }
+
+        /* Custom CSS to fix messed up table colors */
+        .table>tfoot>tr>th,
+        .table>tfoot>tr>td {
+            border-top-color: rgb(108, 100, 88);
+        }
+
+        .table-striped tbody>tr:nth-child(2n+1)>td,
+        .table-striped tbody>tr:nth-child(2n+1)>th {
+            background-color: rgb(23, 25, 26);
+        }
+
+        .table-striped tbody>tr:nth-child(2n)>td,
+        .table-striped tbody>tr:nth-child(2n)>th {
+            background-color: #0f0f0f;
+        }
+
+        .table>tfoot>tr>th,
+        .table>tfoot>tr>td {
+            line-height: 1.42857;
+            vertical-align: top;
+            padding: 8px;
+            border-top: 1px solid rgb(40, 40, 40);
+        }
+
+        /* Dark Mode Scrollbar */
+        ::-webkit-scrollbar {
+            background-color: #1b1e1f;
+            color: #918b82;
+        }
+
+        ::-webkit-scrollbar-corner {
+            background-color: #141617;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #3b3f41;
+        }
+    </style>
+    <!-- Custom CSS Ends here -->
+</head>
+
+<body>
+    {% endblock %}
+
+    {% block bottom %}
+
+    <div class="col-md-12">
+        <div class="col-md-12" style="margin-top: 60px;float:none;">
+            <div align="center">
+
+                <pre
+                    style="font: 4px/6px monospace; background-color: #060606; overflow-x: hidden; overflow-y: hidden; border: none; color: white;">
+        s                                                  .x+=:.                ..                   .. 
+       :8                                                 z`    ^%         x .d88"              x .d88"  
+           .u    .      .88                  ..    .     :                     .   <k         5888R          u.    5888R   
+      u      .d88B :@8c    :888ooo      .u     .888: x888  x888.        u        .@8Ned8"         '888R    ...ue888b   '888R   
+   us888u.  ="8888f8888r -*8888888   ud8888.  ~`8888~'888X`?888f`    us888u.   .@^%8888"           888R    888R Y888r   888R   
+.@88 "8888"   4888>'88"    8888    :888'8888.   X888  888X '888>  .@88 "8888" x88:  `)8b.          888R    888R I888>   888R   
+9888  9888    4888> '      8888    d888 '88%"   X888  888X '888>  9888  9888  8888N=*8888          888R    888R I888>   888R   
+9888  9888    4888>        8888    8888.+"      X888  888X '888>  9888  9888   %8"    R88          888R    888R I888>   888R   
+9888  9888   .d888L .+    .8888Lu= 8888L        X888  888X '888>  9888  9888    @8Wou 9%     .     888R   u8888cJ888    888R   
+9888  9888   ^"8888*"     ^%888*   '8888c. .+  "*88%""*88" '888!` 9888  9888  .888888P`    .@8c   .888B .  "*888*P"    .888B . 
+"888*""888"     "Y"         'Y"     "88888%      `~    "    `"`   "888*""888" `   ^"F     '%888"  ^*888%     'Y"       ^*888%  
+ ^Y"   ^Y'                            "YP'                         ^Y"   ^Y'                ^*      "%                   "%    
+
+    </div>
+
+                <h5 class="announcement a-1" style="color:#00AAFF;">
+                    <u>
+                        <a style="color:inherit;" href="{{ url_for('index') }}">
+                            Doxbin
+                        </a>
+                    </u>
+                </h5>
+
+                <h5 class="announcement a-2" style="color:#08EFFF;">
+                    <u>
+                        <a style="color:inherit;" href="https://github.com/hirusha-adi/DoxBin">
+                            Free and Open Source Rebuild
+                        </a>
+                    </u>
+                </h5>
+
+
+                <h5 class="announcement a-2" style="color:#00AAFF;">
+                    <u>
+                        <a style="color:inherit;" href="{{ url_for('list_of_pages') }}">
+                            All Pages
+                        </a>
+                    </u>
+                </h5>
+
+                <br>
+
+            </div>
+        </div>
+
+        <div class="col-md-7" style="float:none;margin:auto;padding:0;">
+            <!-- PINNED PASTES -->
+            <h6 style="margin-top: 14px; color: white;">Admin Pastes</h6>
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th colspan="3">Title</th>
+                        <th class="text-center auto-size">By</th>
+                        <th class="text-center">Date</th>
+                        <th colspan="2" class="text-center">Time</th>
+                        <th style="width: 120px" class="text-center r-hide">Size</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <!-- Original Post Item -->
+                    <!-- 
+                    <tr class="doxentry  mod-post">
+                        <td colspan="3" style="overflow: hidden; text-overflow: ellipsis;"><a
+                                title="How to Ensure Your Paste Stays Up"
+                                href="https://doxbin.org/upload/HowtoEnsureYourDoxStaysUp">How to Ensure Your Paste
+                                Stays Up</a></td>
+                        <td style="width: 105px;" class="text-center">-</td>
+                        <td class="text-center">43917</td>
+                        <td colspan="2" style="padding-bottom: 0; max-width: 140px;" class="text-center">
+                            <a class="dox-username" title="charge" style="color: #3EF973; font-weight: bold;"
+                                href="/user/charge">charge <span
+                                    style="color:#3EF973;font-weight:bold;">[Mod]</span></a>
+                        </td>
+                        <td style="width: 120px" class="text-center r-hide">Nov 20th, 2020</td>
+                    </tr> 
+                    -->
+
+                    {% for admin_post in admin_posts_list %}
+
+                    <tr class="doxentry">
+                        <td colspan="3" style="overflow: hidden; text-overflow: ellipsis;">
+                            <a title="zalgo poor retard" href="{{ url_for('admin_post', file=admin_post.name) }}">
+                                {{ admin_post.name }}
+                            </a>
+                        </td>
+                        <td style="width: 105px;" class="text-center">
+                            <div style="color:red;">
+                                Admin
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            {{ admin_post.creation_date }}
+                        </td>
+                        <td colspan="2" style="padding-bottom: 0; max-width: 140px;" class="text-center">
+                            {{ admin_post.creation_time }}
+                        </td>
+                        <td style="width: 120px" class="text-center r-hide">
+                            {{ admin_post.size }} KB
+                        </td>
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+            </table>
+
+
+
+
+            <h6 style="margin-top: 14px; color: white;">Anonymous Pastes</h6>
+            <!-- normal pastes -->
+            <table class="table table-striped table-hover" style="margin-top: 0px;">
+                <thead>
+                    <tr>
+                        <th colspan="3">Title</th>
+                        <th class="clickable text-center auto-size" id="commentsorder" style="width: 105px;">
+                            By
+                        </th>
+                        <th class="clickable text-center auto-size" id="viewsorder">Date</th>
+                        <th colspan="2" class="text-center">Time</th>
+                        <th class="clickable text-center r-hide" id="dateorder" style="width: 120px">Size</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <!-- Original Post Item -->
+                    <!-- 
+                    <tr data-test="" class="doxentry" id="141314">
+                        <td colspan="3" style="overflow: hidden;text-overflow: ellipsis;">
+                            <a title="UPDATED" href="https://doxbin.org/upload/UPDATED"> UPDATED</a>
+                        </td>
+                        <td style="width: 105px;" class="text-center">
+                            0
+                        </td>
+                        <td class="text-center">
+                            2
+                        </td>
+                        <td colspan="2" style="padding-bottom: 0; max-width: 140px;" class="text-center">
+
+                            <a class="dox-username" title="DoxedWWW" style="color: #2a9fd6;"
+                                href="/user/DoxedWWW">DoxedWWW </a>
+                        </td>
+                        <td style="width: 120px" class="text-center r-hide">Apr 22nd, 2022</td>
+                    </tr>
+                     -->
+
+                    {% for anon_post in anon_posts_list %}
+                    <tr class="doxentry">
+                        <td colspan="3" style="overflow: hidden;text-overflow: ellipsis;">
+                            <a title="RE UPLOAD lethal 0001 aka catboybailey"
+                                href="{{ url_for('post', file=anon_post.name) }}">
+                                {{ anon_post.name }}
+                            </a>
+                        </td>
+                        <td style="width: 105px;" class="text-center">
+                            Anonymous
+                        </td>
+                        <td class="text-center">
+                            {{ anon_post.creation_date }}
+                        </td>
+                        <td colspan="2" style="padding-bottom: 0; max-width: 140px;" class="text-center">
+                            {{ anon_post.creation_time }}
+                        </td>
+                        <td style="width: 120px" class="text-center r-hide">
+                            {{ anon_post.size }} KB
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- Go back to top -->
+    <div class="center">
+        <a href="#">Back to top</a>
+        <br><br>
+    </div>
+
+</body>
+
+</html>
+{% endblock %}

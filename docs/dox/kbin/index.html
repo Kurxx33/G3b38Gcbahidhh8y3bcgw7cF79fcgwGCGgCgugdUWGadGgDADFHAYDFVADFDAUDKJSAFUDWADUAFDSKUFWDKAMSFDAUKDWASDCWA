@@ -27,70 +27,137 @@
         content="Doxbin-FOSS is a document sharing and publishing website for text-based information such as dox, code-snippets and other stuff.">
     <!-- All Meta Tags Ends here -->
 
-    <!-- Custom CSS to fix some dark-mode issues -->
+    <!-- Custom CSS -->
     <style>
-        body,
-        p {
+        body, p {
             background-color: #060606;
             color: white;
+            margin: 0;
+            font-family: Arial, sans-serif;
         }
 
-        td,
-        tr,
-        tbody {
-            background-color: #060606;
+        /* Top Navigation Bar */
+        .top-nav {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .top-nav a {
             color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-size: 16px;
         }
 
-        /* Custom CSS to fix messed up table colors */
-        .table>tfoot>tr>th,
-        .table>tfoot>tr>td {
-            border-top-color: rgb(108, 100, 88);
+        .top-nav a:hover {
+            background-color: #575757;
         }
 
-        .table-striped tbody>tr:nth-child(2n+1)>td,
-        .table-striped tbody>tr:nth-child(2n+1)>th {
-            background-color: rgb(23, 25, 26);
+        .container {
+            margin-top: 60px;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
         }
 
-        .table-striped tbody>tr:nth-child(2n)>td,
-        .table-striped tbody>tr:nth-child(2n)>th {
+        .paste-list {
+            max-width: 800px;
+            width: 100%;
+            margin: auto;
+        }
+
+        .paste {
+            background: #222;
+            color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .paste-title {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .paste-content {
+            font-size: 1.2em;
+        }
+
+        /* ASCII Art */
+        pre {
+            font-size: 1.2em;
+            background-color: #060606;
+            overflow-x: hidden;
+            overflow-y: hidden;
+            border: none;
+            color: white;
+            text-align: center;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            margin: 20px 0;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #444;
+        }
+
+        th {
+            background-color: #333;
+        }
+
+        tr:nth-child(even) {
             background-color: #0f0f0f;
         }
 
-        .table>tfoot>tr>th,
-        .table>tfoot>tr>td {
-            line-height: 1.42857;
-            vertical-align: top;
-            padding: 8px;
-            border-top: 1px solid rgb(40, 40, 40);
-        }
-
-        /* Dark Mode Scrollbar */
-        ::-webkit-scrollbar {
+        tr:nth-child(odd) {
             background-color: #1b1e1f;
-            color: #918b82;
         }
 
-        ::-webkit-scrollbar-corner {
-            background-color: #141617;
+        /* Buttons */
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            background: #007bff;
+            cursor: pointer;
+            margin-top: 10px;
         }
 
-        ::-webkit-scrollbar-thumb {
-            background-color: #3b3f41;
+        button:hover {
+            background: #0056b3;
         }
     </style>
-    <!-- Custom CSS Ends here -->
 </head>
 
 <body>
 
-    <div class="col-md-12">
-        <div class="col-md-12" style="margin-top: 60px;float:none;">
-            <div align="center">
+    <!-- Top Navigation Bar -->
+    <div class="top-nav">
+        <a href="#home">Home</a>
+        <a href="#history">History</a>
+        <a href="#users">Users</a>
+        <a href="#hall-of-losers">Hall of Losers</a>
+    </div>
 
-                <pre
-                    style="font: 4px/6px monospace; background-color: #060606; overflow-x: hidden; overflow-y: hidden; border: none; color: white;">
+    <div class="container">
+
+        <pre>
       ..           ...     ..         .                  
 < .z@8"`        .=*8888x <"?88h.     @88>                
  !@88E         X>  '8888H> '8888     %8P      u.    u.   
@@ -103,10 +170,7 @@
   888E  9888.  :"^"88888h.    '!     888&   "*88*" 8888" 
 '"888*" 4888"  ^    "88888hx.+"      R888"    ""   'Y"   
    ""    ""           ^"**""          ""                 
-                                                         
-                                                         
-                                                         
-    </div>
+        </pre>
 
         <div class="col-md-7" style="float:none;margin:auto;padding:0;">
             <!-- PINNED PASTES -->

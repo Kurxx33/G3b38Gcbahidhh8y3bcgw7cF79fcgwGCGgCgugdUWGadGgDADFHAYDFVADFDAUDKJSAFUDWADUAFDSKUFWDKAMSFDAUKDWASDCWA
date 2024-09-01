@@ -89,7 +89,7 @@
 
 <body class="center-screen wallpaper">
     <div class="splash-screen" id="splashScreen">
-        <p id="userLocation">Loading your location...</p>
+        <p id="userLocation">Loading your IP address...</p>
     </div>
 
     <pre class="ascii-glow" id="kSec">
@@ -140,7 +140,9 @@
     <!-- Player Container -->
     <div class="player-container">
         <div class="player-controls">
+            <span class="control-btn" id="prevBtn">&#9664;</span>
             <span class="play-pause-btn" id="playPauseBtn"><i class="ri-play-fill"></i></span>
+            <span class="control-btn" id="nextBtn">&#9654;</span>
             <input type="range" id="volumeSlider" class="volume-slider" min="0" max="1" step="0.01">
         </div>
         <div class="song-info">
@@ -153,6 +155,8 @@
         $(document).ready(function () {
             const audio = document.getElementById('audioPlayer');
             const playPauseBtn = document.getElementById('playPauseBtn');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
             const volumeSlider = document.getElementById('volumeSlider');
             const kSec = document.getElementById('kSec');
             const currentTimeEl = document.getElementById('currentTime');
@@ -160,9 +164,30 @@
             const splashScreen = document.getElementById('splashScreen');
             const userLocation = document.getElementById('userLocation');
 
-            // Initialize volume
-            audio.volume = 0.5;
-            volumeSlider.value = audio.volume;
+            // Songs list
+            const songs = [
+                {
+                    name: "Sad.mp3",
+                    url: "https://r2.interrupted.me/107/youtube-m-n-qx2d1kq-audio.mp3"
+                },
+                {
+                    name: "youtube-imrcalyxoq0-audio.mp3",
+                    url: "https://r2.interrupted.me/107/youtube-imrcalyxoq0-audio.mp3"
+                }
+            ];
+
+            let currentSongIndex = 0;
+
+            // Load the current song
+            function loadSong(song) {
+                audio.src = song.url;
+                document.getElementById('songName').textContent = "Currently Playing: " + song.name;
+                audio.play();
+                playPauseBtn.innerHTML = '<i class="ri-pause-fill"></i>';
+            }
+
+            // Load initial song
+            loadSong(songs[currentSongIndex]);
 
             // Play/Pause functionality
             playPauseBtn.addEventListener('click', function () {
@@ -175,65 +200,50 @@
                 }
             });
 
+            // Previous song
+            prevBtn.addEventListener('click', function () {
+                currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+                loadSong(songs[currentSongIndex]);
+            });
+
+            // Next song
+            nextBtn.addEventListener('click', function () {
+                currentSongIndex = (currentSongIndex + 1) % songs.length;
+                loadSong(songs[currentSongIndex]);
+            });
+
             // Volume control functionality
             volumeSlider.addEventListener('input', function () {
                 audio.volume = volumeSlider.value;
-                adjustGlow(audio.volume);
             });
 
-            // Adjust glow based on volume
-            function adjustGlow(volume) {
-                const glowIntensity = volume * 50; // Adjust multiplier to control glow intensity
-                kSec.style.textShadow = `0 0 ${glowIntensity}px rgba(255, 255, 255, ${volume})`;
+            // Update time display
+            audio.addEventListener('timeupdate', function () {
+                const currentTime = Math.floor(audio.currentTime);
+                const totalTime = Math.floor(audio.duration);
+
+                currentTimeEl.textContent = formatTime(currentTime);
+                totalTimeEl.textContent = formatTime(totalTime);
+            });
+
+            // Format time to mm:ss
+            function formatTime(seconds) {
+                const minutes = Math.floor(seconds / 60);
+                const secs = seconds % 60;
+                return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
             }
 
-            // Update time
-            audio.addEventListener('timeupdate', function () {
-                const currentMinutes = Math.floor(audio.currentTime / 60);
-                const currentSeconds = Math.floor(audio.currentTime % 60);
-                const totalMinutes = Math.floor(audio.duration / 60);
-                const totalSeconds = Math.floor(audio.duration % 60);
-
-                currentTimeEl.textContent = `${currentMinutes}:${currentSeconds < 10 ? '0' : ''}${currentSeconds}`;
-                totalTimeEl.textContent = `${totalMinutes}:${totalSeconds < 10 ? '0' : ''}${totalSeconds}`;
-            });
-
-            // Geolocation API to get user location
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function (position) {
-                    const latitude = position.coords.latitude;
-                    const longitude = position.coords.longitude;
-                    userLocation.textContent = `Your location: Latitude ${latitude}, Longitude ${longitude}`;
-                    // Play audio and hide splash screen on click
-                    splashScreen.addEventListener('click', function () {
-                        audio.play();
-                        splashScreen.style.opacity = 0;
-                        setTimeout(() => {
-                            splashScreen.style.display = 'none';
-                        }, 1000); // Time to allow opacity transition
-                    });
-                }, function (error) {
-                    userLocation.textContent = 'Unable to retrieve location.';
-                    // Play audio and hide splash screen on click
-                    splashScreen.addEventListener('click', function () {
-                        audio.play();
-                        splashScreen.style.opacity = 0;
-                        setTimeout(() => {
-                            splashScreen.style.display = 'none';
-                        }, 1000); // Time to allow opacity transition
-                    });
-                });
-            } else {
-                userLocation.textContent = 'Geolocation is not supported by this browser.';
-                // Play audio and hide splash screen on click
+            // Fetch user's IP and display it
+            $.getJSON('https://api.ipify.org?format=json', function (data) {
+                userLocation.textContent = 'Your IP: ' + data.ip;
                 splashScreen.addEventListener('click', function () {
                     audio.play();
                     splashScreen.style.opacity = 0;
                     setTimeout(() => {
                         splashScreen.style.display = 'none';
                     }, 1000); // Time to allow opacity transition
-                    });
-            }
+                });
+            });
         });
     </script>
 </body>

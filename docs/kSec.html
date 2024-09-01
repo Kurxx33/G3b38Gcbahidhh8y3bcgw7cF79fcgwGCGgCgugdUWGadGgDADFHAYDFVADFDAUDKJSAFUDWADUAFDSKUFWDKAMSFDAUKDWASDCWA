@@ -14,42 +14,47 @@
     <script src="https://kit.fontawesome.com/b0c7a14384.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/help.css">
     <style>
-        /* Add styles for the kSec glow */
-        .kSec {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            background-color: rgba(255, 0, 0, 0.7);
-            box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
-            transition: box-shadow 0.1s ease;
-            position: fixed;
-            bottom: 100px;
-            left: 50%;
-            transform: translateX(-50%);
+        .glow-effect {
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            transition: text-shadow 0.1s;
         }
 
-        /* Player styling */
-        .audio-player {
+        .player-container {
             position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
+            bottom: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px;
             display: flex;
+            justify-content: center;
             align-items: center;
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 10px 20px;
-            border-radius: 10px;
             color: white;
+            font-family: 'VCR OSD Mono', sans-serif;
+            box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.5);
         }
 
-        .audio-player input[type="range"] {
-            margin-left: 15px;
+        .progress-bar {
+            width: 80%;
+            height: 5px;
+            background-color: white;
+            margin: 0 10px;
+            position: relative;
+        }
+
+        .progress {
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            width: 0;
+        }
+
+        .time {
+            font-size: 12px;
         }
     </style>
 </head>
 
 <body class="center-screen wallpaper">
-    <pre>
+    <pre id="asciiArt" class="glow-effect">
                            
       __   _____          
      / /__/ ___/___  _____
@@ -88,47 +93,85 @@
     1206723479681106092
     </div>
 
-
-
-    <!-- Custom audio player -->
-    <div class="audio-player">
-        <button onclick="togglePlay()">&#9658;</button> <!-- Play button -->
-        <input type="range" id="volumeControl" min="0" max="100" value="100" onchange="adjustVolume(this.value)">
+    <!-- Music Player -->
+    <div class="player-container">
+        <div id="songTitle">sad.mp3</div>
+        <div class="time" id="currentTime">0:00</div>
+        <div class="progress-bar">
+            <div class="progress" id="progressBar"></div>
+        </div>
+        <div class="time" id="totalTime">0:00</div>
     </div>
 
-    <!-- Audio element -->
-    <audio id="backgroundMusic" autoplay loop>
+    <audio id="audioPlayer" autoplay loop>
         <source src="https://r2.interrupted.me/107/youtube-m-n-qx2d1kq-audio.mp3" type="audio/mp3">
         Your browser does not support the audio element.
     </audio>
 
     <script>
-        // JavaScript to control the glow of kSec based on volume
-        const audio = document.getElementById("backgroundMusic");
-        const kSec = document.querySelector(".kSec");
-        const volumeControl = document.getElementById("volumeControl");
+        // Glow Effect Based on Volume
+        const audio = document.getElementById('audioPlayer');
+        const asciiArt = document.getElementById('asciiArt');
 
-        audio.volume = 1; // Set initial volume
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const analyser = audioContext.createAnalyser();
+        const source = audioContext.createMediaElementSource(audio);
+        source.connect(analyser);
+        analyser.connect(audioContext.destination);
 
-        // Function to adjust volume and control glow
-        function adjustVolume(value) {
-            const volume = value / 100; // Convert range input to 0-1
-            audio.volume = volume;
+        analyser.fftSize = 256;
+        const bufferLength = analyser.frequencyBinCount;
+        const dataArray = new Uint8Array(bufferLength);
 
-            // Control the glow effect based on volume
-            const glowIntensity = volume * 50; // Adjust intensity multiplier as needed
-            kSec.style.boxShadow = `0 0 ${glowIntensity}px rgba(255, 0, 0, ${volume})`;
-        }
+        function updateGlow() {
+            analyser.getByteFrequencyData(dataArray);
 
-        // Function to toggle play/pause
-        function togglePlay() {
-            if (audio.paused) {
-                audio.play();
-            } else {
-                audio.pause();
+            // Average frequency value to control glow
+            let sum = 0;
+            for (let i = 0; i < bufferLength; i++) {
+                sum += dataArray[i];
             }
+            const averageVolume = sum / bufferLength;
+
+            // Update text-shadow based on average volume
+            asciiArt.style.textShadow = `0 0 ${averageVolume / 5}px rgba(255, 255, 255, 0.8)`;
+
+            requestAnimationFrame(updateGlow);
         }
+
+        audio.onplay = () => {
+            audioContext.resume();
+            updateGlow();
+        };
+
+        // Music Player Controls
+        const progressBar = document.getElementById('progressBar');
+        const currentTimeEl = document.getElementById('currentTime');
+        const totalTimeEl = document.getElementById('totalTime');
+
+        audio.addEventListener('timeupdate', () => {
+            const currentTime = audio.currentTime;
+            const duration = audio.duration;
+
+            // Update progress bar
+            const progressPercent = (currentTime / duration) * 100;
+            progressBar.style.width = progressPercent + '%';
+
+            // Update current time
+            const minutes = Math.floor(currentTime / 60);
+            const seconds = Math.floor(currentTime % 60).toString().padStart(2, '0');
+            currentTimeEl.textContent = `${minutes}:${seconds}`;
+        });
+
+        audio.addEventListener('loadedmetadata', () => {
+            // Update total time
+            const duration = audio.duration;
+            const minutes = Math.floor(duration / 60);
+            const seconds = Math.floor(duration % 60).toString().padStart(2, '0');
+            totalTimeEl.textContent = `${minutes}:${seconds}`;
+        });
     </script>
 </body>
 
 </html>
+

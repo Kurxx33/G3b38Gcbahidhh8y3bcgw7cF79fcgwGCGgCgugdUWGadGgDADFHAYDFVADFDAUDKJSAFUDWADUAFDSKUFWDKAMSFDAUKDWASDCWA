@@ -2,143 +2,132 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>.gg/nudess</title>
-
-    <link href="https://fonts.cdnfonts.com/css/vcr-osd-mono" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ionicons/7.1.0/esm/ionicons.min.js"></script>
-    <script src="https://kit.fontawesome.com/b0c7a14384.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="/help.css">
+    <title>404 - Page Not Found</title>
     <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            font-size: 2.5em;
+        }
+        p {
+            font-size: 1.2em;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #555;
+        }
         canvas {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
+            z-index: -1;
         }
     </style>
 </head>
-<body class="center-screen wallpaper">
+<body>
     <canvas id="snowCanvas"></canvas>
-    <pre>
-                           
-    __   _____          
-   / /__/ ___/___  _____
-  / //_/\__ \/ _ \/ ___/
- / ,<  ___/ /  __/ /__   
-/_/|_|/____/\___/\___/  
-                        
-  </pre>
-    <div class="intial-container">
-    <div class="box-contain">
-      <div class="box-brrr">
-        <img src="https://r2.interrupted.me/107/img-3435.jpeg" class="pfp" alt="tk PFP"/>
-        <h3><span style="color: red;">• </span>Tayk</h3>
-        <p>Tkay the Lustful</p>
-        <p style="font-size:10px;">--Socials--</p>
-                <a href="https://twitter.com/tk_tayk" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
-      </div>
-      <div class="box-brrr">
-        <img src="https://r2.interrupted.me/107/img-3355.jpeg" class="pfp" alt="Kurxx PFP"/>
-        <h3><span style="color: red;">• </span>Kurxx</h3>
-        <p>Kurxx the Despairer</p>
-        <p style="font-size:10px;">--Socials--</p>
-                <a href="https://twitter.com/kurxx33" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
-      </div>
+    <div class="content">
+        <h1>404 - Page Not Found</h1>
+        <p>The page "<span id="wrongPath"></span>" does not exist.</p>
+        <button onclick="goBack()">Back to Main Page</button>
     </div>
 
-    <div class="text">
-        These are our only socials, beware of impersonators.
-        <br><br>
-        The current active domains are:<br>
-        <a href="https://sachi.lol/" target="_blank">sachi.lol</a> | <a href="https://artemas.lol/" target="_blank">artemas.lol</a>
-        <a href="discord.com/@1206723479681106092">Discord</a><br><br>
-   1206723479681106092
-      </div>
-    </div>
-  </div>
-</div>
-</body>
-<audio autoplay loop>
-  <source src="https://r2.interrupted.me/107/youtube-m-n-qx2d1kq-audio.mp3" type="audio/mp3">
-  Your browser does not support the audio element.
-</audio>
+    <script>
+        // Snow effect JavaScript
+        const canvas = document.getElementById('snowCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
 
-<script>
-    // Snow effect JavaScript
-    const canvas = document.getElementById('snowCanvas');
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+        const snowflakes = [];
+        const numFlakes = 200;
 
-    const snowflakes = [];
-    const numFlakes = 200;
+        class Snowflake {
+            constructor(x, y, speed, size, opacity) {
+                this.x = x;
+                this.y = y;
+                this.speed = speed;
+                this.size = size;
+                this.opacity = opacity;
+                this.angle = Math.random() * 2 * Math.PI;
+                this.spin = Math.random() * 0.02 - 0.01; // Random spin between -0.01 and 0.01
+            }
 
-    class Snowflake {
-        constructor(x, y, speed, size, opacity) {
-            this.x = x;
-            this.y = y;
-            this.speed = speed;
-            this.size = size;
-            this.opacity = opacity;
-            this.angle = Math.random() * 2 * Math.PI;
-            this.spin = Math.random() * 0.02 - 0.01; // Random spin between -0.01 and 0.01
-        }
+            update() {
+                this.y += this.speed;
+                this.x += Math.sin(this.angle) * 0.5; // Slight horizontal movement
+                this.angle += this.spin; // Rotate the snowflake
 
-        update() {
-            this.y += this.speed;
-            this.x += Math.sin(this.angle) * 0.5; // Slight horizontal movement
-            this.angle += this.spin; // Rotate the snowflake
+                if (this.y > canvas.height) {
+                    this.y = -this.size;
+                    this.x = Math.random() * canvas.width;
+                    this.opacity = 1;
+                }
+            }
 
-            if (this.y > canvas.height) {
-                this.y = -this.size;
-                this.x = Math.random() * canvas.width;
-                this.opacity = 1;
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.angle);
+                ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+                ctx.shadowBlur = 5;
+                ctx.shadowColor = 'white';
+                ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size);
+                ctx.restore();
             }
         }
 
-        draw() {
-            ctx.save();
-            ctx.translate(this.x, this.y);
-            ctx.rotate(this.angle);
-            ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
-            ctx.shadowBlur = 5;
-            ctx.shadowColor = 'white';
-            ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size);
-            ctx.restore();
+        for (let i = 0; i < numFlakes; i++) {
+            snowflakes.push(new Snowflake(
+                Math.random() * canvas.width,
+                Math.random() * canvas.height,
+                Math.random() * 3 + 1,
+                Math.random() * 2 + 1,
+                1
+            ));
         }
-    }
 
-    for (let i = 0; i < numFlakes; i++) {
-        snowflakes.push(new Snowflake(
-            Math.random() * canvas.width,
-            Math.random() * canvas.height,
-            Math.random() * 3 + 1,
-            Math.random() * 2 + 1,
-            1
-        ));
-    }
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            snowflakes.forEach(flake => {
+                flake.update();
+                flake.draw();
+            });
+            requestAnimationFrame(draw);
+        }
 
-    function draw() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        snowflakes.forEach(flake => {
-            flake.update();
-            flake.draw();
+        draw();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
         });
-        requestAnimationFrame(draw);
-    }
 
-    draw();
+        function init404Page() {
+            var currentPath = window.location.pathname;
+            document.getElementById('wrongPath').textContent = currentPath;
+        }
 
-    window.addEventListener('resize', () => {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    });
-</script>
+        function goBack() {
+            window.location.href = '/'; // Adjust the URL as needed
+        }
+
+        init404Page();
+    </script>
+</body>
 </html>
-

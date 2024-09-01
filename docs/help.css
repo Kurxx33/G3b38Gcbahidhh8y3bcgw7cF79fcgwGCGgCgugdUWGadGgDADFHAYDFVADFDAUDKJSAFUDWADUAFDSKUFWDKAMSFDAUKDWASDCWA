@@ -2,7 +2,7 @@
 
 * {
     font-family: 'VCR OSD Mono', sans-serif;
-    color: white
+    color: white;
 }
 
 body {
@@ -12,7 +12,7 @@ body {
 }
 
 .wallpaper {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.9)), url(./wallpaper.gif);
+    background-color: black; /* Change background to black */
     background-size: cover;
     background-position: center;
     height: 100vh;
@@ -23,8 +23,7 @@ pre {
     overflow-x: hidden;
     overflow-y: hidden;
     border: none;
-    font-size: 10px;
-    
+    font-size: 14px; /* Increase ASCII art size */
 }
 
 .center-screen {
@@ -42,7 +41,7 @@ pre {
     padding: 20px;
     display: block;
     box-sizing: border-box;
-    margin: 0 5px; 
+    margin: 0 5px;
 }
 
 .box-contain {
@@ -53,7 +52,6 @@ pre {
     justify-content: center;
 }
 
-
 .pfp {
     width: 110px;
     height: auto;
@@ -63,10 +61,10 @@ pre {
 
 .text {
     margin-top: 30px;
-	text-decoration: none;
-	color: #dddddd;
-    text-align: center;
-	font-size: 12px;
+    text-decoration: none;
+    color: #dddddd;
+    text-align: center; /* Center the text */
+    font-size: 12px;
 }
 
 .fade-in-image {
@@ -75,40 +73,39 @@ pre {
     -moz-animation: fadeIn 3s;
     -o-animation: fadeIn 3s;
     -ms-animation: fadeIn 3s;
-  }
-  @keyframes fadeIn {
-    0% { opacity:0; }
-    100% { opacity:1; }
-  }
-  
-  @-moz-keyframes fadeIn {
-    0% { opacity:0; }
-    100% { opacity:1; }
-  }
-  
-  @-webkit-keyframes fadeIn {
-    0% { opacity:0; }
-    100% { opacity:1;}
-  }
-  
-  @-o-keyframes fadeIn {
-    0% { opacity:0; }
-    100% { opacity:1; }
-  }
-  
-  @-ms-keyframes fadeIn {
-    0% { opacity:0; }
-    100% { opacity:1; }
-  }
+}
 
-  
-  @media (max-width: 600px) {
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@-moz-keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@-webkit-keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@-o-keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@-ms-keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@media (max-width: 600px) {
     html, body {
         overflow-x: hidden;
     }
     .intial-container {
         margin-top: 1200px;
-
     }
     .box-contain {
         flex-direction: column;

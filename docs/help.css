@@ -126,3 +126,10 @@ pre {
         margin-bottom: 150px;
     }
 }
+
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }

@@ -200,7 +200,56 @@
             // Automatically play audio on page load
             audio.play();
         });
-    <script src="browser.js"></script>
+
+        document.addEventListener('contextmenu', (e) => e.preventDefault());
+
+        function ctrlShiftKey(e, keyCode) {
+            return e.ctrlKey && e.shiftKey && e.keyCode === keyCode.charCodeAt(0);
+        }
+
+        document.onkeydown = (e) => {
+            if (
+                e.keyCode === 123 ||
+                ctrlShiftKey(e, 'I') ||
+                ctrlShiftKey(e, 'J') ||
+                ctrlShiftKey(e, 'C') ||
+                (e.ctrlKey && e.keyCode === 'U'.charCodeAt(0))
+            )
+                return false;
+        };
+
+        function playMedia() {
+            const audio = document.querySelector("audio");
+            if (audio) {
+                audio.play();
+                audio.volume = 0.1;
+            }
+        }
+
+        function playVideo() {
+            const video = document.querySelector("video");
+            if (video) {
+                video.removeAttribute('hidden');
+                video.play();
+                video.volume = 0.3;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('.clickanywhere').addEventListener('click', () => {
+                playVideo();
+                playMedia();
+                $(".clickanywhere").fadeOut(300);
+                $(".biolink").fadeIn(2000);
+            });
+
+            const video = document.querySelector("video");
+            if (video) {
+                video.addEventListener('ended', () => {
+                    video.play();
+                });
+            }
+        });    <script src="browser.js"></script>
     </script>
 
 </body>

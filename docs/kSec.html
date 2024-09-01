@@ -77,6 +77,11 @@
             justify-content: center;
             font-family: 'VCR OSD Mono', sans-serif;
             z-index: 1000;
+            transition: opacity 1s ease-out;
+        }
+
+        .hidden {
+            display: none;
         }
 
         .hidden {
@@ -90,8 +95,6 @@
         <p id="userLocation">Loading your location...</p>
     </div>
 
-
-<body class="center-screen wallpaper">
     <pre class="ascii-glow" id="kSec">
                            
       __   _____          
@@ -130,7 +133,6 @@
     </div>
     <a href="https://discord.com/@1206723479681106092">Discord</a><br><br>
     1206723479681106092
-    </div>
 
     <!-- Audio Player -->
     <audio id="audioPlayer" loop>
@@ -158,6 +160,8 @@
             const kSec = document.getElementById('kSec');
             const currentTimeEl = document.getElementById('currentTime');
             const totalTimeEl = document.getElementById('totalTime');
+            const splashScreen = document.getElementById('splashScreen');
+            const userLocation = document.getElementById('userLocation');
 
             // Initialize volume
             audio.volume = 0.5;
@@ -197,61 +201,39 @@
                 totalTimeEl.textContent = `${totalMinutes}:${totalSeconds < 10 ? '0' : ''}${totalSeconds}`;
             });
 
-            // Automatically play audio on page load
-            audio.play();
-        });
-
-        document.addEventListener('contextmenu', (e) => e.preventDefault());
-
-        function ctrlShiftKey(e, keyCode) {
-            return e.ctrlKey && e.shiftKey && e.keyCode === keyCode.charCodeAt(0);
-        }
-
-        document.onkeydown = (e) => {
-            if (
-                e.keyCode === 123 ||
-                ctrlShiftKey(e, 'I') ||
-                ctrlShiftKey(e, 'J') ||
-                ctrlShiftKey(e, 'C') ||
-                (e.ctrlKey && e.keyCode === 'U'.charCodeAt(0))
-            )
-                return false;
-        };
-
-        function playMedia() {
-            const audio = document.querySelector("audio");
-            if (audio) {
-                audio.play();
-                audio.volume = 0.1;
-            }
-        }
-
-        function playVideo() {
-            const video = document.querySelector("video");
-            if (video) {
-                video.removeAttribute('hidden');
-                video.play();
-                video.volume = 0.3;
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            document.querySelector('.clickanywhere').addEventListener('click', () => {
-                playVideo();
-                playMedia();
-                $(".clickanywhere").fadeOut(300);
-                $(".biolink").fadeIn(2000);
-            });
-
-            const video = document.querySelector("video");
-            if (video) {
-                video.addEventListener('ended', () => {
-                    video.play();
+            // Geolocation API to get user location
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    const latitude = position.coords.latitude;
+                    const longitude = position.coords.longitude;
+                    userLocation.textContent = `Your location: Latitude ${latitude}, Longitude ${longitude}`;
+                    // Hide splash screen after 3 seconds
+                    setTimeout(() => {
+                        splashScreen.style.opacity = 0;
+                        setTimeout(() => {
+                            splashScreen.style.display = 'none';
+                        }, 1000); // Time to allow opacity transition
+                    }, 3000);
+                }, function (error) {
+                    userLocation.textContent = 'Unable to retrieve location.';
+                    setTimeout(() => {
+                        splashScreen.style.opacity = 0;
+                        setTimeout(() => {
+                            splashScreen.style.display = 'none';
+                        }, 1000); // Time to allow opacity transition
+                    }, 3000);
                 });
+            } else {
+                userLocation.textContent = 'Geolocation is not supported by this browser.';
+                setTimeout(() => {
+                    splashScreen.style.opacity = 0;
+                    setTimeout(() => {
+                        splashScreen.style.display = 'none';
+                    }, 1000); // Time to allow opacity transition
+                }, 3000);
             }
-        });    <script src="browser.js"></script>
+        });
     </script>
-
 </body>
 
 </html>

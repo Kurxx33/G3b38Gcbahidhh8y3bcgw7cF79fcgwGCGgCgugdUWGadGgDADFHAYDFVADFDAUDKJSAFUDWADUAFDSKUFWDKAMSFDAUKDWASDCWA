@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dox Report Style Page</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-image: url('your-background-image-url.png'); /* Replace with actual URL */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            font-family: 'Press Start 2P', monospace;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 50px;
+            position: relative;
+            display: inline-block;
+        }
+
+        h1::before,
+        h1::after {
+            content: "--";
+            font-size: 24px;
+            color: white;
+            position: absolute;
+            top: 0;
+        }
+
+        h1::before {
+            left: -40px;
+        }
+
+        h1::after {
+            right: -40px;
+        }
+
+        .profile {
+            display: inline-block;
+            margin: 20px;
+            text-align: center;
+        }
+
+        .profile img {
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            border: 3px solid white;
+            margin-bottom: 10px;
+        }
+
+        .profile .indicator {
+            width: 10px;
+            height: 10px;
+            background-color: red;
+            border-radius: 50%;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .profile h2 {
+            font-size: 18px;
+            margin: 0;
+            position: relative;
+            display: inline-block;
+        }
+
+        .profile h2::after {
+            content: "●";
+            color: red;
+            font-size: 18px;
+            position: absolute;
+            right: -20px;
+            top: 0;
+        }
+
+        .profile p {
+            font-size: 12px;
+            margin: 5px 0;
+        }
+
+        .socials {
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+        .social-icon {
+            margin: 0 10px;
+        }
+
+        .domains {
+            margin-top: 50px;
+        }
+
+        .domains a {
+            color: #58a6ff;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .domains a:hover {
+            text-decoration: underline;
+        }
+
+        .discord-id {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>dox.report</h1>
+
+    <div class="profile">
+        <img src="https://r2.interrupted.me/107/sparkle-white.gif" alt="Kurxx Profile Picture">
+        <div class="indicator"></div>
+        <h2>kurxx</h2>
+        <p>Admin @ Doxbin</p>
+        <div class="socials">
+            <span class="social-icon">🐺</span> <!-- Replace with actual icon -->
+            <span class="social-icon">✈️</span> <!-- Replace with actual icon -->
+        </div>
+    </div>
+
+    <div class="profile">
+        <img src="https://r2.interrupted.me/107/sparkle-white.gif" alt="Tkay Profile Picture">
+        <div class="indicator"></div>
+        <h2>Tkay</h2>
+        <p>Admin @ Doxbin</p>
+        <div class="socials">
+            <span class="social-icon">🐺</span> <!-- Replace with actual icon -->
+            <span class="social-icon">✈️</span> <!-- Replace with actual icon -->
+        </div>
+    </div>
+
+    <div class="domains">
+        <p>These are our only socials, beware of impersonators.</p>
+        <p>The current active domains are:</p>
+        <p>
+            <a href="#">artemas.lol</a> |
+            <a href="#">sachi.lol</a>
+        </p>
+    </div>
+
+    <div class="discord-id">
+        <p>Discord ID: 1206723479681106092 (kurxx)</p>
+    </div>
+</body>
+
+</html>

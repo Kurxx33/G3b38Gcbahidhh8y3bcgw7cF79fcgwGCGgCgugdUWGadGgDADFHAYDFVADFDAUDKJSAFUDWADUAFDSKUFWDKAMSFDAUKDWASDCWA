@@ -78,10 +78,7 @@
             font-family: 'VCR OSD Mono', sans-serif;
             z-index: 1000;
             transition: opacity 1s ease-out;
-        }
-
-        .hidden {
-            display: none;
+            cursor: pointer; /* Allows clicking to hide splash screen */
         }
 
         .hidden {
@@ -207,33 +204,39 @@
                     const latitude = position.coords.latitude;
                     const longitude = position.coords.longitude;
                     userLocation.textContent = `Your location: Latitude ${latitude}, Longitude ${longitude}`;
-                    // Hide splash screen after 3 seconds
-                    setTimeout(() => {
+                    // Play audio and hide splash screen on click
+                    splashScreen.addEventListener('click', function () {
+                        audio.play();
                         splashScreen.style.opacity = 0;
                         setTimeout(() => {
                             splashScreen.style.display = 'none';
                         }, 1000); // Time to allow opacity transition
-                    }, 3000);
+                    });
                 }, function (error) {
                     userLocation.textContent = 'Unable to retrieve location.';
-                    setTimeout(() => {
+                    // Play audio and hide splash screen on click
+                    splashScreen.addEventListener('click', function () {
+                        audio.play();
                         splashScreen.style.opacity = 0;
                         setTimeout(() => {
                             splashScreen.style.display = 'none';
                         }, 1000); // Time to allow opacity transition
-                    }, 3000);
+                    });
                 });
             } else {
                 userLocation.textContent = 'Geolocation is not supported by this browser.';
-                setTimeout(() => {
+                // Play audio and hide splash screen on click
+                splashScreen.addEventListener('click', function () {
+                    audio.play();
                     splashScreen.style.opacity = 0;
                     setTimeout(() => {
                         splashScreen.style.display = 'none';
                     }, 1000); // Time to allow opacity transition
-                }, 3000);
+                    });
             }
         });
     </script>
 </body>
 
 </html>
+

@@ -39,21 +39,17 @@
             backdrop-filter: blur(10px);
         }
 
-        /* Smaller and sleek player controls */
+        /* Player controls */
         .player-controls {
             display: flex;
             align-items: center;
         }
 
-        .play-pause-btn,
-        .volume-slider {
-            margin-left: 15px;
-        }
-
-        .play-pause-btn {
+        .control-btn {
             font-size: 24px;
             color: white;
             cursor: pointer;
+            margin: 0 10px;
         }
 
         .volume-slider {
@@ -64,9 +60,36 @@
         .song-info {
             color: white;
             font-size: 12px;
+            text-align: center;
+        }
+
+        /* Splash screen styles */
+        .splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'VCR OSD Mono', sans-serif;
+            z-index: 1000;
+        }
+
+        .hidden {
+            display: none;
         }
     </style>
 </head>
+
+<body class="center-screen wallpaper">
+    <div class="splash-screen" id="splashScreen">
+        <p id="userLocation">Loading your location...</p>
+    </div>
+
 
 <body class="center-screen wallpaper">
     <pre class="ascii-glow" id="kSec">

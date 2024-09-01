@@ -13,48 +13,63 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ionicons/7.1.0/esm/ionicons.min.js"></script>
     <script src="https://kit.fontawesome.com/b0c7a14384.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/help.css">
+
     <style>
-        .glow-effect {
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-            transition: text-shadow 0.1s;
+        /* Style for the ASCII art glow */
+        .ascii-glow {
+            color: white;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            transition: text-shadow 0.2s;
         }
 
+        /* Style for the player container */
         .player-container {
             position: fixed;
-            bottom: 0;
-            width: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.1);
             padding: 10px;
+            border-radius: 10px;
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: space-between;
+            width: 90%;
+            max-width: 400px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Smaller and sleek player controls */
+        .player-controls {
+            display: flex;
+            align-items: center;
+        }
+
+        .play-pause-btn,
+        .volume-slider {
+            margin-left: 15px;
+        }
+
+        .play-pause-btn {
+            font-size: 24px;
             color: white;
-            font-family: 'VCR OSD Mono', sans-serif;
-            box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.5);
+            cursor: pointer;
         }
 
-        .progress-bar {
-            width: 80%;
-            height: 5px;
-            background-color: white;
-            margin: 0 10px;
-            position: relative;
+        .volume-slider {
+            width: 100px;
+            cursor: pointer;
         }
 
-        .progress {
-            height: 100%;
-            background-color: rgba(255, 255, 255, 0.8);
-            width: 0;
-        }
-
-        .time {
+        .song-info {
+            color: white;
             font-size: 12px;
         }
     </style>
 </head>
 
 <body class="center-screen wallpaper">
-    <pre id="asciiArt" class="glow-effect">
+    <pre class="ascii-glow" id="kSec">
                            
       __   _____          
      / /__/ ___/___  _____
@@ -63,6 +78,7 @@
   /_/|_|/____/\___/\___/  
                         
   </pre>
+
     <div class="intial-container">
         <div class="box-contain">
             <div class="box-brrr">
@@ -93,85 +109,76 @@
     1206723479681106092
     </div>
 
-    <!-- Music Player -->
-    <div class="player-container">
-        <div id="songTitle">sad.mp3</div>
-        <div class="time" id="currentTime">0:00</div>
-        <div class="progress-bar">
-            <div class="progress" id="progressBar"></div>
-        </div>
-        <div class="time" id="totalTime">0:00</div>
-    </div>
-
-    <audio id="audioPlayer" autoplay loop>
+    <!-- Audio Player -->
+    <audio id="audioPlayer" loop>
         <source src="https://r2.interrupted.me/107/youtube-m-n-qx2d1kq-audio.mp3" type="audio/mp3">
         Your browser does not support the audio element.
     </audio>
 
+    <!-- Player Container -->
+    <div class="player-container">
+        <div class="player-controls">
+            <span class="play-pause-btn" id="playPauseBtn"><i class="ri-play-fill"></i></span>
+            <input type="range" id="volumeSlider" class="volume-slider" min="0" max="1" step="0.01">
+        </div>
+        <div class="song-info">
+            <p id="songName">Currently Playing: Sad.mp3</p>
+            <span id="currentTime">00:00</span> / <span id="totalTime">00:00</span>
+        </div>
+    </div>
+
     <script>
-        // Glow Effect Based on Volume
-        const audio = document.getElementById('audioPlayer');
-        const asciiArt = document.getElementById('asciiArt');
+        $(document).ready(function () {
+            const audio = document.getElementById('audioPlayer');
+            const playPauseBtn = document.getElementById('playPauseBtn');
+            const volumeSlider = document.getElementById('volumeSlider');
+            const kSec = document.getElementById('kSec');
+            const currentTimeEl = document.getElementById('currentTime');
+            const totalTimeEl = document.getElementById('totalTime');
 
-        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-        const analyser = audioContext.createAnalyser();
-        const source = audioContext.createMediaElementSource(audio);
-        source.connect(analyser);
-        analyser.connect(audioContext.destination);
+            // Initialize volume
+            audio.volume = 0.5;
+            volumeSlider.value = audio.volume;
 
-        analyser.fftSize = 256;
-        const bufferLength = analyser.frequencyBinCount;
-        const dataArray = new Uint8Array(bufferLength);
+            // Play/Pause functionality
+            playPauseBtn.addEventListener('click', function () {
+                if (audio.paused) {
+                    audio.play();
+                    playPauseBtn.innerHTML = '<i class="ri-pause-fill"></i>';
+                } else {
+                    audio.pause();
+                    playPauseBtn.innerHTML = '<i class="ri-play-fill"></i>';
+                }
+            });
 
-        function updateGlow() {
-            analyser.getByteFrequencyData(dataArray);
+            // Volume control functionality
+            volumeSlider.addEventListener('input', function () {
+                audio.volume = volumeSlider.value;
+                adjustGlow(audio.volume);
+            });
 
-            // Average frequency value to control glow
-            let sum = 0;
-            for (let i = 0; i < bufferLength; i++) {
-                sum += dataArray[i];
+            // Adjust glow based on volume
+            function adjustGlow(volume) {
+                const glowIntensity = volume * 50; // Adjust multiplier to control glow intensity
+                kSec.style.textShadow = `0 0 ${glowIntensity}px rgba(255, 255, 255, ${volume})`;
             }
-            const averageVolume = sum / bufferLength;
 
-            // Update text-shadow based on average volume
-            asciiArt.style.textShadow = `0 0 ${averageVolume / 5}px rgba(255, 255, 255, 0.8)`;
+            // Update time
+            audio.addEventListener('timeupdate', function () {
+                const currentMinutes = Math.floor(audio.currentTime / 60);
+                const currentSeconds = Math.floor(audio.currentTime % 60);
+                const totalMinutes = Math.floor(audio.duration / 60);
+                const totalSeconds = Math.floor(audio.duration % 60);
 
-            requestAnimationFrame(updateGlow);
-        }
+                currentTimeEl.textContent = `${currentMinutes}:${currentSeconds < 10 ? '0' : ''}${currentSeconds}`;
+                totalTimeEl.textContent = `${totalMinutes}:${totalSeconds < 10 ? '0' : ''}${totalSeconds}`;
+            });
 
-        audio.onplay = () => {
-            audioContext.resume();
-            updateGlow();
-        };
-
-        // Music Player Controls
-        const progressBar = document.getElementById('progressBar');
-        const currentTimeEl = document.getElementById('currentTime');
-        const totalTimeEl = document.getElementById('totalTime');
-
-        audio.addEventListener('timeupdate', () => {
-            const currentTime = audio.currentTime;
-            const duration = audio.duration;
-
-            // Update progress bar
-            const progressPercent = (currentTime / duration) * 100;
-            progressBar.style.width = progressPercent + '%';
-
-            // Update current time
-            const minutes = Math.floor(currentTime / 60);
-            const seconds = Math.floor(currentTime % 60).toString().padStart(2, '0');
-            currentTimeEl.textContent = `${minutes}:${seconds}`;
-        });
-
-        audio.addEventListener('loadedmetadata', () => {
-            // Update total time
-            const duration = audio.duration;
-            const minutes = Math.floor(duration / 60);
-            const seconds = Math.floor(duration % 60).toString().padStart(2, '0');
-            totalTimeEl.textContent = `${minutes}:${seconds}`;
+            // Automatically play audio on page load
+            audio.play();
         });
     </script>
+
 </body>
 
 </html>
-

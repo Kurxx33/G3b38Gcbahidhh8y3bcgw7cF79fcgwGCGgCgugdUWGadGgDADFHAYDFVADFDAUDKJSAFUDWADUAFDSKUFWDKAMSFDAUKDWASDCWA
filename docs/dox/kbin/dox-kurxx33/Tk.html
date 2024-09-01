@@ -12,10 +12,7 @@
 
     <style>
         body {
-            background-image: url('your-background-image-url.png'); /* Replace with actual URL */
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            background-color: black;
             color: white;
             font-family: 'Press Start 2P', monospace;
             text-align: center;
@@ -23,28 +20,11 @@
             padding: 20px;
         }
 
-        h1 {
-            font-size: 24px;
+        .ascii-art {
+            font-size: 12px;
             margin-bottom: 50px;
-            position: relative;
-            display: inline-block;
-        }
-
-        h1::before,
-        h1::after {
-            content: "--";
-            font-size: 24px;
-            color: white;
-            position: absolute;
-            top: 0;
-        }
-
-        h1::before {
-            left: -40px;
-        }
-
-        h1::after {
-            right: -40px;
+            white-space: pre;
+            line-height: 1.2;
         }
 
         .profile {
@@ -73,17 +53,6 @@
         .profile h2 {
             font-size: 18px;
             margin: 0;
-            position: relative;
-            display: inline-block;
-        }
-
-        .profile h2::after {
-            content: "●";
-            color: red;
-            font-size: 18px;
-            position: absolute;
-            right: -20px;
-            top: 0;
         }
 
         .profile p {
@@ -122,7 +91,16 @@
 </head>
 
 <body>
-    <h1>dox.report</h1>
+    <div class="ascii-art">
+  _____                        _                             _       _ 
+ |  __ \                      | |                           | |     | |
+ | |  | | _____  __  __ _ _ __| |_ ___ _ __ ___   __ _ ___  | | ___ | |
+ | |  | |/ _ \ \/ / / _` | '__| __/ _ \ '_ ` _ \ / _` / __| | |/ _ \| |
+ | |__| | (_) >  < | (_| | |  | ||  __/ | | | | | (_| \__ \_| | (_) | |
+ |_____/ \___/_/\_(_)__,_|_|   \__\___|_| |_| |_|\__,_|___(_)_|\___/|_|
+                                                                       
+                                                                       
+    </div>
 
     <div class="profile">
         <img src="https://r2.interrupted.me/107/sparkle-white.gif" alt="Kurxx Profile Picture">
@@ -158,6 +136,10 @@
     <div class="discord-id">
         <p>Discord ID: 1206723479681106092 (kurxx)</p>
     </div>
+</body>
+
+</html>
+
 </body>
 
 </html>

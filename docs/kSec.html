@@ -13,6 +13,39 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ionicons/7.1.0/esm/ionicons.min.js"></script>
     <script src="https://kit.fontawesome.com/b0c7a14384.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/help.css">
+    <style>
+        /* Add styles for the kSec glow */
+        .kSec {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: rgba(255, 0, 0, 0.7);
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
+            transition: box-shadow 0.1s ease;
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Player styling */
+        .audio-player {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 10px 20px;
+            border-radius: 10px;
+            color: white;
+        }
+
+        .audio-player input[type="range"] {
+            margin-left: 15px;
+        }
+    </style>
 </head>
 
 <body class="center-screen wallpaper">
@@ -54,14 +87,49 @@
     <a href="https://discord.com/@1206723479681106092">Discord</a><br><br>
     1206723479681106092
     </div>
-    </div>
-    </div>
-    </div>
-</body>
 
-<audio autoplay loop>
-    <source src="https://r2.interrupted.me/107/youtube-m-n-qx2d1kq-audio.mp3" type="audio/mp3">
-    Your browser does not support the audio element.
-</audio>
+    <!-- Glowing kSec element -->
+    <div class="kSec"></div>
+
+    <!-- Custom audio player -->
+    <div class="audio-player">
+        <button onclick="togglePlay()">&#9658;</button> <!-- Play button -->
+        <input type="range" id="volumeControl" min="0" max="100" value="100" onchange="adjustVolume(this.value)">
+    </div>
+
+    <!-- Audio element -->
+    <audio id="backgroundMusic" autoplay loop>
+        <source src="https://r2.interrupted.me/107/youtube-m-n-qx2d1kq-audio.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        // JavaScript to control the glow of kSec based on volume
+        const audio = document.getElementById("backgroundMusic");
+        const kSec = document.querySelector(".kSec");
+        const volumeControl = document.getElementById("volumeControl");
+
+        audio.volume = 1; // Set initial volume
+
+        // Function to adjust volume and control glow
+        function adjustVolume(value) {
+            const volume = value / 100; // Convert range input to 0-1
+            audio.volume = volume;
+
+            // Control the glow effect based on volume
+            const glowIntensity = volume * 50; // Adjust intensity multiplier as needed
+            kSec.style.boxShadow = `0 0 ${glowIntensity}px rgba(255, 0, 0, ${volume})`;
+        }
+
+        // Function to toggle play/pause
+        function togglePlay() {
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+            }
+        }
+    </script>
+</body>
 
 </html>

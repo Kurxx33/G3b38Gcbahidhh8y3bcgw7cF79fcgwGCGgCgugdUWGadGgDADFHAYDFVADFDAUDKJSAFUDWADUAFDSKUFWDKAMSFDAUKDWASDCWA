@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>TK</title>
+        <meta property="csp-nonce" content="ldOET2LBa8EVoamklOjCFFMmHThH8xRDAOUuEV6f">
+        <link rel="icon" href="https://r2.interrupted.me/107/de9gi.png" type="image/x-icon"/>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+        <meta name="theme-color" content="#ffffff" />
+        <meta property="og:title" content="TK" />
+
+        <meta name="twitter:title" content="TK" />
+        <meta property="og:description" content="Kurxxy, my love &lt;3">
+        <meta property="og:site_name" content="interrupted.me">
+
+        
+        <meta property="og:type" content="Biography" />
+
+        
+        
+        
+        <link type="application/json+oembed" href="https://sachi.lol/api/bioembed/TK%20" />
+        <link rel="alternate" type="text/xml+oembed" href="https://sachi.lol/api/bioxml/TK%20" title="TK" />
+
+        <script src="https://open.spotify.com/embed/iframe-api/v1" async defer nonce="ldOET2LBa8EVoamklOjCFFMmHThH8xRDAOUuEV6f"></script>
+
+        <link rel="preload" as="style" href="https://sachi.lol/build/assets/app-DR8QVhL1.css" nonce="ldOET2LBa8EVoamklOjCFFMmHThH8xRDAOUuEV6f" /><link rel="stylesheet" href="https://sachi.lol/build/assets/app-DR8QVhL1.css" nonce="ldOET2LBa8EVoamklOjCFFMmHThH8xRDAOUuEV6f" data-navigate-track="reload" />    </head>
+    <body>
+        <div class="flex justify-center items-center h-screen" id="clickToPlay">
+           <span class="center text-white text-3xl">[ Click To Enter ]</span>
+        </div>
+
+                <div class="volume-controls">
+            <div>
+                <svg id="open-controls" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm0-144a56.06,56.06,0,0,0-56,56,8,8,0,0,1-16,0,72.08,72.08,0,0,1,72-72,8,8,0,0,1,0,16Zm72,56a72.08,72.08,0,0,1-72,72,8,8,0,0,1,0-16,56.06,56.06,0,0,0,56-56,8,8,0,0,1,16,0Zm-40,0a32,32,0,1,0-32,32A32,32,0,0,0,160,128Zm-48,0a16,16,0,1,1,16,16A16,16,0,0,1,112,128Z"/></svg>            </div>
+            <div class="controls">
+                <div>
+                    <svg id="mute" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M7.563 2.069A.75.75 0 018 2.75v10.5a.75.75 0 01-1.238.57L3.472 11H1.75A1.75 1.75 0 010 9.25v-2.5C0 5.784.784 5 1.75 5h1.723l3.289-2.82a.75.75 0 01.801-.111zM6.5 4.38L4.238 6.319a.75.75 0 01-.488.181h-2a.25.25 0 00-.25.25v2.5c0 .138.112.25.25.25h2a.75.75 0 01.488.18L6.5 11.62V4.38zm6.096-2.038a.75.75 0 011.06 0 8 8 0 010 11.314.75.75 0 01-1.06-1.06 6.5 6.5 0 000-9.193.75.75 0 010-1.06v-.001zm-1.06 2.121a.75.75 0 10-1.061 1.061 3.5 3.5 0 010 4.95.75.75 0 101.06 1.06 5 5 0 000-7.07l.001-.001z"/></svg>                    <svg id="unmute" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 2.75a.75.75 0 00-1.238-.57L3.472 5H1.75A1.75 1.75 0 000 6.75v2.5C0 10.216.784 11 1.75 11h1.723l3.289 2.82A.75.75 0 008 13.25V2.75zM4.238 6.32L6.5 4.38v7.24L4.238 9.68a.75.75 0 00-.488-.18h-2a.25.25 0 01-.25-.25v-2.5a.25.25 0 01.25-.25h2a.75.75 0 00.488-.18zm7.042-1.1a.75.75 0 10-1.06 1.06L11.94 8l-1.72 1.72a.75.75 0 101.06 1.06L13 9.06l1.72 1.72a.75.75 0 101.06-1.06L14.06 8l1.72-1.72a.75.75 0 00-1.06-1.06L13 6.94l-1.72-1.72z"/></svg>                </div>
+                <div>
+                    <input type="range" id="volumeRange" min="0" max="1" step="0.01" value="0.1">
+                </div>
+            </div>
+        </div>
+        
+        <audio controls id="music" class="music" loop>
+            <source src="https://r2.interrupted.me/107/1_youtube-t8cd5ed134a-audio.mp3" type="audio/mpeg">
+        </audio>
+
+        <div id="videoContainer">
+           <video playsinline draggable="false" loop id="bgVideo">
+               <source src="" type="video/mp4">
+               Your browser does not support HTML5 video.
+           </video>
+           <div id="overlay"></div>
+       </div>
+
+    <div class="flex flex-col gap-5">
+        <div id="main-content" class="bg-style px-10 pb-10 animate-slide-up space-y-8 min-w-80">
+            <section class="fullscreen text-content">
+                <div class="-mx-10">
+                                        <div class="space-y-8 text-center -mt-14 px-10 false">
+                        <div class="flex items-center justify-center flex-col gap-6">
+                            <div class="relative -m-2">
+                                                                    <img alt="Avatar" draggable="false" loading="lazy" width="104" height="104" decoding="async" data-nimg="1" class="border-color m-2 aspect-square w-28 rounded-full border false" src="https://r2.interrupted.me/107/de9gi.png" id="userAvatar">
+                                                            </div>
+                            <div class="flex justify-center items-center flex-col gap-1">
+                                <div class="tooltip">
+                                    <h1 class="break-all text-center text-2xl font-semibold text-white glow" id="username">TK </h1>
+                                    <span class="border border-white rounded-lg tooltiptext">UID: 107</span>
+                                </div>
+                                <h5 class="glow text-sm">Kurxxy, my love &lt;3</h5>
+
+                                                                    <div class="tooltip">
+                                        <div class="viewcount">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"/>
+  <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+</svg>                                        </div>
+                                        <span class="border border-white rounded-lg tooltiptext">Views: 123</span>
+                                    </div>
+                                
+                                <div class="flex-row flex-wrap mt-3 gap-3 flex items-center text-white justify-center max-w-96">
+                                                                                                                                                                                        <div class="tooltip">
+                                            <a target="_blank" rel="noopener noreferrer nofollow" draggable="false" href="https://t.me/Tayk_real">
+                                                <svg width="24" height="24" class="glow drop-shadow-theme social-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telegram" viewBox="0 0 16 16">
+  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.287 5.906q-1.168.486-4.666 2.01-.567.225-.595.442c-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294q.39.01.868-.32 3.269-2.206 3.374-2.23c.05-.012.12-.026.166.016s.042.12.037.141c-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8 8 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629q.14.092.27.187c.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.4 1.4 0 0 0-.013-.315.34.34 0 0 0-.114-.217.53.53 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09"/>
+</svg>                                            </a>
+                                            <span class="border border-white rounded-lg tooltiptext">Telegram</span>
+                                        </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div class="tooltip">
+                                            <a target="_blank" rel="noopener noreferrer nofollow" draggable="false" href="https://x.com/Tayk_real">
+                                                <svg width="24" height="24" class="glow drop-shadow-theme social-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter-x" viewBox="0 0 16 16">
+  <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/>
+</svg>                                            </a>
+                                            <span class="border border-white rounded-lg tooltiptext">X</span>
+                                        </div>
+                                                                                                                                                                                                                                                                                                                                        <div class="tooltip">
+                                            <a target="_blank" rel="noopener noreferrer nofollow" draggable="false" href="https://artemas.lol">
+                                                <svg width="24" height="24" class="glow drop-shadow-theme social-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-globe" viewBox="0 0 16 16">
+  <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m7.5-6.923c-.67.204-1.335.82-1.887 1.855A8 8 0 0 0 5.145 4H7.5zM4.09 4a9.3 9.3 0 0 1 .64-1.539 7 7 0 0 1 .597-.933A7.03 7.03 0 0 0 2.255 4zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a7 7 0 0 0-.656 2.5zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5zM8.5 5v2.5h2.99a12.5 12.5 0 0 0-.337-2.5zM4.51 8.5a12.5 12.5 0 0 0 .337 2.5H7.5V8.5zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5zM5.145 12q.208.58.468 1.068c.552 1.035 1.218 1.65 1.887 1.855V12zm.182 2.472a7 7 0 0 1-.597-.933A9.3 9.3 0 0 1 4.09 12H2.255a7 7 0 0 0 3.072 2.472M3.82 11a13.7 13.7 0 0 1-.312-2.5h-2.49c.062.89.291 1.733.656 2.5zm6.853 3.472A7 7 0 0 0 13.745 12H11.91a9.3 9.3 0 0 1-.64 1.539 7 7 0 0 1-.597.933M8.5 12v2.923c.67-.204 1.335-.82 1.887-1.855q.26-.487.468-1.068zm3.68-1h2.146c.365-.767.594-1.61.656-2.5h-2.49a13.7 13.7 0 0 1-.312 2.5m2.802-3.5a7 7 0 0 0-.656-2.5H12.18c.174.782.282 1.623.312 2.5zM11.27 2.461c.247.464.462.98.64 1.539h1.835a7 7 0 0 0-3.072-2.472c.218.284.418.598.597.933M10.855 4a8 8 0 0 0-.468-1.068C9.835 1.897 9.17 1.282 8.5 1.077V4z"/>
+</svg>                                            </a>
+                                            <span class="border border-white rounded-lg tooltiptext">Website</span>
+                                        </div>
+                                    
+                                                                                                                                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="flex flex-col gap-5">
+
+                        <div class="flex justify-between items-center flex-wrap gap-2.5 my-2.5 max-w-80">
+                                    <div>
+                        <img class="blinkie" draggable="false" src="https://r2.interrupted.me/zZz/pasters.gif">
+                    </div>
+                                    <div>
+                        <img class="blinkie" draggable="false" src="https://r2.interrupted.me/%F0%9F%92%B8/4mKk.png">
+                    </div>
+                            </div>
+            
+            
+            
+                    </div>
+
+    </div>
+
+<style nonce="ldOET2LBa8EVoamklOjCFFMmHThH8xRDAOUuEV6f">
+
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&amp;display=swap');
+
+    
+    html {
+                    font-family: "Outfit", sans-serif;
+            }
+
+    body {
+        background-color: black;
+
+        
+        background-image: url('');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: center;
+    }
+
+        
+    .glow {
+        filter: drop-shadow(0 0 6px rgba(255, 255, 255, 1.8));
+     }
+     .tooltip {
+        position: relative;
+        display: inline-block;
+     }
+     .tooltip .tooltiptext {
+        visibility: hidden;
+        width: 100px;
+        background-color: rgb(10, 10, 10);
+        border-color: #ffffff;
+        color: #ffffff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;
+        left: 50%;
+        margin-left: -50px;
+        opacity: 0;
+        overflow: hidden;
+        transition: opacity 0.3s;
+     }
+
+    .volume-controls #open-controls {
+        animation: spin 3s linear infinite;
+    }
+
+    .volume-controls svg {
+        width: 20px;
+        height: 20px;
+        color: #ffffff;
+        transition: all 0.2s ease-in;
+    }
+     .tooltip:hover .tooltiptext {
+        visibility: visible;
+        opacity: 1;
+     }
+     #main-content {
+        opacity: 0;
+        animation: fadeIn 1.5s forwards;
+                    border: 1px solid #ffffff1e;
+        
+        backdrop-filter: blur(1px);
+        -webkit-backdrop-filter: blur(1px);
+    }
+
+  #username {
+    width: fit-content;
+    color: #ffffff;
+    z-index: 1;
+
+    
+        
+                    font-size: 1.5em;
+          }
+
+  h5 {
+    color: #ffffff;
+  }
+
+  #userAvatar {
+        width: 140px;
+        height: 130px;
+    }
+
+  .hr-theme {
+        background: -webkit-linear-gradient(left, transparent, #ffffff, transparent);
+    }
+
+  .viewcount p {
+        font-size: 1rem;
+        color: #ffffff;
+        transition: all 0.2s ease-in;
+    }
+
+    .viewcount svg {
+        display: flex;
+        color: #ffffff;
+        transition: all 0.2s ease-in;
+        width: 18px;
+        height: 18px;
+        align-self: center;
+    }
+
+    .social-icon {
+        color: #ffffff;
+    }
+
+    .viewcount svg, .social-icon {
+        
+                    font-size: 1.2em;
+            width: 1.2em;
+            height: 1.2em;
+            }
+
+    .glow {
+        filter: drop-shadow(0 0 6px #ffffff);
+    }
+
+    video {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        min-width: 100%;
+        min-height: 100%;
+        z-index: -2;
+                pointer-events: none;
+    }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  
+        .discord-badges i {
+            width: auto;
+            height: 20px;
+                        transition: all 0.2s ease-in;
+        }
+
+        
+</style>
+    <script nonce="ldOET2LBa8EVoamklOjCFFMmHThH8xRDAOUuEV6f">
+            document.addEventListener("click", function () {
+                var clickAnywhereElement = document.getElementById("clickToPlay");
+                let volumeRange = document.getElementById("volumeRange");
+                clickAnywhereElement.style.opacity = "0";
+                setTimeout(function () {
+                    clickAnywhereElement.style.display = "none";
+                }, 500);
+                document.getElementById('main-content').style.display = 'block';
+                const music = document.getElementById("music");
+                const video = document.getElementById("bgVideo");
+                music.play();
+                video.play();
+                music.volume = volumeRange.value;
+                video.volume = volumeRange.value;
+            });
+
+
+                    // VOLUME CONTROLS
+            const music = document.getElementById("music");
+            const video = document.getElementById("bgVideo");
+            const volumeRange = document.getElementById("volumeRange");
+            const openControls = document.getElementById("open-controls");
+            const mute = document.getElementById("mute");
+            const unmute = document.getElementById("unmute");
+
+            let open = false;
+
+            openControls.addEventListener("click", () => {
+                const controls = document.querySelector(".volume-controls .controls");
+                if (!open) {
+                    open = true;
+                    controls.style.display = "flex";
+                } else {
+                    open = false;
+                    controls.style.display = "none";
+                }
+            });
+
+            volumeRange.addEventListener("input", () => {
+                music.volume = volumeRange.value;
+                video.volume = volumeRange.value;
+            });
+
+            mute.addEventListener("click", () => {
+                music.muted = true;
+                video.muted = true;
+
+                mute.style.display = "none";
+                unmute.style.display = "block";
+            });
+
+            unmute.addEventListener("click", () => {
+                music.muted = false;
+                video.muted = false;
+
+                mute.style.display = "block";
+                unmute.style.display = "none";
+            });
+        
+
+        // UNIX TO HH/MM/SS
+
+        function rpcTime(startTimestamp) {
+            const currentTimestamp = Date.now();
+
+            const elapsedTimeInMilliseconds = currentTimestamp - startTimestamp;
+
+            const elapsedDate = new Date(elapsedTimeInMilliseconds);
+            const elapsedHours = elapsedDate.getUTCHours();
+            const elapsedMinutes = elapsedDate.getUTCMinutes();
+            const elapsedSeconds = elapsedDate.getUTCSeconds();
+
+            const formattedElapsedHours = elapsedHours.toString().padStart(2, '0');
+            const formattedElapsedMinutes = elapsedMinutes.toString().padStart(2, '0');
+            const formattedElapsedSeconds = elapsedSeconds.toString().padStart(2, '0');
+
+            const elapsedTime = `${formattedElapsedHours}:${formattedElapsedMinutes}:${formattedElapsedSeconds}`;
+            document.getElementById('rpc-elapsed').innerHTML = `Elapsed: ${elapsedTime}`;
+        }
+
+        
+        // UNIX TO HH/MM/SS
+
+        
+            </script>
+    <script nonce="ldOET2LBa8EVoamklOjCFFMmHThH8xRDAOUuEV6f">(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.nonce='ldOET2LBa8EVoamklOjCFFMmHThH8xRDAOUuEV6f';d.innerHTML="window.__CF$cv$params={r:'8be2129179176c13',t:'MTcyNTQ5NTgyNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='ldOET2LBa8EVoamklOjCFFMmHThH8xRDAOUuEV6f';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

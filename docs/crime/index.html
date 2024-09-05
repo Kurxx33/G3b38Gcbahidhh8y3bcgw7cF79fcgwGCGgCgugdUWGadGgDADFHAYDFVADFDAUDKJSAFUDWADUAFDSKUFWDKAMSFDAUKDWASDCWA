@@ -1,49 +1,98 @@
 <!DOCTYPE html>
 <html>
-<script>window.RufflePlayer=window.RufflePlayer||{};window.RufflePlayer.config={"autoplay":"on","unmuteOverlay":"hidden"};</script>
+<script>
+    window.RufflePlayer = window.RufflePlayer || {};
+    window.RufflePlayer.config = { "autoplay": "on", "unmuteOverlay": "hidden" };
+</script>
 <script type="text/javascript" src="assets/js/ruffle.js" defer="true"></script>
 <link href="assets/css/cosmo.css" rel="stylesheet">
+
+<head>
+    <title>KBiN</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="KBiN" property="og:title" />
+    <meta content="You know nothing of true despair...." property="og:description" />
+    <link href="assets/css/anim.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/vile.css" />
+    <link rel="stylesheet" href="assets/css/cosmos.css" />
+    <link rel="stylesheet" href="assets/css/anim.css" />
+    <link rel="icon" href="assets/media/favicon.gif" type="image/gif" sizes="16x16">
     <style>
         body {
             background-color: black;
+            position: relative;
+        }
+
+        .foreground {
+            position: relative;
+            z-index: 10;
+        }
+
+        .sparkles {
+            z-index: 11;
+            position: relative;
         }
     </style>
-    </head>
-        <title>KBiN</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta content="KBiN" property="og:title"/>
-	<meta content="You know nothing of ture dispair...." property="og:description"/>
-    <link href="assets/css/anim.css" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.css"/>
-    <link rel="stylesheet" href="assets/css/vile.css"/>
-    <link rel="stylesheet" href="assets/css/cosmos.css"/>
-    <link rel="stylesheet" href="assets/css/anim.css"/>
-    <link rel="icon" href="assets/media/favicon.gif" type="image/gif" sizes="16x16">
-	<div class="container" style="display: block;">
-    <div class="row" style="display: block;">
-        <div class="col-md-12" style="display: block;">
-            <img class="img-responsive hanginggirl animated infinite swing nodrag" draggable="false" src="assets/media/hanging.png" style="display: block;">
-        </div>
-    </div>
-    </div>
-    </div>
-<br>
-<br>
 </head>
-<body>
-<div id="main">
-<center><h3>
 
-    <a href="https://twitter.com/tk_tayk" target="_blank">Tk</a><br>
-    <a href="https://twitter.com/kurxx33" target="_blank">Kurxx</a><br>
-    
-    </center>
-</div><audio id="audio" src="assets/media/sad.mp3"></audio>
-<script src="assets/js/audio.js"></script><div class="dot"></div>
-</div>
-<script src="assets/js/sparkle.js"></script>
-<script src="assets/js/antinspect.js"></script>
-<script src="assets/js/title.js"></script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'8be3abada9da4758',t:'MTcyNTUxMjU4My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<body>
+    <div id="main">
+        <div class="foreground">
+            <center>
+                <h3>
+                    <a href="https://twitter.com/tk_tayk" target="_blank">Tk</a><br>
+                    <a href="https://twitter.com/kurxx33" target="_blank">Kurxx</a><br>
+                </h3>
+            </center>
+        </div>
+        <div class="container foreground" style="display: block;">
+            <div class="row" style="display: block;">
+                <div class="col-md-12" style="display: block;">
+                    <img class="img-responsive hanginggirl animated infinite swing nodrag" draggable="false" src="assets/media/hanging.png" style="display: block;">
+                </div>
+            </div>
+        </div>
+        <audio id="audio" src="assets/media/sad.mp3"></audio>
+        <script src="assets/js/audio.js"></script>
+        <div class="dot sparkles"></div>
+    </div>
+    <script src="assets/js/sparkle.js"></script>
+    <script src="assets/js/antinspect.js"></script>
+    <script src="assets/js/title.js"></script>
+    <script>
+        (function() {
+            function c() {
+                var b = a.contentDocument || a.contentWindow.document;
+                if (b) {
+                    var d = b.createElement('script');
+                    d.innerHTML = "window.__CF$cv$params={r:'8be3abada9da4758',t:'MTcyNTUxMjU4My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";
+                    b.getElementsByTagName('head')[0].appendChild(d);
+                }
+            }
+            if (document.body) {
+                var a = document.createElement('iframe');
+                a.height = 1;
+                a.width = 1;
+                a.style.position = 'absolute';
+                a.style.top = 0;
+                a.style.left = 0;
+                a.style.border = 'none';
+                a.style.visibility = 'hidden';
+                document.body.appendChild(a);
+                if ('loading' !== document.readyState) c();
+                else if (window.addEventListener) document.addEventListener('DOMContentLoaded', c);
+                else {
+                    var e = document.onreadystatechange || function() {};
+                    document.onreadystatechange = function(b) {
+                        e(b);
+                        'loading' !== document.readyState && (document.onreadystatechange = e, c());
+                    }
+                }
+            }
+        })();
+    </script>
+</body>
+
 </html>

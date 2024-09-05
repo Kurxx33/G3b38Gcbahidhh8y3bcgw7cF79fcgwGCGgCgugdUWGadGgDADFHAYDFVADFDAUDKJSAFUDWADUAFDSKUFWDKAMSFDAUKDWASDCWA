@@ -71,8 +71,7 @@ body{
     min-height:-webkit-fill-available
 }
 a:link {
-  color: rgb(255, 255, 255);
-  text-shadow: 0 0 10px rgb(255, 255, 255);
+  color: white;
   background-color: transparent;
   text-decoration: none;
 }
@@ -241,6 +240,7 @@ p, span {
 }
 
 .nodrag {
+    user-drag: none;
     user-select: none;
     -moz-user-select: none;
     -webkit-user-drag: none;
@@ -250,8 +250,7 @@ p, span {
 
 .link, .link:visited {
 
-    color: rgb(255, 255, 255);
-    text-shadow: 0 0 10px rgb(255, 255, 255);
+    color: white;
     text-transform: uppercase;
     font-family: monospace;
     white-space: pre;
@@ -263,6 +262,7 @@ p, span {
 .link:hover {
     color: #f4ab21;
     text-decoration: none;
+    text-underline: none;
 }
 /*
      FILE ARCHIVED ON 03:14:10 Aug 23, 2022 AND RETRIEVED FROM THE

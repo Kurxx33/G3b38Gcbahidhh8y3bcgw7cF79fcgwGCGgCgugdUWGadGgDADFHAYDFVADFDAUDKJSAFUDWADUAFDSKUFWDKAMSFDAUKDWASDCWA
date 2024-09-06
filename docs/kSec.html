@@ -253,105 +253,105 @@
         </div>
     </div>
 
-    <script>
-        $(document).ready(function () {
-            const audio = document.getElementById('audioPlayer');
-            const playPauseBtn = document.getElementById('playPauseBtn');
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
-            const volumeSlider = document.getElementById('volumeSlider');
-            const kSec = document.getElementById('kSec');
-            const currentTimeEl = document.getElementById('currentTime');
-            const totalTimeEl = document.getElementById('totalTime');
-            const splashScreen = document.getElementById('splashScreen');
-            const userLocation = document.getElementById('userLocation');
+<script>
+    $(document).ready(function () {
+        const audio = document.getElementById('audioPlayer');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const volumeSlider = document.getElementById('volumeSlider');
+        const kSec = document.getElementById('kSec');
+        const currentTimeEl = document.getElementById('currentTime');
+        const totalTimeEl = document.getElementById('totalTime');
+        const splashScreen = document.getElementById('splashScreen');
+        const userLocation = document.getElementById('userLocation');
 
-            // Songs list
-            const songs = [
-                { name: "Sad.mp3", url: "https://r2.interrupted.me/107/youtube-m-n-qx2d1kq-audio.mp3" },
-                { name: "Realize.mp3", url: "https://r2.interrupted.me/107/youtube-imrcalyxoq0-audio.mp3" },
-                { name: "Bloody4s.mp3", url: "https://r2.interrupted.me/107/youtube-rn4wqbmaxau-audio.mp3" },
-                { name: "187Killa.mp3", url: "https://r2.interrupted.me/107/youtube-yiqvdqryt1m-audio.mp3" },
-                { name: "Oztroja.mp3", url: "https://r2.interrupted.me/107/youtube-nahrra8xhxw-audio.mp3" },
-                { name: "kurxxy-x-Tkay<3.mp3", url: "https://r2.interrupted.me/107/youtube-m5t4iiwr4t8-audio.mp3" },
-                { name: "Addict.mp3", url: "https://r2.interrupted.me/107/youtube-iugb8jnuu2a-audio.mp3" }
-            ];
+        const songs = [
+            { name: "Sad.mp3", url: "https://r2.interrupted.me/107/youtube-m-n-qx2d1kq-audio.mp3" },
+            { name: "Realize.mp3", url: "https://r2.interrupted.me/107/youtube-imrcalyxoq0-audio.mp3" },
+            { name: "Bloody4s.mp3", url: "https://r2.interrupted.me/107/youtube-rn4wqbmaxau-audio.mp3" },
+            { name: "187Killa.mp3", url: "https://r2.interrupted.me/107/youtube-yiqvdqryt1m-audio.mp3" },
+            { name: "Oztroja.mp3", url: "https://r2.interrupted.me/107/youtube-nahrra8xhxw-audio.mp3" },
+            { name: "kurxxy-x-Tkay<3.mp3", url: "https://r2.interrupted.me/107/youtube-m5t4iiwr4t8-audio.mp3" },
+            { name: "Addict.mp3", url: "https://r2.interrupted.me/107/youtube-iugb8jnuu2a-audio.mp3" }
+        ];
 
-            let currentSongIndex = 0;
+        let currentSongIndex = 0;
 
-            function loadSong(song) {
-                audio.src = song.url;
-                document.getElementById('songName').innerText = `Currently Playing: ${song.name}`;
-            }
+        function loadSong(song) {
+            audio.src = song.url;
+            document.getElementById('songName').innerText = `Currently Playing: ${song.name}`;
+        }
 
-    
-            playPauseBtn.addEventListener('click', function () {
-                if (audio.paused) {
-                    audio.play();
-                    playPauseBtn.innerHTML = '<i class="ri-pause-fill"></i>';
-                } else {
-                    audio.pause();
-                    playPauseBtn.innerHTML = '<i class="ri-play-fill"></i>';
-                }
-            });
-
-            nextBtn.addEventListener('click', function () {
-                currentSongIndex = (currentSongIndex + 1) % songs.length;
-                loadSong(songs[currentSongIndex]);
+        playPauseBtn.addEventListener('click', function () {
+            if (audio.paused) {
                 audio.play();
                 playPauseBtn.innerHTML = '<i class="ri-pause-fill"></i>';
-            });
-
-            prevBtn.addEventListener('click', function () {
-                currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
-                loadSong(songs[currentSongIndex]);
-                audio.play();
-                playPauseBtn.innerHTML = '<i class="ri-pause-fill"></i>';
-            });
-
-            audio.addEventListener('timeupdate', function () {
-                currentTimeEl.innerText = formatTime(audio.currentTime);
-                totalTimeEl.innerText = formatTime(audio.duration);
-            });
-
-            function formatTime(seconds) {
-                const minutes = Math.floor(seconds / 60);
-                const secs = Math.floor(seconds % 60);
-                return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+            } else {
+                audio.pause();
+                playPauseBtn.innerHTML = '<i class="ri-play-fill"></i>';
             }
-
-            volumeSlider.addEventListener('input', function () {
-                audio.volume = volumeSlider.value;
-            });
-
-            loadSong(songs[currentSongIndex]);
-
-            splashScreen.addEventListener('click', function () {
-                splashScreen.style.opacity = '0';
-                setTimeout(function () {
-                    splashScreen.classList.add('hidden');
-                }, 1000);
-            });
-
-            $.get('https://ipapi.co/json/', function (data) {
-                userLocation.innerText = `You are entering from: ${data.city}, ${data.country_name}`;
-            });
         });
 
-if (document.addEventListener) {
-    document.addEventListener("DOMContentLoaded", function () {
-      loaded();
+        nextBtn.addEventListener('click', function () {
+            currentSongIndex = (currentSongIndex + 1) % songs.length;
+            loadSong(songs[currentSongIndex]);
+            audio.play();
+            playPauseBtn.innerHTML = '<i class="ri-pause-fill"></i>';
+        });
+
+        prevBtn.addEventListener('click', function () {
+            currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+            loadSong(songs[currentSongIndex]);
+            audio.play();
+            playPauseBtn.innerHTML = '<i class="ri-pause-fill"></i>';
+        });
+
+        audio.addEventListener('timeupdate', function () {
+            currentTimeEl.innerText = formatTime(audio.currentTime);
+            totalTimeEl.innerText = formatTime(audio.duration);
+        });
+
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+        }
+
+        volumeSlider.addEventListener('input', function () {
+            audio.volume = volumeSlider.value;
+        });
+
+        loadSong(songs[currentSongIndex]);
+
+        splashScreen.addEventListener('click', function () {
+            splashScreen.style.opacity = '0';
+            setTimeout(function () {
+                splashScreen.classList.add('hidden');
+            }, 1000);
+        });
+
+        $.get('https://ipapi.co/json/', function (data) {
+            userLocation.innerText = `You are entering from: ${data.city}, ${data.country_name}`;
+        });
     });
-  } else if (document.attachEvent) {
-    document.attachEvent("onreadystatechange", function () {
-      loaded();
-    });
-  }
-  function loaded() {
-    setInterval(loop, 300);
-  }
-  var x = 0;
-  var titleText = [
+
+    if (document.addEventListener) {
+        document.addEventListener("DOMContentLoaded", function () {
+            loaded();
+        });
+    } else if (document.attachEvent) {
+        document.attachEvent("onreadystatechange", function () {
+            loaded();
+        });
+    }
+
+    function loaded() {
+        setInterval(loop, 300);
+    }
+
+    var x = 0;
+    var titleText = [
     "K",
     "Ku",
     "Kur",
@@ -383,12 +383,11 @@ if (document.addEventListener) {
     "sachi.lol",
     ".gg/nudess",
   ];
-  
-  function loop() {
-    document.getElementsByTagName("title")[0].innerHTML =
-      titleText[x++ % titleText.length];
-  }
-    </script>
+
+    function loop() {
+        document.getElementsByTagName("title")[0].innerHTML = titleText[x++ % titleText.length];
+    }
+</script>
 </body>
 
 </html>

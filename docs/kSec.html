@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="/help.css">
 
     <style>
-        /* ASCII Art Glow */
         .ascii-glow {
             color: white;
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
@@ -23,7 +22,6 @@
             margin-bottom: 30px;
         }
 
-        /* Player Container */
         .player-container {
             position: fixed;
             bottom: 0;
@@ -63,7 +61,7 @@
             text-align: center;
         }
 
-        /* Splash Screen */
+        
         .splash-screen {
             position: fixed;
             top: 0;
@@ -85,7 +83,7 @@
             display: none;
         }
 
-        /* Layout Adjustments */
+        
         .intial-container {
             display: flex;
             justify-content: space-between;
@@ -133,7 +131,7 @@
             height: 3px;
           }
           
-          /* Fancy blur effect */
+          
           #nprogress .peg {
             display: block;
             position: absolute;
@@ -148,7 +146,7 @@
                     transform: rotate(3deg) translate(0px, -4px);
           }
           
-          /* Remove these to get rid of the spinner */
+          
           #nprogress .spinner {
             display: block;
             position: fixed;
@@ -237,13 +235,11 @@
     <a href="https://discord.com/@1206723479681106092">Discord</a><br><br>
     1206723479681106092
 
-    <!-- Audio Player -->
     <audio id="audioPlayer" loop>
         <source src="https://r2.interrupted.me/107/youtube-m-n-qx2d1kq-audio.mp3" type="audio/mp3">
         Your browser does not support the audio element.
     </audio>
 
-    <!-- Player Container -->
     <div class="player-container">
         <div class="player-controls">
             <span class="control-btn" id="prevBtn">&#9664;</span>
@@ -283,13 +279,12 @@
 
             let currentSongIndex = 0;
 
-            // Load the current song
             function loadSong(song) {
                 audio.src = song.url;
                 document.getElementById('songName').innerText = `Currently Playing: ${song.name}`;
             }
 
-            // Play/Pause toggle
+    
             playPauseBtn.addEventListener('click', function () {
                 if (audio.paused) {
                     audio.play();
@@ -300,7 +295,6 @@
                 }
             });
 
-            // Next song
             nextBtn.addEventListener('click', function () {
                 currentSongIndex = (currentSongIndex + 1) % songs.length;
                 loadSong(songs[currentSongIndex]);
@@ -308,7 +302,6 @@
                 playPauseBtn.innerHTML = '<i class="ri-pause-fill"></i>';
             });
 
-            // Previous song
             prevBtn.addEventListener('click', function () {
                 currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
                 loadSong(songs[currentSongIndex]);
@@ -316,7 +309,6 @@
                 playPauseBtn.innerHTML = '<i class="ri-pause-fill"></i>';
             });
 
-            // Update current time and total time
             audio.addEventListener('timeupdate', function () {
                 currentTimeEl.innerText = formatTime(audio.currentTime);
                 totalTimeEl.innerText = formatTime(audio.duration);
@@ -328,15 +320,12 @@
                 return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
             }
 
-            // Volume control
             volumeSlider.addEventListener('input', function () {
                 audio.volume = volumeSlider.value;
             });
 
-            // Load the first song
             loadSong(songs[currentSongIndex]);
 
-            // Splash screen fade-out on click
             splashScreen.addEventListener('click', function () {
                 splashScreen.style.opacity = '0';
                 setTimeout(function () {
@@ -344,7 +333,6 @@
                 }, 1000);
             });
 
-            // Fetch the user's IP address and location
             $.get('https://ipapi.co/json/', function (data) {
                 userLocation.innerText = `You are entering from: ${data.city}, ${data.country_name}`;
             });
@@ -368,13 +356,15 @@ if (document.addEventListener) {
     "Ku",
     "Kur",
     "Kurx",
-    "kurxx",
+    "Kurxx",
     "Kurxx ",
     "Kurxx x",
     "Kurxx x ",
     "Kurxx x T",
     "Kurxx x Tk",
     "Kurxx x Tk<",
+    "Kurxx x Tk<3",
+    "Kurxx x Tk<3",
     "Kurxx x Tk<3",
     "Kurxx x Tk<",
     "Kurxx x Tk",

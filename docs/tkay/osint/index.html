@@ -7,14 +7,20 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Username Search</h1>
-        <div class="search-box">
-            <input type="text" id="username" placeholder="Enter username">
-            <button onclick="searchUsernames()">Search</button>
-        </div>
-        <div id="results" class="results"></div>
+    <div id="overlay" class="overlay" onclick="removeOverlay();">
+        <p class="flicker">Click To Continue</p>
     </div>
+
+    <div id="content" class="hidden">
+        <div class="search-container">
+            <input type="text" id="username" placeholder="Enter username" />
+            <button onclick="searchUsername()">Search</button>
+        </div>
+        <div id="results">
+            <!-- Search results will be displayed here -->
+        </div>
+    </div>
+
     <script src="js/script.js"></script>
 </body>
 </html>

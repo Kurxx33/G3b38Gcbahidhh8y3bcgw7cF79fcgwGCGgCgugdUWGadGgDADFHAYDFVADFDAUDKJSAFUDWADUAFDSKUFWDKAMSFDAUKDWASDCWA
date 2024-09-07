@@ -1,27 +1,37 @@
-// script.js
+function removeOverlay() {
+    document.getElementById('overlay').style.display = 'none';
+    document.getElementById('content').classList.remove('hidden');
+}
 
-async function searchUsernames() {
-    const username = document.getElementById('username').value.trim();
-    const resultsDiv = document.getElementById('results');
-    
+async function searchUsername() {
+    const username = document.getElementById('username').value;
+    const resultsContainer = document.getElementById('results');
+    resultsContainer.innerHTML = ''; // Clear previous results
+
     if (!username) {
-        resultsDiv.innerHTML = '<p>Please enter a username.</p>';
+        resultsContainer.innerHTML = '<p class="result-item">Please enter a username</p>';
         return;
     }
-    
-    // Sample URLs for demonstration
-    const urls = {
-        twitter: `https://twitter.com/${username}`,
-        youtube: `https://www.youtube.com/results?search_query=${username}`,
-        roblox: `https://robloxsocial.com/users/${username}`, // hypothetical
-        telegram: `https://t.me/${username}`,
-        tiktok: `https://www.tiktok.com/@${username}`
+
+    const sites = {
+        Twitter: `https://twitter.com/${username}`,
+        YouTube: `https://youtube.com/user/${username}`,
+        Roblox: `https://robloxlive.com/user/${username}`,
+        Telegram: `https://t.me/${username}`,
+        TikTok: `https://www.tiktok.com/@${username}`,
+        // Add more sites as needed
     };
-    
-    resultsDiv.innerHTML = `<h2>Search Results for "${username}":</h2>`;
-    
-    for (const [platform, url] of Object.entries(urls)) {
-        const link = `<a href="${url}" target="_blank">${platform.charAt(0).toUpperCase() + platform.slice(1)}</a>`;
-        resultsDiv.innerHTML += `<div class="result-item">${link}</div>`;
+
+    for (const [site, url] of Object.entries(sites)) {
+        try {
+            const response = await fetch(url, { method: 'HEAD' });
+            if (response.ok) {
+                resultsContainer.innerHTML += `<p class="result-item glitch">Username found on ${site}: <a href="${url}" target="_blank">${url}</a></p>`;
+            } else {
+                resultsContainer.innerHTML += `<p class="result-item">Username not found on ${site}</p>`;
+            }
+        } catch (error) {
+            resultsContainer.innerHTML += `<p class="result-item">Error checking ${site}</p>`;
+        }
     }
 }

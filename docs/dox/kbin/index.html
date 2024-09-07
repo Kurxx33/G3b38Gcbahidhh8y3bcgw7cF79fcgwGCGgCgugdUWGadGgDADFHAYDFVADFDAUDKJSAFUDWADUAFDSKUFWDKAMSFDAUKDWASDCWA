@@ -169,18 +169,6 @@ pre {
     <a href="history.html">History</a>
     <a href="users.html">Users</a>
     <a href="hol.html">Hall of Losers</a>
-    <?php
-    session_start(); // Start the session
-
-    if (isset($_SESSION['user_id'])) {
-        // User is logged in
-        echo '<a href="logout.php">Logout</a>';
-    } else {
-        // User is not logged in
-        echo '<a href="signup.php">Sign Up</a>';
-        echo '<a href="login.php">Log In</a>';
-    }
-    ?>
 </div>
 
 

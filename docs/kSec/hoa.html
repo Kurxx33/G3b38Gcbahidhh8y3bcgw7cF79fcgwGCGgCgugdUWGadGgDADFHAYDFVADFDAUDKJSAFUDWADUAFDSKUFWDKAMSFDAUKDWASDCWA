@@ -5,6 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Old TV Screen</title>
     <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000000;
+            font-family: "Lucida Console", "Courier New", monospace;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            color: #fff;
+            text-align: center;
+            -webkit-touch-callout: none; /* Disable touch callout on iOS */
+            -webkit-user-select: none; /* Disable text selection on WebKit browsers */
+            -khtml-user-select: none; /* Disable text selection on older Konqueror browsers */
+            -moz-user-select: none; /* Disable text selection on Mozilla browsers */
+            -ms-user-select: none; /* Disable text selection on Internet Explorer/Edge */
+            user-select: none; /* Disable text selection on other browsers */
+        }
+
+        .ascii-art {
+            font-size: 12px;
+            line-height: 1;
+            margin-bottom: 30px;
+            animation: flicker 2s infinite;
+            filter: blur(0.5px);
+        }
+
+        .link {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: rgba(170, 170, 170, 0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .link:hover {
+            color: rgba(218, 218, 218, 0.9);
+        }
+
+        .scrolling-text {
+            font-size: 14px;
+            margin-top: 40px;
+            animation: scroll 10s linear infinite;
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.9; }
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
 body {
     margin: 0;
     padding: 0;
@@ -78,6 +134,7 @@ body {
         transform: translateX(-100%);
     }
 }
+
     </style>
 </head>
 <body>

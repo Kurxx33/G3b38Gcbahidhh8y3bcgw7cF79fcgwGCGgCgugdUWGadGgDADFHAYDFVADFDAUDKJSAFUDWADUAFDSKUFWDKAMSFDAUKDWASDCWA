@@ -60,9 +60,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('https://r2.fakecrime.bio/assets/overlays/dots.png') repeat;
-            background-size: 4px 4px;
-            z-index: 1000;
+            background: repeating-radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.2) 1px, transparent 1px, transparent 4px);
+            z-index: 999;
             pointer-events: none;
         }
 
@@ -71,10 +70,46 @@
             position: fixed;
             top: 0;
             left: 0;
-            z-index: 1001;
+            z-index: 1000;
             height: 100%;
             width: 100%;
-            background: rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        @keyframes noise {
+            0% {
+                transform: translate3d(0,9rem,0)
+            }
+            10% {
+                transform: translate3d(-1rem,-4rem,0)
+            }
+            20% {
+                transform: translate3d(-8rem,2rem,0)
+            }
+            30% {
+                transform: translate3d(9rem,-9rem,0)
+            }
+            40% {
+                transform: translate3d(-2rem,7rem,0)
+            }
+            50% {
+                transform: translate3d(-9rem,-4rem,0)
+            }
+            60% {
+                transform: translate3d(2rem,6rem,0)
+            }
+            70% {
+                transform: translate3d(7rem,-8rem,0)
+            }
+            80% {
+                transform: translate3d(-9rem,1rem,0)
+            }
+            90% {
+                transform: translate3d(6rem,-5rem,0)
+            }
+            to {
+                transform: translate3d(-7rem,0,0)
+            }
         }
 
         .ascii-art {
@@ -119,10 +154,6 @@
         @keyframes scrollText {
             0% { transform: translateX(100%); }
             100% { transform: translateX(-100%); }
-        }
-
-        audio {
-            display: none;
         }
     </style>
 </head>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luka Graham | Hall of Autism</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            font-family: "Lucida Console", "Courier New", monospace;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            color: #fff;
+            text-align: center;
+            user-select: none;
+        }
+
+        .tv-screen {
+            position: relative;
+            width: 80vw;
+            height: 60vh;
+            border: 10px solid #333;
+            border-radius: 20px;
+            background: #000;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            margin: 20px auto;
+        }
+
+        .tv-screen:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 70%);
+            border-radius: 20px;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .tv-screen .content {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .dot-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://r2.fakecrime.bio/assets/overlays/dots.png') repeat;
+            background-size: 4px 4px;
+            z-index: 1000;
+            pointer-events: none;
+        }
+
+        .noise-overlay {
+            pointer-events: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1001;
+            height: 100%;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .hoa-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .hoa-image img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            border: 5px solid #333;
+        }
+
+        .hoa-name {
+            font-size: 24px;
+            margin: 10px 0;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .hoa-description {
+            font-size: 16px;
+            color: #ccc;
+            text-align: center;
+        }
+
+        .rainbow {
+            animation: rainbow 5s linear infinite;
+        }
+
+        @keyframes rainbow {
+            0% { color: red; }
+            14% { color: orange; }
+            28% { color: yellow; }
+            42% { color: green; }
+            57% { color: blue; }
+            71% { color: indigo; }
+            85% { color: violet; }
+            100% { color: red; }
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.9; }
+        }
+
+        @keyframes scrollText {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        audio {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TV Screen Container -->
+    <div class="tv-screen">
+        <div class="content">
+            <!-- Hall of Autism Section -->
+            <div class="hoa-container">
+                <div class="hoa-image">
+                    <img src="https://avatars.githubusercontent.com/u/77860275?v=4" alt="Luka Graham">
+                </div>
+                <div class="hoa-name rainbow">
+                    Az.gg / Azreal
+                </div>
+                <div class="hoa-description">
+                    <b>Luka Graham</b><br>
+                    Semi-wellknown gfx artist who lives in the UK.<br>
+                    Flexes his skills and bullies smaller creators.<br>
+                    Has old websites up with ALL of his info.<br>
+                    Generally just a bad person.<br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dot Overlay -->
+    <div class="dot-overlay"></div>
+
+    <!-- Noise Overlay -->
+    <div class="noise-overlay"></div>
+
+    <!-- Audio Player -->
+    <audio src="https://r2.fakecrime.bio/tracks/audios/1eac6142-8fd4-4cd7-ba86-0de88c9349eb.mp3" autoplay loop></audio>
+
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server Status</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        
+        .server-status {
+            text-align: center;
+        }
+
+        .server-status h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .server-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .server-item {
+            display: flex;
+            justify-content: space-between;
+            width: 300px;
+            padding: 10px;
+            background-color: #222;
+            border-radius: 5px;
+        }
+
+        .server-item span {
+            color: #fff;
+        }
+
+        .status-online {
+            color: #44ed44;
+        }
+
+        .status-offline {
+            color: #f75454;
+        }
+    </style>
+</head>
+<body>
+    <div class="server-status">
+        <h1>Server Status</h1>
+        <div class="server-list" id="server-list">
+            <!-- Server items will be appended here by JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        const servers = [
+            { name: 'AMS001', ip: '185.199.108.153' },
+            { name: 'LON001', ip: '185.199.109.153' },
+            { name: 'FRA001', ip: '185.199.110.153' },
+            { name: 'DUS001', ip: '185.199.111.153' }
+        ];
+
+        function pingServer(server) {
+            const img = new Image();
+            const start = Date.now();
+            img.onload = function () {
+                const ping = Date.now() - start;
+                updateServerStatus(server.name, 'online', ping + ' ms');
+            };
+            img.onerror = function () {
+                updateServerStatus(server.name, 'offline');
+            };
+            img.src = `http://${server.ip}/?cachebuster=${Date.now()}`;
+        }
+
+        function updateServerStatus(serverName, status, ping = '') {
+            const serverItem = document.querySelector(`#${serverName}`);
+            if (serverItem) {
+                const statusElement = serverItem.querySelector('.status');
+                statusElement.textContent = status === 'online' ? ping : 'OFFLINE';
+                statusElement.className = status === 'online' ? 'status status-online' : 'status status-offline';
+            }
+        }
+
+        function displayServers() {
+            const serverList = document.getElementById('server-list');
+            servers.forEach(server => {
+                const serverItem = document.createElement('div');
+                serverItem.className = 'server-item';
+                serverItem.id = server.name;
+                serverItem.innerHTML = `
+                    <span>${server.name}</span>
+                    <span class="status">Checking...</span>
+                `;
+                serverList.appendChild(serverItem);
+                pingServer(server);
+            });
+        }
+
+        displayServers();
+    </script>
+</body>
+</html>

@@ -5,62 +5,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Old TV Screen</title>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #000000;
-            font-family: "Lucida Console", "Courier New", monospace;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            overflow: hidden;
-            color: #fff;
-            text-align: center;
-            -webkit-touch-callout: none; /* Disable touch callout on iOS */
-            -webkit-user-select: none; /* Disable text selection on WebKit browsers */
-            -khtml-user-select: none; /* Disable text selection on older Konqueror browsers */
-            -moz-user-select: none; /* Disable text selection on Mozilla browsers */
-            -ms-user-select: none; /* Disable text selection on Internet Explorer/Edge */
-            user-select: none; /* Disable text selection on other browsers */
-        }
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    font-family: "Lucida Console", "Courier New", monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
 
-        .ascii-art {
-            font-size: 12px;
-            line-height: 1;
-            margin-bottom: 30px;
-            animation: flicker 2s infinite;
-            filter: blur(0.5px);
-        }
+#main-container {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.8);
+}
 
-        .link {
-            font-size: 18px;
-            margin-bottom: 20px;
-            color: rgba(170, 170, 170, 0.7);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
+.ascii pre {
+    font-size: 14px;
+    line-height: 1.2;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+    animation: flicker 1.2s infinite alternate;
+}
 
-        .link:hover {
-            color: rgba(218, 218, 218, 0.9);
-        }
+@keyframes flicker {
+    0%, 100% {
+        opacity: 1;
+        text-shadow: 0 0 2px #fff, 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #ff8c00, 0 0 30px #ff8c00, 0 0 40px #ff8c00;
+    }
+    50% {
+        opacity: 0.9;
+        text-shadow: 0 0 5px #fff, 0 0 15px #fff, 0 0 20px #fff, 0 0 30px #ff8c00, 0 0 40px #ff8c00, 0 0 50px #ff8c00;
+    }
+}
 
-        .scrolling-text {
-            font-size: 14px;
-            margin-top: 40px;
-            animation: scroll 10s linear infinite;
-        }
+.centered-link {
+    display: inline-block;
+    margin-top: 20px;
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
 
-        @keyframes flicker {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.9; }
-        }
+.centered-link:hover {
+    color: rgba(255, 255, 255, 0.9);
+}
 
-        @keyframes scroll {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
+.scrolling-text {
+    margin-top: 50px;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    width: 100%;
+}
+
+.scrolling-text p {
+    display: inline-block;
+    position: absolute;
+    white-space: nowrap;
+    color: rgba(255, 255, 255, 0.8);
+    animation: scrollText 10s linear infinite;
+}
+
+@keyframes scrollText {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
     </style>
 </head>
 <body>

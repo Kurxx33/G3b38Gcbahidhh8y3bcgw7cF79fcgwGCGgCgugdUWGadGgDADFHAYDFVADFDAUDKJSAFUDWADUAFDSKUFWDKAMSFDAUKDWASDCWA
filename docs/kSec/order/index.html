@@ -855,7 +855,7 @@ video {
 
         function render() {
             requestAnimationFrame(render);
-            window.globe.rotation.y -= 0.005;
+            window.globe.rotation.y -= 0.010;
             window.renderer.render(window.scene, window.camera);
             window.gl.readPixels(0, 0, window.WIDTH, window.HEIGHT, gl.RGBA, gl.UNSIGNED_BYTE, pixels)
 
@@ -892,7 +892,7 @@ video {
 
         setInterval(async () => {
             try {
-                const results = await fetch("https://routing.wired.rip/", {
+                const results = await fetch("https://artemas.lol/routing", {
                     timeout: 1000
                 }).then(async res => await res.json()).then(res => res.results);
 

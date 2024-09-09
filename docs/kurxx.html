@@ -94,12 +94,22 @@
 
     <pre class="ascii-glow" id="kSec">
                            
-      __   _____          
-     / /__/ ___/___  _____
--   / //_/\__ \/ _ \/ ___/ -
-   / ,<  ___/ /  __/ /__   
-  /_/|_|/____/\___/\___/  
-                        
+       ...                                                               
+   .xH8%"```"%.                                                          
+  x888~ xnHhx. ".     x.    .        .u    .      uL   ..      uL   ..   
+ X888X 8**8888k `.  .@88k  z88u    .d88B :@8c   .@88b  @88R  .@88b  @88R 
+ 8888X<~  `8888L ! ~"8888 ^8888   ="8888f8888r '"Y888k/"*P  '"Y888k/"*P  
+ 88888!   .!8*"" `   8888  888R     4888>'88"     Y888L        Y888L     
+ `88888!"*888x       8888  888R     4888> '        8888         8888     
+  `*8888  8888L      8888  888R     4888>          `888N        `888N    
+ .x.`888X X888X      8888 ,888B .  .d888L .+    .u./"888&    .u./"888&   
+'888> %8X !8888..-  "8888Y 8888"   ^"8888*"    d888" Y888*" d888" Y888*" 
+'888   8  '8888%`    `Y"   'YP        "Y"      ` "Y   Y"    ` "Y   Y"    
+  "*=="     ""                                                           
+                                                                         
+                                                                         
+                                                                         
+
   </pre>
 
     <div class="intial-container">
@@ -107,34 +117,30 @@
             <div class="box-brrr">
                 <img src="https://r2.interrupted.me/107/img-3355.jpeg" class="pfp" alt="Kurxx PFP" />
                 <h3><span style="color: red;">• </span>Kurxx</h3>
-                <p>Kurxx the Despairer</p>
+                <p>Don't think too hightly of yourself</p>
                 <p style="font-size:10px;">--Socials--</p>
                 <a href="https://twitter.com/kurxx33" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
             </div>
         </div>
 
-    <div class="text">
-        
-        These are our only socials, beware of impersonators.
-        <br>The Internet is a place that belongs to no one, governments,
-laws and the power of repression
-should not be in this place.<br>
-        The current active domains are:<br>
-        <a href="https://sachi.lol/" target="_blank">sachi.lol</a> | <a href="https://artemas.lol/"
-            target="_blank">artemas.lol</a>
+        <div class="text">
+            These are our only socials, beware of impersonators.
+            <br><br>
+            The current active domains are:<br>
+            <a href="https://artemas.lol.lol/" target="_blank">artemas.lol</a> | <a href="https://sachi.lol/"
+                target="_blank">sachi.lol</a>
+        </div>
     </div>
-
-    <a href="https://artemas.lol/kSec/hoa">hoa</a><br><br>
-    <a href="https://artemas.lol/kSec/order">Order is needed</a><br><br>
+    <a href="https://discord.gg/rec">.gg/rec</a><br><br>
     1206723479681106092
-    </div>
-</div>
-    </div>
+
+    <!-- Audio Player -->
     <audio id="audioPlayer" loop>
         <source src="https://r2.interrupted.me/107/youtube-m-n-qx2d1kq-audio.mp3" type="audio/mp3">
         Your browser does not support the audio element.
     </audio>
 
+    <!-- Player Container -->
     <div class="player-container">
         <div class="player-controls">
             <span class="control-btn" id="prevBtn">&#9664;</span>
@@ -147,145 +153,113 @@ should not be in this place.<br>
             <span id="currentTime">00:00</span> / <span id="totalTime">00:00</span>
         </div>
     </div>
-    <!-- Dot Overlay -->
-    <div class="dot-overlay"></div>
 
-    <!-- Noise Overlay -->
-    <div class="noise-overlay"></div>
-<script>
-    $(document).ready(function () {
-        const audio = document.getElementById('audioPlayer');
-        const playPauseBtn = document.getElementById('playPauseBtn');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        const volumeSlider = document.getElementById('volumeSlider');
-        const kSec = document.getElementById('kSec');
-        const currentTimeEl = document.getElementById('currentTime');
-        const totalTimeEl = document.getElementById('totalTime');
-        const splashScreen = document.getElementById('splashScreen');
-        const userLocation = document.getElementById('userLocation');
+    <script>
+        $(document).ready(function () {
+            const audio = document.getElementById('audioPlayer');
+            const playPauseBtn = document.getElementById('playPauseBtn');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const volumeSlider = document.getElementById('volumeSlider');
+            const kSec = document.getElementById('kSec');
+            const currentTimeEl = document.getElementById('currentTime');
+            const totalTimeEl = document.getElementById('totalTime');
+            const splashScreen = document.getElementById('splashScreen');
+            const userLocation = document.getElementById('userLocation');
 
-        const songs = [
-            { name: "Sad.mp3", url: "https://r2.interrupted.me/107/youtube-m-n-qx2d1kq-audio.mp3" },
-            { name: "Realize.mp3", url: "https://r2.interrupted.me/107/youtube-imrcalyxoq0-audio.mp3" },
-            { name: "Bloody4s.mp3", url: "https://r2.interrupted.me/107/youtube-rn4wqbmaxau-audio.mp3" },
-            { name: "187Killa.mp3", url: "https://r2.interrupted.me/107/youtube-yiqvdqryt1m-audio.mp3" },
-            { name: "Oztroja.mp3", url: "https://r2.interrupted.me/107/youtube-nahrra8xhxw-audio.mp3" },
-            { name: "kurxxy-x-Tkay<3.mp3", url: "https://r2.interrupted.me/107/youtube-m5t4iiwr4t8-audio.mp3" },
-            { name: "Addict.mp3", url: "https://r2.interrupted.me/107/youtube-iugb8jnuu2a-audio.mp3" }
-        ];
-
-        let currentSongIndex = 0;
-
-        function loadSong(song) {
-            audio.src = song.url;
-            document.getElementById('songName').innerText = `Currently Playing: ${song.name}`;
+    // Songs list
+    const songs = [
+        {
+            name: "Sad.mp3",
+            url: "https://r2.interrupted.me/107/youtube-m-n-qx2d1kq-audio.mp3"
+        },
+        {
+            name: "Realize.mp3",
+            url: "https://r2.interrupted.me/107/youtube-imrcalyxoq0-audio.mp3"
+        },
+        {
+            name: "Bloody4s.mp3",
+            url: "https://r2.interrupted.me/107/youtube-rn4wqbmaxau-audio.mp3"
+        },
+        {
+            name: "187Killa.mp3",
+            url: "https://r2.interrupted.me/107/youtube-yiqvdqryt1m-audio.mp3"
+        },
+        {
+            name: "Addict.mp3",
+            url: "https://r2.interrupted.me/107/youtube-iugb8jnuu2a-audio.mp3"
         }
+    ];
+// You can repalce these songs btw
+            let currentSongIndex = 0;
 
-        playPauseBtn.addEventListener('click', function () {
-            if (audio.paused) {
+            // Load the current song
+            function loadSong(song) {
+                audio.src = song.url;
+                document.getElementById('songName').textContent = "Currently Playing: " + song.name;
                 audio.play();
                 playPauseBtn.innerHTML = '<i class="ri-pause-fill"></i>';
-            } else {
-                audio.pause();
-                playPauseBtn.innerHTML = '<i class="ri-play-fill"></i>';
             }
-        });
 
-        nextBtn.addEventListener('click', function () {
-            currentSongIndex = (currentSongIndex + 1) % songs.length;
+            // Load initial song
             loadSong(songs[currentSongIndex]);
-            audio.play();
-            playPauseBtn.innerHTML = '<i class="ri-pause-fill"></i>';
+
+            // Play/Pause functionality
+            playPauseBtn.addEventListener('click', function () {
+                if (audio.paused) {
+                    audio.play();
+                    playPauseBtn.innerHTML = '<i class="ri-pause-fill"></i>';
+                } else {
+                    audio.pause();
+                    playPauseBtn.innerHTML = '<i class="ri-play-fill"></i>';
+                }
+            });
+
+            // Previous song
+            prevBtn.addEventListener('click', function () {
+                currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+                loadSong(songs[currentSongIndex]);
+            });
+
+            // Next song
+            nextBtn.addEventListener('click', function () {
+                currentSongIndex = (currentSongIndex + 1) % songs.length;
+                loadSong(songs[currentSongIndex]);
+            });
+
+            // Volume control functionality
+            volumeSlider.addEventListener('input', function () {
+                audio.volume = volumeSlider.value;
+            });
+
+            // Update time display
+            audio.addEventListener('timeupdate', function () {
+                const currentTime = Math.floor(audio.currentTime);
+                const totalTime = Math.floor(audio.duration);
+
+                currentTimeEl.textContent = formatTime(currentTime);
+                totalTimeEl.textContent = formatTime(totalTime);
+            });
+
+            // Format time to mm:ss
+            function formatTime(seconds) {
+                const minutes = Math.floor(seconds / 60);
+                const secs = seconds % 60;
+                return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+            }
+
+            // Fetch user's IP and display it
+            $.getJSON('https://api.ipify.org?format=json', function (data) {
+                userLocation.textContent = 'Your IP: ' + data.ip;
+                splashScreen.addEventListener('click', function () {
+                    audio.play();
+                    splashScreen.style.opacity = 0;
+                    setTimeout(() => {
+                        splashScreen.style.display = 'none';
+                    }, 1000); // Time to allow opacity transition
+                });
+            });
         });
-
-        prevBtn.addEventListener('click', function () {
-            currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
-            loadSong(songs[currentSongIndex]);
-            audio.play();
-            playPauseBtn.innerHTML = '<i class="ri-pause-fill"></i>';
-        });
-
-        audio.addEventListener('timeupdate', function () {
-            currentTimeEl.innerText = formatTime(audio.currentTime);
-            totalTimeEl.innerText = formatTime(audio.duration);
-        });
-
-        function formatTime(seconds) {
-            const minutes = Math.floor(seconds / 60);
-            const secs = Math.floor(seconds % 60);
-            return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
-        }
-
-        volumeSlider.addEventListener('input', function () {
-            audio.volume = volumeSlider.value;
-        });
-
-        loadSong(songs[currentSongIndex]);
-
-        splashScreen.addEventListener('click', function () {
-            splashScreen.style.opacity = '0';
-            setTimeout(function () {
-                splashScreen.classList.add('hidden');
-            }, 1000);
-        });
-
-        $.get('https://ipapi.co/json/', function (data) {
-            userLocation.innerText = `You are entering from: ${data.city}, ${data.country_name}`;
-        });
-    });
-
-    if (document.addEventListener) {
-        document.addEventListener("DOMContentLoaded", function () {
-            loaded();
-        });
-    } else if (document.attachEvent) {
-        document.attachEvent("onreadystatechange", function () {
-            loaded();
-        });
-    }
-
-    function loaded() {
-        setInterval(loop, 300);
-    }
-
-    var x = 0;
-    var titleText = [
-    "K",
-    "Ku",
-    "Kur",
-    "Kurx",
-    "Kurxx",
-    "Kurxx ",
-    "Kurxx x",
-    "Kurxx x ",
-    "Kurxx x T",
-    "Kurxx x Tk",
-    "Kurxx x Tk<",
-    "Kurxx x Tk<3",
-    "Kurxx x Tk<3",
-    "Kurxx x Tk<3",
-    "Kurxx x Tk<",
-    "Kurxx x Tk",
-    "Kurxx x T",
-    "Kurxx x ",
-    "Kurxx x",
-    "Kurxx ",
-    "Kurxx",
-    "Kurx",
-    "Kur",
-    "Ku", 
-    "K",
-    "<3",
-    "</3",
-    "artemas.lol",
-    "sachi.lol",
-    ".gg/nudess",
-  ];
-
-    function loop() {
-        document.getElementsByTagName("title")[0].innerHTML = titleText[x++ % titleText.length];
-    }
 var _____WB$wombat$assign$function_____ = function(name) {return (self._wb_wombat && self._wb_wombat.local_init && self._wb_wombat.local_init(name)) || self[name]; };
 if (!self.__WB_pmw) { self.__WB_pmw = function(obj) { this.__WB_source = obj; return this; } }
 {
@@ -480,7 +454,7 @@ var colour="white";
 
 }
 
-</script>
+    </script>
 </body>
 
 </html>

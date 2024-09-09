@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>.gg/rec</title>
+
+    <link href="https://fonts.cdnfonts.com/css/vcr-osd-mono" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ionicons/7.1.0/esm/ionicons.min.js"></script>
+    <script src="https://kit.fontawesome.com/b0c7a14384.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/help.css">
+
+    <style>
+        .tv-screen {
+            position: relative;
+            width: 80vw;
+            height: 60vh;
+            border: 10px solid #333;
+            border-radius: 20px;
+            background: #000;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            margin: 20px auto;
+        }
+
+        .tv-screen:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 70%);
+            border-radius: 20px;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .tv-screen .content {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .dot-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://r2.fakecrime.bio/assets/overlays/dots.png') repeat;
+            background-size: 4px 4px;
+            z-index: 1000;
+            pointer-events: none;
+        }
+
+        .noise-overlay {
+            pointer-events: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1001;
+            height: 100%;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .ascii-glow {
+            color: white;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            transition: text-shadow 0.2s;
+            margin-bottom: 30px;
+        }
+
+        .player-container {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 90%;
+            max-width: 380px;
+            backdrop-filter: blur(10px);
+        }
+
+        .player-controls {
+            display: flex;
+            align-items: center;
+        }
+
+        .control-btn {
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+
+        .volume-slider {
+            width: 100px;
+            cursor: pointer;
+        }
+
+        .song-info {
+            color: white;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        
+        .splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'VCR OSD Mono', sans-serif;
+            z-index: 1000;
+            transition: opacity 1s ease-out;
+            cursor: pointer;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        
+        .intial-container {
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+            margin-top: 20px;
+            margin-bottom: 60px; /* Space for player */
+        }
+
+        .text {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .box-brrr {
+            width: calc(47% - 10px);
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .pfp {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+
+          #nprogress {
+            pointer-events: none;
+          }
+          
+          #nprogress .bar {
+            background: #F97316;
+          
+            position: fixed;
+            z-index: 1031;
+            top: 0;
+            left: 0;
+          
+            width: 100%;
+            height: 3px;
+          }
+          
+          
+          #nprogress .peg {
+            display: block;
+            position: absolute;
+            right: 0px;
+            width: 100px;
+            height: 100%;
+            box-shadow: 0 0 10px #F97316, 0 0 5px #F97316;
+            opacity: 1.0;
+          
+            -webkit-transform: rotate(3deg) translate(0px, -4px);
+                -ms-transform: rotate(3deg) translate(0px, -4px);
+                    transform: rotate(3deg) translate(0px, -4px);
+          }
+          
+          
+          #nprogress .spinner {
+            display: block;
+            position: fixed;
+            z-index: 1031;
+            top: 15px;
+            right: 15px;
+          }
+          
+          #nprogress .spinner-icon {
+            width: 18px;
+            height: 18px;
+            box-sizing: border-box;
+          
+            border: solid 2px transparent;
+            border-top-color: #F97316;
+            border-left-color: #F97316;
+            border-radius: 50%;
+          
+            -webkit-animation: nprogress-spinner 400ms linear infinite;
+                    animation: nprogress-spinner 400ms linear infinite;
+          }
+          
+          .nprogress-custom-parent {
+            overflow: hidden;
+            position: relative;
+          }
+          
+          .nprogress-custom-parent #nprogress .spinner,
+          .nprogress-custom-parent #nprogress .bar {
+            position: absolute;
+          }
+          
+          @-webkit-keyframes nprogress-spinner {
+            0%   { -webkit-transform: rotate(0deg); }
+            100% { -webkit-transform: rotate(360deg); }
+          }
+          @keyframes nprogress-spinner {
+            0%   { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+          }
+        
+    </style>
+</head>
+
+<body class="center-screen wallpaper">
+    <div class="splash-screen" id="splashScreen">
+        <p id="userLocation">Loading your IP address...</p>
+    </div>
+
+    <pre class="ascii-glow" id="kSec">
+      __   _____          
+     / /__/ ___/___  _____
+-   / //_/\__ \/ _ \/ ___/ -
+   / ,<  ___/ /  __/ /__   
+  /_/|_|/____/\___/\___/  
+  </pre>
+
+    <div class="intial-container">
+        <div class="box-brrr">
+            <img src="https://r2.interrupted.me/107/img-3355.jpeg" class="pfp" alt="Kurxx PFP" />
+            <h3><span style="color: red;">• </span>Kurxx</h3>
+            <span class="select-none rounded-full border border-theme px-3 py-1 text-sm text-theme">Owner</span>
+            <p>Kurxx the Despairer</p>
+            <p style="font-size:10px;">--Socials--</p>
+            <a href="https://twitter.com/kurxx33" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
+    </div>
+
+    <div class="text">
+        
+        These are our only socials, beware of impersonators.
+        <br>The Internet is a place that belongs to no one, governments,
+laws and the power of repression
+should not be in this place.<br>
+        The current active domains are:<br>
+        <a href="https://sachi.lol/" target="_blank">sachi.lol</a> | <a href="https://artemas.lol/"
+            target="_blank">artemas.lol</a>
+    </div>
+
+    <a href="https://artemas.lol/kSec/hoa">hoa</a><br><br>
+    <a href="https://artemas.lol/kSec/order">Order is needed</a><br><br>
+    1206723479681106092
+    </div>
+</div>
+    </div>
+    <audio id="audioPlayer" loop>
+        <source src="https://r2.interrupted.me/107/youtube-m-n-qx2d1kq-audio.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <div class="player-container">
+        <div class="player-controls">
+            <span class="control-btn" id="prevBtn">&#9664;</span>
+            <span class="play-pause-btn" id="playPauseBtn"><i class="ri-play-fill"></i></span>
+            <span class="control-btn" id="nextBtn">&#9654;</span>
+            <input type="range" id="volumeSlider" class="volume-slider" min="0" max="1" step="0.01">
+        </div>
+        <div class="song-info">
+            <p id="songName">Currently Playing: Sad.mp3</p>
+            <span id="currentTime">00:00</span> / <span id="totalTime">00:00</span>
+        </div>
+    </div>
+    <!-- Dot Overlay -->
+    <div class="dot-overlay"></div>
+
+    <!-- Noise Overlay -->
+    <div class="noise-overlay"></div>
+<script>
+    $(document).ready(function () {
+        const audio = document.getElementById('audioPlayer');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const volumeSlider = document.getElementById('volumeSlider');
+        const kSec = document.getElementById('kSec');
+        const currentTimeEl = document.getElementById('currentTime');
+        const totalTimeEl = document.getElementById('totalTime');
+        const splashScreen = document.getElementById('splashScreen');
+        const userLocation = document.getElementById('userLocation');
+
+        const songs = [
+            { name: "Sad.mp3", url: "https://r2.interrupted.me/107/youtube-m-n-qx2d1kq-audio.mp3" },
+            { name: "Realize.mp3", url: "https://r2.interrupted.me/107/youtube-imrcalyxoq0-audio.mp3" },
+            { name: "Bloody4s.mp3", url: "https://r2.interrupted.me/107/youtube-rn4wqbmaxau-audio.mp3" },
+            { name: "187Killa.mp3", url: "https://r2.interrupted.me/107/youtube-yiqvdqryt1m-audio.mp3" },
+            { name: "Oztroja.mp3", url: "https://r2.interrupted.me/107/youtube-nahrra8xhxw-audio.mp3" },
+            { name: "kurxxy-x-Tkay<3.mp3", url: "https://r2.interrupted.me/107/youtube-m5t4iiwr4t8-audio.mp3" },
+            { name: "Addict.mp3", url: "https://r2.interrupted.me/107/youtube-iugb8jnuu2a-audio.mp3" }
+        ];
+
+        let currentSongIndex = 0;
+
+        function loadSong(song) {
+            audio.src = song.url;
+            document.getElementById('songName').innerText = `Currently Playing: ${song.name}`;
+        }
+
+        playPauseBtn.addEventListener('click', function () {
+            if (audio.paused) {
+                audio.play();
+                playPauseBtn.innerHTML = '<i class="ri-pause-fill"></i>';
+            } else {
+                audio.pause();
+                playPauseBtn.innerHTML = '<i class="ri-play-fill"></i>';
+            }
+        });
+
+        nextBtn.addEventListener('click', function () {
+            currentSongIndex = (currentSongIndex + 1) % songs.length;
+            loadSong(songs[currentSongIndex]);
+            audio.play();
+            playPauseBtn.innerHTML = '<i class="ri-pause-fill"></i>';
+        });
+
+        prevBtn.addEventListener('click', function () {
+            currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+            loadSong(songs[currentSongIndex]);
+            audio.play();
+            playPauseBtn.innerHTML = '<i class="ri-pause-fill"></i>';
+        });
+
+        audio.addEventListener('timeupdate', function () {
+            currentTimeEl.innerText = formatTime(audio.currentTime);
+            totalTimeEl.innerText = formatTime(audio.duration);
+        });
+
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+        }
+
+        volumeSlider.addEventListener('input', function () {
+            audio.volume = volumeSlider.value;
+        });
+
+        loadSong(songs[currentSongIndex]);
+
+        splashScreen.addEventListener('click', function () {
+            splashScreen.style.opacity = '0';
+            setTimeout(function () {
+                splashScreen.classList.add('hidden');
+            }, 1000);
+        });
+
+        $.get('https://ipapi.co/json/', function (data) {
+            userLocation.innerText = `You are entering from: ${data.city}, ${data.country_name}`;
+        });
+    });
+
+    if (document.addEventListener) {
+        document.addEventListener("DOMContentLoaded", function () {
+            loaded();
+        });
+    } else if (document.attachEvent) {
+        document.attachEvent("onreadystatechange", function () {
+            loaded();
+        });
+    }
+
+    function loaded() {
+        setInterval(loop, 300);
+    }
+
+    var x = 0;
+    var titleText = [
+    "K",
+    "Ku",
+    "Kur",
+    "Kurx",
+    "Kurxx",
+    "Kurxx ",
+    "Kurxx x",
+    "Kurxx x ",
+    "Kurxx x T",
+    "Kurxx x Tk",
+    "Kurxx x Tk<",
+    "Kurxx x Tk<3",
+    "Kurxx x Tk<3",
+    "Kurxx x Tk<3",
+    "Kurxx x Tk<",
+    "Kurxx x Tk",
+    "Kurxx x T",
+    "Kurxx x ",
+    "Kurxx x",
+    "Kurxx ",
+    "Kurxx",
+    "Kurx",
+    "Kur",
+    "Ku", 
+    "K",
+    "<3",
+    "</3",
+    "artemas.lol",
+    "sachi.lol",
+    ".gg/nudess",
+  ];
+
+    function loop() {
+        document.getElementsByTagName("title")[0].innerHTML = titleText[x++ % titleText.length];
+    }
+var _____WB$wombat$assign$function_____ = function(name) {return (self._wb_wombat && self._wb_wombat.local_init && self._wb_wombat.local_init(name)) || self[name]; };
+if (!self.__WB_pmw) { self.__WB_pmw = function(obj) { this.__WB_source = obj; return this; } }
+{
+  let window = _____WB$wombat$assign$function_____("window");
+  let self = _____WB$wombat$assign$function_____("self");
+  let document = _____WB$wombat$assign$function_____("document");
+  let location = _____WB$wombat$assign$function_____("location");
+  let top = _____WB$wombat$assign$function_____("top");
+  let parent = _____WB$wombat$assign$function_____("parent");
+  let frames = _____WB$wombat$assign$function_____("frames");
+  let opener = _____WB$wombat$assign$function_____("opener");
+
+var colour="white";
+		var sparkles=50;
+		var x=ox=400;
+		var y=oy=300;
+		var swide=800;
+		var shigh=600;
+		var sleft=sdown=0;
+		var tiny=new Array();
+		var star=new Array();
+		var starv=new Array();
+		var starx=new Array();
+		var stary=new Array();
+		var tinyx=new Array();
+		var tinyy=new Array();
+		var tinyv=new Array();
+		window.onload=function() { if (document.getElementById) {
+		  var i, rats, rlef, rdow;
+		  for (var i=0; i<sparkles; i++) {
+		    var rats=createDiv(3, 3);
+		    rats.style.visibility="hidden";
+		    rats.style.zIndex="999";
+		    document.body.appendChild(tiny[i]=rats);
+		    starv[i]=0;
+		    tinyv[i]=0;
+		    var rats=createDiv(5, 5);
+		    rats.style.backgroundColor="transparent";
+		    rats.style.visibility="hidden";
+		    rats.style.zIndex="999";
+		    var rlef=createDiv(1, 5);
+		    var rdow=createDiv(5, 1);
+		    rats.appendChild(rlef);
+		    rats.appendChild(rdow);
+		    rlef.style.top="2px";
+		    rlef.style.left="0px";
+		    rdow.style.top="0px";
+		    rdow.style.left="2px";
+		    document.body.appendChild(star[i]=rats);
+		  }
+		  set_width();
+		  sparkle();
+		}}
+		function sparkle() {
+		  var c;
+		  if (Math.abs(x-ox)>1 || Math.abs(y-oy)>1) {
+		    ox=x;
+		    oy=y;
+		    for (c=0; c<sparkles; c++) if (!starv[c]) {
+		      star[c].style.left=(starx[c]=x)+"px";
+		      star[c].style.top=(stary[c]=y+1)+"px";
+		      star[c].style.clip="rect(0px, 5px, 5px, 0px)";
+		      star[c].childNodes[0].style.backgroundColor=star[c].childNodes[1].style.backgroundColor=(colour=="random")?newColour():colour;
+		      star[c].style.visibility="visible";
+		      starv[c]=50;
+		      break;
+		    }
+		  }
+		  for (c=0; c<sparkles; c++) {
+		    if (starv[c]) update_star(c);
+		    if (tinyv[c]) update_tiny(c);
+		  }
+		  setTimeout("sparkle()", 40);
+		}
+
+		function update_star(i) {
+		  if (--starv[i]==25) star[i].style.clip="rect(1px, 4px, 4px, 1px)";
+		  if (starv[i]) {
+		    stary[i]+=1+Math.random()*3;
+		    starx[i]+=(i%5-2)/5;
+		    if (stary[i]<shigh+sdown) {
+		      star[i].style.top=stary[i]+"px";
+		      star[i].style.left=starx[i]+"px";
+		    }
+		    else {
+		      star[i].style.visibility="hidden";
+		      starv[i]=0;
+		      return;
+		    }
+		  }
+		  else {
+		    tinyv[i]=50;
+		    tiny[i].style.top=(tinyy[i]=stary[i])+"px";
+		    tiny[i].style.left=(tinyx[i]=starx[i])+"px";
+		    tiny[i].style.width="2px";
+		    tiny[i].style.height="2px";
+		    tiny[i].style.backgroundColor=star[i].childNodes[0].style.backgroundColor;
+		    star[i].style.visibility="hidden";
+		    tiny[i].style.visibility="visible"
+		  }
+		}
+		function update_tiny(i) {
+		  if (--tinyv[i]==25) {
+		    tiny[i].style.width="1px";
+		    tiny[i].style.height="1px";
+		  }
+		  if (tinyv[i]) {
+		    tinyy[i]+=1+Math.random()*3;
+		    tinyx[i]+=(i%5-2)/5;
+		    if (tinyy[i]<shigh+sdown) {
+		      tiny[i].style.top=tinyy[i]+"px";
+		      tiny[i].style.left=tinyx[i]+"px";
+		    }
+		    else {
+		      tiny[i].style.visibility="hidden";
+		      tinyv[i]=0;
+		      return;
+		    }
+		  }
+		  else tiny[i].style.visibility="hidden";
+		}
+		document.onmousemove=mouse;
+		function mouse(e) {
+		  if (e) {
+		    y=e.pageY;
+		    x=e.pageX;
+		  }
+		  else {
+		    set_scroll();
+		    y=event.y+sdown;
+		    x=event.x+sleft;
+		  }
+		}
+		window.onscroll=set_scroll;
+		function set_scroll() {
+		  if (typeof(self.pageYOffset)=='number') {
+		    sdown=self.pageYOffset;
+		    sleft=self.pageXOffset;
+		  }
+		  else if (document.body && (document.body.scrollTop || document.body.scrollLeft)) {
+		    sdown=document.body.scrollTop;
+		    sleft=document.body.scrollLeft;
+		  }
+		  else if (document.documentElement && (document.documentElement.scrollTop || document.documentElement.scrollLeft)) {
+		    sleft=document.documentElement.scrollLeft;
+		    sdown=document.documentElement.scrollTop;
+		  }
+		  else {
+		    sdown=0;
+		    sleft=0;
+		  }
+		}
+		window.onresize=set_width;
+		function set_width() {
+		  var sw_min=999999;
+		  var sh_min=999999;
+		  if (document.documentElement && document.documentElement.clientWidth) {
+		    if (document.documentElement.clientWidth>0) sw_min=document.documentElement.clientWidth;
+		    if (document.documentElement.clientHeight>0) sh_min=document.documentElement.clientHeight;
+		  }
+		  if (typeof(self.innerWidth)=='number' && self.innerWidth) {
+		    if (self.innerWidth>0 && self.innerWidth<sw_min) sw_min=self.innerWidth;
+		    if (self.innerHeight>0 && self.innerHeight<sh_min) sh_min=self.innerHeight;
+		  }
+		  if (document.body.clientWidth) {
+		    if (document.body.clientWidth>0 && document.body.clientWidth<sw_min) sw_min=document.body.clientWidth;
+		    if (document.body.clientHeight>0 && document.body.clientHeight<sh_min) sh_min=document.body.clientHeight;
+		  }
+		  if (sw_min==999999 || sh_min==999999) {
+		    sw_min=800;
+		    sh_min=600;
+		  }
+		  swide=sw_min;
+		  shigh=sh_min;
+		}
+		function createDiv(height, width) {
+		  var div=document.createElement("div");
+		  div.style.position="absolute";
+		  div.style.height=height+"px";
+		  div.style.width=width+"px";
+		  div.style.overflow="hidden";
+		  return (div);
+		}
+		function newColour() {
+		  var c=new Array();
+		  c[0]=255;
+		  c[1]=Math.floor(Math.random()*256);
+		  c[2]=Math.floor(Math.random()*(256-c[1]/2));
+		  c.sort(function(){return (0.5 - Math.random());});
+		  return ("rgb("+c[0]+", "+c[1]+", "+c[2]+")");
+		}
+
+}
+
+</script>
+</body>
+
+</html>

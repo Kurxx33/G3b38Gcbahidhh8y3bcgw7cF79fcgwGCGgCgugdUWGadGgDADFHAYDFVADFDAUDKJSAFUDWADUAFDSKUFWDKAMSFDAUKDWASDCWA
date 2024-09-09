@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>.gg/nudess</title>
+
+    <link href="https://fonts.cdnfonts.com/css/vcr-osd-mono" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ionicons/7.1.0/esm/ionicons.min.js"></script>
+    <script src="https://kit.fontawesome.com/b0c7a14384.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/help.css">
+
+    <style>
+        /* Style for the ASCII art glow */
+        .ascii-glow {
+            color: white;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            transition: text-shadow 0.2s;
+        }
+
+        /* Style for the player container */
+        .player-container {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 90%;
+            max-width: 400px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Player controls */
+        .player-controls {
+            display: flex;
+            align-items: center;
+        }
+
+        .control-btn {
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+
+        .volume-slider {
+            width: 100px;
+            cursor: pointer;
+        }
+
+        .song-info {
+            color: white;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        /* Splash screen styles */
+        .splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'VCR OSD Mono', sans-serif;
+            z-index: 1000;
+            transition: opacity 1s ease-out;
+            cursor: pointer; /* Allows clicking to hide splash screen */
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="center-screen wallpaper">
+    <div class="splash-screen" id="splashScreen">
+        <p id="userLocation">Loading your IP address...</p>
+    </div>
+
+    <pre class="ascii-glow" id="kSec">
+                           
+      __   _____          
+     / /__/ ___/___  _____
+-   / //_/\__ \/ _ \/ ___/ -
+   / ,<  ___/ /  __/ /__   
+  /_/|_|/____/\___/\___/  
+                        
+  </pre>
+
+    <div class="intial-container">
+        <div class="box-contain">
+            <div class="box-brrr">
+                <img src="https://r2.interrupted.me/107/img-3355.jpeg" class="pfp" alt="Kurxx PFP" />
+                <h3><span style="color: red;">• </span>Kurxx</h3>
+                <p>Kurxx the Despairer</p>
+                <p style="font-size:10px;">--Socials--</p>
+                <a href="https://twitter.com/kurxx33" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+            </div>
+        </div>
+
+        <div class="text">
+            These are our only socials, beware of impersonators.
+            <br><br>
+            The current active domains are:<br>
+            <a href="https://sachi.lol/" target="_blank">sachi.lol</a> | <a href="https://artemas.lol/"
+                target="_blank">artemas.lol</a>
+        </div>
+    </div>
+    <a href="https://discord.com/@1206723479681106092">Discord</a><br><br>
+    1206723479681106092
+
+    <!-- Audio Player -->
+    <audio id="audioPlayer" loop>
+        <source src="https://r2.interrupted.me/107/youtube-m-n-qx2d1kq-audio.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Player Container -->
+    <div class="player-container">
+        <div class="player-controls">
+            <span class="control-btn" id="prevBtn">&#9664;</span>
+            <span class="play-pause-btn" id="playPauseBtn"><i class="ri-play-fill"></i></span>
+            <span class="control-btn" id="nextBtn">&#9654;</span>
+            <input type="range" id="volumeSlider" class="volume-slider" min="0" max="1" step="0.01">
+        </div>
+        <div class="song-info">
+            <p id="songName">Currently Playing: Sad.mp3</p>
+            <span id="currentTime">00:00</span> / <span id="totalTime">00:00</span>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            const audio = document.getElementById('audioPlayer');
+            const playPauseBtn = document.getElementById('playPauseBtn');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const volumeSlider = document.getElementById('volumeSlider');
+            const kSec = document.getElementById('kSec');
+            const currentTimeEl = document.getElementById('currentTime');
+            const totalTimeEl = document.getElementById('totalTime');
+            const splashScreen = document.getElementById('splashScreen');
+            const userLocation = document.getElementById('userLocation');
+
+    // Songs list
+    const songs = [
+        {
+            name: "Sad.mp3",
+            url: "https://r2.interrupted.me/107/youtube-m-n-qx2d1kq-audio.mp3"
+        },
+        {
+            name: "Realize.mp3",
+            url: "https://r2.interrupted.me/107/youtube-imrcalyxoq0-audio.mp3"
+        },
+        {
+            name: "Bloody4s.mp3",
+            url: "https://r2.interrupted.me/107/youtube-rn4wqbmaxau-audio.mp3"
+        },
+        {
+            name: "187Killa.mp3",
+            url: "https://r2.interrupted.me/107/youtube-yiqvdqryt1m-audio.mp3"
+        },
+        {
+            name: "Addict.mp3",
+            url: "https://r2.interrupted.me/107/youtube-iugb8jnuu2a-audio.mp3"
+        }
+    ];
+
+            let currentSongIndex = 0;
+
+            // Load the current song
+            function loadSong(song) {
+                audio.src = song.url;
+                document.getElementById('songName').textContent = "Currently Playing: " + song.name;
+                audio.play();
+                playPauseBtn.innerHTML = '<i class="ri-pause-fill"></i>';
+            }
+
+            // Load initial song
+            loadSong(songs[currentSongIndex]);
+
+            // Play/Pause functionality
+            playPauseBtn.addEventListener('click', function () {
+                if (audio.paused) {
+                    audio.play();
+                    playPauseBtn.innerHTML = '<i class="ri-pause-fill"></i>';
+                } else {
+                    audio.pause();
+                    playPauseBtn.innerHTML = '<i class="ri-play-fill"></i>';
+                }
+            });
+
+            // Previous song
+            prevBtn.addEventListener('click', function () {
+                currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+                loadSong(songs[currentSongIndex]);
+            });
+
+            // Next song
+            nextBtn.addEventListener('click', function () {
+                currentSongIndex = (currentSongIndex + 1) % songs.length;
+                loadSong(songs[currentSongIndex]);
+            });
+
+            // Volume control functionality
+            volumeSlider.addEventListener('input', function () {
+                audio.volume = volumeSlider.value;
+            });
+
+            // Update time display
+            audio.addEventListener('timeupdate', function () {
+                const currentTime = Math.floor(audio.currentTime);
+                const totalTime = Math.floor(audio.duration);
+
+                currentTimeEl.textContent = formatTime(currentTime);
+                totalTimeEl.textContent = formatTime(totalTime);
+            });
+
+            // Format time to mm:ss
+            function formatTime(seconds) {
+                const minutes = Math.floor(seconds / 60);
+                const secs = seconds % 60;
+                return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+            }
+
+            // Fetch user's IP and display it
+            $.getJSON('https://api.ipify.org?format=json', function (data) {
+                userLocation.textContent = 'Your IP: ' + data.ip;
+                splashScreen.addEventListener('click', function () {
+                    audio.play();
+                    splashScreen.style.opacity = 0;
+                    setTimeout(() => {
+                        splashScreen.style.display = 'none';
+                    }, 1000); // Time to allow opacity transition
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

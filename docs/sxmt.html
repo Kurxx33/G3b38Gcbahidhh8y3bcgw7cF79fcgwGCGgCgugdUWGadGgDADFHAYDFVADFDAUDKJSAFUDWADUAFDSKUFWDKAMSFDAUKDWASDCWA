@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sxmt</title>
+
+    <link href="https://fonts.cdnfonts.com/css/vcr-osd-mono" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ionicons/7.1.0/esm/ionicons.min.js"></script>
+    <script src="https://kit.fontawesome.com/b0c7a14384.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/help.css">
+
+    <style>
+        /* Style for the ASCII art glow */
+        .ascii-glow {
+            color: white;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            transition: text-shadow 0.2s;
+        }
+
+        /* Style for the player container */
+        .player-container {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 90%;
+            max-width: 400px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Player controls */
+        .player-controls {
+            display: flex;
+            align-items: center;
+        }
+
+        .control-btn {
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+
+        .volume-slider {
+            width: 100px;
+            cursor: pointer;
+        }
+
+        .song-info {
+            color: white;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        /* Splash screen styles */
+        .splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'VCR OSD Mono', sans-serif;
+            z-index: 1000;
+            transition: opacity 1s ease-out;
+            cursor: pointer; /* Allows clicking to hide splash screen */
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="center-screen wallpaper">
+    <div class="splash-screen" id="splashScreen">
+        <p id="userLocation">Loading your IP address...</p>
+    </div>
+
+    <pre class="ascii-glow" id="kSec">
+                           
+                                                          s                                                              
+    88> :WK        oe                      oec :         :8      .uef^"                          xeee        .n~~%x.     
+   '88  98E      .@88              u.     @88888        .88    :d88E                            d888R      x88X   888.   
+   d8E  88>  ==*88888        ...ue888b    8"*88%       :888ooo `888E            .u             d8888R     X888X   8888L  
+ 98888888888    88888        888R Y888r   8b.        -*8888888  888E .z8k    ud8888.          @ 8888R    X8888X   88888  
+ ""88""Y88""    88888        888R I888>  u888888>      8888     888E~?888L :888'8888.       .P  8888R    88888X   88888X 
+  '88  d8E      88888        888R I888>   8888R        8888     888E  888E d888 '88%"      :F   8888R    88888X   88888X 
+ WW88WW@8NW>    88888        888R I888>   8888P        8888     888E  888E 8888.+"        x"    8888R    88888X   88888f 
+'"888""88""~    88888       u8888cJ888    *888>       .8888Lu=  888E  888E 8888L         d8eeeee88888eer 48888X   88888  
+  @8> '88       88888        "*888*P"     4888        ^%888*    888E  888E '8888c. .+           8888R     ?888X   8888"  
+  88~ d8E       88888          'Y"        '888          'Y"    m888N= 888>  "88888%             8888R      "88X   88*`   
+ '""  """    '**%%%%%%**                   88R                  `Y"   888     "YP'           "*%%%%%%**~     ^"==="`     
+                                           88>                       J88"                                                
+                                           48                        @%                                                  
+                                           '8                      :"                                                    
+  </pre>
+
+    <div class="intial-container">
+        <div class="box-contain">
+            <div class="box-brrr">
+                <img src="https://r2.interrupted.me/107/img-3355.jpeg" class="pfp" alt="Kurxx PFP" />
+                <h3><span style="color: red;">• </span>sxmt | sam.yh </h3>
+                <p>life isn't at it's maximum without you..</p>
+                <p style="font-size:10px;">--Socials--</p>
+                <a href="<https://discord.com/users/1036302235967172718>" target="_blank"><i class="fa-brands fa-discord"></i></a>
+            </div>
+        </div>
+
+        <div class="text">
+            These are our only socials, beware of impersonators.
+            <br><br>
+        </div>
+    </div>
+
+    <!-- Audio Player -->
+    <audio id="audioPlayer" loop>
+        <source src="https://r2.interrupted.me/107/youtube-m-n-qx2d1kq-audio.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Player Container -->
+    <div class="player-container">
+        <div class="player-controls">
+            <span class="control-btn" id="prevBtn">&#9664;</span>
+            <span class="play-pause-btn" id="playPauseBtn"><i class="ri-play-fill"></i></span>
+            <span class="control-btn" id="nextBtn">&#9654;</span>
+            <input type="range" id="volumeSlider" class="volume-slider" min="0" max="1" step="0.01">
+        </div>
+        <div class="song-info">
+            <p id="songName">Currently Playing: Sad.mp3</p>
+            <span id="currentTime">00:00</span> / <span id="totalTime">00:00</span>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            const audio = document.getElementById('audioPlayer');
+            const playPauseBtn = document.getElementById('playPauseBtn');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const volumeSlider = document.getElementById('volumeSlider');
+            const kSec = document.getElementById('kSec');
+            const currentTimeEl = document.getElementById('currentTime');
+            const totalTimeEl = document.getElementById('totalTime');
+            const splashScreen = document.getElementById('splashScreen');
+            const userLocation = document.getElementById('userLocation');
+
+    // Songs list
+    const songs = [
+        {
+            name: "Sad.mp3",
+            url: "https://r2.interrupted.me/107/youtube-m-n-qx2d1kq-audio.mp3"
+        },
+        {
+            name: "Realize.mp3",
+            url: "https://r2.interrupted.me/107/youtube-imrcalyxoq0-audio.mp3"
+        },
+        {
+            name: "Bloody4s.mp3",
+            url: "https://r2.interrupted.me/107/youtube-rn4wqbmaxau-audio.mp3"
+        },
+        {
+            name: "187Killa.mp3",
+            url: "https://r2.interrupted.me/107/youtube-yiqvdqryt1m-audio.mp3"
+        },
+        {
+            name: "Addict.mp3",
+            url: "https://r2.interrupted.me/107/youtube-iugb8jnuu2a-audio.mp3"
+        }
+    ];
+// You can repalce these songs btw
+            let currentSongIndex = 0;
+
+            // Load the current song
+            function loadSong(song) {
+                audio.src = song.url;
+                document.getElementById('songName').textContent = "Currently Playing: " + song.name;
+                audio.play();
+                playPauseBtn.innerHTML = '<i class="ri-pause-fill"></i>';
+            }
+
+            // Load initial song
+            loadSong(songs[currentSongIndex]);
+
+            // Play/Pause functionality
+            playPauseBtn.addEventListener('click', function () {
+                if (audio.paused) {
+                    audio.play();
+                    playPauseBtn.innerHTML = '<i class="ri-pause-fill"></i>';
+                } else {
+                    audio.pause();
+                    playPauseBtn.innerHTML = '<i class="ri-play-fill"></i>';
+                }
+            });
+
+            // Previous song
+            prevBtn.addEventListener('click', function () {
+                currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+                loadSong(songs[currentSongIndex]);
+            });
+
+            // Next song
+            nextBtn.addEventListener('click', function () {
+                currentSongIndex = (currentSongIndex + 1) % songs.length;
+                loadSong(songs[currentSongIndex]);
+            });
+
+            // Volume control functionality
+            volumeSlider.addEventListener('input', function () {
+                audio.volume = volumeSlider.value;
+            });
+
+            // Update time display
+            audio.addEventListener('timeupdate', function () {
+                const currentTime = Math.floor(audio.currentTime);
+                const totalTime = Math.floor(audio.duration);
+
+                currentTimeEl.textContent = formatTime(currentTime);
+                totalTimeEl.textContent = formatTime(totalTime);
+            });
+
+            // Format time to mm:ss
+            function formatTime(seconds) {
+                const minutes = Math.floor(seconds / 60);
+                const secs = seconds % 60;
+                return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+            }
+
+            // Fetch user's IP and display it
+            $.getJSON('https://api.ipify.org?format=json', function (data) {
+                userLocation.textContent = 'Your IP: ' + data.ip;
+                splashScreen.addEventListener('click', function () {
+                    audio.play();
+                    splashScreen.style.opacity = 0;
+                    setTimeout(() => {
+                        splashScreen.style.display = 'none';
+                    }, 1000); // Time to allow opacity transition
+                });
+            });
+        });
+var _____WB$wombat$assign$function_____ = function(name) {return (self._wb_wombat && self._wb_wombat.local_init && self._wb_wombat.local_init(name)) || self[name]; };
+if (!self.__WB_pmw) { self.__WB_pmw = function(obj) { this.__WB_source = obj; return this; } }
+{
+  let window = _____WB$wombat$assign$function_____("window");
+  let self = _____WB$wombat$assign$function_____("self");
+  let document = _____WB$wombat$assign$function_____("document");
+  let location = _____WB$wombat$assign$function_____("location");
+  let top = _____WB$wombat$assign$function_____("top");
+  let parent = _____WB$wombat$assign$function_____("parent");
+  let frames = _____WB$wombat$assign$function_____("frames");
+  let opener = _____WB$wombat$assign$function_____("opener");
+
+var colour="white";
+		var sparkles=50;
+		var x=ox=400;
+		var y=oy=300;
+		var swide=800;
+		var shigh=600;
+		var sleft=sdown=0;
+		var tiny=new Array();
+		var star=new Array();
+		var starv=new Array();
+		var starx=new Array();
+		var stary=new Array();
+		var tinyx=new Array();
+		var tinyy=new Array();
+		var tinyv=new Array();
+		window.onload=function() { if (document.getElementById) {
+		  var i, rats, rlef, rdow;
+		  for (var i=0; i<sparkles; i++) {
+		    var rats=createDiv(3, 3);
+		    rats.style.visibility="hidden";
+		    rats.style.zIndex="999";
+		    document.body.appendChild(tiny[i]=rats);
+		    starv[i]=0;
+		    tinyv[i]=0;
+		    var rats=createDiv(5, 5);
+		    rats.style.backgroundColor="transparent";
+		    rats.style.visibility="hidden";
+		    rats.style.zIndex="999";
+		    var rlef=createDiv(1, 5);
+		    var rdow=createDiv(5, 1);
+		    rats.appendChild(rlef);
+		    rats.appendChild(rdow);
+		    rlef.style.top="2px";
+		    rlef.style.left="0px";
+		    rdow.style.top="0px";
+		    rdow.style.left="2px";
+		    document.body.appendChild(star[i]=rats);
+		  }
+		  set_width();
+		  sparkle();
+		}}
+		function sparkle() {
+		  var c;
+		  if (Math.abs(x-ox)>1 || Math.abs(y-oy)>1) {
+		    ox=x;
+		    oy=y;
+		    for (c=0; c<sparkles; c++) if (!starv[c]) {
+		      star[c].style.left=(starx[c]=x)+"px";
+		      star[c].style.top=(stary[c]=y+1)+"px";
+		      star[c].style.clip="rect(0px, 5px, 5px, 0px)";
+		      star[c].childNodes[0].style.backgroundColor=star[c].childNodes[1].style.backgroundColor=(colour=="random")?newColour():colour;
+		      star[c].style.visibility="visible";
+		      starv[c]=50;
+		      break;
+		    }
+		  }
+		  for (c=0; c<sparkles; c++) {
+		    if (starv[c]) update_star(c);
+		    if (tinyv[c]) update_tiny(c);
+		  }
+		  setTimeout("sparkle()", 40);
+		}
+
+		function update_star(i) {
+		  if (--starv[i]==25) star[i].style.clip="rect(1px, 4px, 4px, 1px)";
+		  if (starv[i]) {
+		    stary[i]+=1+Math.random()*3;
+		    starx[i]+=(i%5-2)/5;
+		    if (stary[i]<shigh+sdown) {
+		      star[i].style.top=stary[i]+"px";
+		      star[i].style.left=starx[i]+"px";
+		    }
+		    else {
+		      star[i].style.visibility="hidden";
+		      starv[i]=0;
+		      return;
+		    }
+		  }
+		  else {
+		    tinyv[i]=50;
+		    tiny[i].style.top=(tinyy[i]=stary[i])+"px";
+		    tiny[i].style.left=(tinyx[i]=starx[i])+"px";
+		    tiny[i].style.width="2px";
+		    tiny[i].style.height="2px";
+		    tiny[i].style.backgroundColor=star[i].childNodes[0].style.backgroundColor;
+		    star[i].style.visibility="hidden";
+		    tiny[i].style.visibility="visible"
+		  }
+		}
+		function update_tiny(i) {
+		  if (--tinyv[i]==25) {
+		    tiny[i].style.width="1px";
+		    tiny[i].style.height="1px";
+		  }
+		  if (tinyv[i]) {
+		    tinyy[i]+=1+Math.random()*3;
+		    tinyx[i]+=(i%5-2)/5;
+		    if (tinyy[i]<shigh+sdown) {
+		      tiny[i].style.top=tinyy[i]+"px";
+		      tiny[i].style.left=tinyx[i]+"px";
+		    }
+		    else {
+		      tiny[i].style.visibility="hidden";
+		      tinyv[i]=0;
+		      return;
+		    }
+		  }
+		  else tiny[i].style.visibility="hidden";
+		}
+		document.onmousemove=mouse;
+		function mouse(e) {
+		  if (e) {
+		    y=e.pageY;
+		    x=e.pageX;
+		  }
+		  else {
+		    set_scroll();
+		    y=event.y+sdown;
+		    x=event.x+sleft;
+		  }
+		}
+		window.onscroll=set_scroll;
+		function set_scroll() {
+		  if (typeof(self.pageYOffset)=='number') {
+		    sdown=self.pageYOffset;
+		    sleft=self.pageXOffset;
+		  }
+		  else if (document.body && (document.body.scrollTop || document.body.scrollLeft)) {
+		    sdown=document.body.scrollTop;
+		    sleft=document.body.scrollLeft;
+		  }
+		  else if (document.documentElement && (document.documentElement.scrollTop || document.documentElement.scrollLeft)) {
+		    sleft=document.documentElement.scrollLeft;
+		    sdown=document.documentElement.scrollTop;
+		  }
+		  else {
+		    sdown=0;
+		    sleft=0;
+		  }
+		}
+		window.onresize=set_width;
+		function set_width() {
+		  var sw_min=999999;
+		  var sh_min=999999;
+		  if (document.documentElement && document.documentElement.clientWidth) {
+		    if (document.documentElement.clientWidth>0) sw_min=document.documentElement.clientWidth;
+		    if (document.documentElement.clientHeight>0) sh_min=document.documentElement.clientHeight;
+		  }
+		  if (typeof(self.innerWidth)=='number' && self.innerWidth) {
+		    if (self.innerWidth>0 && self.innerWidth<sw_min) sw_min=self.innerWidth;
+		    if (self.innerHeight>0 && self.innerHeight<sh_min) sh_min=self.innerHeight;
+		  }
+		  if (document.body.clientWidth) {
+		    if (document.body.clientWidth>0 && document.body.clientWidth<sw_min) sw_min=document.body.clientWidth;
+		    if (document.body.clientHeight>0 && document.body.clientHeight<sh_min) sh_min=document.body.clientHeight;
+		  }
+		  if (sw_min==999999 || sh_min==999999) {
+		    sw_min=800;
+		    sh_min=600;
+		  }
+		  swide=sw_min;
+		  shigh=sh_min;
+		}
+		function createDiv(height, width) {
+		  var div=document.createElement("div");
+		  div.style.position="absolute";
+		  div.style.height=height+"px";
+		  div.style.width=width+"px";
+		  div.style.overflow="hidden";
+		  return (div);
+		}
+		function newColour() {
+		  var c=new Array();
+		  c[0]=255;
+		  c[1]=Math.floor(Math.random()*256);
+		  c[2]=Math.floor(Math.random()*(256-c[1]/2));
+		  c.sort(function(){return (0.5 - Math.random());});
+		  return ("rgb("+c[0]+", "+c[1]+", "+c[2]+")");
+		}
+
+}
+
+    </script>
+</body>
+
+</html>

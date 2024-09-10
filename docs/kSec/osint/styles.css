@@ -1,0 +1,70 @@
+body {
+    overflow-x: hidden;
+}
+
+#pop {
+    display: none;
+    position: absolute;
+    z-index: 99999;
+    padding: 10px;
+    background: #6c757d;
+    border: 1px solid #a2adbc;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    margin: 10px;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(164, 164, 164, 1);
+    box-shadow: 0px 0px 5px 0px rgba(164, 164, 164, 1);
+}
+
+.box div {
+    width: 200px;
+    display: inline-block;
+    padding: 5px;
+    margin: 5px;
+    text-align: center;
+    color: #000000;
+    font-family: arial, sans-serif;
+}
+
+.input-group {
+    border-radius: 25px;
+}
+
+.form-control {
+    border-radius: 25px;
+}
+
+img {
+    border-radius: 25px;
+}
+
+.btn {
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+}
+
+.btnSuccess {
+    border-top-right-radius: 25px !important;
+    border-bottom-right-radius: 25px !important;
+}
+
+.roundButton {
+    border-radius: 25px;
+}
+
+.center {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.blocker {
+    z-index: 4;
+}
+
+.modal {
+    z-index: 4;
+    height: fit-content;
+    overflow: initial;
+}

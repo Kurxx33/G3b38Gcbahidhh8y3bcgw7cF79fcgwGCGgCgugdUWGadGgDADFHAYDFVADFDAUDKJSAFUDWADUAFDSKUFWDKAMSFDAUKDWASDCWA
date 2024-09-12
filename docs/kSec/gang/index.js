@@ -29,10 +29,14 @@ function addPopupListeners(popupId, closeBtnClass, okBtnClass) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  addPopupListeners("PopUpTk", "TkClose", "TkOK");
-  addPopupListeners("PopUpKurxx", "KurxxClose", "KurxxOK");
-  addPopupListeners("PopUpXdfday", "XdfdayClose", "XdfdayOK");
-  addPopupListeners("PopUpOliver", "OliverClose", "OliverOK");
+  addPopupListeners("PopUpNov", "NovClose", "NovOK");
+  addPopupListeners("PopUpReiko", "ReikoClose", "ReikoOK");
+  addPopupListeners("PopUpConvict", "ConvictClose", "ConvictOK");
+  addPopupListeners("PopUpIntel", "IntelClose", "IntelOK");
+  addPopupListeners("PopUpDemeter", "DemeterClose", "DemeterOK");
+  addPopupListeners("PopUpVayne", "VayneClose", "VayneOK");
+  addPopupListeners("PopUpStitch", "StitchClose", "StitchOK");
+  addPopupListeners("PopUpKuru", "KuruClose", "KuruOK");
 });
 
 let date = new Date();
@@ -85,4 +89,5 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("mobile-notice").innerHTML = "(View on PC for a better experience)";
   }
 });
+
 

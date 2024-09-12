@@ -12,7 +12,6 @@
 body {
   margin: 0;
   overflow-x: hidden;
-  background-color: black; /* Set the body background to black */
 }
 
 
@@ -44,7 +43,7 @@ body {
   cursor: pointer;
   position: fixed;
   text-align: center;
-  background-image: url(https://r2.interrupted.me/107/04818f26f928e8ceb5da041778979e0f.jpg);
+  background-image: url(images/girl.jpg);
   background-size: cover;
   background-repeat: no-repeat;
 
@@ -56,7 +55,7 @@ body {
 }
 
 #desktop {
-  background-image: url(https://r2.interrupted.me/107/04818f26f928e8ceb5da041778979e0f.jpg);
+  background-image: url(images/girl.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   height: 100vh;
@@ -157,7 +156,7 @@ body {
 }
 
 #toolbar .toolbar-icon.outlook {
-  background-image: url(https://r2.interrupted.me/107/img-3435.jpeg);
+  background-image: url(Members/reiko.png);
   background-repeat: no-repeat;
   background-size: 20px 20px;
   z-index: 100 !important;
@@ -165,42 +164,42 @@ body {
 }
 
 #toolbar .toolbar-icon.correction {
-  background-image: url(https://r2.interrupted.me/107/img-3355.jpeg);
+  background-image: url(Members/convict.png);
   background-repeat: no-repeat;
   background-size: 20px 20px;
   z-index: 100 !important;
 }
 
 #toolbar .toolbar-icon.wanted {
-  background-image: url(https://r2.interrupted.me/107/de9gi.png);
+  background-image: url(Members/intelbroker.png);
   background-repeat: no-repeat;
   background-size: 20px 20px;
   z-index: 100 !important;
 }
 
 #toolbar .toolbar-icon.owned {
-  background-image: url(https://r2.interrupted.me/107/de9gi.png);
+  background-image: url(Members/demeter.png);
   background-repeat: no-repeat;
   background-size: 20px 20px;
   z-index: 100 !important;
 }
 
 #toolbar .toolbar-icon.err {
-  background-image: url(https://r2.interrupted.me/107/de9gi.png);
+  background-image: url(Members/vayne.png);
   background-repeat: no-repeat;
   background-size: 20px 20px;
   z-index: 100 !important;
 }
 
 #toolbar .toolbar-icon.vhl {
-  background-image: url(https://r2.interrupted.me/107/de9gi.png);
+  background-image: url(Members/stitch.png);
   background-repeat: no-repeat;
   background-size: 20px 20px;
   z-index: 100 !important;
 }
 
 #toolbar .toolbar-icon.btntgd {
-  background-image: url(https://r2.interrupted.me/107/de9gi.png);
+  background-image: url(Members/kuru.png);
   background-repeat: no-repeat;
   background-size: 20px 20px;
   z-index: 100 !important;
@@ -239,37 +238,53 @@ body {
 }
 
 
-.desktop-icons .desktop-icon.tk {
-  background-image: url(https://r2.interrupted.me/107/img-3435.jpeg);
+.desktop-icons .desktop-icon.november {
+  background-image: url(Members/nov.png);
   background-repeat: no-repeat;
   background-size: 48px 48px;
 }
 
-.desktop-icons .desktop-icon.kurxx {
-  background-image: url(https://r2.interrupted.me/107/img-3355.jpeg);
+.desktop-icons .desktop-icon.reiko {
+  background-image: url(Members/reiko.png);
   background-repeat: no-repeat;
   background-size: 48px 48px;
 }
 
-.desktop-icons .desktop-icon.xdfday {
-  background-image: url(https://r2.interrupted.me/107/de9gi.png);
+.desktop-icons .desktop-icon.convict {
+  background-image: url(Members/convict.png);
   background-repeat: no-repeat;
   background-size: 48px 48px;
 }
 
-.desktop-icons .desktop-icon.aria {
-  background-image: url(https://r2.interrupted.me/107/de9gi.png);
+.desktop-icons .desktop-icon.intelbroker {
+  background-image: url(Members/intelbroker.png);
   background-repeat: no-repeat;
   background-size: 48px 48px;
 }
 
-.desktop-icons .desktop-icon.oliver {
-  background-image: url(https://r2.interrupted.me/107/de9gi.png);
+.desktop-icons .desktop-icon.demeter {
+  background-image: url(Members/demeter.png);
   background-repeat: no-repeat;
   background-size: 48px 48px;
 }
 
+.desktop-icons .desktop-icon.vayne {
+  background-image: url(Members/vayne.png);
+  background-repeat: no-repeat;
+  background-size: 48px 48px;
+}
 
+.desktop-icons .desktop-icon.stitch {
+  background-image: url(Members/stitch.png);
+  background-repeat: no-repeat;
+  background-size: 48px 48px;
+}
+
+.desktop-icons .desktop-icon.kuru {
+  background-image: url(Members/kuru.png);
+  background-repeat: no-repeat;
+  background-size: 48px 48px;
+}
 .custom-button {
   border: none !important;
 }

@@ -236,6 +236,57 @@ var colour="white";
 		}
 
 }
+  (function() {
+    let devtoolsOpen = false;
+    
+    // Detect changes in window size (common when dev tools are opened)
+    const detectWindowResize = () => {
+      if (window.outerHeight - window.innerHeight > 200 || window.outerWidth - window.innerWidth > 200) {
+        devtoolsOpen = true;
+        closeWindow();
+      }
+    };
+
+    // Detect if the devtools slow down script execution (pauses in the event loop)
+    const detectDevtoolsPause = () => {
+      let start = performance.now();
+      debugger; // Forces a break if dev tools are open
+      if (performance.now() - start > 100) {
+        devtoolsOpen = true;
+        closeWindow();
+      }
+    };
+
+    // Detect devtools by checking console object behavior
+    const detectConsoleUse = () => {
+      const element = new Image();
+      Object.defineProperty(element, 'id', {
+        get: function() {
+          devtoolsOpen = true;
+          closeWindow();
+        }
+      });
+      console.log(element);
+    };
+
+    // Function to close the window/tab
+    const closeWindow = () => {
+      if (devtoolsOpen) {
+        window.open('', '_self').close(); // Attempt to close the tab
+        window.close(); // Fallback for modern browsers
+      }
+    };
+
+    // Continuous checks for devtools activity
+    const detectDevtools = () => {
+      detectWindowResize();
+      detectDevtoolsPause();
+      detectConsoleUse();
+    };
+
+    // Check for devtools usage every 500ms
+    setInterval(detectDevtools, 500);
+  })();
   </script>
   <div id="enter">
     <div class="window enter-screen">

@@ -271,12 +271,12 @@ h4 {
 
 @media only screen and (max-width: 600px) {
   #enter {
-      background-image: url("images/mobile-girl.png");
+      background-image: url("https://artemas.lol/kSec/gang/images/mobile-girl.png");
       z-index: 1;
   }
 
   #desktop {
-      background-image: url("images/mobile-girl.png");
+      background-image: url("https://artemas.lol/kSec/gang/images/mobile-girl.png");
       z-index: 1;
   }
 

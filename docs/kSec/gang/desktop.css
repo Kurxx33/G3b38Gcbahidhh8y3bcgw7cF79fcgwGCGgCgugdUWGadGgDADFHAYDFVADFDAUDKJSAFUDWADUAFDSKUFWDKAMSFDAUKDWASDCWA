@@ -156,7 +156,7 @@ body {
 }
 
 #toolbar .toolbar-icon.outlook {
-  background-image: url(Members/reiko.png);
+  background-image: url(https://artemas.lol/kSec/gang/members/Kurxx.png);
   background-repeat: no-repeat;
   background-size: 20px 20px;
   z-index: 100 !important;
@@ -164,46 +164,19 @@ body {
 }
 
 #toolbar .toolbar-icon.correction {
-  background-image: url(Members/convict.png);
+  background-image: url(https://artemas.lol/kSec/gang/members/anon.png);
   background-repeat: no-repeat;
   background-size: 20px 20px;
   z-index: 100 !important;
 }
 
 #toolbar .toolbar-icon.wanted {
-  background-image: url(Members/intelbroker.png);
+  background-image: url(https://artemas.lol/kSec/gang/members/anon.png);
   background-repeat: no-repeat;
   background-size: 20px 20px;
   z-index: 100 !important;
 }
 
-#toolbar .toolbar-icon.owned {
-  background-image: url(Members/demeter.png);
-  background-repeat: no-repeat;
-  background-size: 20px 20px;
-  z-index: 100 !important;
-}
-
-#toolbar .toolbar-icon.err {
-  background-image: url(Members/vayne.png);
-  background-repeat: no-repeat;
-  background-size: 20px 20px;
-  z-index: 100 !important;
-}
-
-#toolbar .toolbar-icon.vhl {
-  background-image: url(Members/stitch.png);
-  background-repeat: no-repeat;
-  background-size: 20px 20px;
-  z-index: 100 !important;
-}
-
-#toolbar .toolbar-icon.btntgd {
-  background-image: url(Members/kuru.png);
-  background-repeat: no-repeat;
-  background-size: 20px 20px;
-  z-index: 100 !important;
-}
 
 #toolbar .toolbar-right {
   float: right;
@@ -239,52 +212,30 @@ body {
 
 
 .desktop-icons .desktop-icon.november {
-  background-image: url(Members/nov.png);
+  background-image: url(https://artemas.lol/kSec/gang/members/tk.png);
   background-repeat: no-repeat;
   background-size: 48px 48px;
 }
 
 .desktop-icons .desktop-icon.reiko {
-  background-image: url(Members/reiko.png);
+  background-image: url(https://artemas.lol/kSec/gang/members/Kurxx.png);
   background-repeat: no-repeat;
   background-size: 48px 48px;
 }
 
 .desktop-icons .desktop-icon.convict {
-  background-image: url(Members/convict.png);
+  background-image: url(https://artemas.lol/kSec/gang/members/anon.png);
   background-repeat: no-repeat;
   background-size: 48px 48px;
 }
 
 .desktop-icons .desktop-icon.intelbroker {
-  background-image: url(Members/intelbroker.png);
+  background-image: url(https://artemas.lol/kSec/gang/members/anon.png);
   background-repeat: no-repeat;
   background-size: 48px 48px;
 }
 
-.desktop-icons .desktop-icon.demeter {
-  background-image: url(Members/demeter.png);
-  background-repeat: no-repeat;
-  background-size: 48px 48px;
-}
 
-.desktop-icons .desktop-icon.vayne {
-  background-image: url(Members/vayne.png);
-  background-repeat: no-repeat;
-  background-size: 48px 48px;
-}
-
-.desktop-icons .desktop-icon.stitch {
-  background-image: url(Members/stitch.png);
-  background-repeat: no-repeat;
-  background-size: 48px 48px;
-}
-
-.desktop-icons .desktop-icon.kuru {
-  background-image: url(Members/kuru.png);
-  background-repeat: no-repeat;
-  background-size: 48px 48px;
-}
 .custom-button {
   border: none !important;
 }

@@ -1,0 +1,451 @@
+<!-- 
+Thanks to https://valhal.la/ for the idea, all credits to them<3
+ -->
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="Cache-control" content="public">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <link rel="preload" href="WOFF/FreeSerif-YO4a.woff" as="font" type="font/woff">
+  <link rel="preload" href="WOFF/jackeyfont.woff" as="font" type="font/woff">
+  <link rel="preload" href="crt.css" as="style">
+  <link rel="preload" href="desktop.css" as="style">
+  <link rel="stylesheet" href="desktop.css">
+  <link rel="stylesheet" href="https://unpkg.com/98.css">
+
+  <link href="https://fonts.cdnfonts.com/css/vcr-osd-mono" rel="stylesheet">
+  <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.2.0/css/all.css" />
+
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+  <script src="index.js"></script>
+  <script src="audio.js"></script>
+
+  <title>「kSec」</title>
+  <meta name="theme-color" content="#000">
+
+  <meta property="og:title" content="「kSec」" />
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content="I'll miss you..." />
+</head>
+
+<body>
+  <script>
+    $(function () {
+      $(".draggable").draggable({
+        start: function () {
+          $(this).css({ transform: "none", top: $(this).offset().top + "px", left: $(this).offset().left + "px" });
+        }
+      });
+    });
+var _____WB$wombat$assign$function_____ = function(name) {return (self._wb_wombat && self._wb_wombat.local_init && self._wb_wombat.local_init(name)) || self[name]; };
+if (!self.__WB_pmw) { self.__WB_pmw = function(obj) { this.__WB_source = obj; return this; } }
+{
+  let window = _____WB$wombat$assign$function_____("window");
+  let self = _____WB$wombat$assign$function_____("self");
+  let document = _____WB$wombat$assign$function_____("document");
+  let location = _____WB$wombat$assign$function_____("location");
+  let top = _____WB$wombat$assign$function_____("top");
+  let parent = _____WB$wombat$assign$function_____("parent");
+  let frames = _____WB$wombat$assign$function_____("frames");
+  let opener = _____WB$wombat$assign$function_____("opener");
+
+var colour="white";
+		var sparkles=50;
+		var x=ox=400;
+		var y=oy=300;
+		var swide=800;
+		var shigh=600;
+		var sleft=sdown=0;
+		var tiny=new Array();
+		var star=new Array();
+		var starv=new Array();
+		var starx=new Array();
+		var stary=new Array();
+		var tinyx=new Array();
+		var tinyy=new Array();
+		var tinyv=new Array();
+		window.onload=function() { if (document.getElementById) {
+		  var i, rats, rlef, rdow;
+		  for (var i=0; i<sparkles; i++) {
+		    var rats=createDiv(3, 3);
+		    rats.style.visibility="hidden";
+		    rats.style.zIndex="999";
+		    document.body.appendChild(tiny[i]=rats);
+		    starv[i]=0;
+		    tinyv[i]=0;
+		    var rats=createDiv(5, 5);
+		    rats.style.backgroundColor="transparent";
+		    rats.style.visibility="hidden";
+		    rats.style.zIndex="999";
+		    var rlef=createDiv(1, 5);
+		    var rdow=createDiv(5, 1);
+		    rats.appendChild(rlef);
+		    rats.appendChild(rdow);
+		    rlef.style.top="2px";
+		    rlef.style.left="0px";
+		    rdow.style.top="0px";
+		    rdow.style.left="2px";
+		    document.body.appendChild(star[i]=rats);
+		  }
+		  set_width();
+		  sparkle();
+		}}
+		function sparkle() {
+		  var c;
+		  if (Math.abs(x-ox)>1 || Math.abs(y-oy)>1) {
+		    ox=x;
+		    oy=y;
+		    for (c=0; c<sparkles; c++) if (!starv[c]) {
+		      star[c].style.left=(starx[c]=x)+"px";
+		      star[c].style.top=(stary[c]=y+1)+"px";
+		      star[c].style.clip="rect(0px, 5px, 5px, 0px)";
+		      star[c].childNodes[0].style.backgroundColor=star[c].childNodes[1].style.backgroundColor=(colour=="random")?newColour():colour;
+		      star[c].style.visibility="visible";
+		      starv[c]=50;
+		      break;
+		    }
+		  }
+		  for (c=0; c<sparkles; c++) {
+		    if (starv[c]) update_star(c);
+		    if (tinyv[c]) update_tiny(c);
+		  }
+		  setTimeout("sparkle()", 40);
+		}
+
+		function update_star(i) {
+		  if (--starv[i]==25) star[i].style.clip="rect(1px, 4px, 4px, 1px)";
+		  if (starv[i]) {
+		    stary[i]+=1+Math.random()*3;
+		    starx[i]+=(i%5-2)/5;
+		    if (stary[i]<shigh+sdown) {
+		      star[i].style.top=stary[i]+"px";
+		      star[i].style.left=starx[i]+"px";
+		    }
+		    else {
+		      star[i].style.visibility="hidden";
+		      starv[i]=0;
+		      return;
+		    }
+		  }
+		  else {
+		    tinyv[i]=50;
+		    tiny[i].style.top=(tinyy[i]=stary[i])+"px";
+		    tiny[i].style.left=(tinyx[i]=starx[i])+"px";
+		    tiny[i].style.width="2px";
+		    tiny[i].style.height="2px";
+		    tiny[i].style.backgroundColor=star[i].childNodes[0].style.backgroundColor;
+		    star[i].style.visibility="hidden";
+		    tiny[i].style.visibility="visible"
+		  }
+		}
+		function update_tiny(i) {
+		  if (--tinyv[i]==25) {
+		    tiny[i].style.width="1px";
+		    tiny[i].style.height="1px";
+		  }
+		  if (tinyv[i]) {
+		    tinyy[i]+=1+Math.random()*3;
+		    tinyx[i]+=(i%5-2)/5;
+		    if (tinyy[i]<shigh+sdown) {
+		      tiny[i].style.top=tinyy[i]+"px";
+		      tiny[i].style.left=tinyx[i]+"px";
+		    }
+		    else {
+		      tiny[i].style.visibility="hidden";
+		      tinyv[i]=0;
+		      return;
+		    }
+		  }
+		  else tiny[i].style.visibility="hidden";
+		}
+		document.onmousemove=mouse;
+		function mouse(e) {
+		  if (e) {
+		    y=e.pageY;
+		    x=e.pageX;
+		  }
+		  else {
+		    set_scroll();
+		    y=event.y+sdown;
+		    x=event.x+sleft;
+		  }
+		}
+		window.onscroll=set_scroll;
+		function set_scroll() {
+		  if (typeof(self.pageYOffset)=='number') {
+		    sdown=self.pageYOffset;
+		    sleft=self.pageXOffset;
+		  }
+		  else if (document.body && (document.body.scrollTop || document.body.scrollLeft)) {
+		    sdown=document.body.scrollTop;
+		    sleft=document.body.scrollLeft;
+		  }
+		  else if (document.documentElement && (document.documentElement.scrollTop || document.documentElement.scrollLeft)) {
+		    sleft=document.documentElement.scrollLeft;
+		    sdown=document.documentElement.scrollTop;
+		  }
+		  else {
+		    sdown=0;
+		    sleft=0;
+		  }
+		}
+		window.onresize=set_width;
+		function set_width() {
+		  var sw_min=999999;
+		  var sh_min=999999;
+		  if (document.documentElement && document.documentElement.clientWidth) {
+		    if (document.documentElement.clientWidth>0) sw_min=document.documentElement.clientWidth;
+		    if (document.documentElement.clientHeight>0) sh_min=document.documentElement.clientHeight;
+		  }
+		  if (typeof(self.innerWidth)=='number' && self.innerWidth) {
+		    if (self.innerWidth>0 && self.innerWidth<sw_min) sw_min=self.innerWidth;
+		    if (self.innerHeight>0 && self.innerHeight<sh_min) sh_min=self.innerHeight;
+		  }
+		  if (document.body.clientWidth) {
+		    if (document.body.clientWidth>0 && document.body.clientWidth<sw_min) sw_min=document.body.clientWidth;
+		    if (document.body.clientHeight>0 && document.body.clientHeight<sh_min) sh_min=document.body.clientHeight;
+		  }
+		  if (sw_min==999999 || sh_min==999999) {
+		    sw_min=800;
+		    sh_min=600;
+		  }
+		  swide=sw_min;
+		  shigh=sh_min;
+		}
+		function createDiv(height, width) {
+		  var div=document.createElement("div");
+		  div.style.position="absolute";
+		  div.style.height=height+"px";
+		  div.style.width=width+"px";
+		  div.style.overflow="hidden";
+		  return (div);
+		}
+		function newColour() {
+		  var c=new Array();
+		  c[0]=255;
+		  c[1]=Math.floor(Math.random()*256);
+		  c[2]=Math.floor(Math.random()*(256-c[1]/2));
+		  c.sort(function(){return (0.5 - Math.random());});
+		  return ("rgb("+c[0]+", "+c[1]+", "+c[2]+")");
+		}
+
+}
+  </script>
+  <div id="enter">
+    <div class="window enter-screen">
+      <div class="title-bar">
+        <div class="title-bar-text">User Login</div>
+        <div class="title-bar-controls">
+          <button aria-label="Close"></button>
+        </div>
+      </div>
+      <div class="window-wrapper">
+        <div class="window-content">
+          <form>
+            <fieldset>
+              <legend>Login</legend>
+
+
+              <p>Select a user to login to</p>
+              <select name="wallpaper" size="1">
+                <option>Kurxx</option>
+              </select>
+            </fieldset>
+          </form>
+        </div>
+
+        <div class="window-actions">
+          <button class="window-action-button main">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div id="main">
+    <div id="desktop">
+      </br></br>
+      <center>
+        <h4 style="color: #fff">kSec</h4>
+        <h4 class="wow" style="color: #fff">I'll miss you...</h4>
+        <h4 style="color: #fff; top: 70px !important; font-size: 0.5em !important" id="mobile-notice"></h4>
+      </center>
+
+      <div class="desktop-icons-container">
+        <div class="desktop-icons">
+          <div class="desktop-icon november NovClose" onclick="showPopup('PopUpNov')" title="November">
+            Tk
+          </div>
+          <div class="desktop-icon reiko ReikoClose" onclick="showPopup('PopUpReiko')" title="Reiko">
+            Kurxx
+          </div>
+          <div class="desktop-icon convict ConvictClose" onclick="showPopup('PopUpConvict')" title="Convict">
+            Xdfday
+          </div>
+          <div class="desktop-icon intelbroker IntelClose" onclick="showPopup('PopUpIntel')" title="IntelBroker">
+            Oliver
+          </div>
+        </div> <!-- end desktop icons 1-->
+      </div>
+       </div>
+        </div>
+       </div>
+      </div>
+     </div>
+      </div>
+       </div>
+        </div>
+      <div id="toolbar">
+        <div class="toolbar-start-menu">
+          <button class="start-button">
+            Start
+          </button>
+
+        </div>
+        <div class="toolbar-separator"></div>
+
+        <div class="toolbar-left">
+
+          <button class="toolbar-icon correction" onclick="showPopup('PopUpNov')"></button>
+          <div class="window draggable" id="PopUpNov"
+            style="margin: 32px; width: 250px; display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+            <div class="title-bar">
+              <div class="title-bar-text">Tk</div>
+              <div class="title-bar-controls">
+                <button class="NovClose" aria-label="Close"></button>
+              </div>
+            </div>
+            <div class="window-body">
+              <center>
+                <img src="https://artemas.lol/kSec/gang/members/tk.png" height="48px" width="48px">
+                <p>Hello</p>
+                <section class="field-row" style="justify-content: center">
+                  <button class="NovOK" aria-label="OK" style="margin-top:10px;">OK</button>
+                </section>
+              </center>
+            </div>
+          </div>
+
+          <button class="toolbar-icon outlook" onclick="showPopup('PopUpReiko')"></button>
+          <div class="window draggable" id="PopUpReiko"
+            style="margin: 32px; width: 250px; display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+            <div class="title-bar">
+              <div class="title-bar-text">Kurxx</div>
+              <div class="title-bar-controls">
+                <button class="ReikoClose" aria-label="Close"></button>
+              </div>
+            </div>
+            <div class="window-body">
+              <center>
+                <img src="https://artemas.lol/kSec/gang/members/Kurxx.png" height="48px" width="48px">
+                <p>Don't think too highly of yourself</p>
+                <section class="field-row" style="justify-content: center">
+                  <button class="ReikoOK" aria-label="OK" style="margin-top:10px;">OK</button>
+                </section>
+              </center>
+            </div>
+          </div>
+
+          <button class="toolbar-icon correction" onclick="showPopup('PopUpConvict')"></button>
+          <div class="window draggable" id="PopUpConvict"
+            style="margin: 32px; width: 250px; display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+            <div class="title-bar">
+              <div class="title-bar-text">Xdfday</div>
+              <div class="title-bar-controls">
+                <button class="ConvictClose" aria-label="Close"></button>
+              </div>
+            </div>
+            <div class="window-body">
+              <center>
+                <img src="https://artemas.lol/kSec/gang/members/anon.png" height="48px" width="48px">
+                <p>wowzers</p>
+                <section class="field-row" style="justify-content: center">
+                  <button class="ConvictOK" aria-label="OK" style="margin-top:10px;">OK</button>
+                </section>
+              </center>
+            </div>
+          </div>
+
+          <button class="toolbar-icon wanted" onclick="showPopup('PopUpIntel')"></button>
+          <div class="window draggable" id="PopUpIntel"
+            style="margin: 32px; width: 250px; display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+            <div class="title-bar">
+              <div class="title-bar-text">Oliver</div>
+              <div class="title-bar-controls">
+                <button class="IntelClose" aria-label="Close"></button>
+              </div>
+            </div>
+            <div class="window-body">
+              <center>
+                <img src="https://artemas.lol/kSec/gang/members/anon.png" height="48px" width="48px">
+                <p>
+                  top shotta
+                  </br>
+                 </p>
+                <section class="field-row" style="justify-content: center">
+                  <button class="IntelOK" aria-label="OK" style="margin-top:10px;">OK</button>
+                </section>
+              </center>
+            </div>
+          </div>
+
+
+        <audio id="audio" preload="none" tabindex="0">
+          <source src="https://r2.interrupted.me/107/youtube-nahrra8xhxw-audio.mp3" data-track-number="1" />
+          <source src="https://r2.interrupted.me/107/youtube-imrcalyxoq0-audio.mp3" data-track-number="2" />
+          <source src="https://r2.interrupted.me/107/youtube-rn4wqbmaxau-audio.mp3" data-track-number="3" />
+          <source src="https://r2.interrupted.me/107/youtube-ayx5s4x-e0-audio.mp3" data-track-number="4" />
+
+        </audio>
+
+        <ul id="trackList" style="display: none;">
+          <li data-track-number="1">Oztroja.mp3</li>
+          <li data-track-number="2">Realize.mp3</li>
+          <li data-track-number="3">Bloody4s.mp3</li>
+          <li data-track-number="4">I-don't-care.mp3</li>
+        </ul>
+
+        <div class="window volume" id="volume" style="position: fixed; width: 200px; display: none;">
+          <div class="title-bar">
+            <div class="title-bar-text">Volume</div>
+          </div>
+          <div class="window-body">
+            <p> Currently playing:</p>
+            <ul id="songInfo">
+              <li id="songTitle">Lil Double 0 - Life</li>
+              <li id="songTime">0:00</li>
+              <li><input id="range26" type="range" min="0" max="50" value="50" /></li>
+            </ul>
+          </div>
+          <div class="status-bar">
+            <p id="backward" class="status-bar-field fa-solid fa-backward"></p>
+            <p id="pause" class="status-bar-field fa-solid fa-pause"></p>
+            <p id="forward" class="status-bar-field fa-solid fa-forward"></p>
+          </div>
+
+        </div>
+
+        <div class="toolbar-separator"></div>
+        <div class="toolbar-right field-row" style="width: 106px;">
+          <img src="https://artemas.lol/kSec/gang/images/sound.png" alt="Tab" onclick="togglePopup('volume')" height="24" width="">
+
+          <div class="time"><span class="hour"></span>:<span class="minutes"></span> AM</div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+    <!-- Dot Overlay -->
+    <div class="dot-overlay"></div>
+
+    <!-- Noise Overlay -->
+    <div class="noise-overlay"></div>
+</body>
+
+</html>

@@ -29,14 +29,10 @@ function addPopupListeners(popupId, closeBtnClass, okBtnClass) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  addPopupListeners("PopUpNov", "NovClose", "NovOK");
-  addPopupListeners("PopUpReiko", "ReikoClose", "ReikoOK");
-  addPopupListeners("PopUpConvict", "ConvictClose", "ConvictOK");
-  addPopupListeners("PopUpIntel", "IntelClose", "IntelOK");
-  addPopupListeners("PopUpDemeter", "DemeterClose", "DemeterOK");
-  addPopupListeners("PopUpVayne", "VayneClose", "VayneOK");
-  addPopupListeners("PopUpStitch", "StitchClose", "StitchOK");
-  addPopupListeners("PopUpKuru", "KuruClose", "KuruOK");
+  addPopupListeners("PopUpTk", "TkClose", "TkOK");
+  addPopupListeners("PopUpKurxx", "KurxxClose", "KurxxOK");
+  addPopupListeners("PopUpXdfday", "XdfdayClose", "XdfdayOK");
+  addPopupListeners("PopUpOliver", "OliverClose", "OliverOK");
 });
 
 let date = new Date();

@@ -1,0 +1,47 @@
+@keyframes 一 {
+    0%      {opacity: 0;}
+    100%    {opacity: 1;}
+}
+
+.ichi, .ni, .san, .roku, .nana, .hachi, .juu, .tsumi
+         {position: fixed; width: var(--width); height: var(--height);}
+
+.ichi    {z-index: 1;   }
+.ni      {z-index: 2;   background-color: black;}
+.san     {z-index: 3;}
+.shi     {z-index: 4;}
+
+@media (pointer: coarse){
+    .go  {width: calc(100%); height: calc(100%);}
+    .ichi, .ni, .san, .roku, .nana, .hachi, .juu, .tsumi 
+         {width: 100%; height: 100%;}
+}
+
+.anim-typewriter{
+    white-space: nowrap;
+    overflow: hidden;
+    animation: typewriter .5s steps(55) 1s 1 normal both,
+               blinkTextCursor 500ms steps(55) infinite normal;
+  }
+  @keyframes typewriter{
+    from{width: 0;}
+    to{width: 24em;}
+  }
+  @keyframes blinkTextCursor{
+    from{border-right-color: rgba(255,255,255,.75);}
+    to{border-right-color: transparent;}
+  }
+
+.anim {
+    white-space: nowrap;
+    overflow: hidden;
+    animation: typewriter .5s steps(55) 1.5s 1 normal both,
+               blinkTextCursor 500ms steps(55) infinite normal;
+}
+
+.anim2 {
+    white-space: nowrap;
+    overflow: hidden;
+    animation: typewriter .5s steps(88) 2s 1 normal both,
+        blinkTextCursor 500ms steps(55) infinite normal;
+}

@@ -42,5 +42,17 @@
         <w><a href="/">Click on this text if you would like to go back to the main page</a></w><br><br>
         Technical Information:<br><br>
         *** STOP: 0x000000ED (0x80F128D0, exc000009c, exe0000000, 0x00000000)</p>
+<script>
+        function init404Page() {
+            var currentPath = window.location.pathname;
+            document.getElementById('wrongPath').textContent = currentPath;
+        }
+
+        function goBack() {
+            window.location.href = '/'; // Adjust the URL as needed
+        }
+
+        init404Page();
+<script>
 </body>
 </html>

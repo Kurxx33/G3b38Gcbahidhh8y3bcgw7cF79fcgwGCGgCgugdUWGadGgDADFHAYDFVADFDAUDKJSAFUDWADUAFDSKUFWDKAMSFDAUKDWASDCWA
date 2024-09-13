@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucifer</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="crt.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+</head>
+
+<body>
+	<audio id="lucifer-audio" src="/static/audio.mp3" autoplaystyle="display:none"></audio>
+
+    <div class="wallpaper" id="wallpaper">
+        <div class="center-screen">
+            <div class="alignment-text">
+                <h1 class="big">Lucifer</h1>
+                <div class="hover-person">
+                    <h1 class="animate__animated animate__fadeInDown"><a style="color: #000; text-decoration: none;"
+                            href="https://t.me/harass" target="_blank">Demeter</a></h1>
+                </div>
+                <div class="hover-person">
+                    <h1 class="animate__animated animate__fadeInRight"><a style="color: #000; text-decoration: none;"
+                            href="https://t.me/convict" target="_blank">Pierce</a></h1>
+                </div>
+                <div class="hover-person-2">
+                    <h1 class="animate__animated animate__fadeInRight"><a style="color: #000; text-decoration: none;"
+                            href="https://t.me/egirl" target="_blank">Operator</a></h1>
+                </div>
+
+                <h1 class="small">Click/press enter to select a user</h1>
+            </div>
+            <div class="footer">
+                &copy;<a style="color: #fff; text-decoration: none;" href="https://valhal.la"
+                    target="_blank">valhal.la</a> Dev <a style="color: #fff; text-decoration: none;"
+                    href="https://t.me/Reikolol" target="_blank">Reiko</a> 2023
+            </div>
+        </div>
+    </div>
+	<script>
+		(function () {
+			const hoaAudio = document.getElementById('lucifer-audio');
+
+			function catchHandler() {
+				let inputListener;
+				inputListener = function () {
+					hoaAudio.play();
+					document.removeEventListener('mousedown', inputListener);
+					document.removeEventListener('keydown', inputListener);
+				};
+
+				document.addEventListener('mousedown', inputListener);
+				document.addEventListener('keydown', inputListener);
+			}
+
+			if (hoaAudio.readyState > 1) {
+				hoaAudio.play().catch(catchHandler);
+			} else {
+				hoaAudio.addEventListener('canplay', function () {
+					hoaAudio.play().catch(catchHandler);
+				});
+			}
+		})();
+	</script>
+    
+</body>
+
+</html>

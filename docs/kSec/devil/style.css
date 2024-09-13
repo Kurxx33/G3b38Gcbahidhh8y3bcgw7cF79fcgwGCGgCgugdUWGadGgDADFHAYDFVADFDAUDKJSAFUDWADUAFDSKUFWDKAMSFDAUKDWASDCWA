@@ -1,0 +1,171 @@
+@font-face {
+    font-family: "Zpix";
+    src: url("./static/Zpix.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+}
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+}
+
+.wallpaper {
+    background-image: url("./static/bg.png");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
+.center-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    height: 100vh;
+}
+
+.alignment-text {
+    text-align: left !important;
+    padding: 200px;
+}
+
+h1 {
+    color: #000;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    border: none;
+    font: bold 2vw "Zpix";
+}
+
+.hover-person, .hover-person-2 {
+    overflow: hidden;
+}
+
+.hover-person:hover h1 {
+    margin-left: 80px;
+}
+
+.hover-person-2:hover h1 {
+    margin-left: 68px;
+}
+
+.hover-person:hover, .hover-person-2:hover {
+    background-image: url("./static/hearts.png");
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.animate__animated.animate__fadeInDown,
+.animate__animated.animate__fadeInRight,
+.animate__animated.animate__fadeInUp {
+    --animate-duration: 2s;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    margin-bottom: 10px;
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    font: bold 0.4vw "Zpix";
+}
+
+.big {
+    margin-bottom: 10px !important;
+    font: bold 4vw "Zpix";
+    animation: glitch 2s linear infinite;
+}
+
+.small {
+    font: bold 0.5vw "Zpix";
+    animation: glitch 2s linear infinite;
+}
+
+@media screen and (max-width: 768px) {
+
+    .alignment-text {
+        padding: 90px;
+    }
+
+    .hover-person:hover h1 {
+        margin-left: 35px;
+    }
+}
+
+@media screen and (max-width: 1800px) {
+    .alignment-text {
+        padding: 90px;
+    }
+    .hover-person:hover h1 {
+        margin-left: 64px;
+    }
+}
+
+/* ngl i skidded this glitch effect since i thought it looked cool */
+/* original source: https://codepen.io/pgalor/pen/OeRWJQ */
+@keyframes glitch {
+
+    2%,
+    64% {
+        transform: translate(2px, 0) skew(0deg);
+    }
+
+    4%,
+    60% {
+        transform: translate(-2px, 0) skew(0deg);
+    }
+
+    62% {
+        transform: translate(0, 0) skew(5deg);
+    }
+}
+
+@keyframes glitchTop {
+
+    2%,
+    64% {
+        transform: translate(2px, -2px);
+    }
+
+    4%,
+    60% {
+        transform: translate(-2px, 2px);
+    }
+
+    62% {
+        transform: translate(13px, -1px) skew(-13deg);
+    }
+}
+
+div:after {
+    animation: glitchBotom 1.5s linear infinite;
+    clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+    -webkit-clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+}
+
+@keyframes glitchBotom {
+
+    2%,
+    64% {
+        transform: translate(-2px, 0);
+    }
+
+    4%,
+    60% {
+        transform: translate(-2px, 0);
+    }
+
+    62% {
+        transform: translate(-22px, 5px) skew(21deg);
+    }
+}

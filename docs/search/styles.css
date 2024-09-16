@@ -1,0 +1,102 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #000;
+    color: #fff;
+}
+
+header {
+    background: #111;
+    padding: 10px;
+    text-align: center;
+    color: #FFD700; /* Golden metallic effect */
+    font-size: 1.8em;
+    font-weight: bold;
+}
+
+.search-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    text-align: center;
+    background-color: #1a1a1a;
+    border-radius: 10px;
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: white;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #444;
+    background-color: #333;
+    color: #fff;
+}
+
+.dropdown {
+    margin: 10px 0;
+}
+
+select {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #444;
+    background-color: #333;
+    color: white;
+}
+
+button {
+    padding: 12px 25px;
+    margin-top: 10px;
+    background-color: #444;
+    color: #FFD700;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+#results {
+    margin-top: 20px;
+    background-color: #222;
+    padding: 15px;
+    border-radius: 8px;
+    max-height: 400px;
+    overflow-y: auto;
+    display: none;
+}
+
+#results div {
+    background-color: #333;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+footer {
+    background-color: #111;
+    padding: 10px;
+    text-align: center;
+    font-size: 0.9em;
+    color: #FFD700;
+}
+
+@media (max-width: 600px) {
+    .search-container {
+        width: 90%;
+    }
+}

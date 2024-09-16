@@ -1,7 +1,7 @@
-/* CRT Screen Effect */
+/* Remove the yellow glow */
 #crt {
-    background-image: url('pixel.apng'), linear-gradient(rgba(255, 255, 255, 0.05) 50%, transparent 50%);
-    background-size: 2px 1px, 100% 2px;
+    background-image: url('pixel.apng');
+    background-size: 2px 1px;
     background-color: #fff;
     background-blend-mode: hard-light;
     mix-blend-mode: multiply;
@@ -14,41 +14,25 @@
     right: 0;
     left: 0;
     z-index: 9999;
-    animation: crt-flicker 0.1s infinite alternate;
 }
 
-/* Adjust opacity for Firefox */
 @-moz-document url-prefix() {
     #crt {
         opacity: .1;
     }
 }
 
-/* CRT Flicker Animation */
-@keyframes crt-flicker {
-    0% {
-        opacity: 0.35;
-    }
-    50% {
-        opacity: 0.4;
-    }
-    100% {
-        opacity: 0.45;
-    }
+/* Ensure links fade in only once */
+a {
+    opacity: 0;
+    animation: fadeIn 3s ease forwards; /* Fade in once */
 }
 
-/* Static Noise Effect */
-@keyframes static-noise {
-    0% {
-        background-position: 0 0;
+@keyframes fadeIn {
+    from {
+        opacity: 0;
     }
-    100% {
-        background-position: 100% 100%;
+    to {
+        opacity: 1;
     }
-}
-
-#crt {
-    background-image: url('pixel.apng'), linear-gradient(rgba(255, 255, 255, 0.05) 50%, transparent 50%), url('static-noise.png');
-    background-size: 2px 1px, 100% 2px, cover;
-    animation: crt-flicker 0.1s infinite alternate, static-noise 0.2s steps(5) infinite;
 }

@@ -1,1 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSINT Tool</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">CSINT Tool</div>
+    </header>
 
+    <div class="search-container">
+        <h1>Find Leaked Information</h1>
+        <form id="search-form">
+            <input type="text" id="search-input" placeholder="Enter the email, IP, username, etc." required>
+            
+            <div class="dropdown">
+                <label for="search-type">Search by:</label>
+                <select id="search-type">
+                    <option value="email">Email</option>
+                    <option value="username">Username</option>
+                    <option value="ip">IP Address</option>
+                    <option value="password">Password</option>
+                    <option value="name">Name</option>
+                </select>
+            </div>
+            
+            <button type="submit">Search</button>
+        </form>
+
+        <div id="results">
+            <!-- API results will display here -->
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2024 CSINT Tool | For Legal Use Only</p>
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

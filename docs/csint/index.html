@@ -1,28 +1,211 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSINT Legal Search</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <header>
-        <h1>CSINT Legal Search</h1>
-    </header>
-    <main>
-        <div class="search-container">
-            <input type="text" id="search-bar" placeholder="Enter search term...">
-            <select id="search-type">
-                <option value="emails">Emails</option>
-                <option value="passwords">Passwords</option>
-                <option value="names">Names</option>
-                <option value="ips">IPs</option>
-            </select>
-            <button id="search-btn">Search</button>
+<html lang="en" class="dark">
+    <head>
+        <meta charSet="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="preload" href="/_next/static/media/a34f9d1faa5f3315-s.p.woff2" as="font" crossorigin="" type="font/woff2"/>
+        <link rel="stylesheet" href="/_next/static/css/bf4768621587ce63.css" data-precedence="next"/>
+        <link rel="preload" as="script" fetchPriority="low" href="/_next/static/chunks/webpack-cbb020e61f0da7f7.js"/>
+        <script src="/_next/static/chunks/fd9d1056-c176ba62bfa905c4.js" async=""></script>
+        <script src="/_next/static/chunks/23-978e7dd85b364cd5.js" async=""></script>
+        <script src="/_next/static/chunks/main-app-f73cdb3bce740b12.js" async=""></script>
+        <script src="/_next/static/chunks/0e5ce63c-5b68c6318b80509b.js" async=""></script>
+        <script src="/_next/static/chunks/373-9f3beb68839edc48.js" async=""></script>
+        <script src="/_next/static/chunks/395-32a6c8afdeacfb3a.js" async=""></script>
+        <script src="/_next/static/chunks/231-43df66993ffb065c.js" async=""></script>
+        <script src="/_next/static/chunks/144-c6417ea6ce5bfd98.js" async=""></script>
+        <script src="/_next/static/chunks/174-7bc28f0c2bdeddd5.js" async=""></script>
+        <script src="/_next/static/chunks/192-60e67ba943beef3b.js" async=""></script>
+        <script src="/_next/static/chunks/app/page-c694da0e8ead2bb2.js" async=""></script>
+        <script src="/_next/static/chunks/56-697828c4acbbc685.js" async=""></script>
+        <script src="/_next/static/chunks/882-fdc362c30c0528ac.js" async=""></script>
+        <script src="/_next/static/chunks/app/layout-c0319585d72d6a2a.js" async=""></script>
+        <title>csint.dev</title>
+        <meta name="description" content="Explore if your personal information has been compromised in data breaches with csint.dev. Stay informed, secure your data, and use powerful tools like Snusbase and Osintcat."/>
+        <meta name="keywords" content="snusbase,osintcat,data breaches,breach forums,dehashed api,csint,osint,data leak search,check compromised email,dark web monitoring,security tools,personal data protection,find stolen data"/>
+        <meta property="og:title" content="csint.dev - Discover Data Breaches &amp; Compromised Information"/>
+        <meta property="og:description" content="Find out if your information has been compromised using our data breach search engine. Secure your data and stay ahead of threats."/>
+        <meta property="og:url" content="https://csint.dev"/>
+        <meta name="twitter:card" content="summary"/>
+        <meta name="twitter:title" content="csint.dev - Discover Data Breaches &amp; Compromised Information"/>
+        <meta name="twitter:description" content="Find out if your information has been compromised using our data breach search engine. Secure your data and stay ahead of threats."/>
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="16x16"/>
+        <meta name="next-size-adjust"/>
+        <script src="/_next/static/chunks/polyfills-78c92fac7aa8fdd8.js" noModule=""></script>
+    </head>
+    <body class="__className_36bd41">
+        <style>
+            #nprogress {
+                pointer-events: none
+            }
+
+            #nprogress .bar {
+                background: #1FB255;
+                position: fixed;
+                z-index: 1600;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 3px
+            }
+
+            #nprogress .peg {
+                display: block;
+                position: absolute;
+                right: 0;
+                width: 100px;
+                height: 100%;
+                box-shadow: 0 0 10px #1FB255,0 0 5px #1FB255;
+                opacity: 1;
+                -webkit-transform: rotate(3deg) translate(0px,-4px);
+                -ms-transform: rotate(3deg) translate(0px,-4px);
+                transform: rotate(3deg) translate(0px,-4px)
+            }
+
+            #nprogress .spinner {
+                display: block;
+                position: fixed;
+                z-index: 1600;
+                top: 15px;
+                right: 15px
+            }
+
+            #nprogress .spinner-icon {
+                width: 18px;
+                height: 18px;
+                box-sizing: border-box;
+                border: 2px solid transparent;
+                border-top-color: #1FB255;
+                border-left-color: #1FB255;
+                border-radius: 50%;
+                -webkit-animation: nprogress-spinner 400ms linear infinite;
+                animation: nprogress-spinner 400ms linear infinite
+            }
+
+            .nprogress-custom-parent {
+                overflow: hidden;
+                position: relative
+            }
+
+            .nprogress-custom-parent #nprogress .bar,.nprogress-custom-parent #nprogress .spinner {
+                position: absolute
+            }
+
+            @-webkit-keyframes nprogress-spinner {
+                0% {
+                    -webkit-transform: rotate(0deg)
+                }
+
+                100% {
+                    -webkit-transform: rotate(360deg)
+                }
+            }
+
+            @keyframes nprogress-spinner {
+                0% {
+                    transform: rotate(0deg)
+                }
+
+                100% {
+                    transform: rotate(360deg)
+                }
+            }
+        </style>
+        <header class="bg-background py-4 shadow mx-4">
+            <div class="container mx-auto flex items-center justify-between px-4 md:px-0">
+                <div class="flex items-center">
+                    <svg class="mr-2 h-6 w-6 text-foreground" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                        <path d="M3 5V19A9 3 0 0 0 21 19V5"></path>
+                        <path d="M3 12A9 3 0 0 0 21 12"></path>
+                    </svg>
+                    <a class="text-foreground font-bold" href="/">csint.dev</a>
+                </div>
+                <div class="flex items-center space-x-4 md:hidden">
+                    <button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-9 w-9 rounded-full" type="button" id="radix-:R4ja:" aria-haspopup="menu" aria-expanded="false" data-state="closed">
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="4" x2="20" y1="12" y2="12"></line>
+                            <line x1="4" x2="20" y1="6" y2="6"></line>
+                            <line x1="4" x2="20" y1="18" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+                <div class="hidden items-center space-x-4 md:flex">
+                    <a class="text-muted-foreground hover:text-foreground" href="/faq">FAQ</a>
+                    <button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2 rounded-lg border-input bg-background text-foreground focus:ring-primary focus:border-primary" type="button" id="radix-:Rmja:" aria-haspopup="menu" aria-expanded="false" data-state="closed">
+                        Socials
+                        <svg class="ml-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m6 9 6 6 6-6"></path>
+                        </svg>
+                    </button>
+                    <a href="/register">
+                        <button class="inline-flex items-center justify-center whitespace-nowrap text-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 shadow h-9 rounded-lg bg-primary px-4 py-2 text-primary-foreground font-medium transition-colors hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">Register</button>
+                    </a>
+                </div>
+            </div>
+        </header>
+        <div>
+            <div class="flex flex-col items-center justify-center h-[90vh] bg-background">
+                <div class="text-4xl font-bold text-foreground">
+                    <div class="flex space-x-1 my-6">
+                        <div class="overflow-hidden pb-2" style="width:0%">
+                            <div class="text-xs sm:text-base md:text-xl lg:text:3xl xl:text-5xl font-bold" style="white-space:nowrap">
+                                <div>
+                                    <div class="inline-block">
+                                        <span class="dark:text-white text-4xl font-bold text-foreground h-20">c</span>
+                                        <span class="dark:text-white text-4xl font-bold text-foreground h-20">s</span>
+                                        <span class="dark:text-white text-4xl font-bold text-foreground h-20">i</span>
+                                        <span class="dark:text-white text-4xl font-bold text-foreground h-20">n</span>
+                                        <span class="dark:text-white text-4xl font-bold text-foreground h-20">t</span>
+                                        <span class="dark:text-white text-4xl font-bold text-foreground h-20">.</span>
+                                        <span class="dark:text-white text-4xl font-bold text-foreground h-20">d</span>
+                                        <span class="dark:text-white text-4xl font-bold text-foreground h-20">e</span>
+                                        <span class="dark:text-white text-4xl font-bold text-foreground h-20">v</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="block rounded-sm w-[4px] h-9 sm:h-9 xl:h-12 bg-blue-500" style="opacity:0;will-change:opacity"></span>
+                    </div>
+                </div>
+                <div class="max-w-3xl w-full px-4 md:px-0">
+                    <div class="flex flex-col items-center gap-8">
+                        <div class="text-center space-y-2">
+                            <p class="text-muted-foreground">Find out if your information has been compromised.</p>
+                        </div>
+                        <form class="w-full flex gap-2">
+                            <button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 border shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2 rounded-lg border-input bg-background text-foreground focus:ring-primary focus:border-primary" type="button" id="radix-:R39jsra:" aria-haspopup="menu" aria-expanded="false" data-state="closed">
+                                Search by
+                                <svg class="ml-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="m6 9 6 6 6-6"></path>
+                                </svg>
+                            </button>
+                            <input type="search" class="flex h-9 w-full border px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 flex-1 rounded-lg border-input bg-background text-foreground focus:ring-primary focus:border-primary" placeholder="Enter your search term"/>
+                            <button class="inline-flex items-center justify-center whitespace-nowrap text-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 shadow h-9 px-4 py-2 rounded-lg bg-primary text-primary-foreground font-medium transition-colors hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" type="submit">Search</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div id="results" class="results-container"></div>
-    </main>
-    <script src="scripts.js"></script>
-</body>
+        <!--$!-->
+        <template data-dgst="BAILOUT_TO_CLIENT_SIDE_RENDERING"></template>
+        <!--/$-->
+        <script src="/_next/static/chunks/webpack-cbb020e61f0da7f7.js" async=""></script>
+        <script>
+            (self.__next_f = self.__next_f || []).push([0]);
+            self.__next_f.push([2, null])
+        </script>
+        <script>
+            self.__next_f.push([1, "1:HL[\"/_next/static/media/a34f9d1faa5f3315-s.p.woff2\",\"font\",{\"crossOrigin\":\"\",\"type\":\"font/woff2\"}]\n2:HL[\"/_next/static/css/bf4768621587ce63.css\",\"style\"]\n"])
+        </script>
+        <script>
+            self.__next_f.push([1, "3:I[5751,[],\"\"]\n5:I[6513,[],\"ClientPageRoot\"]\n6:I[3794,[\"310\",\"static/chunks/0e5ce63c-5b68c6318b80509b.js\",\"373\",\"static/chunks/373-9f3beb68839edc48.js\",\"395\",\"static/chunks/395-32a6c8afdeacfb3a.js\",\"231\",\"static/chunks/231-43df66993ffb065c.js\",\"144\",\"static/chunks/144-c6417ea6ce5bfd98.js\",\"174\",\"static/chunks/174-7bc28f0c2bdeddd5.js\",\"192\",\"static/chunks/192-60e67ba943beef3b.js\",\"931\",\"static/chunks/app/page-c694da0e8ead2bb2.js\"],\"default\"]\n7:I[9593,[\"310\",\"static/chunks/0e5ce63c-5b68c6318b80509b.js\",\"373\",\"static/chunks/373-9f3beb68839edc48.js\",\"395\",\"static/chunks/395-32a6c8afdeacfb3a.js\",\"56\",\"static/chunks/56-697828c4acbbc685.js\",\"174\",\"static/chunks/174-7bc28f0c2bdeddd5.js\",\"882\",\"static/chunks/882-fdc362c30c0528ac.js\",\"185\",\"static/chunks/app/layout-c0319585d72d6a2a.js\"],\"\"]\n8:I[5725,[\"310\",\"static/chunks/0e5ce63c-5b68c6318b80509b.js\",\"373\",\"static/chunks/373-9f3beb68839edc48.js\",\"395\",\"static/chunks/395-32a6c8afdeacfb3a.js\",\"56\",\"static/chunks/56-697828c4acbbc685.js\",\"174\",\"static/chunks/174-7bc28f0c2bdeddd5.js\",\"882\",\"static/chunks/882-fdc362c30c0528ac.js\",\"185\",\"static/chunks/app/layout-c0319585d72d6a2a.js\"],\"default\"]\n9:I[9275,[],\"\"]\na:I[1343,[],\"\"]\nb:I[1164,[\"310\",\"static/chunks/0e5ce63c-5b68c6318b80509b.js\",\"373\",\"static/chunks/373-9f3beb68839edc48.js\",\"395\",\"static/chunks/395-32a6c8afdeacfb3a.js\",\"56\",\"static/chunks/56-697828c4acbbc685.js\",\"174\",\"static/chunks/174-7bc28f0c2bdeddd5.js\",\"882\",\"static/chunks/882-fdc362c30c0528ac.js\",\"185\",\"static/chunks/app/layout-c0319585d72d6a2a.js\"],\"Analytics\"]\nc:I[7240,[\"310\",\"static/chunks/0e5ce63c-5b68c6318b80509b.js\",\"373\",\"static/chunks/373-9f3beb68839edc48.js\",\"395\",\"static/chunks/395-32a6c8afdeacfb3a.js\",\"56\",\"static/chunks/56-697828c4acbbc685.js\",\"174\",\"static/chunks/174-7bc28f0c2bdeddd5.js\",\"882\",\"static/chunks/882-fdc362c30c0528ac.js\",\"185\",\"static/chunks/app/layout-c0319585d72d6a2a.js\"],\"SpeedInsights\"]\ne:I[6130,[],\"\"]\nf:[]\n"])
+        </script>
+        <script>
+            self.__next_f.push([1, "0:[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/bf4768621587ce63.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\"}]],[\"$\",\"$L3\",null,{\"buildId\":\"EECsIzohQoPNMYSsRzSsx\",\"assetPrefix\":\"\",\"initialCanonicalUrl\":\"/\",\"initialTree\":[\"\",{\"children\":[\"__PAGE__\",{}]},\"$undefined\",\"$undefined\",true],\"initialSeedData\":[\"\",{\"children\":[\"__PAGE__\",{},[[\"$L4\",[\"$\",\"$L5\",null,{\"props\":{\"params\":{},\"searchParams\":{}},\"Component\":\"$6\"}]],null],null]},[[\"$\",\"html\",null,{\"lang\":\"en\",\"className\":\"dark\",\"children\":[\"$\",\"body\",null,{\"className\":\"__className_36bd41\",\"children\":[[\"$\",\"$L7\",null,{\"color\":\"#1FB255\"}],[\"$\",\"$L8\",null,{}],[\"$\",\"$L9\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\"],\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$La\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":\"404\"}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]],\"notFoundStyles\":[],\"styles\":null}],[\"$\",\"$Lb\",null,{}],[\"$\",\"$Lc\",null,{}]]}]}],null],null],\"couldBeIntercepted\":false,\"initialHead\":[null,\"$Ld\"],\"globalErrorComponent\":\"$e\",\"missingSlots\":\"$Wf\"}]]\n"])
+        </script>
+        <script>
+            self.__next_f.push([1, "d:[[\"$\",\"meta\",\"0\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}],[\"$\",\"meta\",\"1\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"2\",{\"children\":\"csint.dev\"}],[\"$\",\"meta\",\"3\",{\"name\":\"description\",\"content\":\"Explore if your personal information has been compromised in data breaches with csint.dev. Stay informed, secure your data, and use powerful tools like Snusbase and Osintcat.\"}],[\"$\",\"meta\",\"4\",{\"name\":\"keywords\",\"content\":\"snusbase,osintcat,data breaches,breach forums,dehashed api,csint,osint,data leak search,check compromised email,dark web monitoring,security tools,personal data protection,find stolen data\"}],[\"$\",\"meta\",\"5\",{\"property\":\"og:title\",\"content\":\"csint.dev - Discover Data Breaches \u0026 Compromised Information\"}],[\"$\",\"meta\",\"6\",{\"property\":\"og:description\",\"content\":\"Find out if your information has been compromised using our data breach search engine. Secure your data and stay ahead of threats.\"}],[\"$\",\"meta\",\"7\",{\"property\":\"og:url\",\"content\":\"https://csint.dev\"}],[\"$\",\"meta\",\"8\",{\"name\":\"twitter:card\",\"content\":\"summary\"}],[\"$\",\"meta\",\"9\",{\"name\":\"twitter:title\",\"content\":\"csint.dev - Discover Data Breaches \u0026 Compromised Information\"}],[\"$\",\"meta\",\"10\",{\"name\":\"twitter:description\",\"content\":\"Find out if your information has been compromised using our data breach search engine. Secure your data and stay ahead of threats.\"}],[\"$\",\"link\",\"11\",{\"rel\":\"icon\",\"href\":\"/favicon.ico\",\"type\":\"image/x-icon\",\"sizes\":\"16x16\"}],[\"$\",\"meta\",\"12\",{\"name\":\"next-size-adjust\"}]]\n4:null\n"])
+        </script>
+    </body>
 </html>

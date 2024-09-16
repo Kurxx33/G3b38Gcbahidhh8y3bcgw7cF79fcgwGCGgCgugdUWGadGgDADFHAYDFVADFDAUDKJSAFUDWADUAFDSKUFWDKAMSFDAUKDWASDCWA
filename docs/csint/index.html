@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSINT Legal Search</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>CSINT Legal Search</h1>
+    </header>
+    <main>
+        <div class="search-container">
+            <input type="text" id="search-bar" placeholder="Enter search term...">
+            <select id="search-type">
+                <option value="emails">Emails</option>
+                <option value="passwords">Passwords</option>
+                <option value="names">Names</option>
+                <option value="ips">IPs</option>
+            </select>
+            <button id="search-btn">Search</button>
+        </div>
+        <div id="results" class="results-container"></div>
+    </main>
+    <script src="scripts.js"></script>
+</body>
+</html>
